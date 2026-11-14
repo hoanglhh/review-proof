@@ -1,0 +1,36 @@
+{
+  "cases": [
+    {
+      "id": "2283",
+      "profile": "messagepack-csharp",
+      "repository": "https://github.com/te-industry-tech-office/junction26-messagepack-csharp",
+      "base": "32258fdbee4bcd653c79f51b4376b5103c6f4d27",
+      "head": "9df83c38409c8bfad0517aebffe48211eda4a5b4",
+      "requirement": { "id": "#2283", "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/issues/2283" }
+    },
+    {
+      "id": "2234",
+      "profile": "messagepack-csharp",
+      "repository": "https://github.com/te-industry-tech-office/junction26-messagepack-csharp",
+      "base": "32258fdbee4bcd653c79f51b4376b5103c6f4d27",
+      "head": "9007cee1163c4a274fd60c3cc20c21ae63622786",
+      "requirement": { "id": "#2234", "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/issues/2234" }
+    },
+    {
+      "id": "2129",
+      "profile": "messagepack-csharp",
+      "repository": "https://github.com/te-industry-tech-office/junction26-messagepack-csharp",
+      "base": "32258fdbee4bcd653c79f51b4376b5103c6f4d27",
+      "head": "083afd994c1c9a994cb2cd5aa0b6ad805a621457",
+      "requirement": { "id": "#2129", "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/issues/2129" }
+    },
+    {
+      "id": "2297",
+      "profile": "messagepack-csharp",
+      "repository": "https://github.com/te-industry-tech-office/junction26-messagepack-csharp",
+      "base": "32258fdbee4bcd653c79f51b4376b5103c6f4d27",
+      "head": "a0aa5ab2de7f5a669d97e37184a89034c1de82b6",
+      "requirement": { "id": "#2297", "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/issues/2297" }
+    }
+  ]
+}

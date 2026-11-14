@@ -1,0 +1,730 @@
+{
+  "schemaVersion": 1,
+  "case": {
+    "id": "2283",
+    "requirementId": "#2283",
+    "requirementUrl": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/issues/2283",
+    "requirementRetrievedAt": "2026-11-14T05:32:46.427Z",
+    "repository": "https://github.com/te-industry-tech-office/junction26-messagepack-csharp",
+    "profile": "messagepack-csharp",
+    "base": "32258fdbee4bcd653c79f51b4376b5103c6f4d27",
+    "head": "9df83c38409c8bfad0517aebffe48211eda4a5b4",
+    "generatedAt": "2026-11-14T05:39:03.133Z",
+    "pipelineVersion": "0.1.0",
+    "policyVersion": null,
+    "model": null,
+    "promptHash": null
+  },
+  "reviewer": {
+    "status": "unavailable",
+    "reason": "no model output: the AI review stage has not run"
+  },
+  "requirements": [],
+  "inventory": {
+    "files": [
+      {
+        "path": "README.md",
+        "status": "modified",
+        "class": "docs",
+        "binary": false,
+        "added": 5,
+        "removed": 0,
+        "hunkIds": [
+          "H1"
+        ]
+      },
+      {
+        "path": "doc/analyzers/MsgPack004.md",
+        "status": "modified",
+        "class": "docs",
+        "binary": false,
+        "added": 5,
+        "removed": 0,
+        "hunkIds": [
+          "H2"
+        ]
+      },
+      {
+        "path": "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
+        "status": "modified",
+        "class": "source",
+        "binary": false,
+        "added": 26,
+        "removed": 3,
+        "hunkIds": [
+          "H3",
+          "H4",
+          "H5",
+          "H6"
+        ]
+      },
+      {
+        "path": "tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs",
+        "status": "modified",
+        "class": "test",
+        "binary": false,
+        "added": 189,
+        "removed": 0,
+        "hunkIds": [
+          "H7",
+          "H8",
+          "H9"
+        ]
+      }
+    ],
+    "totals": {
+      "files": 4,
+      "added": 225,
+      "removed": 3,
+      "byClass": {
+        "docs": {
+          "files": 2,
+          "lines": 10
+        },
+        "source": {
+          "files": 1,
+          "lines": 29
+        },
+        "test": {
+          "files": 1,
+          "lines": 189
+        }
+      }
+    }
+  },
+  "hunks": [
+    {
+      "id": "H1",
+      "file": "README.md",
+      "oldStart": 1638,
+      "oldLines": 0,
+      "newStart": 1639,
+      "newLines": 5,
+      "removed": [],
+      "added": [
+        "### Generic types from referenced assemblies",
+        "",
+        "Closed generic types defined in a referenced assembly (for example, `Item<int>` where `Item<T>` is defined in another project or NuGet package) can be used as members of your `[MessagePackObject]` types, including generic value types and record structs.",
+        "Diagnostics about the members of such a type are reported by the assembly that defines it rather than by the consuming project, so any problem must be fixed there.",
+        ""
+      ]
+    },
+    {
+      "id": "H2",
+      "file": "doc/analyzers/MsgPack004.md",
+      "oldStart": 47,
+      "oldLines": 0,
+      "newStart": 48,
+      "newLines": 5,
+      "removed": [],
+      "added": [
+        "",
+        "## Types from referenced assemblies",
+        "",
+        "This analyzer only reports on members declared in the project being compiled.",
+        "Members of a type defined in a referenced assembly are reported by the project that defines that type, so an unattributed public member of such a type must be fixed in its defining project."
+      ]
+    },
+    {
+      "id": "H3",
+      "file": "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
+      "oldStart": 239,
+      "oldLines": 1,
+      "newStart": 239,
+      "newLines": 1,
+      "removed": [
+        "        this.reportDiagnostic = reportAnalyzerDiagnostic;"
+      ],
+      "added": [
+        "        this.reportDiagnostic = reportAnalyzerDiagnostic is null ? null : diagnostic => ReportIfLocatedInCompilation(reportAnalyzerDiagnostic, diagnostic);"
+      ]
+    },
+    {
+      "id": "H4",
+      "file": "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
+      "oldStart": 985,
+      "oldLines": 1,
+      "newStart": 985,
+      "newLines": 1,
+      "removed": [
+        "                        this.reportDiagnostic?.Invoke(Diagnostic.Create(MsgPack00xMessagePackAnalyzer.BothStringAndIntKeyAreNull, ((PropertyDeclarationSyntax)item.DeclaringSyntaxReferences[0].GetSyntax()).Identifier.GetLocation(), formattedType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat), item.Name));"
+      ],
+      "added": [
+        "                        this.reportDiagnostic?.Invoke(Diagnostic.Create(MsgPack00xMessagePackAnalyzer.BothStringAndIntKeyAreNull, GetPropertyIdentifierLocation(item), formattedType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat), item.Name));"
+      ]
+    },
+    {
+      "id": "H5",
+      "file": "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
+      "oldStart": 1077,
+      "oldLines": 1,
+      "newStart": 1077,
+      "newLines": 1,
+      "removed": [
+        "                                    : Diagnostic.Create(MsgPack00xMessagePackAnalyzer.MemberNeedsKey, item.DeclaringSyntaxReferences[0].GetSyntax().GetLocation(), formattedType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat), item.Name);"
+      ],
+      "added": [
+        "                                    : Diagnostic.Create(MsgPack00xMessagePackAnalyzer.MemberNeedsKey, item.DeclaringSyntaxReferences.FirstOrDefault()?.GetSyntax().GetLocation(), formattedType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat), item.Name);"
+      ]
+    },
+    {
+      "id": "H6",
+      "file": "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
+      "oldStart": 1428,
+      "oldLines": 0,
+      "newStart": 1429,
+      "newLines": 23,
+      "removed": [],
+      "added": [
+        "    /// <summary>",
+        "    /// Gets the location of the identifier of a property, if it is declared in source.",
+        "    /// </summary>",
+        "    /// <param name=\"property\">The property symbol. It may be declared in metadata, in which case <see langword=\"null\" /> is returned.</param>",
+        "    /// <returns>The location of the identifier, or <see langword=\"null\" /> if the property has no declaration in source.</returns>",
+        "    private static Location? GetPropertyIdentifierLocation(IPropertySymbol property) => (property.DeclaringSyntaxReferences.FirstOrDefault()?.GetSyntax() as PropertyDeclarationSyntax)?.Identifier.GetLocation();",
+        "",
+        "    /// <summary>",
+        "    /// Reports a diagnostic only when its location belongs to the compilation being analyzed.",
+        "    /// </summary>",
+        "    /// <remarks>",
+        "    /// Types and members that come from metadata (or from another compilation) have no location in the compilation being analyzed.",
+        "    /// Their problems are reported by the compilation that defines them, so they are dropped here rather than being reported",
+        "    /// against a location that does not exist, which analyzers are not permitted to do.",
+        "    /// </remarks>",
+        "    private void ReportIfLocatedInCompilation(Action<Diagnostic> report, Diagnostic diagnostic)",
+        "    {",
+        "        if (diagnostic.Location.IsInSource && this.compilation.ContainsSyntaxTree(diagnostic.Location.SourceTree))",
+        "        {",
+        "            report(diagnostic);",
+        "        }",
+        "    }",
+        ""
+      ]
+    },
+    {
+      "id": "H7",
+      "file": "tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs",
+      "oldStart": 3,
+      "oldLines": 0,
+      "newStart": 4,
+      "newLines": 1,
+      "removed": [],
+      "added": [
+        "using Microsoft.CodeAnalysis;"
+      ]
+    },
+    {
+      "id": "H8",
+      "file": "tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs",
+      "oldStart": 4,
+      "oldLines": 0,
+      "newStart": 6,
+      "newLines": 1,
+      "removed": [],
+      "added": [
+        "using Microsoft.CodeAnalysis.Testing;"
+      ]
+    },
+    {
+      "id": "H9",
+      "file": "tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs",
+      "oldStart": 496,
+      "oldLines": 0,
+      "newStart": 499,
+      "newLines": 187,
+      "removed": [],
+      "added": [
+        "    /// <summary>",
+        "    /// Asserts that a closed generic value type defined in a referenced <em>assembly</em> (metadata only, no syntax),",
+        "    /// used as a member type, does not crash the generator or analyzer.",
+        "    /// </summary>",
+        "    /// <remarks>",
+        "    /// See https://github.com/MessagePack-CSharp/MessagePack-CSharp/issues/2283.",
+        "    /// </remarks>",
+        "    [Fact]",
+        "    public async Task ClosedGenericStruct_FromMetadataReference()",
+        "    {",
+        "        string defineSource = \"\"\"",
+        "using MessagePack;",
+        "",
+        "namespace TempProject",
+        "{",
+        "    [MessagePackObject]",
+        "    public struct MyGenericStruct<T>",
+        "    {",
+        "        [Key(0)]",
+        "        public T Content { get; set; }",
+        "    }",
+        "}",
+        "\"\"\";",
+        "",
+        "        string usageSource = \"\"\"",
+        "using MessagePack;",
+        "",
+        "namespace TempProject",
+        "{",
+        "    [MessagePackObject]",
+        "    public class MyObject",
+        "    {",
+        "        [Key(0)]",
+        "        public MyGenericStruct<int> Value { get; set; }",
+        "    }",
+        "",
+        "    [GeneratedMessagePackResolver]",
+        "    partial class MyResolver { }",
+        "}",
+        "\"\"\";",
+        "",
+        "        await RunWithMetadataReferenceAsync(defineSource, usageSource, \"TempProject.MyResolver.g.cs\");",
+        "    }",
+        "",
+        "    /// <summary>",
+        "    /// Asserts that a closed generic <em>record struct</em> defined in a referenced assembly, used as a member type,",
+        "    /// does not crash the generator or analyzer.",
+        "    /// </summary>",
+        "    /// <remarks>",
+        "    /// See https://github.com/MessagePack-CSharp/MessagePack-CSharp/issues/2283.",
+        "    /// </remarks>",
+        "    [Fact]",
+        "    public async Task ClosedGenericRecordStruct_FromMetadataReference()",
+        "    {",
+        "        string defineSource = \"\"\"",
+        "using MessagePack;",
+        "",
+        "namespace Lib;",
+        "",
+        "[MessagePackObject]",
+        "public partial record struct Item<T>([property: Key(0)] string Key);",
+        "\"\"\";",
+        "",
+        "        string usageSource = \"\"\"",
+        "using MessagePack;",
+        "using Lib;",
+        "",
+        "namespace App;",
+        "",
+        "[MessagePackObject]",
+        "public sealed partial record Cmd([property: Key(0)] string Scope)",
+        "{",
+        "    [Key(1)]",
+        "    public Item<int> Member { get; init; }",
+        "}",
+        "",
+        "[GeneratedMessagePackResolver]",
+        "partial class AppResolver { }",
+        "\"\"\";",
+        "",
+        "        await RunWithMetadataReferenceAsync(defineSource, usageSource, \"App.AppResolver.g.cs\", LanguageVersion.Latest);",
+        "    }",
+        "",
+        "    /// <summary>",
+        "    /// Asserts that a closed generic value type from a referenced assembly whose members lack a key attribute",
+        "    /// does not crash the generator or analyzer, since its member diagnostics belong to the defining assembly.",
+        "    /// </summary>",
+        "    /// <remarks>",
+        "    /// See https://github.com/MessagePack-CSharp/MessagePack-CSharp/issues/2283.",
+        "    /// </remarks>",
+        "    [Fact]",
+        "    public async Task ClosedGenericStruct_FromMetadataReference_UnkeyedMember()",
+        "    {",
+        "        string defineSource = \"\"\"",
+        "using MessagePack;",
+        "",
+        "namespace TempProject",
+        "{",
+        "    [MessagePackObject]",
+        "    public struct MyGenericStruct<T>",
+        "    {",
+        "        [Key(0)]",
+        "        public string Key { get; set; }",
+        "",
+        "        public int Unkeyed { get; set; }",
+        "    }",
+        "}",
+        "\"\"\";",
+        "",
+        "        string usageSource = \"\"\"",
+        "using MessagePack;",
+        "",
+        "namespace TempProject",
+        "{",
+        "    [MessagePackObject]",
+        "    public class MyObject",
+        "    {",
+        "        [Key(0)]",
+        "        public MyGenericStruct<int> Value { get; set; }",
+        "    }",
+        "",
+        "    [GeneratedMessagePackResolver]",
+        "    partial class MyResolver { }",
+        "}",
+        "\"\"\";",
+        "",
+        "        await RunWithMetadataReferenceAsync(defineSource, usageSource, \"TempProject.MyResolver.g.cs\");",
+        "    }",
+        "",
+        "    /// <summary>",
+        "    /// Compiles <paramref name=\"defineSource\"/> to an assembly image, then verifies that the analyzers and the generator",
+        "    /// handle <paramref name=\"usageSource\"/> without diagnostics, referencing that image as metadata only,",
+        "    /// and that the resolver named <paramref name=\"expectedResolverHintName\"/> is generated.",
+        "    /// </summary>",
+        "    private static async Task RunWithMetadataReferenceAsync(string defineSource, string usageSource, string expectedResolverHintName, LanguageVersion languageVersion = LanguageVersion.CSharp7_3)",
+        "    {",
+        "        MetadataReference definingAssembly = await CompileToMetadataReferenceAsync(\"DefiningProject\", defineSource, languageVersion);",
+        "",
+        "        // Run the analyzers and the generator, failing on any diagnostic (the defect surfaced as AD0001 and CS8785).",
+        "        var test = new VerifyCS.Test(ReferencesSet.MessagePack)",
+        "        {",
+        "            LanguageVersion = languageVersion,",
+        "            TestBehaviors = TestBehaviors.SkipGeneratedSourcesCheck,",
+        "            TestState =",
+        "            {",
+        "                Sources = { usageSource },",
+        "            },",
+        "        };",
+        "        test.TestState.AdditionalReferences.Add(definingAssembly);",
+        "        await test.RunAsync();",
+        "",
+        "        // Verify that the resolver was actually generated for the usage assembly, since the defect caused it to be silently omitted.",
+        "        ImmutableArray<MetadataReference> frameworkReferences = await ReferenceAssemblies.Net.Net80.ResolveAsync(LanguageNames.CSharp, CancellationToken.None);",
+        "        Compilation usageCompilation = CreateCompilation(\"App\", usageSource, languageVersion, frameworkReferences.Concat(ReferencesHelper.GetReferences(ReferencesSet.MessagePack)).Append(definingAssembly));",
+        "        GeneratorDriverRunResult runResult = CSharpGeneratorDriver.Create(new MessagePack.SourceGenerator.MessagePackGenerator().AsSourceGenerator())",
+        "            .RunGenerators(usageCompilation)",
+        "            .GetRunResult();",
+        "        Assert.Empty(runResult.Diagnostics.Where(d => d.Severity >= DiagnosticSeverity.Warning));",
+        "        var hintNames = runResult.Results.SelectMany(r => r.GeneratedSources).Select(s => s.HintName).ToList();",
+        "        Assert.Contains(expectedResolverHintName, hintNames);",
+        "    }",
+        "",
+        "    private static async Task<MetadataReference> CompileToMetadataReferenceAsync(string assemblyName, string source, LanguageVersion languageVersion)",
+        "    {",
+        "        ImmutableArray<MetadataReference> frameworkReferences = await ReferenceAssemblies.Net.Net80.ResolveAsync(LanguageNames.CSharp, CancellationToken.None);",
+        "        Compilation compilation = CreateCompilation(assemblyName, source, languageVersion, frameworkReferences.Concat(ReferencesHelper.GetReferences(ReferencesSet.MessagePack)), OutputKind.DynamicallyLinkedLibrary);",
+        "",
+        "        using var stream = new MemoryStream();",
+        "        Microsoft.CodeAnalysis.Emit.EmitResult emitResult = compilation.Emit(stream);",
+        "        if (!emitResult.Success)",
+        "        {",
+        "            throw new InvalidOperationException(\"Failed to compile referenced assembly: \" + string.Join(Environment.NewLine, emitResult.Diagnostics));",
+        "        }",
+        "",
+        "        return MetadataReference.CreateFromImage(stream.ToArray());",
+        "    }",
+        "",
+        "    private static Compilation CreateCompilation(string assemblyName, string source, LanguageVersion languageVersion, IEnumerable<MetadataReference> references, OutputKind outputKind = OutputKind.DynamicallyLinkedLibrary)",
+        "    {",
+        "        var parseOptions = CSharpParseOptions.Default.WithLanguageVersion(languageVersion);",
+        "        return CSharpCompilation.Create(",
+        "            assemblyName,",
+        "            new[] { CSharpSyntaxTree.ParseText(source, parseOptions) },",
+        "            references.ToArray(),",
+        "            new CSharpCompilationOptions(outputKind));",
+        "    }",
+        ""
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "inventory",
+      "check": "inventory",
+      "domain": "general",
+      "asserts": "every changed file is classified",
+      "performedBy": "reviewproof 0.1.0 (static check, in-process)",
+      "commands": [
+        "node src/cli.ts check 2283"
+      ],
+      "commits": [
+        "32258fdbee4bcd653c79f51b4376b5103c6f4d27",
+        "9df83c38409c8bfad0517aebffe48211eda4a5b4"
+      ],
+      "status": "passed",
+      "summary": "4 files, +225/-3: 2 docs (10 lines), 1 source (29 lines), 1 test (189 lines).",
+      "durationMs": 0,
+      "logs": [],
+      "details": {
+        "totals": {
+          "files": 4,
+          "added": 225,
+          "removed": 3,
+          "byClass": {
+            "docs": {
+              "files": 2,
+              "lines": 10
+            },
+            "source": {
+              "files": 1,
+              "lines": 29
+            },
+            "test": {
+              "files": 1,
+              "lines": 189
+            }
+          }
+        },
+        "unclassified": [],
+        "binary": []
+      }
+    },
+    {
+      "id": "pattern-groups",
+      "check": "pattern-groups",
+      "domain": "general",
+      "asserts": "every repetitive file changed in the same way as its group",
+      "performedBy": "reviewproof 0.1.0 (static check, in-process)",
+      "commands": [
+        "node src/cli.ts check 2283"
+      ],
+      "commits": [
+        "32258fdbee4bcd653c79f51b4376b5103c6f4d27",
+        "9df83c38409c8bfad0517aebffe48211eda4a5b4"
+      ],
+      "status": "not_run",
+      "reason": "no changed files of class test-snapshot or template-output",
+      "summary": "No repetitive files changed.",
+      "durationMs": 0,
+      "logs": [],
+      "details": {
+        "eligibleFiles": 0,
+        "groups": [],
+        "deviating": []
+      }
+    },
+    {
+      "id": "public-surface",
+      "check": "public-surface",
+      "domain": "backend",
+      "asserts": "no public declaration, public API entry or diagnostic ID was added, removed or changed",
+      "performedBy": "reviewproof 0.1.0 (static check, in-process)",
+      "commands": [
+        "node src/cli.ts check 2283"
+      ],
+      "commits": [
+        "32258fdbee4bcd653c79f51b4376b5103c6f4d27",
+        "9df83c38409c8bfad0517aebffe48211eda4a5b4"
+      ],
+      "status": "passed",
+      "summary": "No public declaration, API file entry or diagnostic ID changed.",
+      "durationMs": 0,
+      "logs": [],
+      "details": {
+        "hits": []
+      }
+    },
+    {
+      "id": "tests-at-head:MessagePack.SourceGenerator.Tests",
+      "check": "tests-at-head",
+      "domain": "backend",
+      "asserts": "every test the change added or modified passes at head",
+      "performedBy": "dotnet test in container mcr.microsoft.com/dotnet/sdk:8.0.402-jammy",
+      "commands": [
+        "docker run --rm --user 1000:1000 -e HOME=/home/huyhoangle/junction/review-proof/.work/home -e DOTNET_CLI_HOME=/home/huyhoangle/junction/review-proof/.work/home -e NUGET_PACKAGES=/home/huyhoangle/junction/review-proof/.work/nuget -e DOTNET_CLI_TELEMETRY_OPTOUT=1 -e DOTNET_NOLOGO=1 -v /home/huyhoangle/junction/review-proof/.work:/home/huyhoangle/junction/review-proof/.work -w /home/huyhoangle/junction/review-proof/.work/wt/9df83c38409c8bfad0517aebffe48211eda4a5b4 mcr.microsoft.com/dotnet/sdk:8.0.402-jammy dotnet test tests/MessagePack.SourceGenerator.Tests/MessagePack.SourceGenerator.Tests.csproj --logger 'trx;LogFileName=head.MessagePack.SourceGenerator.Tests.trx' --results-directory /home/huyhoangle/junction/review-proof/.work/results/data_cases_2283_runs/head.MessagePack.SourceGenerator.Tests"
+      ],
+      "commits": [
+        "9df83c38409c8bfad0517aebffe48211eda4a5b4"
+      ],
+      "status": "passed",
+      "summary": "3 of 3 changed tests pass at head.",
+      "tests": [
+        {
+          "name": "GenericsFormatterTests.ClosedGenericStruct_FromMetadataReference_UnkeyedMember",
+          "outcome": "passed",
+          "new": true
+        },
+        {
+          "name": "GenericsFormatterTests.ClosedGenericStruct_FromMetadataReference",
+          "outcome": "passed",
+          "new": true
+        },
+        {
+          "name": "GenericsFormatterTests.ClosedGenericRecordStruct_FromMetadataReference",
+          "outcome": "passed",
+          "new": true
+        }
+      ],
+      "durationMs": 27942,
+      "logs": [
+        "data/cases/2283/runs/head.MessagePack.SourceGenerator.Tests.log",
+        "data/cases/2283/runs/head.MessagePack.SourceGenerator.Tests.trx"
+      ]
+    },
+    {
+      "id": "tests-without-change:MessagePack.SourceGenerator.Tests",
+      "check": "tests-without-change",
+      "domain": "backend",
+      "asserts": "every changed test that passes at head fails with the base source",
+      "performedBy": "dotnet test in container mcr.microsoft.com/dotnet/sdk:8.0.402-jammy",
+      "commands": [
+        "docker run --rm --user 1000:1000 -e HOME=/home/huyhoangle/junction/review-proof/.work/home -e DOTNET_CLI_HOME=/home/huyhoangle/junction/review-proof/.work/home -e NUGET_PACKAGES=/home/huyhoangle/junction/review-proof/.work/nuget -e DOTNET_CLI_TELEMETRY_OPTOUT=1 -e DOTNET_NOLOGO=1 -v /home/huyhoangle/junction/review-proof/.work:/home/huyhoangle/junction/review-proof/.work -w /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283 mcr.microsoft.com/dotnet/sdk:8.0.402-jammy dotnet test tests/MessagePack.SourceGenerator.Tests/MessagePack.SourceGenerator.Tests.csproj --logger 'trx;LogFileName=without-change.MessagePack.SourceGenerator.Tests.trx' --results-directory /home/huyhoangle/junction/review-proof/.work/results/data_cases_2283_runs/without-change.MessagePack.SourceGenerator.Tests"
+      ],
+      "commits": [
+        "32258fdbee4bcd653c79f51b4376b5103c6f4d27",
+        "9df83c38409c8bfad0517aebffe48211eda4a5b4"
+      ],
+      "status": "passed",
+      "summary": "3 of 3 changed tests that pass at head fail without the change (discriminating).",
+      "tests": [
+        {
+          "name": "GenericsFormatterTests.ClosedGenericStruct_FromMetadataReference_UnkeyedMember",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Mismatch between number of diagnostics returned, expected \"0\" actual \"3\"\r\n\r\nDiagnostics:\r\n// error AD0001: Analyzer 'MessagePack.SourceGenerator.Analyzers.MsgPack00xMessagePackAnalyzer' threw an exception of type 'System.IndexOutOfRangeException' with message 'Index was outside the bounds of the array.'.\r\nException occurred with following context:\r\nCompilation: TestProject\nISymbol: MyObject (NamedType)\n\nSystem.IndexOutOfRangeException: Index was outside the bounds of the array.\n   at System.Collections.Immutable.ImmutableArray`1.get_Item(Int32 index)\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.GetObjectInfo(INamedTypeSymbol formattedType, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 1075\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectGeneric(INamedTypeSymbol type, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 651\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectCore(ITypeSymbol typeSymbol, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 363\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.GetObjectInfo(INamedTypeSymbol formattedType, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 1043\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectObject(INamedTypeSymbol type, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 678\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectCore(ITypeSymbol typeSymbol, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 378\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.Collect() in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 292\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.Collect(Compilation compilation, AnalyzerOptions options, ReferenceSymbols referenceSymbols, Action`1 reportAnalyzerDiagnostic, ITypeSymbol targetType, CancellationToken cancellationToken) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 271\n   at MessagePack.SourceGenerator.Analyzers.MsgPack00xMessagePackAnalyzer.AnalyzeSymbol(SymbolAnalysisContext context, ReferenceSymbols typeReferences, AnalyzerOptions options) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/Analyzers/MsgPack00xMessagePackAnalyzer.cs:line 430\n   at MessagePack.SourceGenerator.Analyzers.MsgPack00xMessagePackAnalyzer.<>c__DisplayClass55_1.<Initialize>b__1(SymbolAnalysisContext context) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/Analyzers/MsgPack00xMessagePackAnalyzer.cs:line 357\n   at Microsoft.CodeAnalysis.Diagnostics.AnalyzerExecutor.<>c.<ExecuteSymbolActions>b__45_1(ValueTuple`2 data)\n   at Microsoft.CodeAnalysis.Diagnostics.AnalyzerExecutor.ExecuteAndCatchIfThrows_NoLock[TArg](DiagnosticAnalyzer analyzer, Action`1 analyze, TArg argument, Nullable`1 info, CancellationToken cancellationToken)\n-----\n\nSuppress the following diagnostics to disable this analyzer: MsgPack003, MsgPack004, MsgPack005, MsgPack006, MsgPack007, MsgPack008, MsgPack009, MsgPack010, MsgPack011, MsgPack012, MsgPack013, MsgPack014, MsgPack015, MsgPack016, MsgPack017, MsgPack018\nDiagnosticResult.CompilerError(\"AD0001\").WithArguments(\"MessagePack.So"
+        },
+        {
+          "name": "GenericsFormatterTests.ClosedGenericStruct_FromMetadataReference",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Mismatch between number of diagnostics returned, expected \"0\" actual \"2\"\r\n\r\nDiagnostics:\r\n// error AD0001: Analyzer 'MessagePack.SourceGenerator.Analyzers.MsgPack00xMessagePackAnalyzer' threw an exception of type 'System.IndexOutOfRangeException' with message 'Index was outside the bounds of the array.'.\r\nException occurred with following context:\r\nCompilation: TestProject\nISymbol: MyObject (NamedType)\n\nSystem.IndexOutOfRangeException: Index was outside the bounds of the array.\n   at System.Collections.Immutable.ImmutableArray`1.get_Item(Int32 index)\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.GetObjectInfo(INamedTypeSymbol formattedType, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 1075\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectGeneric(INamedTypeSymbol type, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 651\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectCore(ITypeSymbol typeSymbol, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 363\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.GetObjectInfo(INamedTypeSymbol formattedType, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 1043\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectObject(INamedTypeSymbol type, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 678\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectCore(ITypeSymbol typeSymbol, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 378\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.Collect() in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 292\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.Collect(Compilation compilation, AnalyzerOptions options, ReferenceSymbols referenceSymbols, Action`1 reportAnalyzerDiagnostic, ITypeSymbol targetType, CancellationToken cancellationToken) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 271\n   at MessagePack.SourceGenerator.Analyzers.MsgPack00xMessagePackAnalyzer.AnalyzeSymbol(SymbolAnalysisContext context, ReferenceSymbols typeReferences, AnalyzerOptions options) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/Analyzers/MsgPack00xMessagePackAnalyzer.cs:line 430\n   at MessagePack.SourceGenerator.Analyzers.MsgPack00xMessagePackAnalyzer.<>c__DisplayClass55_1.<Initialize>b__1(SymbolAnalysisContext context) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/Analyzers/MsgPack00xMessagePackAnalyzer.cs:line 357\n   at Microsoft.CodeAnalysis.Diagnostics.AnalyzerExecutor.<>c.<ExecuteSymbolActions>b__45_1(ValueTuple`2 data)\n   at Microsoft.CodeAnalysis.Diagnostics.AnalyzerExecutor.ExecuteAndCatchIfThrows_NoLock[TArg](DiagnosticAnalyzer analyzer, Action`1 analyze, TArg argument, Nullable`1 info, CancellationToken cancellationToken)\n-----\n\nSuppress the following diagnostics to disable this analyzer: MsgPack003, MsgPack004, MsgPack005, MsgPack006, MsgPack007, MsgPack008, MsgPack009, MsgPack010, MsgPack011, MsgPack012, MsgPack013, MsgPack014, MsgPack015, MsgPack016, MsgPack017, MsgPack018\nDiagnosticResult.CompilerError(\"AD0001\").WithArguments(\"MessagePack.So"
+        },
+        {
+          "name": "GenericsFormatterTests.ClosedGenericRecordStruct_FromMetadataReference",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Mismatch between number of diagnostics returned, expected \"0\" actual \"2\"\r\n\r\nDiagnostics:\r\n// error AD0001: Analyzer 'MessagePack.SourceGenerator.Analyzers.MsgPack00xMessagePackAnalyzer' threw an exception of type 'System.IndexOutOfRangeException' with message 'Index was outside the bounds of the array.'.\r\nException occurred with following context:\r\nCompilation: TestProject\nISymbol: Cmd (NamedType)\n\nSystem.IndexOutOfRangeException: Index was outside the bounds of the array.\n   at System.Collections.Immutable.ImmutableArray`1.get_Item(Int32 index)\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.GetObjectInfo(INamedTypeSymbol formattedType, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 1075\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectGeneric(INamedTypeSymbol type, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 651\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectCore(ITypeSymbol typeSymbol, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 363\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.GetObjectInfo(INamedTypeSymbol formattedType, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 1043\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectObject(INamedTypeSymbol type, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 678\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectCore(ITypeSymbol typeSymbol, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 378\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.Collect() in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 292\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.Collect(Compilation compilation, AnalyzerOptions options, ReferenceSymbols referenceSymbols, Action`1 reportAnalyzerDiagnostic, ITypeSymbol targetType, CancellationToken cancellationToken) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 271\n   at MessagePack.SourceGenerator.Analyzers.MsgPack00xMessagePackAnalyzer.AnalyzeSymbol(SymbolAnalysisContext context, ReferenceSymbols typeReferences, AnalyzerOptions options) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/Analyzers/MsgPack00xMessagePackAnalyzer.cs:line 430\n   at MessagePack.SourceGenerator.Analyzers.MsgPack00xMessagePackAnalyzer.<>c__DisplayClass55_1.<Initialize>b__1(SymbolAnalysisContext context) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/Analyzers/MsgPack00xMessagePackAnalyzer.cs:line 357\n   at Microsoft.CodeAnalysis.Diagnostics.AnalyzerExecutor.<>c.<ExecuteSymbolActions>b__45_1(ValueTuple`2 data)\n   at Microsoft.CodeAnalysis.Diagnostics.AnalyzerExecutor.ExecuteAndCatchIfThrows_NoLock[TArg](DiagnosticAnalyzer analyzer, Action`1 analyze, TArg argument, Nullable`1 info, CancellationToken cancellationToken)\n-----\n\nSuppress the following diagnostics to disable this analyzer: MsgPack003, MsgPack004, MsgPack005, MsgPack006, MsgPack007, MsgPack008, MsgPack009, MsgPack010, MsgPack011, MsgPack012, MsgPack013, MsgPack014, MsgPack015, MsgPack016, MsgPack017, MsgPack018\nDiagnosticResult.CompilerError(\"AD0001\").WithArguments(\"MessagePack.SourceG"
+        }
+      ],
+      "durationMs": 45362,
+      "logs": [
+        "data/cases/2283/runs/without-change.MessagePack.SourceGenerator.Tests.log",
+        "data/cases/2283/runs/without-change.MessagePack.SourceGenerator.Tests.trx"
+      ]
+    },
+    {
+      "id": "existing-tests:MessagePack.SourceGenerator.Tests",
+      "check": "existing-tests",
+      "domain": "backend",
+      "asserts": "no pre-existing test that passed at base fails at head",
+      "performedBy": "dotnet test in container mcr.microsoft.com/dotnet/sdk:8.0.402-jammy",
+      "commands": [
+        "docker run --rm --user 1000:1000 -e HOME=/home/huyhoangle/junction/review-proof/.work/home -e DOTNET_CLI_HOME=/home/huyhoangle/junction/review-proof/.work/home -e NUGET_PACKAGES=/home/huyhoangle/junction/review-proof/.work/nuget -e DOTNET_CLI_TELEMETRY_OPTOUT=1 -e DOTNET_NOLOGO=1 -v /home/huyhoangle/junction/review-proof/.work:/home/huyhoangle/junction/review-proof/.work -w /home/huyhoangle/junction/review-proof/.work/wt/9df83c38409c8bfad0517aebffe48211eda4a5b4 mcr.microsoft.com/dotnet/sdk:8.0.402-jammy dotnet test tests/MessagePack.SourceGenerator.Tests/MessagePack.SourceGenerator.Tests.csproj --logger 'trx;LogFileName=head.MessagePack.SourceGenerator.Tests.trx' --results-directory /home/huyhoangle/junction/review-proof/.work/results/data_cases_2283_runs/head.MessagePack.SourceGenerator.Tests",
+        "docker run --rm --user 1000:1000 -e HOME=/home/huyhoangle/junction/review-proof/.work/home -e DOTNET_CLI_HOME=/home/huyhoangle/junction/review-proof/.work/home -e NUGET_PACKAGES=/home/huyhoangle/junction/review-proof/.work/nuget -e DOTNET_CLI_TELEMETRY_OPTOUT=1 -e DOTNET_NOLOGO=1 -v /home/huyhoangle/junction/review-proof/.work:/home/huyhoangle/junction/review-proof/.work -w /home/huyhoangle/junction/review-proof/.work/wt/32258fdbee4bcd653c79f51b4376b5103c6f4d27 mcr.microsoft.com/dotnet/sdk:8.0.402-jammy dotnet test tests/MessagePack.SourceGenerator.Tests/MessagePack.SourceGenerator.Tests.csproj --logger 'trx;LogFileName=base.MessagePack.SourceGenerator.Tests.trx' --results-directory /home/huyhoangle/junction/review-proof/.work/results/data_cases_2283_runs/base.MessagePack.SourceGenerator.Tests"
+      ],
+      "commits": [
+        "9df83c38409c8bfad0517aebffe48211eda4a5b4",
+        "32258fdbee4bcd653c79f51b4376b5103c6f4d27"
+      ],
+      "status": "passed",
+      "summary": "167 pre-existing tests: 167 pass at both, 0 regressed, 0 newly pass, 0 fail at both; 0 removed at head.",
+      "tests": [],
+      "durationMs": 47220,
+      "logs": [
+        "data/cases/2283/runs/head.MessagePack.SourceGenerator.Tests.log",
+        "data/cases/2283/runs/head.MessagePack.SourceGenerator.Tests.trx",
+        "data/cases/2283/runs/base.MessagePack.SourceGenerator.Tests.log",
+        "data/cases/2283/runs/base.MessagePack.SourceGenerator.Tests.trx"
+      ],
+      "details": {
+        "preExisting": 167,
+        "removedAtHead": []
+      }
+    },
+    {
+      "id": "issue-reproduction",
+      "check": "issue-reproduction",
+      "domain": "general",
+      "asserts": "a test the change added contains a code block from the requirement",
+      "performedBy": "reviewproof 0.1.0 (static check, in-process)",
+      "commands": [
+        "node src/cli.ts check 2283"
+      ],
+      "commits": [
+        "32258fdbee4bcd653c79f51b4376b5103c6f4d27",
+        "9df83c38409c8bfad0517aebffe48211eda4a5b4"
+      ],
+      "status": "passed",
+      "summary": "2 of 6 code blocks in the requirement appear (ignoring whitespace) in added test lines: block 1 in tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs; block 2 in tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs.",
+      "durationMs": 0,
+      "logs": [],
+      "details": {
+        "blocks": [
+          {
+            "block": 1,
+            "chars": 110,
+            "firstLine": "using MessagePack;",
+            "foundIn": [
+              "tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs"
+            ]
+          },
+          {
+            "block": 2,
+            "chars": 158,
+            "firstLine": "using MessagePack; using Lib;",
+            "foundIn": [
+              "tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs"
+            ]
+          },
+          {
+            "block": 3,
+            "chars": 432,
+            "firstLine": "CSC : warning CS8785: Generator 'MessagePackGenerator' failed to generate source. It will not",
+            "foundIn": []
+          },
+          {
+            "block": 4,
+            "chars": 738,
+            "firstLine": "System.IndexOutOfRangeException: Index was outside the bounds of the array.",
+            "foundIn": []
+          },
+          {
+            "block": 5,
+            "chars": 119,
+            "firstLine": "else",
+            "foundIn": []
+          },
+          {
+            "block": 6,
+            "chars": 32,
+            "firstLine": "dotnet build -p:ErrorLog=out.sarif",
+            "foundIn": [],
+            "skipped": "shorter than 40 non-whitespace characters"
+          }
+        ]
+      }
+    },
+    {
+      "id": "security-surface",
+      "check": "security-surface",
+      "domain": "security",
+      "asserts": "no build or dependency file changed and no added line matches a security-sensitive pattern",
+      "performedBy": "reviewproof 0.1.0 (static check, in-process)",
+      "commands": [
+        "node src/cli.ts check 2283"
+      ],
+      "commits": [
+        "32258fdbee4bcd653c79f51b4376b5103c6f4d27",
+        "9df83c38409c8bfad0517aebffe48211eda4a5b4"
+      ],
+      "status": "passed",
+      "summary": "Pattern scan found nothing; this is not proof that no vulnerability exists.",
+      "durationMs": 0,
+      "logs": [],
+      "details": {
+        "buildConfigFiles": [],
+        "hits": []
+      }
+    }
+  ],
+  "claims": [],
+  "decisions": [],
+  "unexplained": [
+    "H1",
+    "H2",
+    "H3",
+    "H4",
+    "H5",
+    "H6",
+    "H7",
+    "H8",
+    "H9"
+  ],
+  "findings": [],
+  "notChecked": [
+    {
+      "what": "requirements, claims, model-raised decisions and findings",
+      "reason": "the AI review stage has not run, so there are no claims to check"
+    }
+  ]
+}

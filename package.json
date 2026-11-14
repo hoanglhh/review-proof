@@ -1,0 +1,14 @@
+{
+  "name": "review-proof",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "rp": "node src/cli.ts",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "dotnet": "^1.1.4",
+    "zod": "^4.6.7"
+  }
+}

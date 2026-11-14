@@ -1,0 +1,33 @@
+{
+  "name": "head.MessagePack.SourceGenerator.Tests.filtered",
+  "performedBy": "dotnet test in container mcr.microsoft.com/dotnet/sdk:8.0.402-jammy",
+  "command": "docker run --rm --user 1000:1000 -e HOME=/home/huyhoangle/junction/review-proof/.work/home -e DOTNET_CLI_HOME=/home/huyhoangle/junction/review-proof/.work/home -e NUGET_PACKAGES=/home/huyhoangle/junction/review-proof/.work/nuget -e DOTNET_CLI_TELEMETRY_OPTOUT=1 -e DOTNET_NOLOGO=1 -v /home/huyhoangle/junction/review-proof/.work:/home/huyhoangle/junction/review-proof/.work -w /home/huyhoangle/junction/review-proof/.work/wt/9df83c38409c8bfad0517aebffe48211eda4a5b4 mcr.microsoft.com/dotnet/sdk:8.0.402-jammy dotnet test tests/MessagePack.SourceGenerator.Tests/MessagePack.SourceGenerator.Tests.csproj --logger 'trx;LogFileName=head.MessagePack.SourceGenerator.Tests.filtered.trx' --results-directory /home/huyhoangle/junction/review-proof/.work/results/data_cases_2283_runs/head.MessagePack.SourceGenerator.Tests.filtered --filter FullyQualifiedName~FromMetadataReference",
+  "worktree": ".work/wt/9df83c38409c8bfad0517aebffe48211eda4a5b4",
+  "sourceCommit": "9df83c38409c8bfad0517aebffe48211eda4a5b4",
+  "testsCommit": "9df83c38409c8bfad0517aebffe48211eda4a5b4",
+  "project": "tests/MessagePack.SourceGenerator.Tests/MessagePack.SourceGenerator.Tests.csproj",
+  "filter": "FullyQualifiedName~FromMetadataReference",
+  "startedAt": "2026-11-14T05:36:48.226Z",
+  "log": "data/cases/2283/runs/head.MessagePack.SourceGenerator.Tests.filtered.log",
+  "tests": [
+    {
+      "name": "GenericsFormatterTests.ClosedGenericStruct_FromMetadataReference_UnkeyedMember",
+      "outcome": "passed",
+      "rawOutcome": "Passed"
+    },
+    {
+      "name": "GenericsFormatterTests.ClosedGenericStruct_FromMetadataReference",
+      "outcome": "passed",
+      "rawOutcome": "Passed"
+    },
+    {
+      "name": "GenericsFormatterTests.ClosedGenericRecordStruct_FromMetadataReference",
+      "outcome": "passed",
+      "rawOutcome": "Passed"
+    }
+  ],
+  "durationMs": 9089,
+  "exitCode": 0,
+  "results": "data/cases/2283/runs/head.MessagePack.SourceGenerator.Tests.filtered.trx",
+  "status": "completed"
+}

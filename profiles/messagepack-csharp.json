@@ -1,0 +1,62 @@
+{
+  "name": "messagepack-csharp",
+  "description": "MessagePack-CSharp: C# serialization library with a Roslyn source generator and analyzers. Everything repository-specific lives in this file.",
+  "container": {
+    "image": "mcr.microsoft.com/dotnet/sdk:8.0.402-jammy",
+    "timeoutSeconds": 2400,
+    "env": {
+      "HOME": "{work}/home",
+      "DOTNET_CLI_HOME": "{work}/home",
+      "NUGET_PACKAGES": "{work}/nuget",
+      "DOTNET_CLI_TELEMETRY_OPTOUT": "1",
+      "DOTNET_NOLOGO": "1"
+    }
+  },
+  "tests": {
+    "paths": ["^tests/"],
+    "projectFile": "Tests\\.csproj$",
+    "command": ["dotnet", "test", "{project}", "--logger", "trx;LogFileName={name}.trx", "--results-directory", "{results}"],
+    "filterArgs": ["--filter", "{filter}"],
+    "resultFormat": "trx"
+  },
+  "classify": [
+    { "class": "test-snapshot", "pattern": "^tests/[^/]+/Resources/" },
+    { "class": "build-config", "pattern": "(\\.(csproj|props|targets|sln|slnx|rsp)$|(^|/)(nuget\\.config|NuGet\\.config|global\\.json|version\\.json|packages\\.lock\\.json)$|^\\.github/|^azure-pipelines/|^\\.devcontainer/)" },
+    { "class": "test", "pattern": "^tests/" },
+    { "class": "template", "pattern": "\\.tt$" },
+    { "class": "template-output", "siblingExtension": ".tt" },
+    { "class": "docs", "pattern": "(\\.md$|^doc/)" },
+    { "class": "source", "pattern": "." }
+  ],
+  "repetitiveClasses": ["test-snapshot", "template-output"],
+  "publicSurface": {
+    "classes": ["source"],
+    "paths": "^src/",
+    "declaration": "^\\s*public\\s",
+    "apiFiles": "PublicAPI\\.(Shipped|Unshipped)\\.txt$",
+    "diagnosticFiles": "AnalyzerReleases\\.(Shipped|Unshipped)\\.md$",
+    "diagnosticId": "^\\s*([A-Za-z]+[0-9]+)\\s*\\|"
+  },
+  "securitySurface": {
+    "classes": ["source", "template", "template-output"],
+    "patterns": [
+      { "name": "process-execution", "regex": "\\bProcess\\.Start\\b|\\bProcessStartInfo\\b" },
+      { "name": "network-access", "regex": "\\b(HttpClient|WebClient|WebRequest|TcpClient|UdpClient|Socket|Dns)\\b" },
+      { "name": "file-access", "regex": "\\b(File|Directory|FileStream|FileInfo|DirectoryInfo|StreamWriter|StreamReader)\\s*[.(]" },
+      { "name": "reflection-emit", "regex": "\\bSystem\\.Reflection\\.Emit\\b|\\b(ILGenerator|DynamicMethod|AssemblyBuilder|TypeBuilder)\\b" },
+      { "name": "unsafe-code", "regex": "\\bunsafe\\b|\\bstackalloc\\b|\\bMarshal\\.|\\bUnsafe\\." },
+      { "name": "secret-like-string", "regex": "(password|passwd|secret|api[_-]?key|access[_-]?token|private[_-]?key)\\s*[:=]\\s*[\"'][^\"']{6,}", "flags": "i" },
+      { "name": "secret-like-string", "regex": "AKIA[0-9A-Z]{16}|-----BEGIN [A-Z ]*PRIVATE KEY-----|gh[pousr]_[A-Za-z0-9]{30,}" }
+    ]
+  },
+  "areas": [
+    { "name": "generator-templates", "owner": "Huy Hoang Le", "paths": ["^src/MessagePack\\.SourceGenerator/Transforms/"] },
+    { "name": "generator-analysis", "owner": "Huy Hoang Le", "paths": ["^src/MessagePack\\.SourceGenerator/", "^src/MessagePack\\.Analyzers"] },
+    { "name": "public-annotations", "owner": "Huy Hoang Le", "paths": ["^src/MessagePack\\.Annotations/"] },
+    { "name": "runtime-library", "owner": "Huy Hoang Le", "paths": ["^src/"] },
+    { "name": "test-snapshots", "owner": "Huy Hoang Le", "paths": ["^tests/[^/]+/Resources/"] },
+    { "name": "tests", "owner": "Huy Hoang Le", "paths": ["^tests/"] },
+    { "name": "docs", "owner": "Huy Hoang Le", "paths": ["\\.md$", "^doc/"] },
+    { "name": "repository-other", "owner": "Huy Hoang Le", "paths": ["."] }
+  ]
+}
