@@ -10,12 +10,12 @@
     "profile": "messagepack-csharp",
     "base": "32258fdbee4bcd653c79f51b4376b5103c6f4d27",
     "head": "b715699ce309930670e9dbcbe6f3276aff7fa287",
-    "generatedAt": "2026-11-14T07:44:59.658Z",
+    "generatedAt": "2026-11-14T15:48:11.255Z",
     "pipelineVersion": "0.1.0",
     "policyVersion": "2026-11-14.1",
     "model": null,
     "promptHash": null,
-    "synthetic": "Planted bug for calibration: template-output-enum"
+    "synthetic": "SYNTHETIC: planted bug for calibration (template-output-enum). This change contains a deliberately planted bug and is not a real agent change"
   },
   "reviewer": {
     "status": "unavailable",

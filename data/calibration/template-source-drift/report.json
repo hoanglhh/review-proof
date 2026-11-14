@@ -10,12 +10,12 @@
     "profile": "messagepack-csharp",
     "base": "32258fdbee4bcd653c79f51b4376b5103c6f4d27",
     "head": "dc6b9f85ed64e6372fb277b7cc4d501cd51c9ac3",
-    "generatedAt": "2026-11-14T07:45:00.372Z",
+    "generatedAt": "2026-11-14T15:48:12.490Z",
     "pipelineVersion": "0.1.0",
     "policyVersion": "2026-11-14.1",
     "model": "kimi-k3-1-pro",
     "promptHash": "e49b73aeb14e988d855573bfb786c4ab38c79fc624a9dfbaeb39924df87a0bbb",
-    "synthetic": "Planted bug for calibration: template-source-drift"
+    "synthetic": "SYNTHETIC: planted bug for calibration (template-source-drift). This change contains a deliberately planted bug and is not a real agent change"
   },
   "reviewer": {
     "status": "ok",

@@ -1,6 +1,6 @@
 ## ReviewProof sign-off sheet: \#2283 Generator and analyzer crash with IndexOutOfRangeException on a closed generic struct from a referenced assembly
 
-> **SYNTHETIC:** Planted bug for calibration: undo-fix. This change contains a deliberately planted bug.
+> **SYNTHETIC:** planted bug for calibration (undo-fix). This change contains a deliberately planted bug and is not a real agent change.
 
 **Route: BLOCKED** (cannot be signed yet). Evidence supports: blocked. 
 
@@ -8,7 +8,7 @@
 
 Once these are resolved, the evidence supports a targeted read of 100% of the changed lines: there are no claims; 8 hunk(s) map to no claim or decision. The areas' trust floors would still require a full read.
 
-Read ratio: not applicable until unblocked (226 changed lines). Generated 2026-11-14T07:44:54.334Z, base `32258fdb` → head `69d109a0`, policy 2026-11-14.1 (illustrative thresholds). Full sheet: sheet.html
+Read ratio: not applicable until unblocked (226 changed lines). Generated 2026-11-14T15:48:05.781Z, base `32258fdb` → head `69d109a0`, policy 2026-11-14.1 (illustrative thresholds). Full sheet: sheet.html
 
 ### Requirement
 - none

@@ -78,7 +78,7 @@ ${areas.map((a) => { const ev = events.filter((e) => e.area === a.name); const t
     return `<tr><td><code>${esc(a.name)}</code></td><td>${esc(a.owner)}</td><td>${esc(VERDICT[t.floor])}<div class="detail">Area ${esc(t.reason)}.</div></td><td>${ev.length}</td></tr>`; }).join("")}</tbody></table></div>`;
 }
 
-export function renderTrust(real: (TrustEvent & { caseId?: string })[], simulated: TrustEvent[], areas: { name: string; owner: string }[], perStep: number, policyVersion: string, notice?: string) {
+export function renderTrust(real: (TrustEvent & { caseId?: string; description?: string })[], simulated: TrustEvent[], areas: { name: string; owner: string }[], perStep: number, policyVersion: string, notice?: string, cases: { id: string; requirementId: string }[] = []) {
   const simAreas = [...new Set(simulated.map((e) => e.area))].map((name) => ({ name, owner: "synthetic" }));
   return page("Trust record", `
 <h1>Trust record by area</h1>
@@ -87,8 +87,16 @@ ${notice ? `<p class="notice" role="status">${esc(notice)}</p>` : ""}
 <section><h2>Real record</h2>
 ${real.length ? "" : "<p>No spot-checks recorded yet, so every area stays at full read. A blind spot-check from any sheet adds the first entry.</p>"}
 ${floorsTable(real, areas, perStep)}
-${real.length ? `<div class="scroll"><table><thead><tr><th>When</th><th>Area</th><th>Event</th><th>Case</th></tr></thead><tbody>${real.map((e) => `<tr><td class="muted nowrap">${esc(when(e.at))}</td><td><code>${esc(e.area)}</code></td><td>${esc(e.type.replaceAll("_", " "))}${(e as any).synthetic ? ` <span class="muted">(from a synthetic planted bug)</span>` : ""}</td><td>${esc(e.caseId ?? "")}</td></tr>`).join("")}</tbody></table></div>` : ""}
+${real.length ? `<div class="scroll"><table><thead><tr><th>When</th><th>Area</th><th>Event</th><th>Case</th></tr></thead><tbody>${real.map((e) => `<tr><td class="muted nowrap">${esc(when(e.at))}</td><td><code>${esc(e.area)}</code></td><td>${esc(e.type.replaceAll("_", " "))}${(e as any).synthetic ? ` <span class="muted">(from a synthetic planted bug)</span>` : ""}${e.description ? `<div class="detail">${esc(e.description)}</div>` : ""}</td><td>${esc(e.caseId ?? "")}</td></tr>`).join("")}</tbody></table></div>` : ""}
 </section>
+${cases.length ? `<section><h2>Record an escape</h2>
+<p>An escape is a problem found after a change was accepted: a revert, an incident, a bug report. Recording one sends the area back to full read, whatever its record.</p>
+<form method="post" action="/trust/escape">
+<div class="field"><label for="area">Area</label><select id="area" name="area" required>${areas.map((a) => `<option>${esc(a.name)}</option>`).join("")}</select></div>
+<div class="field"><label for="caseId">Change</label><select id="caseId" name="caseId" required>${cases.map((c) => `<option value="${esc(c.id)}">${esc(c.requirementId)}</option>`).join("")}</select></div>
+<div class="field"><label for="description">What escaped</label><textarea id="description" name="description" rows="3" required></textarea></div>
+<div class="field"><label for="name">Your name</label><input type="text" id="name" name="name" required autocomplete="name"></div>
+<button type="submit">Record the escape</button></form></section>` : ""}
 ${simulated.length ? `<section class="sim" aria-labelledby="sim"><div class="sim-band"><b id="sim">SIMULATED</b><div>Synthetic events made up to show how the rule behaves. They are not part of the real record and change no route.</div></div><div class="sim-body">
 ${floorsTable(simulated, simAreas, perStep)}
 <div class="scroll"><table><thead><tr><th>Step</th><th>Area</th><th>Synthetic event</th><th>Floor after this event</th></tr></thead><tbody>

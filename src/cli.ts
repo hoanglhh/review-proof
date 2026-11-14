@@ -178,7 +178,7 @@ async function calibrate(skipReview: boolean) {
     const c0 = loadCase(pl.case), p = loadProfile(c0.profile);
     const repo = ensureClone(c0.repository, [c0.base, c0.head]);
     const head = plantedCommit(repo, c0.head, pl.id, join(ROOT, "calibration", "patches", `${pl.id}.patch`));
-    const c: Case = { ...c0, id: `${PLANTED}${pl.id}`, head, synthetic: `Planted bug for calibration: ${pl.id}` };
+    const c: Case = { ...c0, id: `${PLANTED}${pl.id}`, head, synthetic: `SYNTHETIC: planted bug for calibration (${pl.id}). This change contains a deliberately planted bug and is not a real agent change` };
     const dir = caseDir(c.id), from = caseDir(c0.id);
     mkdirSync(join(dir, "runs"), { recursive: true });
     copyFileSync(join(from, "requirement.json"), join(dir, "requirement.json")); // the same saved requirement

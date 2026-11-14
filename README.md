@@ -49,6 +49,11 @@ Stages can be run alone: `ingest`, `check [--fresh]`, `review [--fresh]`, `assem
 
 The scoring key in `labels/` was drafted by an AI model from reading the diffs and is not confirmed by a human. The reviewer never sees it; a test checks every prompt that was sent.
 
+## Two things to try in the app
+
+- **What earned trust buys:** every real sheet links to a simulated version (`/case/<id>/earned`, or `sheet-earned.html`) in which the areas have passed their spot-checks. It shows what the owner would have to read once trust is earned, for example 13% of #2297. It is marked SIMULATED and cannot be signed.
+- **An escape:** `/trust` has a form to record a problem found after a change was accepted. The area drops back to full read and every sheet is re-assembled.
+
 ## Where things are
 
 - `src/`: the pipeline. Nothing repository-specific is in it (a test enforces this).

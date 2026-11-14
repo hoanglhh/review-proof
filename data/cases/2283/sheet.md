@@ -6,7 +6,7 @@
 
 Once these are resolved, the evidence supports a targeted read of 99% of the changed lines: D1 needs the owner; D2 needs the owner; F1 is a suspected problem; and 2 more. The areas' trust floors would still require a full read.
 
-Read ratio: not applicable until unblocked (228 changed lines). Generated 2026-11-14T07:18:05.754Z, base `32258fdb` → head `9df83c38`, policy 2026-11-14.1 (illustrative thresholds). Full sheet: sheet.html
+Read ratio: not applicable until unblocked (228 changed lines). Generated 2026-11-14T15:48:48.017Z, base `32258fdb` → head `9df83c38`, policy 2026-11-14.1 (illustrative thresholds). Full sheet: sheet.html
 
 ### Requirement
 - **R1** (explicit) The generator and analyzer must not crash with IndexOutOfRangeException for the reported referenced-assembly generic struct scenario.

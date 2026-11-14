@@ -64,3 +64,11 @@ test("server: refuses posts from other origins and wrong hosts; a blocked sheet 
   const after = existsSync(join(ROOT, "data/cases/2283/signoffs")) ? readdirSync(join(ROOT, "data/cases/2283/signoffs")).length : 0;
   assert.equal(after, before, "a test must never create a sign-off");
 });
+
+test("escape report: area, change, description and name are all required", async () => {
+  const { validateEscape } = await import("../src/server.ts");
+  const ok = new URLSearchParams({ area: "a", caseId: "1", description: "reverted after release", name: "P" });
+  assert.deepEqual(validateEscape(ok, ["a"], ["1"]), []);
+  assert.equal(validateEscape(new URLSearchParams({ ...Object.fromEntries(ok), area: "zz" }), ["a"], ["1"]).length, 1);
+  assert.equal(validateEscape(new URLSearchParams({ ...Object.fromEntries(ok), description: " " }), ["a"], ["1"]).length, 1);
+});

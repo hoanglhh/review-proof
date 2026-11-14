@@ -25,6 +25,10 @@ Line-by-line review is replaced by a one-page sign-off sheet per agent-written c
 | Frontend (registry slot, not built: the corpus has no UI) | Changed views render and match approved screenshots; automated accessibility rules pass | Usability, wording, visual judgement, whether the design meets the need |
 | Security | A known-vulnerable dependency version is present (planned check); a pattern scan finds process, network, file or reflection-emit use, unsafe code, secret-like strings (forces full read) | That the change adds no vulnerability: absence cannot be proven. A clean scan is shown as "found nothing; not proof" |
 
+## How it scales
+
+Measured on the four changes, per change: 1 to 2.6 minutes of container time (three runs of each affected test project) and one AI call of 3 to 4.5 minutes, 31K to 62K tokens in and 16K to 25K out. Everything else is deterministic and takes about a second. Changes run independently, so throughput grows with machines, not people. The people side scales through earned trust: an area that keeps passing blind spot-checks moves from full read to a targeted reading list (13% of the lines for #2297) and loses it on the first miss or escape. Onboarding another repository means writing one profile file.
+
 ## Trade-offs
 
 - Every area starts at full read, so early changes are slower than today's skim. Speed has to be earned.
@@ -35,6 +39,8 @@ Line-by-line review is replaced by a one-page sign-off sheet per agent-written c
 ## Limits
 
 - Absence of a vulnerability cannot be proven by anything here.
+- The AI's findings are checked for honest citations, not proven true. Every finding is shown as `suspected`; letting the reviewer write probe tests that reproduce a finding is designed but not built.
+- Frontend checks (render, screenshot comparison, accessibility scan) have a slot in the check registry but are not built: the sample changes contain no frontend code.
 - Planted bugs are hand-written and synthetic; catching them is not catching real bugs.
 - Four changes show the method, not safety at scale.
 - Each repository needs a profile and a test suite that runs in a container. Each new language also needs its own result parser and surface patterns.

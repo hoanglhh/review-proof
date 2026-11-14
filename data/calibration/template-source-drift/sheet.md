@@ -1,6 +1,6 @@
 ## ReviewProof sign-off sheet: \#2297 Add ExcludeFromCodeCoverage attribute to generated code.
 
-> **SYNTHETIC:** Planted bug for calibration: template-source-drift. This change contains a deliberately planted bug.
+> **SYNTHETIC:** planted bug for calibration (template-source-drift). This change contains a deliberately planted bug and is not a real agent change.
 
 **Route: BLOCKED** (cannot be signed yet). Evidence supports: blocked. 
 
@@ -9,7 +9,7 @@
 
 Once these are resolved, the evidence supports a targeted read of 12% of the changed lines: C10 is argued; C11 is argued; D1 needs the owner; and 6 more. The areas' trust floors would still require a full read.
 
-Read ratio: not applicable until unblocked (1389 changed lines). Generated 2026-11-14T07:45:00.372Z, base `32258fdb` → head `dc6b9f85`, policy 2026-11-14.1 (illustrative thresholds). Full sheet: sheet.html
+Read ratio: not applicable until unblocked (1389 changed lines). Generated 2026-11-14T15:48:12.490Z, base `32258fdb` → head `dc6b9f85`, policy 2026-11-14.1 (illustrative thresholds). Full sheet: sheet.html
 
 ### Requirement
 - **R1** (explicit) All MessagePack-generated code should be decorated with ExcludeFromCodeCoverage.

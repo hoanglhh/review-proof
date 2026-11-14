@@ -1,6 +1,6 @@
 ## ReviewProof sign-off sheet: \#2283 Generator and analyzer crash with IndexOutOfRangeException on a closed generic struct from a referenced assembly
 
-> **SYNTHETIC:** Planted bug for calibration: scope-public-member. This change contains a deliberately planted bug.
+> **SYNTHETIC:** planted bug for calibration (scope-public-member). This change contains a deliberately planted bug and is not a real agent change.
 
 **Route: BLOCKED** (cannot be signed yet). Evidence supports: blocked. 
 
@@ -8,7 +8,7 @@
 
 Once these are resolved, the evidence supports a full read: public API or diagnostic IDs changed.
 
-Read ratio: not applicable until unblocked (230 changed lines). Generated 2026-11-14T07:44:56.411Z, base `32258fdb` → head `e3113731`, policy 2026-11-14.1 (illustrative thresholds). Full sheet: sheet.html
+Read ratio: not applicable until unblocked (230 changed lines). Generated 2026-11-14T15:48:07.503Z, base `32258fdb` → head `e3113731`, policy 2026-11-14.1 (illustrative thresholds). Full sheet: sheet.html
 
 ### Requirement
 - none

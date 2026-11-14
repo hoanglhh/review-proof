@@ -74,11 +74,11 @@ button:disabled{background:var(--rule);border-color:var(--rule);color:var(--mute
 @media (max-width:760px){.sheet{padding:20px 18px;margin:0;border:none}h2 .n{position:static;margin-right:8px}.verdict{grid-template-columns:1fr}.field{grid-template-columns:1fr}}
 @media print{body{background:#fff}.sheet{border:none;margin:0;padding:0 0 0 56px}.hunk{break-inside:avoid}}
 </style></head><body><main class="sheet">
-<div class="sim-band" role="note"><b>SYNTHETIC</b> Planted bug for calibration: inverted-filter. This change contains a deliberately planted bug and is not a real agent change.</div>
+<div class="sim-band" role="note"><b>SYNTHETIC</b> planted bug for calibration (inverted-filter). This change contains a deliberately planted bug and is not a real agent change.</div>
 <h1>Sign-off sheet for #2283</h1>
 <p class="title">Generator and analyzer crash with IndexOutOfRangeException on a closed generic struct from a referenced assembly</p>
 <dl class="facts">
-<dt>Generated</dt><dd>2026-11-14T07:44:58.859Z, from test runs on this machine</dd>
+<dt>Generated</dt><dd>2026-11-14T15:48:10.478Z, from test runs on this machine</dd>
 <dt>Change</dt><dd>base <code>32258fdb</code> to head <code>b542bc44</code> in https://github.com/te-industry-tech-office/junction26-messagepack-csharp</dd>
 <dt>Policy</dt><dd>2026-11-14.1; its thresholds are illustrative and unvalidated</dd>
 <dt>AI reviewer</dt><dd>did not run</dd>
@@ -155,6 +155,7 @@ docker run --rm --user 1000:1000 -e HOME=/home/huyhoangle/junction/review-proof/
 
 <section aria-labelledby="s9"><h2 id="s9"><span class="n">9</span>What to read</h2><p>The effective route is <b>blocked</b>: the stricter of what the evidence supports (blocked) and the trust floor of the areas touched (full read).</p>
 <div class="scroll"><table><thead><tr><th>Area</th><th>Owner</th><th>Trust floor</th></tr></thead><tbody><tr><td><code>docs</code></td><td>Huy Hoang Le</td><td>Full read<div class="detail">Area docs has no track record: full read required.</div></td></tr><tr><td><code>generator-analysis</code></td><td>Huy Hoang Le</td><td>Full read<div class="detail">Area generator-analysis has not earned lighter review (0 of 3 clean spot-checks since the last reset): full read required.</div></td></tr><tr><td><code>tests</code></td><td>Huy Hoang Le</td><td>Full read<div class="detail">Area tests has not earned lighter review (0 of 3 clean spot-checks since the last reset): full read required.</div></td></tr></tbody></table></div>
+
 <p>A targeted read would cover 228 of 228 changed lines:</p>
 <div class="scroll"><table><thead><tr><th>Hunk</th><th>File</th><th>Lines</th><th>Why it is on the list</th></tr></thead><tbody><tr><td><a href="#H1">H1</a></td><td><code>README.md</code></td><td>5</td><td>unexplained</td></tr><tr><td><a href="#H2">H2</a></td><td><code>doc/analyzers/MsgPack004.md</code></td><td>5</td><td>unexplained</td></tr><tr><td><a href="#H3">H3</a></td><td><code>src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs</code></td><td>2</td><td>unexplained</td></tr><tr><td><a href="#H4">H4</a></td><td><code>src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs</code></td><td>2</td><td>unexplained</td></tr><tr><td><a href="#H5">H5</a></td><td><code>src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs</code></td><td>2</td><td>unexplained</td></tr><tr><td><a href="#H6">H6</a></td><td><code>src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs</code></td><td>23</td><td>unexplained</td></tr><tr><td><a href="#H7">H7</a></td><td><code>tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs</code></td><td>1</td><td>unexplained</td></tr><tr><td><a href="#H8">H8</a></td><td><code>tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs</code></td><td>1</td><td>unexplained</td></tr><tr><td><a href="#H9">H9</a></td><td><code>tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs</code></td><td>187</td><td>unexplained</td></tr></tbody></table></div></section>
 

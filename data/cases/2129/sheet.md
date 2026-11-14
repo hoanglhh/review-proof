@@ -6,7 +6,7 @@
 
 Once these are resolved, the evidence supports a full read: public API or diagnostic IDs changed; the security surface scan hit.
 
-Read ratio: not applicable until unblocked (1043 changed lines). Generated 2026-11-14T07:18:07.786Z, base `32258fdb` → head `083afd99`, policy 2026-11-14.1 (illustrative thresholds). Full sheet: sheet.html
+Read ratio: not applicable until unblocked (1043 changed lines). Generated 2026-11-14T15:48:50.978Z, base `32258fdb` → head `083afd99`, policy 2026-11-14.1 (illustrative thresholds). Full sheet: sheet.html
 
 ### Requirement
 - **R1** (explicit) Allow a consuming project (Project B) to obtain a source-generated formatter for a type declared in a referenced project (Project A), with generation occurring in Project B.

@@ -10,12 +10,12 @@
     "profile": "messagepack-csharp",
     "base": "32258fdbee4bcd653c79f51b4376b5103c6f4d27",
     "head": "69d109a0e9bde3d05cbb70bcb9a75225d35841f0",
-    "generatedAt": "2026-11-14T07:44:54.334Z",
+    "generatedAt": "2026-11-14T15:48:05.781Z",
     "pipelineVersion": "0.1.0",
     "policyVersion": "2026-11-14.1",
     "model": null,
     "promptHash": null,
-    "synthetic": "Planted bug for calibration: undo-fix"
+    "synthetic": "SYNTHETIC: planted bug for calibration (undo-fix). This change contains a deliberately planted bug and is not a real agent change"
   },
   "reviewer": {
     "status": "unavailable",

@@ -130,7 +130,7 @@ export function renderHtml(r: Report, link: (repoPath: string) => string, maxFin
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sign-off sheet ${esc(r.case.requirementId)}: ${esc(r.case.title)}</title>
 <style>${CSS}</style></head><body><main class="sheet">
-${r.case.synthetic ? `<div class="sim-band" role="note"><b>SYNTHETIC</b> ${esc(r.case.synthetic)}. This change contains a deliberately planted bug and is not a real agent change.</div>` : ""}
+${r.case.synthetic ? `<div class="sim-band" role="note"><b>${esc(r.case.synthetic.split(": ")[0])}</b> ${esc(r.case.synthetic.split(": ").slice(1).join(": "))}.</div>` : ""}
 <h1>Sign-off sheet for ${esc(r.case.requirementId)}</h1>
 <p class="title">${esc(r.case.title)}</p>
 <dl class="facts">
@@ -199,6 +199,7 @@ ${r.unexplained.length ? `<li>${r.unexplained.length} unexplained hunk(s): ${hun
 
 ${section(9, "What to read", `<p>The effective route is <b>${VERDICT[route.effectiveRoute].toLowerCase()}</b>: the stricter of what the evidence supports (${VERDICT[route.evidenceRoute].toLowerCase()}) and the trust floor of the areas touched (${VERDICT[route.trustFloor].toLowerCase()}).</p>
 <div class="scroll"><table><thead><tr><th>Area</th><th>Owner</th><th>Trust floor</th></tr></thead><tbody>${route.areas.map((a) => `<tr><td><code>${esc(a.area)}</code></td><td>${esc(a.owner)}</td><td>${VERDICT[a.floor]}<div class="detail">${esc(a.reason.replaceAll("`", ""))}.</div></td></tr>`).join("")}</tbody></table></div>
+${!r.case.synthetic && route.trustFloor !== "light" ? `<p><a href="${ui ? `${base}/earned` : "sheet-earned.html"}">See this sheet as it would read once these areas have earned trust</a> (simulated trust history, cannot be signed).</p>` : ""}
 <p>A targeted read would cover ${route.readingListLines} of ${route.totalLines} changed lines:</p>
 <div class="scroll"><table><thead><tr><th>Hunk</th><th>File</th><th>Lines</th><th>Why it is on the list</th></tr></thead><tbody>${route.readingList.map((x) => `<tr><td>${hunk(x.hunkId)}</td><td><code>${esc(x.file)}</code></td><td>${x.lines}</td><td>${x.why.map(esc).join("; ")}</td></tr>`).join("")}</tbody></table></div>`)}
 
@@ -238,7 +239,7 @@ export function renderMarkdown(r: Report, sheetHref: string, maxFindings: number
   const lines = [
     `## ReviewProof sign-off sheet: ${md(r.case.requirementId)} ${md(r.case.title)}`,
     ``,
-    ...(r.case.synthetic ? [`> **SYNTHETIC:** ${md(r.case.synthetic)}. This change contains a deliberately planted bug.`, ``] : []),
+    ...(r.case.synthetic ? [`> **${md(r.case.synthetic.split(": ")[0])}:** ${md(r.case.synthetic.split(": ").slice(1).join(": "))}.`, ``] : []),
     `**Route: ${route.effectiveRoute.toUpperCase()}**${route.effectiveRoute === "blocked" ? " (cannot be signed yet)" : ""}. Evidence supports: ${route.evidenceRoute}. ` +
       (route.trustFloor !== route.evidenceRoute && route.effectiveRoute === route.trustFloor ? route.areas.filter((a) => a.floor === route.trustFloor).map((a) => `${md(a.reason.replaceAll("`", ""))}.`).join(" ") : ""),
     ``,

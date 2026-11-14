@@ -9,9 +9,9 @@
       "id": "#2283",
       "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/issues/2283"
     },
-    "synthetic": "Planted bug for calibration: undo-fix"
+    "synthetic": "SYNTHETIC: planted bug for calibration (undo-fix). This change contains a deliberately planted bug and is not a real agent change"
   },
-  "ingestedAt": "2026-11-14T07:44:54.249Z",
+  "ingestedAt": "2026-11-14T15:48:05.696Z",
   "files": [
     {
       "path": "README.md",

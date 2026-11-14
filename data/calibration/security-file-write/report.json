@@ -10,12 +10,12 @@
     "profile": "messagepack-csharp",
     "base": "32258fdbee4bcd653c79f51b4376b5103c6f4d27",
     "head": "43daf6ec1374b7d79687b895a5db5cfb08a88caf",
-    "generatedAt": "2026-11-14T07:44:58.179Z",
+    "generatedAt": "2026-11-14T15:48:09.720Z",
     "pipelineVersion": "0.1.0",
     "policyVersion": "2026-11-14.1",
     "model": null,
     "promptHash": null,
-    "synthetic": "Planted bug for calibration: security-file-write"
+    "synthetic": "SYNTHETIC: planted bug for calibration (security-file-write). This change contains a deliberately planted bug and is not a real agent change"
   },
   "reviewer": {
     "status": "unavailable",

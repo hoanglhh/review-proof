@@ -6,7 +6,7 @@
 
 Once these are resolved, the evidence supports a targeted read of 13% of the changed lines: C6 is argued; D1 needs the owner; D2 needs the owner; and 4 more. The areas' trust floors would still require a full read.
 
-Read ratio: not applicable until unblocked (1392 changed lines). Generated 2026-11-14T07:18:08.832Z, base `32258fdb` → head `a0aa5ab2`, policy 2026-11-14.1 (illustrative thresholds). Full sheet: sheet.html
+Read ratio: not applicable until unblocked (1392 changed lines). Generated 2026-11-14T15:48:52.751Z, base `32258fdb` → head `a0aa5ab2`, policy 2026-11-14.1 (illustrative thresholds). Full sheet: sheet.html
 
 ### Requirement
 - **R1** (explicit) Generated MessagePack code should be decorated with ExcludeFromCodeCoverage so that it does not distort coverage results.

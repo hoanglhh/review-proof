@@ -71,3 +71,6 @@ Short, dated entries. Newest last.
   - `src/checks.ts` sha256 `4f2a2dab8a5d9c1c`
   - `policy.json` sha256 `f70a0a0ea5a679c6`
   - `profiles/messagepack-csharp.json` sha256 `6ba475bbe8085aab`
+- **2026-11-14: A simulated "earned trust" view of each real sheet.** All four changes are blocked or need a full read, so the real sheets never show a change accepted without a full read. Each sheet now links to a version assembled from the same evidence with a synthetic trust history (every area passed 6 clean blind spot-checks), marked SIMULATED, saved separately (`report-earned.json`), never counted in metrics and not signable. Interpretations are not simulated: they still need a real person.
+- **2026-11-14: Escapes can be recorded** on `/trust` (area, change, what escaped, who reported it). An escape sends the area to full read; every sheet is re-assembled at once.
+- **2026-11-14: Frozen file `src/assemble.ts` changed after the `holdout-freeze` tag** (adds the simulated earned-trust view only; the review prompt, claim states and routing rules are unchanged). New fingerprint: `28e372db7cf87869`.

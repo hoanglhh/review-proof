@@ -9,9 +9,9 @@
       "id": "#2283",
       "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/issues/2283"
     },
-    "synthetic": "Planted bug for calibration: security-file-write"
+    "synthetic": "SYNTHETIC: planted bug for calibration (security-file-write). This change contains a deliberately planted bug and is not a real agent change"
   },
-  "ingestedAt": "2026-11-14T07:44:58.136Z",
+  "ingestedAt": "2026-11-14T15:48:09.624Z",
   "files": [
     {
       "path": "README.md",

@@ -8,7 +8,7 @@
 
 Once these are resolved, the evidence supports a targeted read of 100% of the changed lines: C4 is argued; C5 is argued; C6 is argued; and 8 more. The areas' trust floors would still require a full read.
 
-Read ratio: not applicable until unblocked (266 changed lines). Generated 2026-11-14T07:18:06.685Z, base `32258fdb` → head `9007cee1`, policy 2026-11-14.1 (illustrative thresholds). Full sheet: sheet.html
+Read ratio: not applicable until unblocked (266 changed lines). Generated 2026-11-14T15:48:49.421Z, base `32258fdb` → head `9007cee1`, policy 2026-11-14.1 (illustrative thresholds). Full sheet: sheet.html
 
 ### Requirement
 - **R1** (explicit) Restore analyzer operation when a message-pack type sets SuppressSourceGeneration to true.

@@ -171,15 +171,26 @@ export function assembleCase(c: Case, p: Profile): Report {
   // a confirmation covers one reading of one quote: a reworded reading, or another reading of the same words, needs its own
   const key = confirmationKey;
   const confirmed = new Map(records(join(dir, "confirmations")).map((x) => [key(x.quote, x.text), x.confirmedBy as string]));
-  const report = assembleReport({
+  const inputs: Parameters<typeof assembleReport>[0] = {
     c, p, policy, requirement: readJson(join(dir, "requirement.json")), files, hunks,
     checks: readJson(join(dir, "check.json")), review: loadReview(c.id),
     readAt: (at, path) => readAt(repo, at === "head" ? c.head : c.base, path),
     confirmedBy: (quote, text) => confirmed.get(key(quote, text)) ?? null,
-    trustEvents: readJsonl(TRUST_LOG), generatedAt: new Date().toISOString(), pipelineVersion: PIPELINE_VERSION,
-  });
+    trustEvents: readJsonl(TRUST_LOG) as TrustEvent[], generatedAt: new Date().toISOString(), pipelineVersion: PIPELINE_VERSION,
+  };
+  const report = assembleReport(inputs);
   writeJson(join(dir, "report.json"), report);
-  writeFileSync(join(dir, "sheet.html"), renderHtml(report, (x) => relative(dir, join(ROOT, x)), policy.sheet.maxFindingsShown));
+  const link = (x: string) => relative(dir, join(ROOT, x));
+  writeFileSync(join(dir, "sheet.html"), renderHtml(report, link, policy.sheet.maxFindingsShown));
   writeFileSync(join(dir, "sheet.md"), renderMarkdown(report, "sheet.html", policy.sheet.maxFindingsShown));
+  if (!c.synthetic) {
+    // What the sheet asks of the owner once trust is earned: the same evidence, with a synthetic trust history
+    // in which every area has passed 2 steps' worth of clean blind spot-checks. Never counted, never signable.
+    const per = policy.trust.cleanSpotChecksPerStep;
+    const earned = assembleReport({ ...inputs, c: { ...c, synthetic: `SIMULATED: Every area this change touches is treated as having passed ${per * 2} clean blind spot-checks. This is not the real trust record; it shows what this sheet would ask of the owner once trust is earned. It cannot be signed` },
+      trustEvents: p.areas.flatMap((a) => Array.from({ length: per * 2 }, () => ({ area: a.name, type: "spot_check_clean" as const, at: "simulated" }))) });
+    writeJson(join(dir, "report-earned.json"), earned);
+    writeFileSync(join(dir, "sheet-earned.html"), renderHtml(earned, link, policy.sheet.maxFindingsShown));
+  }
   return report;
 }

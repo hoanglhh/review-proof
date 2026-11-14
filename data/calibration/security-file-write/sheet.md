@@ -1,6 +1,6 @@
 ## ReviewProof sign-off sheet: \#2283 Generator and analyzer crash with IndexOutOfRangeException on a closed generic struct from a referenced assembly
 
-> **SYNTHETIC:** Planted bug for calibration: security-file-write. This change contains a deliberately planted bug.
+> **SYNTHETIC:** planted bug for calibration (security-file-write). This change contains a deliberately planted bug and is not a real agent change.
 
 **Route: BLOCKED** (cannot be signed yet). Evidence supports: blocked. 
 
@@ -8,7 +8,7 @@
 
 Once these are resolved, the evidence supports a full read: the security surface scan hit.
 
-Read ratio: not applicable until unblocked (229 changed lines). Generated 2026-11-14T07:44:58.179Z, base `32258fdb` → head `43daf6ec`, policy 2026-11-14.1 (illustrative thresholds). Full sheet: sheet.html
+Read ratio: not applicable until unblocked (229 changed lines). Generated 2026-11-14T15:48:09.720Z, base `32258fdb` → head `43daf6ec`, policy 2026-11-14.1 (illustrative thresholds). Full sheet: sheet.html
 
 ### Requirement
 - none

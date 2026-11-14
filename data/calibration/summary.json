@@ -1,7 +1,7 @@
 {
   "synthetic": true,
   "note": "Planted bugs are hand-written and synthetic; they are not real bugs.",
-  "generatedAt": "2026-11-14T07:45:00.605Z",
+  "generatedAt": "2026-11-14T15:48:12.950Z",
   "reviewer": "run only for plants no run caught (it cannot change the others)",
   "total": 8,
   "caughtByRun": 7,

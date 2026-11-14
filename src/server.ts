@@ -27,6 +27,16 @@ export function validateSignoff(r: Report, currentHash: string, f: URLSearchPara
   return errors;
 }
 
+/** Every reason an escape report must be refused. Empty means valid. */
+export function validateEscape(f: URLSearchParams, areas: string[], caseIds: string[]): string[] {
+  const errors: string[] = [];
+  if (!areas.includes(f.get("area") ?? "")) errors.push("Choose the area the problem escaped from.");
+  if (!caseIds.includes(f.get("caseId") ?? "")) errors.push("Choose the change that let it through.");
+  if (!f.get("description")?.trim()) errors.push("Describe what went wrong after the change was accepted.");
+  if (!f.get("name")?.trim()) errors.push("Enter your name.");
+  return errors;
+}
+
 const stamp = () => new Date().toISOString().replace(/[:.]/g, "-");
 const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 40) || "owner";
 /** Hash of the report's content; the generation time is left out so re-running the pipeline does not outdate a signature. */
@@ -79,10 +89,22 @@ export function startServer(port: number) {
         })));
       }
 
-      if (req.method === "GET" && parts[0] === "trust") {
+      if (parts[0] === "trust") {
         const cases: Case[] = readJson(join(ROOT, "cases.json")).cases;
         const areas = [...new Map(cases.flatMap((c) => loadProfile(c.profile).areas).map((a) => [a.name, a])).values()];
-        return send(res, 200, renderTrust(readJsonl(TRUST_LOG), readJsonl(SIMULATED_LOG), areas, policy.trust.cleanSpotChecksPerStep, policy.version, url.searchParams.get("notice") ?? undefined));
+        if (req.method === "POST" && parts[1] === "escape") {
+          // an escape: a problem found after a change was accepted. It resets the area to full read.
+          const f = await body(req);
+          const errors = validateEscape(f, areas.map((a) => a.name), cases.map((c) => c.id));
+          if (errors.length) return send(res, 400, renderMessage("Escape not recorded", errors.join(" "), "/trust"));
+          mkdirSync(dirname(TRUST_LOG), { recursive: true });
+          appendFileSync(TRUST_LOG, JSON.stringify({ area: f.get("area"), type: "escape", at: new Date().toISOString(), caseId: f.get("caseId"),
+            description: f.get("description")!.trim(), reportedBy: f.get("name")!.trim(), identity: "self-declared" }) + "\n");
+          for (const c of cases) if (report(c.id)) assembleCase(c, loadProfile(c.profile)); // routes depend on the record
+          return redirect(res, `/trust?notice=${encodeURIComponent(`Escape recorded for ${f.get("area")}; it is back to full read and every sheet was re-assembled.`)}`);
+        }
+        return send(res, 200, renderTrust(readJsonl(TRUST_LOG), readJsonl(SIMULATED_LOG), areas, policy.trust.cleanSpotChecksPerStep, policy.version,
+          url.searchParams.get("notice") ?? undefined, cases.filter((c) => report(c.id)).map((c) => ({ id: c.id, requirementId: c.requirement.id }))));
       }
 
       if (req.method === "GET" && parts[0] === "metrics") return send(res, 200, renderMetrics(loadMetrics()));
@@ -102,6 +124,12 @@ export function startServer(port: number) {
       const action = parts[2];
 
       if (req.method === "GET" && !action) return sheet(res, c, r, { notice: url.searchParams.get("notice") ?? undefined });
+
+      if (req.method === "GET" && action === "earned") { // simulated trust: read-only, no form, never signable
+        const f = join(caseDir(c.id), "report-earned.json");
+        if (!existsSync(f)) return send(res, 404, renderMessage("No simulated view yet", `Run: node src/cli.ts assemble ${c.id}`, back));
+        return send(res, 200, renderHtml(readJson(f), (x) => `/${x}`, policy.sheet.maxFindingsShown));
+      }
 
       if (req.method === "POST" && action === "confirm") {
         const f = await body(req);

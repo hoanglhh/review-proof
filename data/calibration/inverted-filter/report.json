@@ -10,12 +10,12 @@
     "profile": "messagepack-csharp",
     "base": "32258fdbee4bcd653c79f51b4376b5103c6f4d27",
     "head": "b542bc449cc1aec0860dd397d91c538c2584f22d",
-    "generatedAt": "2026-11-14T07:44:58.859Z",
+    "generatedAt": "2026-11-14T15:48:10.478Z",
     "pipelineVersion": "0.1.0",
     "policyVersion": "2026-11-14.1",
     "model": null,
     "promptHash": null,
-    "synthetic": "Planted bug for calibration: inverted-filter"
+    "synthetic": "SYNTHETIC: planted bug for calibration (inverted-filter). This change contains a deliberately planted bug and is not a real agent change"
   },
   "reviewer": {
     "status": "unavailable",

@@ -1,6 +1,6 @@
 ## ReviewProof sign-off sheet: \#2297 Add ExcludeFromCodeCoverage attribute to generated code.
 
-> **SYNTHETIC:** Planted bug for calibration: template-output-enum. This change contains a deliberately planted bug.
+> **SYNTHETIC:** planted bug for calibration (template-output-enum). This change contains a deliberately planted bug and is not a real agent change.
 
 **Route: BLOCKED** (cannot be signed yet). Evidence supports: blocked. 
 
@@ -8,7 +8,7 @@
 
 Once these are resolved, the evidence supports a targeted read of 13% of the changed lines: there are no claims; 421 hunk(s) map to no claim or decision. The areas' trust floors would still require a full read.
 
-Read ratio: not applicable until unblocked (1387 changed lines). Generated 2026-11-14T07:44:59.658Z, base `32258fdb` → head `b715699c`, policy 2026-11-14.1 (illustrative thresholds). Full sheet: sheet.html
+Read ratio: not applicable until unblocked (1387 changed lines). Generated 2026-11-14T15:48:11.255Z, base `32258fdb` → head `b715699c`, policy 2026-11-14.1 (illustrative thresholds). Full sheet: sheet.html
 
 ### Requirement
 - none

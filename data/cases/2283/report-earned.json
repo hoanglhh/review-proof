@@ -1,0 +1,2185 @@
+{
+  "schemaVersion": 1,
+  "case": {
+    "id": "2283",
+    "requirementId": "#2283",
+    "requirementUrl": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/issues/2283",
+    "requirementRetrievedAt": "2026-11-14T05:32:46.427Z",
+    "title": "Generator and analyzer crash with IndexOutOfRangeException on a closed generic struct from a referenced assembly",
+    "repository": "https://github.com/te-industry-tech-office/junction26-messagepack-csharp",
+    "profile": "messagepack-csharp",
+    "base": "32258fdbee4bcd653c79f51b4376b5103c6f4d27",
+    "head": "9df83c38409c8bfad0517aebffe48211eda4a5b4",
+    "generatedAt": "2026-11-14T15:48:48.017Z",
+    "pipelineVersion": "0.1.0",
+    "policyVersion": "2026-11-14.1",
+    "model": "kimi-k3-1-pro",
+    "promptHash": "7e32fa48c76868add97e65b7292391f9a5fabf9a39d79c71fe53fa045d9f18c1",
+    "synthetic": "SIMULATED: Every area this change touches is treated as having passed 6 clean blind spot-checks. This is not the real trust record; it shows what this sheet would ask of the owner once trust is earned. It cannot be signed"
+  },
+  "reviewer": {
+    "status": "ok",
+    "rawResponse": "data/cases/2283/review/7e32fa48c76868add97e65b7292391f9a5fabf9a39d79c71fe53fa045d9f18c1.json",
+    "fullFilesShown": [
+      "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs"
+    ],
+    "represented": []
+  },
+  "requirements": [
+    {
+      "id": "R1",
+      "text": "The generator and analyzer must not crash with IndexOutOfRangeException for the reported referenced-assembly generic struct scenario.",
+      "quote": "Generator and analyzer crash with IndexOutOfRangeException on a closed generic struct from a referenced assembly",
+      "kind": "explicit",
+      "confirmedBy": null
+    },
+    {
+      "id": "R2",
+      "text": "The consuming app must build cleanly and contain a generated resolver.",
+      "quote": "A clean build, with a generated resolver in `app`.",
+      "kind": "explicit",
+      "confirmedBy": null
+    },
+    {
+      "id": "R3",
+      "text": "The scenario requiring coverage is the combination of a generic value type and a definition originating in a referenced assembly.",
+      "quote": "So it needs all three of: **generic**, **value type**, **from a referenced assembly**.",
+      "kind": "explicit",
+      "confirmedBy": null
+    },
+    {
+      "id": "R4",
+      "text": "Collection and diagnostic handling should tolerate metadata symbols that have no source declaration syntax.",
+      "quote": "and that collection is empty for a metadata symbol.",
+      "kind": "interpretation",
+      "confirmedBy": null
+    }
+  ],
+  "inventory": {
+    "files": [
+      {
+        "path": "README.md",
+        "status": "modified",
+        "class": "docs",
+        "binary": false,
+        "added": 5,
+        "removed": 0,
+        "hunkIds": [
+          "H1"
+        ]
+      },
+      {
+        "path": "doc/analyzers/MsgPack004.md",
+        "status": "modified",
+        "class": "docs",
+        "binary": false,
+        "added": 5,
+        "removed": 0,
+        "hunkIds": [
+          "H2"
+        ]
+      },
+      {
+        "path": "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
+        "status": "modified",
+        "class": "source",
+        "binary": false,
+        "added": 26,
+        "removed": 3,
+        "hunkIds": [
+          "H3",
+          "H4",
+          "H5",
+          "H6"
+        ]
+      },
+      {
+        "path": "tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs",
+        "status": "modified",
+        "class": "test",
+        "binary": false,
+        "added": 189,
+        "removed": 0,
+        "hunkIds": [
+          "H7",
+          "H8",
+          "H9"
+        ]
+      }
+    ],
+    "totals": {
+      "files": 4,
+      "added": 225,
+      "removed": 3,
+      "byClass": {
+        "docs": {
+          "files": 2,
+          "lines": 10
+        },
+        "source": {
+          "files": 1,
+          "lines": 29
+        },
+        "test": {
+          "files": 1,
+          "lines": 189
+        }
+      }
+    }
+  },
+  "hunks": [
+    {
+      "id": "H1",
+      "file": "README.md",
+      "oldStart": 1638,
+      "oldLines": 0,
+      "newStart": 1639,
+      "newLines": 5,
+      "removed": [],
+      "added": [
+        "### Generic types from referenced assemblies",
+        "",
+        "Closed generic types defined in a referenced assembly (for example, `Item<int>` where `Item<T>` is defined in another project or NuGet package) can be used as members of your `[MessagePackObject]` types, including generic value types and record structs.",
+        "Diagnostics about the members of such a type are reported by the assembly that defines it rather than by the consuming project, so any problem must be fixed there.",
+        ""
+      ]
+    },
+    {
+      "id": "H2",
+      "file": "doc/analyzers/MsgPack004.md",
+      "oldStart": 47,
+      "oldLines": 0,
+      "newStart": 48,
+      "newLines": 5,
+      "removed": [],
+      "added": [
+        "",
+        "## Types from referenced assemblies",
+        "",
+        "This analyzer only reports on members declared in the project being compiled.",
+        "Members of a type defined in a referenced assembly are reported by the project that defines that type, so an unattributed public member of such a type must be fixed in its defining project."
+      ]
+    },
+    {
+      "id": "H3",
+      "file": "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
+      "oldStart": 239,
+      "oldLines": 1,
+      "newStart": 239,
+      "newLines": 1,
+      "removed": [
+        "        this.reportDiagnostic = reportAnalyzerDiagnostic;"
+      ],
+      "added": [
+        "        this.reportDiagnostic = reportAnalyzerDiagnostic is null ? null : diagnostic => ReportIfLocatedInCompilation(reportAnalyzerDiagnostic, diagnostic);"
+      ]
+    },
+    {
+      "id": "H4",
+      "file": "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
+      "oldStart": 985,
+      "oldLines": 1,
+      "newStart": 985,
+      "newLines": 1,
+      "removed": [
+        "                        this.reportDiagnostic?.Invoke(Diagnostic.Create(MsgPack00xMessagePackAnalyzer.BothStringAndIntKeyAreNull, ((PropertyDeclarationSyntax)item.DeclaringSyntaxReferences[0].GetSyntax()).Identifier.GetLocation(), formattedType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat), item.Name));"
+      ],
+      "added": [
+        "                        this.reportDiagnostic?.Invoke(Diagnostic.Create(MsgPack00xMessagePackAnalyzer.BothStringAndIntKeyAreNull, GetPropertyIdentifierLocation(item), formattedType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat), item.Name));"
+      ]
+    },
+    {
+      "id": "H5",
+      "file": "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
+      "oldStart": 1077,
+      "oldLines": 1,
+      "newStart": 1077,
+      "newLines": 1,
+      "removed": [
+        "                                    : Diagnostic.Create(MsgPack00xMessagePackAnalyzer.MemberNeedsKey, item.DeclaringSyntaxReferences[0].GetSyntax().GetLocation(), formattedType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat), item.Name);"
+      ],
+      "added": [
+        "                                    : Diagnostic.Create(MsgPack00xMessagePackAnalyzer.MemberNeedsKey, item.DeclaringSyntaxReferences.FirstOrDefault()?.GetSyntax().GetLocation(), formattedType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat), item.Name);"
+      ]
+    },
+    {
+      "id": "H6",
+      "file": "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
+      "oldStart": 1428,
+      "oldLines": 0,
+      "newStart": 1429,
+      "newLines": 23,
+      "removed": [],
+      "added": [
+        "    /// <summary>",
+        "    /// Gets the location of the identifier of a property, if it is declared in source.",
+        "    /// </summary>",
+        "    /// <param name=\"property\">The property symbol. It may be declared in metadata, in which case <see langword=\"null\" /> is returned.</param>",
+        "    /// <returns>The location of the identifier, or <see langword=\"null\" /> if the property has no declaration in source.</returns>",
+        "    private static Location? GetPropertyIdentifierLocation(IPropertySymbol property) => (property.DeclaringSyntaxReferences.FirstOrDefault()?.GetSyntax() as PropertyDeclarationSyntax)?.Identifier.GetLocation();",
+        "",
+        "    /// <summary>",
+        "    /// Reports a diagnostic only when its location belongs to the compilation being analyzed.",
+        "    /// </summary>",
+        "    /// <remarks>",
+        "    /// Types and members that come from metadata (or from another compilation) have no location in the compilation being analyzed.",
+        "    /// Their problems are reported by the compilation that defines them, so they are dropped here rather than being reported",
+        "    /// against a location that does not exist, which analyzers are not permitted to do.",
+        "    /// </remarks>",
+        "    private void ReportIfLocatedInCompilation(Action<Diagnostic> report, Diagnostic diagnostic)",
+        "    {",
+        "        if (diagnostic.Location.IsInSource && this.compilation.ContainsSyntaxTree(diagnostic.Location.SourceTree))",
+        "        {",
+        "            report(diagnostic);",
+        "        }",
+        "    }",
+        ""
+      ]
+    },
+    {
+      "id": "H7",
+      "file": "tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs",
+      "oldStart": 3,
+      "oldLines": 0,
+      "newStart": 4,
+      "newLines": 1,
+      "removed": [],
+      "added": [
+        "using Microsoft.CodeAnalysis;"
+      ]
+    },
+    {
+      "id": "H8",
+      "file": "tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs",
+      "oldStart": 4,
+      "oldLines": 0,
+      "newStart": 6,
+      "newLines": 1,
+      "removed": [],
+      "added": [
+        "using Microsoft.CodeAnalysis.Testing;"
+      ]
+    },
+    {
+      "id": "H9",
+      "file": "tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs",
+      "oldStart": 496,
+      "oldLines": 0,
+      "newStart": 499,
+      "newLines": 187,
+      "removed": [],
+      "added": [
+        "    /// <summary>",
+        "    /// Asserts that a closed generic value type defined in a referenced <em>assembly</em> (metadata only, no syntax),",
+        "    /// used as a member type, does not crash the generator or analyzer.",
+        "    /// </summary>",
+        "    /// <remarks>",
+        "    /// See https://github.com/MessagePack-CSharp/MessagePack-CSharp/issues/2283.",
+        "    /// </remarks>",
+        "    [Fact]",
+        "    public async Task ClosedGenericStruct_FromMetadataReference()",
+        "    {",
+        "        string defineSource = \"\"\"",
+        "using MessagePack;",
+        "",
+        "namespace TempProject",
+        "{",
+        "    [MessagePackObject]",
+        "    public struct MyGenericStruct<T>",
+        "    {",
+        "        [Key(0)]",
+        "        public T Content { get; set; }",
+        "    }",
+        "}",
+        "\"\"\";",
+        "",
+        "        string usageSource = \"\"\"",
+        "using MessagePack;",
+        "",
+        "namespace TempProject",
+        "{",
+        "    [MessagePackObject]",
+        "    public class MyObject",
+        "    {",
+        "        [Key(0)]",
+        "        public MyGenericStruct<int> Value { get; set; }",
+        "    }",
+        "",
+        "    [GeneratedMessagePackResolver]",
+        "    partial class MyResolver { }",
+        "}",
+        "\"\"\";",
+        "",
+        "        await RunWithMetadataReferenceAsync(defineSource, usageSource, \"TempProject.MyResolver.g.cs\");",
+        "    }",
+        "",
+        "    /// <summary>",
+        "    /// Asserts that a closed generic <em>record struct</em> defined in a referenced assembly, used as a member type,",
+        "    /// does not crash the generator or analyzer.",
+        "    /// </summary>",
+        "    /// <remarks>",
+        "    /// See https://github.com/MessagePack-CSharp/MessagePack-CSharp/issues/2283.",
+        "    /// </remarks>",
+        "    [Fact]",
+        "    public async Task ClosedGenericRecordStruct_FromMetadataReference()",
+        "    {",
+        "        string defineSource = \"\"\"",
+        "using MessagePack;",
+        "",
+        "namespace Lib;",
+        "",
+        "[MessagePackObject]",
+        "public partial record struct Item<T>([property: Key(0)] string Key);",
+        "\"\"\";",
+        "",
+        "        string usageSource = \"\"\"",
+        "using MessagePack;",
+        "using Lib;",
+        "",
+        "namespace App;",
+        "",
+        "[MessagePackObject]",
+        "public sealed partial record Cmd([property: Key(0)] string Scope)",
+        "{",
+        "    [Key(1)]",
+        "    public Item<int> Member { get; init; }",
+        "}",
+        "",
+        "[GeneratedMessagePackResolver]",
+        "partial class AppResolver { }",
+        "\"\"\";",
+        "",
+        "        await RunWithMetadataReferenceAsync(defineSource, usageSource, \"App.AppResolver.g.cs\", LanguageVersion.Latest);",
+        "    }",
+        "",
+        "    /// <summary>",
+        "    /// Asserts that a closed generic value type from a referenced assembly whose members lack a key attribute",
+        "    /// does not crash the generator or analyzer, since its member diagnostics belong to the defining assembly.",
+        "    /// </summary>",
+        "    /// <remarks>",
+        "    /// See https://github.com/MessagePack-CSharp/MessagePack-CSharp/issues/2283.",
+        "    /// </remarks>",
+        "    [Fact]",
+        "    public async Task ClosedGenericStruct_FromMetadataReference_UnkeyedMember()",
+        "    {",
+        "        string defineSource = \"\"\"",
+        "using MessagePack;",
+        "",
+        "namespace TempProject",
+        "{",
+        "    [MessagePackObject]",
+        "    public struct MyGenericStruct<T>",
+        "    {",
+        "        [Key(0)]",
+        "        public string Key { get; set; }",
+        "",
+        "        public int Unkeyed { get; set; }",
+        "    }",
+        "}",
+        "\"\"\";",
+        "",
+        "        string usageSource = \"\"\"",
+        "using MessagePack;",
+        "",
+        "namespace TempProject",
+        "{",
+        "    [MessagePackObject]",
+        "    public class MyObject",
+        "    {",
+        "        [Key(0)]",
+        "        public MyGenericStruct<int> Value { get; set; }",
+        "    }",
+        "",
+        "    [GeneratedMessagePackResolver]",
+        "    partial class MyResolver { }",
+        "}",
+        "\"\"\";",
+        "",
+        "        await RunWithMetadataReferenceAsync(defineSource, usageSource, \"TempProject.MyResolver.g.cs\");",
+        "    }",
+        "",
+        "    /// <summary>",
+        "    /// Compiles <paramref name=\"defineSource\"/> to an assembly image, then verifies that the analyzers and the generator",
+        "    /// handle <paramref name=\"usageSource\"/> without diagnostics, referencing that image as metadata only,",
+        "    /// and that the resolver named <paramref name=\"expectedResolverHintName\"/> is generated.",
+        "    /// </summary>",
+        "    private static async Task RunWithMetadataReferenceAsync(string defineSource, string usageSource, string expectedResolverHintName, LanguageVersion languageVersion = LanguageVersion.CSharp7_3)",
+        "    {",
+        "        MetadataReference definingAssembly = await CompileToMetadataReferenceAsync(\"DefiningProject\", defineSource, languageVersion);",
+        "",
+        "        // Run the analyzers and the generator, failing on any diagnostic (the defect surfaced as AD0001 and CS8785).",
+        "        var test = new VerifyCS.Test(ReferencesSet.MessagePack)",
+        "        {",
+        "            LanguageVersion = languageVersion,",
+        "            TestBehaviors = TestBehaviors.SkipGeneratedSourcesCheck,",
+        "            TestState =",
+        "            {",
+        "                Sources = { usageSource },",
+        "            },",
+        "        };",
+        "        test.TestState.AdditionalReferences.Add(definingAssembly);",
+        "        await test.RunAsync();",
+        "",
+        "        // Verify that the resolver was actually generated for the usage assembly, since the defect caused it to be silently omitted.",
+        "        ImmutableArray<MetadataReference> frameworkReferences = await ReferenceAssemblies.Net.Net80.ResolveAsync(LanguageNames.CSharp, CancellationToken.None);",
+        "        Compilation usageCompilation = CreateCompilation(\"App\", usageSource, languageVersion, frameworkReferences.Concat(ReferencesHelper.GetReferences(ReferencesSet.MessagePack)).Append(definingAssembly));",
+        "        GeneratorDriverRunResult runResult = CSharpGeneratorDriver.Create(new MessagePack.SourceGenerator.MessagePackGenerator().AsSourceGenerator())",
+        "            .RunGenerators(usageCompilation)",
+        "            .GetRunResult();",
+        "        Assert.Empty(runResult.Diagnostics.Where(d => d.Severity >= DiagnosticSeverity.Warning));",
+        "        var hintNames = runResult.Results.SelectMany(r => r.GeneratedSources).Select(s => s.HintName).ToList();",
+        "        Assert.Contains(expectedResolverHintName, hintNames);",
+        "    }",
+        "",
+        "    private static async Task<MetadataReference> CompileToMetadataReferenceAsync(string assemblyName, string source, LanguageVersion languageVersion)",
+        "    {",
+        "        ImmutableArray<MetadataReference> frameworkReferences = await ReferenceAssemblies.Net.Net80.ResolveAsync(LanguageNames.CSharp, CancellationToken.None);",
+        "        Compilation compilation = CreateCompilation(assemblyName, source, languageVersion, frameworkReferences.Concat(ReferencesHelper.GetReferences(ReferencesSet.MessagePack)), OutputKind.DynamicallyLinkedLibrary);",
+        "",
+        "        using var stream = new MemoryStream();",
+        "        Microsoft.CodeAnalysis.Emit.EmitResult emitResult = compilation.Emit(stream);",
+        "        if (!emitResult.Success)",
+        "        {",
+        "            throw new InvalidOperationException(\"Failed to compile referenced assembly: \" + string.Join(Environment.NewLine, emitResult.Diagnostics));",
+        "        }",
+        "",
+        "        return MetadataReference.CreateFromImage(stream.ToArray());",
+        "    }",
+        "",
+        "    private static Compilation CreateCompilation(string assemblyName, string source, LanguageVersion languageVersion, IEnumerable<MetadataReference> references, OutputKind outputKind = OutputKind.DynamicallyLinkedLibrary)",
+        "    {",
+        "        var parseOptions = CSharpParseOptions.Default.WithLanguageVersion(languageVersion);",
+        "        return CSharpCompilation.Create(",
+        "            assemblyName,",
+        "            new[] { CSharpSyntaxTree.ParseText(source, parseOptions) },",
+        "            references.ToArray(),",
+        "            new CSharpCompilationOptions(outputKind));",
+        "    }",
+        ""
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "inventory",
+      "check": "inventory",
+      "domain": "general",
+      "asserts": "every changed file is classified",
+      "performedBy": "reviewproof 0.1.0 (static check, in-process)",
+      "commands": [
+        "node src/cli.ts check 2283"
+      ],
+      "commits": [
+        "32258fdbee4bcd653c79f51b4376b5103c6f4d27",
+        "9df83c38409c8bfad0517aebffe48211eda4a5b4"
+      ],
+      "status": "passed",
+      "summary": "4 files, +225/-3: 2 docs (10 lines), 1 source (29 lines), 1 test (189 lines).",
+      "durationMs": 0,
+      "logs": [],
+      "details": {
+        "totals": {
+          "files": 4,
+          "added": 225,
+          "removed": 3,
+          "byClass": {
+            "docs": {
+              "files": 2,
+              "lines": 10
+            },
+            "source": {
+              "files": 1,
+              "lines": 29
+            },
+            "test": {
+              "files": 1,
+              "lines": 189
+            }
+          }
+        },
+        "unclassified": [],
+        "binary": []
+      }
+    },
+    {
+      "id": "pattern-groups",
+      "check": "pattern-groups",
+      "domain": "general",
+      "asserts": "every repetitive file changed in the same way as its group",
+      "performedBy": "reviewproof 0.1.0 (static check, in-process)",
+      "commands": [
+        "node src/cli.ts check 2283"
+      ],
+      "commits": [
+        "32258fdbee4bcd653c79f51b4376b5103c6f4d27",
+        "9df83c38409c8bfad0517aebffe48211eda4a5b4"
+      ],
+      "status": "not_run",
+      "reason": "no changed files of class test-snapshot or template-output",
+      "summary": "No repetitive files changed.",
+      "durationMs": 0,
+      "logs": [],
+      "details": {
+        "eligibleFiles": 0,
+        "groups": [],
+        "deviating": []
+      }
+    },
+    {
+      "id": "public-surface",
+      "check": "public-surface",
+      "domain": "backend",
+      "asserts": "no public declaration, public API entry or diagnostic ID was added, removed or changed",
+      "performedBy": "reviewproof 0.1.0 (static check, in-process)",
+      "commands": [
+        "node src/cli.ts check 2283"
+      ],
+      "commits": [
+        "32258fdbee4bcd653c79f51b4376b5103c6f4d27",
+        "9df83c38409c8bfad0517aebffe48211eda4a5b4"
+      ],
+      "status": "passed",
+      "summary": "No public declaration, API file entry or diagnostic ID changed.",
+      "durationMs": 0,
+      "logs": [],
+      "details": {
+        "hits": []
+      }
+    },
+    {
+      "id": "tests-at-head:MessagePack.SourceGenerator.Tests",
+      "check": "tests-at-head",
+      "domain": "backend",
+      "asserts": "every test the change added or modified passes at head",
+      "performedBy": "dotnet test in container mcr.microsoft.com/dotnet/sdk:8.0.402-jammy",
+      "commands": [
+        "docker run --rm --user 1000:1000 -e HOME=/home/huyhoangle/junction/review-proof/.work/home -e DOTNET_CLI_HOME=/home/huyhoangle/junction/review-proof/.work/home -e NUGET_PACKAGES=/home/huyhoangle/junction/review-proof/.work/nuget -e DOTNET_CLI_TELEMETRY_OPTOUT=1 -e DOTNET_NOLOGO=1 -v /home/huyhoangle/junction/review-proof/.work:/home/huyhoangle/junction/review-proof/.work -w /home/huyhoangle/junction/review-proof/.work/wt/9df83c38409c8bfad0517aebffe48211eda4a5b4 mcr.microsoft.com/dotnet/sdk:8.0.402-jammy dotnet test tests/MessagePack.SourceGenerator.Tests/MessagePack.SourceGenerator.Tests.csproj --logger 'trx;LogFileName=head.MessagePack.SourceGenerator.Tests.trx' --results-directory /home/huyhoangle/junction/review-proof/.work/results/data_cases_2283_runs/head.MessagePack.SourceGenerator.Tests"
+      ],
+      "commits": [
+        "9df83c38409c8bfad0517aebffe48211eda4a5b4"
+      ],
+      "status": "passed",
+      "summary": "3 of 3 changed tests pass at head.",
+      "tests": [
+        {
+          "name": "GenericsFormatterTests.ClosedGenericStruct_FromMetadataReference_UnkeyedMember",
+          "outcome": "passed",
+          "new": true
+        },
+        {
+          "name": "GenericsFormatterTests.ClosedGenericStruct_FromMetadataReference",
+          "outcome": "passed",
+          "new": true
+        },
+        {
+          "name": "GenericsFormatterTests.ClosedGenericRecordStruct_FromMetadataReference",
+          "outcome": "passed",
+          "new": true
+        }
+      ],
+      "durationMs": 17934,
+      "logs": [
+        "data/cases/2283/runs/head.MessagePack.SourceGenerator.Tests.log",
+        "data/cases/2283/runs/head.MessagePack.SourceGenerator.Tests.trx"
+      ]
+    },
+    {
+      "id": "tests-without-change:MessagePack.SourceGenerator.Tests",
+      "check": "tests-without-change",
+      "domain": "backend",
+      "asserts": "every changed test that passes at head fails with the base source",
+      "performedBy": "dotnet test in container mcr.microsoft.com/dotnet/sdk:8.0.402-jammy",
+      "commands": [
+        "docker run --rm --user 1000:1000 -e HOME=/home/huyhoangle/junction/review-proof/.work/home -e DOTNET_CLI_HOME=/home/huyhoangle/junction/review-proof/.work/home -e NUGET_PACKAGES=/home/huyhoangle/junction/review-proof/.work/nuget -e DOTNET_CLI_TELEMETRY_OPTOUT=1 -e DOTNET_NOLOGO=1 -v /home/huyhoangle/junction/review-proof/.work:/home/huyhoangle/junction/review-proof/.work -w /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283 mcr.microsoft.com/dotnet/sdk:8.0.402-jammy dotnet test tests/MessagePack.SourceGenerator.Tests/MessagePack.SourceGenerator.Tests.csproj --logger 'trx;LogFileName=without-change.MessagePack.SourceGenerator.Tests.trx' --results-directory /home/huyhoangle/junction/review-proof/.work/results/data_cases_2283_runs/without-change.MessagePack.SourceGenerator.Tests"
+      ],
+      "commits": [
+        "32258fdbee4bcd653c79f51b4376b5103c6f4d27",
+        "9df83c38409c8bfad0517aebffe48211eda4a5b4"
+      ],
+      "status": "passed",
+      "summary": "3 of 3 changed tests that pass at head fail without the change (discriminating).",
+      "tests": [
+        {
+          "name": "GenericsFormatterTests.ClosedGenericStruct_FromMetadataReference_UnkeyedMember",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Mismatch between number of diagnostics returned, expected \"0\" actual \"3\"\r\n\r\nDiagnostics:\r\n// error AD0001: Analyzer 'MessagePack.SourceGenerator.Analyzers.MsgPack00xMessagePackAnalyzer' threw an exception of type 'System.IndexOutOfRangeException' with message 'Index was outside the bounds of the array.'.\r\nException occurred with following context:\r\nCompilation: TestProject\nISymbol: MyObject (NamedType)\n\nSystem.IndexOutOfRangeException: Index was outside the bounds of the array.\n   at System.Collections.Immutable.ImmutableArray`1.get_Item(Int32 index)\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.GetObjectInfo(INamedTypeSymbol formattedType, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 1075\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectGeneric(INamedTypeSymbol type, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 651\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectCore(ITypeSymbol typeSymbol, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 363\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.GetObjectInfo(INamedTypeSymbol formattedType, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 1043\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectObject(INamedTypeSymbol type, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 678\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectCore(ITypeSymbol typeSymbol, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 378\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.Collect() in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 292\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.Collect(Compilation compilation, AnalyzerOptions options, ReferenceSymbols referenceSymbols, Action`1 reportAnalyzerDiagnostic, ITypeSymbol targetType, CancellationToken cancellationToken) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 271\n   at MessagePack.SourceGenerator.Analyzers.MsgPack00xMessagePackAnalyzer.AnalyzeSymbol(SymbolAnalysisContext context, ReferenceSymbols typeReferences, AnalyzerOptions options) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/Analyzers/MsgPack00xMessagePackAnalyzer.cs:line 430\n   at MessagePack.SourceGenerator.Analyzers.MsgPack00xMessagePackAnalyzer.<>c__DisplayClass55_1.<Initialize>b__1(SymbolAnalysisContext context) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/Analyzers/MsgPack00xMessagePackAnalyzer.cs:line 357\n   at Microsoft.CodeAnalysis.Diagnostics.AnalyzerExecutor.<>c.<ExecuteSymbolActions>b__45_1(ValueTuple`2 data)\n   at Microsoft.CodeAnalysis.Diagnostics.AnalyzerExecutor.ExecuteAndCatchIfThrows_NoLock[TArg](DiagnosticAnalyzer analyzer, Action`1 analyze, TArg argument, Nullable`1 info, CancellationToken cancellationToken)\n-----\n\nSuppress the following diagnostics to disable this analyzer: MsgPack003, MsgPack004, MsgPack005, MsgPack006, MsgPack007, MsgPack008, MsgPack009, MsgPack010, MsgPack011, MsgPack012, MsgPack013, MsgPack014, MsgPack015, MsgPack016, MsgPack017, MsgPack018\nDiagnosticResult.CompilerError(\"AD0001\").WithArguments(\"MessagePack.SourceGenerator.Analyzers.MsgPack00xMessagePackAnalyzer\", \"System.IndexOutOfRangeException\", \"Index was outside the bounds of the array.\", \"Exception occurred with following context:\r\nCompilation: TestProject\nISymbol: MyObject (NamedType)\n\nSystem.IndexOutOfRangeException: Index was outside the bounds of the array.\n   at System.Collections.Immutable.ImmutableArray`1.get_Item(Int32 index)\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.GetObjectInfo(INamedTypeSymbol formattedType, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 1075\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectGeneric(INamedTypeSymbol type, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 651\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectCore(ITypeSymbol typeSymbol, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 363\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.GetObjectInfo(INamedTypeSymbol formattedType, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 1043\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectObject(INamedTypeSymbol type, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 678\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectCore(ITypeSymbol typeSymbol, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 378\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.Collect() in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 292\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.Collect(Compilation compilation, AnalyzerOptions options, ReferenceSymbols referenceSymbols, Action`1 reportAnalyzerDiagnostic, ITypeSymbol targetType, CancellationToken cancellationToken) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 271\n   at MessagePack.SourceGenerator.Analyzers.MsgPack00xMessagePackAnalyzer.AnalyzeSymbol(SymbolAnalysisContext context, ReferenceSymbols typeReferences, AnalyzerOptions options) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/Analyzers/MsgPack00xMessagePackAnalyzer.cs:line 430\n   at MessagePack.SourceGenerator.Analyzers.MsgPack00xMessagePackAnalyzer.<>c__DisplayClass55_1.<Initialize>b__1(SymbolAnalysisContext context) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/Analyzers/MsgPack00xMessagePackAnalyzer.cs:line 357\n   at Microsoft.CodeAnalysis.Diagnostics.AnalyzerExecutor.<>c.<ExecuteSymbolActions>b__45_1(ValueTuple`2 data)\n   at Microsoft.CodeAnalysis.Diagnostics.AnalyzerExecutor.ExecuteAndCatchIfThrows_NoLock[TArg](DiagnosticAnalyzer analyzer, Action`1 analyze, TArg argument, Nullable`1 info, CancellationToken cancellationToken)\n-----\n\nSuppress the following diagnostics to disable this analyzer: MsgPack003, MsgPack004, MsgPack005, MsgPack006, MsgPack007, MsgPack008, MsgPack009, MsgPack010, MsgPack011, MsgPack012, MsgPack013, MsgPack014, MsgPack015, MsgPack016, MsgPack017, MsgPack018\"),\n// warning CS8785: Generator 'MessagePackGenerator' failed to generate source. It will not contribute to the output and compilation errors may occur as a result. Exception was of type 'IndexOutOfRangeException' with message 'Index was outside the bounds of the array.'.\r\nSystem.IndexOutOfRangeException: Index was outside the bounds of the array.\n   at System.Collections.Immutable.ImmutableArray`1.get_Item(Int32 index)\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.GetObjectInfo(INamedTypeSymbol formattedType, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 1075\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectGeneric(INamedTypeSymbol type, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 651\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectCore(ITypeSymbol typeSymbol, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 363\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.GetObjectInfo(INamedTypeSymbol formattedType, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 1043\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectObject(INamedTypeSymbol type, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 678\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectCore(ITypeSymbol typeSymbol, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 378\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.Collect() in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 292\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.Collect(Compilation compilation, AnalyzerOptions options, ReferenceSymbols referenceSymbols, Action`1 reportAnalyzerDiagnostic, ITypeSymbol targetType, CancellationToken cancellationToken) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 271\n   at MessagePack.SourceGenerator.MessagePackGenerator.<>c__DisplayClass0_0.<Initialize>g__Collect|8(ITypeSymbol typeSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/MessagePackGenerator.cs:line 47\n   at MessagePack.SourceGenerator.MessagePackGenerator.<>c.<Initialize>b__0_4(ValueTuple`2 s, CancellationToken ct) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/MessagePackGenerator.cs:line 55\n   at Microsoft.CodeAnalysis.TransformNode`2.<>c__DisplayClass6_0.<.ctor>b__0(TInput i, CancellationToken token)\n   at Microsoft.CodeAnalysis.TransformNode`2.UpdateStateTable(Builder builder, NodeStateTable`1 previousTable, CancellationToken cancellationToken)\n-----\n\nDiagnosticResult.CompilerWarning(\"CS8785\").WithArguments(\"MessagePackGenerator\", \"IndexOutOfRangeException\", \"Index was outside the bounds of the array.\", \"System.IndexOutOfRangeException: Index was outside the bounds of the array.\n   at System.Collections.Immutable.ImmutableArray`1.get_Item(Int32 index)\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.GetObjectInfo(INamedTypeSymbol formattedType, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 1075\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectGeneric(INamedTypeSymbol type, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 651\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectCore(ITypeSymbol typeSymbol, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 363\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.GetObjectInfo(INamedTypeSymbol formattedType, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 1043\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectObject(INamedTypeSymbol type, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 678\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectCore(ITypeSymbol typeSymbol, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 378\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.Collect() in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 292\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.Collect(Compilation compilation, AnalyzerOptions options, ReferenceSymbols referenceSymbols, Action`1 reportAnalyzerDiagnostic, ITypeSymbol targetType, CancellationToken cancellationToken) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 271\n   at MessagePack.SourceGenerator.MessagePackGenerator.<>c__DisplayClass0_0.<Initialize>g__Collect|8(ITypeSymbol typeSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/MessagePackGenerator.cs:line 47\n   at MessagePack.SourceGenerator.MessagePackGenerator.<>c.<Initialize>b__0_4(ValueTuple`2 s, CancellationToken ct) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/MessagePackGenerator.cs:line 55\n   at Microsoft.CodeAnalysis.TransformNode`2.<>c__DisplayClass6_0.<.ctor>b__0(TInput i, CancellationToken token)\n   at Microsoft.CodeAnalysis.TransformNode`2.UpdateStateTable(Builder builder, NodeStateTable`1 previousTable, CancellationToken cancellationToken)\n-----\n\"),\n// error MsgPack004: Properties and fields of MessagePackObject-attributed types require either KeyAttribute or IgnoreMemberAttribute: global::TempProject.MyGenericStruct<int>.Unkeyed\nnew DiagnosticResult(MsgPack00xMessagePackAnalyzer.MsgPack004).WithArguments(\"global::TempProject.MyGenericStruct<int>\", \"Unkeyed\"),\n\r\n"
+        },
+        {
+          "name": "GenericsFormatterTests.ClosedGenericStruct_FromMetadataReference",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Mismatch between number of diagnostics returned, expected \"0\" actual \"2\"\r\n\r\nDiagnostics:\r\n// error AD0001: Analyzer 'MessagePack.SourceGenerator.Analyzers.MsgPack00xMessagePackAnalyzer' threw an exception of type 'System.IndexOutOfRangeException' with message 'Index was outside the bounds of the array.'.\r\nException occurred with following context:\r\nCompilation: TestProject\nISymbol: MyObject (NamedType)\n\nSystem.IndexOutOfRangeException: Index was outside the bounds of the array.\n   at System.Collections.Immutable.ImmutableArray`1.get_Item(Int32 index)\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.GetObjectInfo(INamedTypeSymbol formattedType, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 1075\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectGeneric(INamedTypeSymbol type, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 651\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectCore(ITypeSymbol typeSymbol, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 363\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.GetObjectInfo(INamedTypeSymbol formattedType, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 1043\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectObject(INamedTypeSymbol type, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 678\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectCore(ITypeSymbol typeSymbol, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 378\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.Collect() in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 292\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.Collect(Compilation compilation, AnalyzerOptions options, ReferenceSymbols referenceSymbols, Action`1 reportAnalyzerDiagnostic, ITypeSymbol targetType, CancellationToken cancellationToken) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 271\n   at MessagePack.SourceGenerator.Analyzers.MsgPack00xMessagePackAnalyzer.AnalyzeSymbol(SymbolAnalysisContext context, ReferenceSymbols typeReferences, AnalyzerOptions options) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/Analyzers/MsgPack00xMessagePackAnalyzer.cs:line 430\n   at MessagePack.SourceGenerator.Analyzers.MsgPack00xMessagePackAnalyzer.<>c__DisplayClass55_1.<Initialize>b__1(SymbolAnalysisContext context) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/Analyzers/MsgPack00xMessagePackAnalyzer.cs:line 357\n   at Microsoft.CodeAnalysis.Diagnostics.AnalyzerExecutor.<>c.<ExecuteSymbolActions>b__45_1(ValueTuple`2 data)\n   at Microsoft.CodeAnalysis.Diagnostics.AnalyzerExecutor.ExecuteAndCatchIfThrows_NoLock[TArg](DiagnosticAnalyzer analyzer, Action`1 analyze, TArg argument, Nullable`1 info, CancellationToken cancellationToken)\n-----\n\nSuppress the following diagnostics to disable this analyzer: MsgPack003, MsgPack004, MsgPack005, MsgPack006, MsgPack007, MsgPack008, MsgPack009, MsgPack010, MsgPack011, MsgPack012, MsgPack013, MsgPack014, MsgPack015, MsgPack016, MsgPack017, MsgPack018\nDiagnosticResult.CompilerError(\"AD0001\").WithArguments(\"MessagePack.SourceGenerator.Analyzers.MsgPack00xMessagePackAnalyzer\", \"System.IndexOutOfRangeException\", \"Index was outside the bounds of the array.\", \"Exception occurred with following context:\r\nCompilation: TestProject\nISymbol: MyObject (NamedType)\n\nSystem.IndexOutOfRangeException: Index was outside the bounds of the array.\n   at System.Collections.Immutable.ImmutableArray`1.get_Item(Int32 index)\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.GetObjectInfo(INamedTypeSymbol formattedType, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 1075\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectGeneric(INamedTypeSymbol type, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 651\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectCore(ITypeSymbol typeSymbol, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 363\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.GetObjectInfo(INamedTypeSymbol formattedType, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 1043\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectObject(INamedTypeSymbol type, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 678\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectCore(ITypeSymbol typeSymbol, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 378\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.Collect() in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 292\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.Collect(Compilation compilation, AnalyzerOptions options, ReferenceSymbols referenceSymbols, Action`1 reportAnalyzerDiagnostic, ITypeSymbol targetType, CancellationToken cancellationToken) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 271\n   at MessagePack.SourceGenerator.Analyzers.MsgPack00xMessagePackAnalyzer.AnalyzeSymbol(SymbolAnalysisContext context, ReferenceSymbols typeReferences, AnalyzerOptions options) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/Analyzers/MsgPack00xMessagePackAnalyzer.cs:line 430\n   at MessagePack.SourceGenerator.Analyzers.MsgPack00xMessagePackAnalyzer.<>c__DisplayClass55_1.<Initialize>b__1(SymbolAnalysisContext context) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/Analyzers/MsgPack00xMessagePackAnalyzer.cs:line 357\n   at Microsoft.CodeAnalysis.Diagnostics.AnalyzerExecutor.<>c.<ExecuteSymbolActions>b__45_1(ValueTuple`2 data)\n   at Microsoft.CodeAnalysis.Diagnostics.AnalyzerExecutor.ExecuteAndCatchIfThrows_NoLock[TArg](DiagnosticAnalyzer analyzer, Action`1 analyze, TArg argument, Nullable`1 info, CancellationToken cancellationToken)\n-----\n\nSuppress the following diagnostics to disable this analyzer: MsgPack003, MsgPack004, MsgPack005, MsgPack006, MsgPack007, MsgPack008, MsgPack009, MsgPack010, MsgPack011, MsgPack012, MsgPack013, MsgPack014, MsgPack015, MsgPack016, MsgPack017, MsgPack018\"),\n// warning CS8785: Generator 'MessagePackGenerator' failed to generate source. It will not contribute to the output and compilation errors may occur as a result. Exception was of type 'IndexOutOfRangeException' with message 'Index was outside the bounds of the array.'.\r\nSystem.IndexOutOfRangeException: Index was outside the bounds of the array.\n   at System.Collections.Immutable.ImmutableArray`1.get_Item(Int32 index)\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.GetObjectInfo(INamedTypeSymbol formattedType, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 1075\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectGeneric(INamedTypeSymbol type, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 651\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectCore(ITypeSymbol typeSymbol, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 363\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.GetObjectInfo(INamedTypeSymbol formattedType, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 1043\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectObject(INamedTypeSymbol type, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 678\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectCore(ITypeSymbol typeSymbol, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 378\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.Collect() in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 292\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.Collect(Compilation compilation, AnalyzerOptions options, ReferenceSymbols referenceSymbols, Action`1 reportAnalyzerDiagnostic, ITypeSymbol targetType, CancellationToken cancellationToken) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 271\n   at MessagePack.SourceGenerator.MessagePackGenerator.<>c__DisplayClass0_0.<Initialize>g__Collect|8(ITypeSymbol typeSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/MessagePackGenerator.cs:line 47\n   at MessagePack.SourceGenerator.MessagePackGenerator.<>c.<Initialize>b__0_4(ValueTuple`2 s, CancellationToken ct) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/MessagePackGenerator.cs:line 55\n   at Microsoft.CodeAnalysis.TransformNode`2.<>c__DisplayClass6_0.<.ctor>b__0(TInput i, CancellationToken token)\n   at Microsoft.CodeAnalysis.TransformNode`2.UpdateStateTable(Builder builder, NodeStateTable`1 previousTable, CancellationToken cancellationToken)\n-----\n\nDiagnosticResult.CompilerWarning(\"CS8785\").WithArguments(\"MessagePackGenerator\", \"IndexOutOfRangeException\", \"Index was outside the bounds of the array.\", \"System.IndexOutOfRangeException: Index was outside the bounds of the array.\n   at System.Collections.Immutable.ImmutableArray`1.get_Item(Int32 index)\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.GetObjectInfo(INamedTypeSymbol formattedType, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 1075\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectGeneric(INamedTypeSymbol type, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 651\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectCore(ITypeSymbol typeSymbol, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 363\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.GetObjectInfo(INamedTypeSymbol formattedType, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 1043\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectObject(INamedTypeSymbol type, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 678\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectCore(ITypeSymbol typeSymbol, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 378\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.Collect() in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 292\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.Collect(Compilation compilation, AnalyzerOptions options, ReferenceSymbols referenceSymbols, Action`1 reportAnalyzerDiagnostic, ITypeSymbol targetType, CancellationToken cancellationToken) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 271\n   at MessagePack.SourceGenerator.MessagePackGenerator.<>c__DisplayClass0_0.<Initialize>g__Collect|8(ITypeSymbol typeSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/MessagePackGenerator.cs:line 47\n   at MessagePack.SourceGenerator.MessagePackGenerator.<>c.<Initialize>b__0_4(ValueTuple`2 s, CancellationToken ct) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/MessagePackGenerator.cs:line 55\n   at Microsoft.CodeAnalysis.TransformNode`2.<>c__DisplayClass6_0.<.ctor>b__0(TInput i, CancellationToken token)\n   at Microsoft.CodeAnalysis.TransformNode`2.UpdateStateTable(Builder builder, NodeStateTable`1 previousTable, CancellationToken cancellationToken)\n-----\n\"),\n\r\n"
+        },
+        {
+          "name": "GenericsFormatterTests.ClosedGenericRecordStruct_FromMetadataReference",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Mismatch between number of diagnostics returned, expected \"0\" actual \"2\"\r\n\r\nDiagnostics:\r\n// error AD0001: Analyzer 'MessagePack.SourceGenerator.Analyzers.MsgPack00xMessagePackAnalyzer' threw an exception of type 'System.IndexOutOfRangeException' with message 'Index was outside the bounds of the array.'.\r\nException occurred with following context:\r\nCompilation: TestProject\nISymbol: Cmd (NamedType)\n\nSystem.IndexOutOfRangeException: Index was outside the bounds of the array.\n   at System.Collections.Immutable.ImmutableArray`1.get_Item(Int32 index)\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.GetObjectInfo(INamedTypeSymbol formattedType, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 1075\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectGeneric(INamedTypeSymbol type, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 651\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectCore(ITypeSymbol typeSymbol, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 363\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.GetObjectInfo(INamedTypeSymbol formattedType, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 1043\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectObject(INamedTypeSymbol type, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 678\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectCore(ITypeSymbol typeSymbol, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 378\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.Collect() in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 292\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.Collect(Compilation compilation, AnalyzerOptions options, ReferenceSymbols referenceSymbols, Action`1 reportAnalyzerDiagnostic, ITypeSymbol targetType, CancellationToken cancellationToken) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 271\n   at MessagePack.SourceGenerator.Analyzers.MsgPack00xMessagePackAnalyzer.AnalyzeSymbol(SymbolAnalysisContext context, ReferenceSymbols typeReferences, AnalyzerOptions options) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/Analyzers/MsgPack00xMessagePackAnalyzer.cs:line 430\n   at MessagePack.SourceGenerator.Analyzers.MsgPack00xMessagePackAnalyzer.<>c__DisplayClass55_1.<Initialize>b__1(SymbolAnalysisContext context) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/Analyzers/MsgPack00xMessagePackAnalyzer.cs:line 357\n   at Microsoft.CodeAnalysis.Diagnostics.AnalyzerExecutor.<>c.<ExecuteSymbolActions>b__45_1(ValueTuple`2 data)\n   at Microsoft.CodeAnalysis.Diagnostics.AnalyzerExecutor.ExecuteAndCatchIfThrows_NoLock[TArg](DiagnosticAnalyzer analyzer, Action`1 analyze, TArg argument, Nullable`1 info, CancellationToken cancellationToken)\n-----\n\nSuppress the following diagnostics to disable this analyzer: MsgPack003, MsgPack004, MsgPack005, MsgPack006, MsgPack007, MsgPack008, MsgPack009, MsgPack010, MsgPack011, MsgPack012, MsgPack013, MsgPack014, MsgPack015, MsgPack016, MsgPack017, MsgPack018\nDiagnosticResult.CompilerError(\"AD0001\").WithArguments(\"MessagePack.SourceGenerator.Analyzers.MsgPack00xMessagePackAnalyzer\", \"System.IndexOutOfRangeException\", \"Index was outside the bounds of the array.\", \"Exception occurred with following context:\r\nCompilation: TestProject\nISymbol: Cmd (NamedType)\n\nSystem.IndexOutOfRangeException: Index was outside the bounds of the array.\n   at System.Collections.Immutable.ImmutableArray`1.get_Item(Int32 index)\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.GetObjectInfo(INamedTypeSymbol formattedType, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 1075\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectGeneric(INamedTypeSymbol type, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 651\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectCore(ITypeSymbol typeSymbol, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 363\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.GetObjectInfo(INamedTypeSymbol formattedType, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 1043\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectObject(INamedTypeSymbol type, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 678\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectCore(ITypeSymbol typeSymbol, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 378\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.Collect() in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 292\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.Collect(Compilation compilation, AnalyzerOptions options, ReferenceSymbols referenceSymbols, Action`1 reportAnalyzerDiagnostic, ITypeSymbol targetType, CancellationToken cancellationToken) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 271\n   at MessagePack.SourceGenerator.Analyzers.MsgPack00xMessagePackAnalyzer.AnalyzeSymbol(SymbolAnalysisContext context, ReferenceSymbols typeReferences, AnalyzerOptions options) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/Analyzers/MsgPack00xMessagePackAnalyzer.cs:line 430\n   at MessagePack.SourceGenerator.Analyzers.MsgPack00xMessagePackAnalyzer.<>c__DisplayClass55_1.<Initialize>b__1(SymbolAnalysisContext context) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/Analyzers/MsgPack00xMessagePackAnalyzer.cs:line 357\n   at Microsoft.CodeAnalysis.Diagnostics.AnalyzerExecutor.<>c.<ExecuteSymbolActions>b__45_1(ValueTuple`2 data)\n   at Microsoft.CodeAnalysis.Diagnostics.AnalyzerExecutor.ExecuteAndCatchIfThrows_NoLock[TArg](DiagnosticAnalyzer analyzer, Action`1 analyze, TArg argument, Nullable`1 info, CancellationToken cancellationToken)\n-----\n\nSuppress the following diagnostics to disable this analyzer: MsgPack003, MsgPack004, MsgPack005, MsgPack006, MsgPack007, MsgPack008, MsgPack009, MsgPack010, MsgPack011, MsgPack012, MsgPack013, MsgPack014, MsgPack015, MsgPack016, MsgPack017, MsgPack018\"),\n// warning CS8785: Generator 'MessagePackGenerator' failed to generate source. It will not contribute to the output and compilation errors may occur as a result. Exception was of type 'IndexOutOfRangeException' with message 'Index was outside the bounds of the array.'.\r\nSystem.IndexOutOfRangeException: Index was outside the bounds of the array.\n   at System.Collections.Immutable.ImmutableArray`1.get_Item(Int32 index)\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.GetObjectInfo(INamedTypeSymbol formattedType, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 1075\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectGeneric(INamedTypeSymbol type, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 651\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectCore(ITypeSymbol typeSymbol, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 363\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.GetObjectInfo(INamedTypeSymbol formattedType, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 1043\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectObject(INamedTypeSymbol type, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 678\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectCore(ITypeSymbol typeSymbol, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 378\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.Collect() in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 292\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.Collect(Compilation compilation, AnalyzerOptions options, ReferenceSymbols referenceSymbols, Action`1 reportAnalyzerDiagnostic, ITypeSymbol targetType, CancellationToken cancellationToken) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 271\n   at MessagePack.SourceGenerator.MessagePackGenerator.<>c__DisplayClass0_0.<Initialize>g__Collect|8(ITypeSymbol typeSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/MessagePackGenerator.cs:line 47\n   at MessagePack.SourceGenerator.MessagePackGenerator.<>c.<Initialize>b__0_4(ValueTuple`2 s, CancellationToken ct) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/MessagePackGenerator.cs:line 55\n   at Microsoft.CodeAnalysis.TransformNode`2.<>c__DisplayClass6_0.<.ctor>b__0(TInput i, CancellationToken token)\n   at Microsoft.CodeAnalysis.TransformNode`2.UpdateStateTable(Builder builder, NodeStateTable`1 previousTable, CancellationToken cancellationToken)\n-----\n\nDiagnosticResult.CompilerWarning(\"CS8785\").WithArguments(\"MessagePackGenerator\", \"IndexOutOfRangeException\", \"Index was outside the bounds of the array.\", \"System.IndexOutOfRangeException: Index was outside the bounds of the array.\n   at System.Collections.Immutable.ImmutableArray`1.get_Item(Int32 index)\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.GetObjectInfo(INamedTypeSymbol formattedType, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 1075\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectGeneric(INamedTypeSymbol type, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 651\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectCore(ITypeSymbol typeSymbol, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 363\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.GetObjectInfo(INamedTypeSymbol formattedType, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 1043\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectObject(INamedTypeSymbol type, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 678\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.CollectCore(ITypeSymbol typeSymbol, ISymbol callerSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 378\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.Collect() in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 292\n   at MessagePack.SourceGenerator.CodeAnalysis.TypeCollector.Collect(Compilation compilation, AnalyzerOptions options, ReferenceSymbols referenceSymbols, Action`1 reportAnalyzerDiagnostic, ITypeSymbol targetType, CancellationToken cancellationToken) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:line 271\n   at MessagePack.SourceGenerator.MessagePackGenerator.<>c__DisplayClass0_0.<Initialize>g__Collect|8(ITypeSymbol typeSymbol) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/MessagePackGenerator.cs:line 47\n   at MessagePack.SourceGenerator.MessagePackGenerator.<>c.<Initialize>b__0_4(ValueTuple`2 s, CancellationToken ct) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/MessagePackGenerator.cs:line 55\n   at Microsoft.CodeAnalysis.TransformNode`2.<>c__DisplayClass6_0.<.ctor>b__0(TInput i, CancellationToken token)\n   at Microsoft.CodeAnalysis.TransformNode`2.UpdateStateTable(Builder builder, NodeStateTable`1 previousTable, CancellationToken cancellationToken)\n-----\n\"),\n\r\n"
+        }
+      ],
+      "durationMs": 28588,
+      "logs": [
+        "data/cases/2283/runs/without-change.MessagePack.SourceGenerator.Tests.log",
+        "data/cases/2283/runs/without-change.MessagePack.SourceGenerator.Tests.trx"
+      ]
+    },
+    {
+      "id": "existing-tests:MessagePack.SourceGenerator.Tests",
+      "check": "existing-tests",
+      "domain": "backend",
+      "asserts": "no pre-existing test that passed at base fails at head",
+      "performedBy": "dotnet test in container mcr.microsoft.com/dotnet/sdk:8.0.402-jammy",
+      "commands": [
+        "docker run --rm --user 1000:1000 -e HOME=/home/huyhoangle/junction/review-proof/.work/home -e DOTNET_CLI_HOME=/home/huyhoangle/junction/review-proof/.work/home -e NUGET_PACKAGES=/home/huyhoangle/junction/review-proof/.work/nuget -e DOTNET_CLI_TELEMETRY_OPTOUT=1 -e DOTNET_NOLOGO=1 -v /home/huyhoangle/junction/review-proof/.work:/home/huyhoangle/junction/review-proof/.work -w /home/huyhoangle/junction/review-proof/.work/wt/9df83c38409c8bfad0517aebffe48211eda4a5b4 mcr.microsoft.com/dotnet/sdk:8.0.402-jammy dotnet test tests/MessagePack.SourceGenerator.Tests/MessagePack.SourceGenerator.Tests.csproj --logger 'trx;LogFileName=head.MessagePack.SourceGenerator.Tests.trx' --results-directory /home/huyhoangle/junction/review-proof/.work/results/data_cases_2283_runs/head.MessagePack.SourceGenerator.Tests",
+        "docker run --rm --user 1000:1000 -e HOME=/home/huyhoangle/junction/review-proof/.work/home -e DOTNET_CLI_HOME=/home/huyhoangle/junction/review-proof/.work/home -e NUGET_PACKAGES=/home/huyhoangle/junction/review-proof/.work/nuget -e DOTNET_CLI_TELEMETRY_OPTOUT=1 -e DOTNET_NOLOGO=1 -v /home/huyhoangle/junction/review-proof/.work:/home/huyhoangle/junction/review-proof/.work -w /home/huyhoangle/junction/review-proof/.work/wt/32258fdbee4bcd653c79f51b4376b5103c6f4d27 mcr.microsoft.com/dotnet/sdk:8.0.402-jammy dotnet test tests/MessagePack.SourceGenerator.Tests/MessagePack.SourceGenerator.Tests.csproj --logger 'trx;LogFileName=base.MessagePack.SourceGenerator.Tests.trx' --results-directory /home/huyhoangle/junction/review-proof/.work/results/data_cases_2283_runs/base.MessagePack.SourceGenerator.Tests"
+      ],
+      "commits": [
+        "9df83c38409c8bfad0517aebffe48211eda4a5b4",
+        "32258fdbee4bcd653c79f51b4376b5103c6f4d27"
+      ],
+      "status": "passed",
+      "summary": "167 pre-existing tests: 167 pass at both, 0 regressed, 0 newly pass, 0 fail at both; 0 removed at head.",
+      "tests": [
+        {
+          "name": "PrivateMemberAccessTests.FormatterForClassWithPrivateMembers_WithNamespace",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack001SpecifyOptionsAnalyzerTests.Invocation_OmittedOptionalParameter",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.EnumFormatter(container: None, usesMapMode: False)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.MixType_CollidingTypeNames",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "FullModelTests.Equals_Null",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.UnionFormatter(container: NestingClass)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack015AllowPrivateRequiredTests.AddWhenNonPublicPropertyIsAnnotated",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.AddAttributesToMembers_AllowPrivateAttribute",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "FormatterCodeFixProviderTests.InaccessibleCustomFormatterType(initialModifiers: \"\", expectedModifiers: \"internal \")",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.AdditionalFormatterTypes",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.UnionFormatter(container: Namespace)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.AddAttributesToMembersOfRecord",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.CustomFormatterWithSingletonPattern",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack015AllowPrivateRequiredTests.AddForNonPublicDeserializingConstructor",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.AddAttributesToMembers_MixedVisibility",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.Array2DJaggedProperty",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.AddAttributesToMembers_PublicOnly",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenericsFormatterTests.Generics_Constraints_ReferenceType_Nullable",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "FormatterCodeFixProviderTests.InaccessibleCustomFormatterType(initialModifiers: \"protected \", expectedModifiers: \"protected internal \")",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenericsFormatterTests.GenericsUnionFormatter_Nested",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterSetterWithDefaultValueInputPartially",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "ImplicitResolverForCustomFormattersTests.OpenGenericFormatter",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenericsFormatterTests.WellKnownGenericsFormatter",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "PrivateMemberAccessTests.FormatterForClassWithPrivateMembers_MapMode",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "PrivateMemberAccessTests.FormatterForClassWithPrivateMembers_NonPartialTypes(type: \"struct\", languageVersion: CSharp7_3)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "PrivateMemberAccessTests.FormatterForClassWithPrivateMembers(type: \"record\", version: CSharp9)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenericsFormatterTests.GenericsOfTFormatter_FormatterOnly",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack015AllowPrivateRequiredTests.SetWhenNonPublicPropertyIsAnnotated",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.GenericTypeArg",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.DeserializingConstructorParameterMemberTypeAssignability_Incompatible",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterOnlyWithParameterizedConstructorPartially",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "FormatterCodeFixProviderTests.InaccessibleCustomFormatterConstructor(initialModifiers: \"protected \", expectedModifiers: \"protected internal \")",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.NonDefaultDeserializingConstructor_Private",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "CompositeResolverGeneratorTests.CompositeResolver_MixedResolverTypes",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack002UseConstantOptionsAnalyzerTests.Invocation_WithMutableStaticOptions",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MultipleTypesTests.TwoTypes(usesMapMode: False)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.CustomFormatterViaAttributeOnProperty(usesMapMode: True)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.InterfaceUnionUsedWithNullableRefAnnotation",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.AdditionalAllowTypes",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "PrivateMemberAccessTests.FormatterForClassWithPrivateMembers_NonPartialTypes(type: \"class\", languageVersion: CSharp7_3)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "PrivateMemberAccessTests.FormatterForClassWithPrivateMembers_Nested_NonPartialTypes(type: \"struct\", languageVersion: CSharp7_3)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "PrivateMemberAccessTests.FormatterForClassWithPrivateMembers_NonPartialTypes(type: \"record\", languageVersion: CSharp9)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenericsFormatterTests.RecursiveGenerics_Direct",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.DeserializingConstructorParameterMemberTypeAssignability_MemberAssignsToParamType",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack014NullableRefTypeFormatterTests.ValueTypeWithoutNullableAnnotation",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.CustomFormatterForGenericWithConstraints",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterOnlyDefaultValue",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.CustomFormatterViaAttributeOnField(usesMapMode: True)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterOnlyWithParameterizedConstructorDefaultValue",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterSetterWithParameterizedConstructorPartially",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterSetterWithParameterizedConstructorDoNotUseSetter",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenericsFormatterTests.Generics_Constraints_Struct",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.AdditionalFormatterTypes_RedundantAttribute",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.CustomFormatterViaAttributeOnField(usesMapMode: False)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MessagePackFormatterAttributeTests.CanGenerateMessagePackFormatterAttr",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack001SpecifyOptionsAnalyzerTests.Invocation_ExplicitlyNull",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.CustomFormatterViaAttributeOnProperty(usesMapMode: False)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack002UseConstantOptionsAnalyzerTests.Members_BasedOnStaticOptions",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "ImplicitResolverForCustomFormattersTests.CustomFormatterWithoutDefaultConstructor_Excluded",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "ImplicitResolverForCustomFormattersTests.MultipleFunctionalCustomFormattersForType_OnlyOneNonExcluded",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.DerivedAttributes",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterSetterWithParameterizedConstructor",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack012InaccessibleDataTypeTests.InaccessibleNestedDataType",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.EnumFormatter(container: NestingClass, usesMapMode: False)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenericsFormatterTests.GenericsUnionFormatter",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack002UseConstantOptionsAnalyzerTests.Invocation_WithImmutableStaticOptions_VB",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "FormatterCodeFixProviderTests.InaccessibleCustomFormatterConstructor(initialModifiers: \"\", expectedModifiers: \"internal \")",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.NoFieldWithCustomFormatterCollected",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.AddAttributeToField_WithComment",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.SpecifyFormatterFromStockSet",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "CompositeResolverGeneratorTests.CompositeResolver_Nested",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.EnumFormatter(container: Namespace, usesMapMode: True)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "PrivateMemberAccessTests.FormatterForClassWithPrivateMembers(type: \"struct\", version: CSharp7_3)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.ArrayTypedProperty",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.NoGenerationForAnnotationOnly",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack002UseConstantOptionsAnalyzerTests.Invocation_WithImmutableStaticOptions",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.EnumFormatter(container: NestingClass, usesMapMode: True)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.UnionFormatter(container: None)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.NoPrivateMemberCollected",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenericsFormatterTests.GenericsOfT1T2Formatter",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.AddAttributeToTypeForRecord1",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.EnumFormatter_CollidingTypeNames",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "FormatterCodeFixProviderTests.InaccessibleCustomFormatterType(initialModifiers: \"private \", expectedModifiers: \"internal \")",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.NestedMessagePackObjects",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenericsFormatterTests.NestedGenericTypes",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "ImplicitResolverForCustomFormattersTests.MultipleFunctionalCustomFormattersForType",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.AddAttributesToMembersOfRecordStruct",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack015AllowPrivateRequiredTests.AddForPublicTypeNestedUnderNonPublicType",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "UnionSerializationInfoTests.Equals_ByValue",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.AddAttributeToType_Generic",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack015AllowPrivateRequiredTests.AddForNonPublicType",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.NullStringKey",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.NameCollisionsInForceMapMode",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.NoPrivateAccessNeeded",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack011PartialTypeRequiredTests.NestedPartialTypeRequiresPartialSelfAndDeclaringType",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterSetterWithParameterizedConstructorAndDefaultValue",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenericsFormatterTests.GenericsOfTFormatter_WithKnownTypes",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.AddAttributeToType_Fields",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.AddAttributeToTypeForRecord2",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.GenericType",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenericsFormatterTests.Generics_Defined_In_ReferencedProject",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.PrivateMembersInBaseClassNeedNoAttribution",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterOnlyIgnore",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack011PartialTypeRequiredTests.NestedPartialTypeRequiresPartialDeclaringType",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.AddAttributeToTypeForRecordPrimaryConstructor",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "CustomStringKeyFormatterTests.RecordWithWithInitOnlyProps",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack014NullableRefTypeFormatterTests.RefTypeWithoutNullableGetsFixed",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.SystemMemoryTypes",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "FullModelTests.Equals_ByValue",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.GenericCustomFormatter",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "PrivateMemberAccessTests.FormatterForClassWithPrivateMembers(type: \"class\", version: CSharp7_3)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.GenericWithConstraintsThatReferenceTypeParameter",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MultipleTypesTests.ZeroTypes",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack001SpecifyOptionsAnalyzerTests.InvocationWithOptions_LocalVariable",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.NonGenericType_CollidingTypeNames",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.AddAttributesToMembersOfRecordWithPrimaryCtor",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterSetter",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack014NullableRefTypeFormatterTests.RefTypeWithoutNullableAnnotationsEnabled",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "ImplicitResolverForCustomFormattersTests.CustomFormatterWithoutDefaultConstructor",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack002UseConstantOptionsAnalyzerTests.Fields",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterOnlyMixed",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterSetterWithDefaultValue",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack014NullableRefTypeFormatterTests.RefTypeWithNullableAnnotation",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.EmbeddedTypes",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack001SpecifyOptionsAnalyzerTests.Invocation_OmittedOptionalParameter_VB",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.CodeFixAppliesAcrossFiles",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "PrivateMemberAccessTests.FormatterForClassWithPrivateMembers(type: \"record struct\", version: CSharp10)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenericsFormatterTests.Generics_Constraints_Type",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.GenericType_CollidingTypeNames",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.AddAttributeToType_Nullable",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterOnlyWithParameterizedConstructor",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.NoMessagePackReference",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.DerivedAttributes_SourceGenerationDisabled",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.AddAttributeToGenericType",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenericsFormatterTests.Generics_Constraints_Multiple",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "PrivateMemberAccessTests.FormatterForClassWithPrivateMembers_Nested_NonPartialTypes(type: \"class\", languageVersion: CSharp7_3)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.EnumFormatter(container: Namespace, usesMapMode: False)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MemberSerializationInfoTests.Equals_ByValue",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.AddIgnoreAttributesToMembers",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.SimplifiedNameForKeywordsAndSyntaxSugar",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.GenericDataTypeWithPrivateMember",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.AbstractFormatterDoesNotAttractAttention",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "FormatterCodeFixProviderTests.InaccessibleCustomFormatterConstructor(initialModifiers: \"private protected \", expectedModifiers: \"internal \")",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.AddAttributesToMembersOfRecordStructWithPrimaryCtor",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenericsFormatterTests.GenericsOfTFormatter",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "ImplicitResolverForCustomFormattersTests.MultipleFunctionalCustomFormattersForType_MultiFormatter",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "PrivateMemberAccessTests.FormatterForClassWithPrivateMembers_Nested_NonPartialTypes(type: \"record\", languageVersion: CSharp9)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenericsFormatterTests.Generics_Constraints_NullableReferenceType",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.ImplicitFormatterTypes",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.EnumFormatter(container: None, usesMapMode: True)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.NestedMessagePackObjects_Array",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack002UseConstantOptionsAnalyzerTests.Properties",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.MessageFormatterAttribute",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.ExcludeFormatterFromSourceGeneratedResolver",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack012InaccessibleDataTypeTests.InaccessibleNestedDataType_OuterNesting",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.SystemCollectionsObjectModelCollection",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.AddAttributesToMembers",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.AddAttributeToType_Properties",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MultipleTypesTests.TwoTypes(usesMapMode: True)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "FormatterCodeFixProviderTests.InaccessibleCustomFormatterType(initialModifiers: \"private protected \", expectedModifiers: \"internal \")",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.InitPropertyInitializer",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenericsFormatterTests.NullableFormatter",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.DoNotAddAttributesToClassWithPrimaryCtor",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "FormatterCodeFixProviderTests.InaccessibleCustomFormatterConstructor(initialModifiers: \"private \", expectedModifiers: \"internal \")",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack011PartialTypeRequiredTests.CodeFixOffered",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "CustomStringKeyFormatterTests.RecordWithPrimaryConstructor",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.InvalidMessageFormatterType",
+          "base": "passed",
+          "head": "passed"
+        }
+      ],
+      "durationMs": 32225,
+      "logs": [
+        "data/cases/2283/runs/head.MessagePack.SourceGenerator.Tests.log",
+        "data/cases/2283/runs/head.MessagePack.SourceGenerator.Tests.trx",
+        "data/cases/2283/runs/base.MessagePack.SourceGenerator.Tests.log",
+        "data/cases/2283/runs/base.MessagePack.SourceGenerator.Tests.trx"
+      ],
+      "details": {
+        "preExisting": 167,
+        "removedAtHead": []
+      }
+    },
+    {
+      "id": "issue-reproduction",
+      "check": "issue-reproduction",
+      "domain": "general",
+      "asserts": "a test the change added contains a code block from the requirement",
+      "performedBy": "reviewproof 0.1.0 (static check, in-process)",
+      "commands": [
+        "node src/cli.ts check 2283"
+      ],
+      "commits": [
+        "32258fdbee4bcd653c79f51b4376b5103c6f4d27",
+        "9df83c38409c8bfad0517aebffe48211eda4a5b4"
+      ],
+      "status": "passed",
+      "summary": "2 of 6 code blocks in the requirement appear (ignoring whitespace) in added test lines: block 1 in tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs; block 2 in tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs.",
+      "durationMs": 0,
+      "logs": [],
+      "details": {
+        "blocks": [
+          {
+            "block": 1,
+            "chars": 110,
+            "firstLine": "using MessagePack;",
+            "foundIn": [
+              "tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs"
+            ]
+          },
+          {
+            "block": 2,
+            "chars": 158,
+            "firstLine": "using MessagePack; using Lib;",
+            "foundIn": [
+              "tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs"
+            ]
+          },
+          {
+            "block": 3,
+            "chars": 432,
+            "firstLine": "CSC : warning CS8785: Generator 'MessagePackGenerator' failed to generate source. It will not",
+            "foundIn": []
+          },
+          {
+            "block": 4,
+            "chars": 738,
+            "firstLine": "System.IndexOutOfRangeException: Index was outside the bounds of the array.",
+            "foundIn": []
+          },
+          {
+            "block": 5,
+            "chars": 119,
+            "firstLine": "else",
+            "foundIn": []
+          },
+          {
+            "block": 6,
+            "chars": 32,
+            "firstLine": "dotnet build -p:ErrorLog=out.sarif",
+            "foundIn": [],
+            "skipped": "shorter than 40 non-whitespace characters"
+          }
+        ]
+      }
+    },
+    {
+      "id": "security-surface",
+      "check": "security-surface",
+      "domain": "security",
+      "asserts": "no build or dependency file changed and no added line matches a security-sensitive pattern",
+      "performedBy": "reviewproof 0.1.0 (static check, in-process)",
+      "commands": [
+        "node src/cli.ts check 2283"
+      ],
+      "commits": [
+        "32258fdbee4bcd653c79f51b4376b5103c6f4d27",
+        "9df83c38409c8bfad0517aebffe48211eda4a5b4"
+      ],
+      "status": "passed",
+      "summary": "Pattern scan found nothing; this is not proof that no vulnerability exists.",
+      "durationMs": 0,
+      "logs": [],
+      "details": {
+        "buildConfigFiles": [],
+        "hits": []
+      }
+    },
+    {
+      "id": "citation-validation",
+      "check": "citation-validation",
+      "domain": "general",
+      "asserts": "every model citation's quote is found at the stated file, lines and commit",
+      "performedBy": "reviewproof 0.1.0 (in-process)",
+      "commands": [
+        "node src/cli.ts assemble 2283"
+      ],
+      "commits": [
+        "32258fdbee4bcd653c79f51b4376b5103c6f4d27",
+        "9df83c38409c8bfad0517aebffe48211eda4a5b4"
+      ],
+      "status": "passed",
+      "summary": "32 of 32 citations resolved; 0 dropped as unresolvable; 0 reference(s) to unknown requirements, evidence, tests or hunks dropped.",
+      "durationMs": 0,
+      "logs": [
+        "data/cases/2283/review/7e32fa48c76868add97e65b7292391f9a5fabf9a39d79c71fe53fa045d9f18c1.json"
+      ],
+      "details": {
+        "citations": 32,
+        "resolved": 32,
+        "dropped": [],
+        "invalidRefs": []
+      }
+    }
+  ],
+  "claims": [
+    {
+      "id": "C1",
+      "statement": "With MyGenericStruct<T> emitted into a metadata-only defining assembly and MyGenericStruct<int> used by a consuming object, analyzer and generator execution completes without diagnostics and the consuming compilation produces the TempProject.MyResolver.g.cs hint.",
+      "requirementIds": [
+        "R1",
+        "R2",
+        "R3"
+      ],
+      "evidenceIds": [
+        "tests-at-head:MessagePack.SourceGenerator.Tests",
+        "tests-without-change:MessagePack.SourceGenerator.Tests"
+      ],
+      "testNames": [
+        "GenericsFormatterTests.ClosedGenericStruct_FromMetadataReference"
+      ],
+      "hunkIds": [
+        "H3",
+        "H4",
+        "H5",
+        "H6",
+        "H7",
+        "H8",
+        "H9"
+      ],
+      "citations": [
+        {
+          "path": "tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs",
+          "commit": "9df83c38409c8bfad0517aebffe48211eda4a5b4",
+          "startLine": 507,
+          "endLine": 507,
+          "quote": "public async Task ClosedGenericStruct_FromMetadataReference()"
+        },
+        {
+          "path": "tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs",
+          "commit": "9df83c38409c8bfad0517aebffe48211eda4a5b4",
+          "startLine": 540,
+          "endLine": 540,
+          "quote": "await RunWithMetadataReferenceAsync(defineSource, usageSource, \"TempProject.MyResolver.g.cs\");"
+        }
+      ],
+      "state": "proven",
+      "stateReason": "test GenericsFormatterTests.ClosedGenericStruct_FromMetadataReference passes at head and fails without the change"
+    },
+    {
+      "id": "C2",
+      "statement": "With the issue's Lib.Item<T> record struct emitted to metadata and App.Cmd.Member typed as Item<int>, analyzer and generator execution completes without diagnostics and the App.AppResolver.g.cs hint is generated.",
+      "requirementIds": [
+        "R1",
+        "R2",
+        "R3"
+      ],
+      "evidenceIds": [
+        "tests-at-head:MessagePack.SourceGenerator.Tests",
+        "tests-without-change:MessagePack.SourceGenerator.Tests",
+        "issue-reproduction"
+      ],
+      "testNames": [
+        "GenericsFormatterTests.ClosedGenericRecordStruct_FromMetadataReference"
+      ],
+      "hunkIds": [
+        "H3",
+        "H4",
+        "H5",
+        "H6",
+        "H7",
+        "H8",
+        "H9"
+      ],
+      "citations": [
+        {
+          "path": "tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs",
+          "commit": "9df83c38409c8bfad0517aebffe48211eda4a5b4",
+          "startLine": 559,
+          "endLine": 559,
+          "quote": "public partial record struct Item<T>([property: Key(0)] string Key);"
+        },
+        {
+          "path": "tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs",
+          "commit": "9df83c38409c8bfad0517aebffe48211eda4a5b4",
+          "startLine": 579,
+          "endLine": 579,
+          "quote": "await RunWithMetadataReferenceAsync(defineSource, usageSource, \"App.AppResolver.g.cs\", LanguageVersion.Latest);"
+        }
+      ],
+      "state": "proven",
+      "stateReason": "test GenericsFormatterTests.ClosedGenericRecordStruct_FromMetadataReference passes at head and fails without the change"
+    },
+    {
+      "id": "C3",
+      "statement": "A metadata-defined generic struct with an additional public unkeyed property produces no diagnostics in the consuming test compilation, does not trigger AD0001 or CS8785, and still yields the requested resolver hint.",
+      "requirementIds": [
+        "R4"
+      ],
+      "evidenceIds": [
+        "tests-at-head:MessagePack.SourceGenerator.Tests",
+        "tests-without-change:MessagePack.SourceGenerator.Tests"
+      ],
+      "testNames": [
+        "GenericsFormatterTests.ClosedGenericStruct_FromMetadataReference_UnkeyedMember"
+      ],
+      "hunkIds": [
+        "H3",
+        "H4",
+        "H5",
+        "H6",
+        "H7",
+        "H8",
+        "H9"
+      ],
+      "citations": [
+        {
+          "path": "tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs",
+          "commit": "9df83c38409c8bfad0517aebffe48211eda4a5b4",
+          "startLine": 603,
+          "endLine": 603,
+          "quote": "public int Unkeyed { get; set; }"
+        },
+        {
+          "path": "tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs",
+          "commit": "9df83c38409c8bfad0517aebffe48211eda4a5b4",
+          "startLine": 637,
+          "endLine": 637,
+          "quote": "// Run the analyzers and the generator, failing on any diagnostic (the defect surfaced as AD0001 and CS8785)."
+        }
+      ],
+      "state": "proven",
+      "stateReason": "test GenericsFormatterTests.ClosedGenericStruct_FromMetadataReference_UnkeyedMember passes at head and fails without the change"
+    },
+    {
+      "id": "C4",
+      "statement": "The modified MemberNeedsKey and BothStringAndIntKeyAreNull paths obtain locations through FirstOrDefault and safe casts rather than DeclaringSyntaxReferences[0], so an empty declaration collection yields a null location at those sites instead of an index failure.",
+      "requirementIds": [
+        "R1",
+        "R4"
+      ],
+      "evidenceIds": [
+        "tests-at-head:MessagePack.SourceGenerator.Tests",
+        "tests-without-change:MessagePack.SourceGenerator.Tests"
+      ],
+      "testNames": [
+        "GenericsFormatterTests.ClosedGenericStruct_FromMetadataReference",
+        "GenericsFormatterTests.ClosedGenericRecordStruct_FromMetadataReference",
+        "GenericsFormatterTests.ClosedGenericStruct_FromMetadataReference_UnkeyedMember"
+      ],
+      "hunkIds": [
+        "H4",
+        "H5",
+        "H6"
+      ],
+      "citations": [
+        {
+          "path": "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
+          "commit": "9df83c38409c8bfad0517aebffe48211eda4a5b4",
+          "startLine": 1077,
+          "endLine": 1077,
+          "quote": ": Diagnostic.Create(MsgPack00xMessagePackAnalyzer.MemberNeedsKey, item.DeclaringSyntaxReferences.FirstOrDefault()?.GetSyntax().GetLocation(), formattedType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat), item.Name);"
+        },
+        {
+          "path": "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
+          "commit": "9df83c38409c8bfad0517aebffe48211eda4a5b4",
+          "startLine": 1434,
+          "endLine": 1434,
+          "quote": "private static Location? GetPropertyIdentifierLocation(IPropertySymbol property) => (property.DeclaringSyntaxReferences.FirstOrDefault()?.GetSyntax() as PropertyDeclarationSyntax)?.Identifier.GetLocation();"
+        }
+      ],
+      "state": "proven",
+      "stateReason": "test GenericsFormatterTests.ClosedGenericRecordStruct_FromMetadataReference passes at head and fails without the change"
+    },
+    {
+      "id": "C5",
+      "statement": "TypeCollector now forwards an analyzer diagnostic only when its primary location is in source and its syntax tree belongs to the current compilation; location-less diagnostics and diagnostics rooted in other trees are dropped.",
+      "requirementIds": [
+        "R4"
+      ],
+      "evidenceIds": [
+        "tests-at-head:MessagePack.SourceGenerator.Tests",
+        "tests-without-change:MessagePack.SourceGenerator.Tests",
+        "existing-tests:MessagePack.SourceGenerator.Tests"
+      ],
+      "testNames": [
+        "GenericsFormatterTests.ClosedGenericStruct_FromMetadataReference_UnkeyedMember",
+        "MsgPack00xAnalyzerTests.NullStringKey",
+        "MsgPack00xAnalyzerTests.AddAttributesToMembers"
+      ],
+      "hunkIds": [
+        "H3",
+        "H6"
+      ],
+      "citations": [
+        {
+          "path": "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
+          "commit": "9df83c38409c8bfad0517aebffe48211eda4a5b4",
+          "startLine": 239,
+          "endLine": 239,
+          "quote": "this.reportDiagnostic = reportAnalyzerDiagnostic is null ? null : diagnostic => ReportIfLocatedInCompilation(reportAnalyzerDiagnostic, diagnostic);"
+        },
+        {
+          "path": "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
+          "commit": "9df83c38409c8bfad0517aebffe48211eda4a5b4",
+          "startLine": 1446,
+          "endLine": 1446,
+          "quote": "if (diagnostic.Location.IsInSource && this.compilation.ContainsSyntaxTree(diagnostic.Location.SourceTree))"
+        }
+      ],
+      "state": "proven",
+      "stateReason": "test GenericsFormatterTests.ClosedGenericStruct_FromMetadataReference_UnkeyedMember passes at head and fails without the change"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "D1",
+      "statement": "The change assigns problems in metadata-defined members to their defining project and centrally suppresses the corresponding consuming-compilation diagnostics, including all diagnostics without an in-compilation primary location.",
+      "whyHuman": "A test can observe where a diagnostic appears, but it cannot determine the desired diagnostic ownership, acceptable analyzer noise, or compatibility policy for location-less diagnostics. The reported valid repro does not specify what should happen to invalid members in a referenced assembly.",
+      "options": [
+        "Drop diagnostics whose primary location is absent or outside the current compilation and rely on the defining project, as implemented and documented.",
+        "Report a consuming-project diagnostic at the source member that references the metadata type when such a location exists.",
+        "Preserve location-less or external-location diagnostics and handle analyzer host restrictions separately.",
+        "Restrict suppression to the known metadata-member diagnostic sites instead of applying it to every diagnostic passed through TypeCollector.reportDiagnostic."
+      ],
+      "hunkIds": [
+        "H1",
+        "H2",
+        "H3",
+        "H6",
+        "H9"
+      ],
+      "citations": [
+        {
+          "path": "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
+          "commit": "9df83c38409c8bfad0517aebffe48211eda4a5b4",
+          "startLine": 1441,
+          "endLine": 1441,
+          "quote": "/// Their problems are reported by the compilation that defines them, so they are dropped here rather than being reported"
+        },
+        {
+          "path": "doc/analyzers/MsgPack004.md",
+          "commit": "9df83c38409c8bfad0517aebffe48211eda4a5b4",
+          "startLine": 51,
+          "endLine": 51,
+          "quote": "This analyzer only reports on members declared in the project being compiled."
+        },
+        {
+          "path": "README.md",
+          "commit": "9df83c38409c8bfad0517aebffe48211eda4a5b4",
+          "startLine": 1642,
+          "endLine": 1642,
+          "quote": "Diagnostics about the members of such a type are reported by the assembly that defines it rather than by the consuming project, so any problem must be fixed there."
+        }
+      ],
+      "raisedBy": {
+        "kind": "model",
+        "name": "kimi-k3-1-pro"
+      }
+    },
+    {
+      "id": "D2",
+      "statement": "Regression verification uses in-memory compilations and metadata images, adds an explicit attributed resolver to each usage source, and checks generator hint names instead of running the original two-project command-line build.",
+      "whyHuman": "A test cannot settle which verification fidelity is proportionate for this defect or whether an in-memory Roslyn harness is an acceptable substitute for project-reference and command-line build integration; that is a test-design tradeoff.",
+      "options": [
+        "Use the in-memory metadata-reference harness with explicit resolver declarations, as implemented.",
+        "Reproduce the two project files with dotnet build and inspect the consuming assembly for its resolver.",
+        "Keep the focused in-memory tests and add a separate two-project build integration test.",
+        "Use an in-memory harness but also cover the scenario without an explicit GeneratedMessagePackResolver declaration."
+      ],
+      "hunkIds": [
+        "H7",
+        "H8",
+        "H9"
+      ],
+      "citations": [
+        {
+          "path": "tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs",
+          "commit": "9df83c38409c8bfad0517aebffe48211eda4a5b4",
+          "startLine": 633,
+          "endLine": 633,
+          "quote": "private static async Task RunWithMetadataReferenceAsync(string defineSource, string usageSource, string expectedResolverHintName, LanguageVersion languageVersion = LanguageVersion.CSharp7_3)"
+        },
+        {
+          "path": "tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs",
+          "commit": "9df83c38409c8bfad0517aebffe48211eda4a5b4",
+          "startLine": 653,
+          "endLine": 653,
+          "quote": "GeneratorDriverRunResult runResult = CSharpGeneratorDriver.Create(new MessagePack.SourceGenerator.MessagePackGenerator().AsSourceGenerator())"
+        },
+        {
+          "path": "tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs",
+          "commit": "9df83c38409c8bfad0517aebffe48211eda4a5b4",
+          "startLine": 673,
+          "endLine": 673,
+          "quote": "return MetadataReference.CreateFromImage(stream.ToArray());"
+        }
+      ],
+      "raisedBy": {
+        "kind": "model",
+        "name": "kimi-k3-1-pro"
+      }
+    }
+  ],
+  "unexplained": [],
+  "findings": [
+    {
+      "id": "F1",
+      "statement": "BothStringAndIntKeyAreNull can be silently dropped for a current-compilation property whose declaration syntax is ParameterSyntax, such as a positional record property. The nearby member-key path explicitly handles ParameterSyntax, but GetPropertyIdentifierLocation recognizes only PropertyDeclarationSyntax; it therefore returns null for that case, and the new central wrapper does not forward a diagnostic with Location.None.",
+      "status": "suspected",
+      "citations": [
+        {
+          "path": "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
+          "commit": "9df83c38409c8bfad0517aebffe48211eda4a5b4",
+          "startLine": 985,
+          "endLine": 985,
+          "quote": "this.reportDiagnostic?.Invoke(Diagnostic.Create(MsgPack00xMessagePackAnalyzer.BothStringAndIntKeyAreNull, GetPropertyIdentifierLocation(item), formattedType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat), item.Name));"
+        },
+        {
+          "path": "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
+          "commit": "9df83c38409c8bfad0517aebffe48211eda4a5b4",
+          "startLine": 926,
+          "endLine": 926,
+          "quote": "var identifier = (syntax as PropertyDeclarationSyntax)?.Identifier ?? (syntax as ParameterSyntax)?.Identifier;"
+        },
+        {
+          "path": "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
+          "commit": "9df83c38409c8bfad0517aebffe48211eda4a5b4",
+          "startLine": 1434,
+          "endLine": 1434,
+          "quote": "private static Location? GetPropertyIdentifierLocation(IPropertySymbol property) => (property.DeclaringSyntaxReferences.FirstOrDefault()?.GetSyntax() as PropertyDeclarationSyntax)?.Identifier.GetLocation();"
+        },
+        {
+          "path": "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
+          "commit": "9df83c38409c8bfad0517aebffe48211eda4a5b4",
+          "startLine": 1446,
+          "endLine": 1446,
+          "quote": "if (diagnostic.Location.IsInSource && this.compilation.ContainsSyntaxTree(diagnostic.Location.SourceTree))"
+        }
+      ],
+      "hunkIds": [
+        "H3",
+        "H4",
+        "H6"
+      ]
+    },
+    {
+      "id": "F2",
+      "statement": "None of the three new metadata regression scenarios covers generation without an explicit resolver declaration. Every usage source adds [GeneratedMessagePackResolver] to a custom partial resolver, and the common assertion looks for that resolver's hint name, leaving the issue's no-explicit-resolver shape unrepresented in the added tests.",
+      "status": "suspected",
+      "citations": [
+        {
+          "path": "tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs",
+          "commit": "9df83c38409c8bfad0517aebffe48211eda4a5b4",
+          "startLine": 535,
+          "endLine": 535,
+          "quote": "[GeneratedMessagePackResolver]"
+        },
+        {
+          "path": "tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs",
+          "commit": "9df83c38409c8bfad0517aebffe48211eda4a5b4",
+          "startLine": 575,
+          "endLine": 575,
+          "quote": "[GeneratedMessagePackResolver]"
+        },
+        {
+          "path": "tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs",
+          "commit": "9df83c38409c8bfad0517aebffe48211eda4a5b4",
+          "startLine": 620,
+          "endLine": 620,
+          "quote": "[GeneratedMessagePackResolver]"
+        },
+        {
+          "path": "tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs",
+          "commit": "9df83c38409c8bfad0517aebffe48211eda4a5b4",
+          "startLine": 658,
+          "endLine": 658,
+          "quote": "Assert.Contains(expectedResolverHintName, hintNames);"
+        }
+      ],
+      "hunkIds": [
+        "H9"
+      ]
+    },
+    {
+      "id": "F3",
+      "statement": "The added helper does not exercise a two-project dotnet build or inspect a built consuming assembly. It emits the defining source to an in-memory image, invokes CSharpGeneratorDriver on another in-memory compilation, and checks generated hint names, so command-line project-reference integration and physical app.dll contents remain outside this regression coverage.",
+      "status": "suspected",
+      "citations": [
+        {
+          "path": "tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs",
+          "commit": "9df83c38409c8bfad0517aebffe48211eda4a5b4",
+          "startLine": 667,
+          "endLine": 667,
+          "quote": "Microsoft.CodeAnalysis.Emit.EmitResult emitResult = compilation.Emit(stream);"
+        },
+        {
+          "path": "tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs",
+          "commit": "9df83c38409c8bfad0517aebffe48211eda4a5b4",
+          "startLine": 673,
+          "endLine": 673,
+          "quote": "return MetadataReference.CreateFromImage(stream.ToArray());"
+        },
+        {
+          "path": "tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs",
+          "commit": "9df83c38409c8bfad0517aebffe48211eda4a5b4",
+          "startLine": 654,
+          "endLine": 655,
+          "quote": ".RunGenerators(usageCompilation)"
+        },
+        {
+          "path": "tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs",
+          "commit": "9df83c38409c8bfad0517aebffe48211eda4a5b4",
+          "startLine": 657,
+          "endLine": 657,
+          "quote": "var hintNames = runResult.Results.SelectMany(r => r.GeneratedSources).Select(s => s.HintName).ToList();"
+        }
+      ],
+      "hunkIds": [
+        "H9"
+      ]
+    }
+  ],
+  "notChecked": [
+    {
+      "what": "pattern-groups",
+      "reason": "no changed files of class test-snapshot or template-output"
+    },
+    {
+      "what": "Whether the exact attached two-project repro now completes dotnet build and places GeneratedMessagePackResolver in app.dll.",
+      "reason": "the AI reviewer could not decide: The supplied evidence runs Roslyn-based tests on in-memory metadata references and checks generated hint names. It contains no command-line two-project build or inspection of a produced application assembly."
+    },
+    {
+      "what": "Whether trimmed and NativeAOT applications now succeed at runtime in the affected deployments.",
+      "reason": "the AI reviewer could not decide: No trimmed or NativeAOT build, deployment, serialization run, or runtime resolver lookup is included in the evidence."
+    },
+    {
+      "what": "Which individual declaration-syntax access caused each reproduced base failure.",
+      "reason": "the AI reviewer could not decide: The requirement explicitly says the firing site was not narrowed down, and the trimmed without-change outputs retain the exception type and message but not a source line mapping to H4, H5, or another access. The added tests exercise combined scenarios rather than isolating each modified diagnostic branch."
+    },
+    {
+      "what": "absence of new vulnerabilities",
+      "reason": "cannot be proven by any check here; the security surface scan only finds patterns. Always a human judgement."
+    }
+  ],
+  "route": {
+    "evidenceRoute": "blocked",
+    "trustFloor": "light",
+    "effectiveRoute": "blocked",
+    "reasons": [
+      {
+        "code": "interpretation-unconfirmed",
+        "detail": "R4 is an interpretation no human has confirmed"
+      }
+    ],
+    "ifUnblocked": {
+      "route": "targeted",
+      "reasons": [
+        {
+          "code": "decision-open",
+          "detail": "D1 needs the owner"
+        },
+        {
+          "code": "decision-open",
+          "detail": "D2 needs the owner"
+        },
+        {
+          "code": "finding",
+          "detail": "F1 is a suspected problem"
+        },
+        {
+          "code": "finding",
+          "detail": "F2 is a suspected problem"
+        },
+        {
+          "code": "finding",
+          "detail": "F3 is a suspected problem"
+        }
+      ],
+      "readRatio": 0.9912280701754386,
+      "effectiveRoute": "targeted"
+    },
+    "areas": [
+      {
+        "area": "docs",
+        "owner": "Huy Hoang Le",
+        "floor": "light",
+        "reason": "Area `docs` earned light after clean spot-checks"
+      },
+      {
+        "area": "generator-analysis",
+        "owner": "Huy Hoang Le",
+        "floor": "light",
+        "reason": "Area `generator-analysis` earned light after clean spot-checks"
+      },
+      {
+        "area": "tests",
+        "owner": "Huy Hoang Le",
+        "floor": "light",
+        "reason": "Area `tests` earned light after clean spot-checks"
+      }
+    ],
+    "readingList": [
+      {
+        "hunkId": "H1",
+        "file": "README.md",
+        "lines": 5,
+        "why": [
+          "decision D1"
+        ]
+      },
+      {
+        "hunkId": "H2",
+        "file": "doc/analyzers/MsgPack004.md",
+        "lines": 5,
+        "why": [
+          "decision D1"
+        ]
+      },
+      {
+        "hunkId": "H3",
+        "file": "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
+        "lines": 2,
+        "why": [
+          "decision D1",
+          "finding F1"
+        ]
+      },
+      {
+        "hunkId": "H4",
+        "file": "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
+        "lines": 2,
+        "why": [
+          "finding F1"
+        ]
+      },
+      {
+        "hunkId": "H6",
+        "file": "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
+        "lines": 23,
+        "why": [
+          "decision D1",
+          "finding F1"
+        ]
+      },
+      {
+        "hunkId": "H7",
+        "file": "tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs",
+        "lines": 1,
+        "why": [
+          "decision D2"
+        ]
+      },
+      {
+        "hunkId": "H8",
+        "file": "tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs",
+        "lines": 1,
+        "why": [
+          "decision D2"
+        ]
+      },
+      {
+        "hunkId": "H9",
+        "file": "tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs",
+        "lines": 187,
+        "why": [
+          "decision D1",
+          "decision D2",
+          "finding F2",
+          "finding F3"
+        ]
+      }
+    ],
+    "readingListLines": 226,
+    "totalLines": 228,
+    "readRatio": null,
+    "spotCheck": {
+      "eligible": false,
+      "selected": false,
+      "draw": 0.8102,
+      "share": 0.25
+    }
+  }
+}
