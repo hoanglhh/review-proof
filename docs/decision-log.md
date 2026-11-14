@@ -54,3 +54,4 @@ Short, dated entries. Newest last.
   - `src/checks.ts` sha256 `943d820b312a02d7`
   - `policy.json` sha256 `f70a0a0ea5a679c6`
   - `profiles/messagepack-csharp.json` sha256 `6ba475bbe8085aab`
+- **2026-11-14: Added `docs/lessons-log.md`,** because the challenge asks for a lessons log alongside the failure modes and decision log. Every lesson points to evidence in `data/` or to a failure mode.

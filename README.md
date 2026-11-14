@@ -35,7 +35,7 @@ node src/cli.ts simulate          # synthetic trust history, shown under a SIMUL
 npm test                          # unit tests
 ```
 
-Stages can be run alone: `ingest`, `check [--fresh]`, `review [--fresh]`, `assemble`. Test runs and model responses are saved and reused (the model response by prompt hash), so `all` re-creates a report offline in under a second.
+Stages can be run alone: `ingest`, `check [--fresh]`, `review [--fresh]`, `assemble`. Test runs and model responses are saved and reused (the model response by prompt hash), so once the corpus is cloned into `.work/`, `all` re-creates a report in about a second with no model call. A fresh checkout clones the corpus first, which needs the network.
 
 ## What is real and what is synthetic
 
@@ -55,4 +55,4 @@ The scoring key in `labels/` was drafted by an AI model from reading the diffs a
 - `profiles/messagepack-csharp.json`: everything specific to this repository: container, test command, file classes, public- and security-surface patterns, areas and owners.
 - `cases.json`: the four changes. `policy.json`: thresholds (illustrative, unvalidated).
 - `data/`: reports, the evidence they cite, sign-offs, the trust record. `.work/`: clone, worktrees, caches (git-ignored).
-- `docs/`: concept card, decision log, failure modes, demo script.
+- `docs/`: concept card, lessons log, decision log, failure modes, demo script.

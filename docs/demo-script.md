@@ -27,7 +27,7 @@ Open **#2234**. The whole requirement is one sentence with no reproduction. The 
 
 ## 4. #2129: new public API forces a full read (1 min)
 
-Open **#2129**. Five decisions were raised by the deterministic `public-surface` rule before the AI ran: a new public attribute and four new diagnostic IDs are permanent once shipped. Once unblocked, the evidence supports only a **full read** (public surface and build files changed). The AI adds D1: the design implemented is not one of the alternatives the issue proposed. The execution tests could not be built in the container even at base; the sheet says `not_run` and why, rather than pretending.
+Open **#2129**. Five decisions were raised by the deterministic `public-surface` rule before the AI ran, one for each file whose public surface changed. Among them: the new public attribute `GeneratedMessagePackFormatterAttribute` and four new diagnostic IDs, MsgPack019 to MsgPack022. Both are permanent once shipped. Once unblocked, the evidence supports only a **full read** (public surface and build files changed). The AI adds D1: the design implemented is not one of the alternatives the issue proposed. The execution tests could not be built in the container even at base; the sheet says `not_run` and why, rather than pretending.
 
 ## 5. Calibration (1 min)
 
