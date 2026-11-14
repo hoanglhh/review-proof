@@ -1,0 +1,16 @@
+{
+  "name": "head.MessagePack.SourceGenerator.ExecutionTests",
+  "performedBy": "dotnet test in container mcr.microsoft.com/dotnet/sdk:8.0.402-jammy",
+  "command": "docker run --rm --user 1000:1000 -e HOME=/home/huyhoangle/junction/review-proof/.work/home -e DOTNET_CLI_HOME=/home/huyhoangle/junction/review-proof/.work/home -e NUGET_PACKAGES=/home/huyhoangle/junction/review-proof/.work/nuget -e DOTNET_CLI_TELEMETRY_OPTOUT=1 -e DOTNET_NOLOGO=1 -v /home/huyhoangle/junction/review-proof/.work:/home/huyhoangle/junction/review-proof/.work -w /home/huyhoangle/junction/review-proof/.work/wt/083afd994c1c9a994cb2cd5aa0b6ad805a621457 mcr.microsoft.com/dotnet/sdk:8.0.402-jammy dotnet test tests/MessagePack.SourceGenerator.ExecutionTests/MessagePack.SourceGenerator.ExecutionTests.csproj --logger 'trx;LogFileName=head.MessagePack.SourceGenerator.ExecutionTests.trx' --results-directory /home/huyhoangle/junction/review-proof/.work/results/data_cases_2129_runs/head.MessagePack.SourceGenerator.ExecutionTests",
+  "worktree": ".work/wt/083afd994c1c9a994cb2cd5aa0b6ad805a621457",
+  "sourceCommit": "083afd994c1c9a994cb2cd5aa0b6ad805a621457",
+  "testsCommit": "083afd994c1c9a994cb2cd5aa0b6ad805a621457",
+  "project": "tests/MessagePack.SourceGenerator.ExecutionTests/MessagePack.SourceGenerator.ExecutionTests.csproj",
+  "startedAt": "2026-11-14T06:37:56.698Z",
+  "log": "data/cases/2129/runs/head.MessagePack.SourceGenerator.ExecutionTests.log",
+  "tests": [],
+  "durationMs": 23024,
+  "exitCode": 1,
+  "status": "inconclusive",
+  "reason": "no trx result file was produced (exit code 1); first build errors: /home/huyhoangle/junction/review-proof/.work/wt/083afd994c1c9a994cb2cd5aa0b6ad805a621457/tests/MessagePack.SourceGenerator.ExecutionTests/GeneratedFormatterForExternalTypes.cs(20,48): error CS0535: 'ExternalWidgetFormatter' does not implement interface member 'IMessagePackFormatter<ExternalWidget>.Serialize(ref MessagePackWriter, ExternalWidget, MessagePackSerializerOptions)' [/home/huyhoangle/junction/review-proof/.work/wt/083afd994c1c9a994cb2cd5aa0b6ad805a621457/tests/MessagePack.SourceGenerator.ExecutionTests/MessagePack.SourceGenerator.ExecutionTests.csproj] | /home/huyhoangle/junction/review-proof/.work/wt/083afd994c1c9a994cb2cd5aa0b6ad805a621457/tests/MessagePack.SourceGenerator.ExecutionTests/GeneratedFormatterForExternalTypes.cs(15,47): error CS0535: 'ExternalPointFormatter' does not implement interface member 'IMessagePackFormatter<ExternalPoint>.Serialize(ref MessagePackWriter, ExternalPoint, MessagePackSerializerOptions)' [/home/huyhoangle/junction/review-proof/.work/wt/083afd994c1c9a994cb2cd5aa0b6ad805a621457/tests/MessagePack.SourceGenerator.ExecutionTests/MessagePack.SourceGenerator.ExecutionTests.csproj] | /home/huyhoangle/junction/review-proof/.work/wt/083afd994c1c9a994cb2cd5aa0b6ad805a621457/tests/MessagePack.SourceGenerator.ExecutionTests/GeneratedFormatterForExternalTypes.cs(20,48): error CS0535: 'ExternalWidgetFormatter' does not implement interface member 'IMessagePackFormatter<ExternalWidget>.Deserialize(ref MessagePackReader, MessagePackSerializerOptions)' [/home/huyhoangle/junction/review-proof/.work/wt/083afd994c1c9a994cb2cd5aa0b6ad805a621457/tests/MessagePack.SourceGenerator.ExecutionTests/MessagePack.SourceGenerator.ExecutionTests.csproj]"
+}

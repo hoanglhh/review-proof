@@ -1,0 +1,61 @@
+{
+  "note": "SYNTHETIC. Hand-written planted bugs for calibration, each applied on top of a case's head commit in a throwaway worktree. These labels are a scoring key: the reviewer never sees them.",
+  "plants": [
+    {
+      "id": "undo-fix",
+      "case": "2283",
+      "category": "undo part of the fix",
+      "breaks": "The MemberNeedsKey diagnostic indexes DeclaringSyntaxReferences[0] again, so a metadata member with no syntax crashes the analyzer.",
+      "violates": "#2283: the generator and analyzer must not crash with IndexOutOfRangeException"
+    },
+    {
+      "id": "untested-private-ctor",
+      "case": "2283",
+      "category": "change the tests do not exercise",
+      "breaks": "A formatter whose only parameterless constructor is private is treated as instantiable, so MsgPack013 is no longer reported and generated code would call a private constructor.",
+      "violates": "no requirement of #2283: an unrelated regression in code no test covers (no test references MsgPack013)"
+    },
+    {
+      "id": "scope-public-member",
+      "case": "2283",
+      "category": "scope drift: unrelated new public member",
+      "breaks": "Adds a public settable property to the public KeyAttribute that nothing uses.",
+      "violates": "#2283 asks for no API change; public API is permanent once shipped"
+    },
+    {
+      "id": "weakened-test",
+      "case": "2283",
+      "category": "weaken a test so it no longer discriminates",
+      "breaks": "The first new metadata test no longer uses the generic struct from the referenced assembly, so it passes with or without the fix.",
+      "violates": "#2283: the regression test must reproduce the crash scenario"
+    },
+    {
+      "id": "security-file-write",
+      "case": "2283",
+      "category": "something the security surface scan should notice",
+      "breaks": "The analyzer appends every diagnostic to a file in the temp directory during compilation.",
+      "violates": "no requirement asks for it; an analyzer writing files on build machines is a security and privacy concern"
+    },
+    {
+      "id": "inverted-filter",
+      "case": "2283",
+      "category": "undo part of the fix",
+      "breaks": "The location filter is inverted: diagnostics located in the compilation are dropped and only external ones are reported.",
+      "violates": "#2283 and existing behaviour: analyzer diagnostics in the user's own code must still be reported"
+    },
+    {
+      "id": "template-output-enum",
+      "case": "2297",
+      "category": "break generated output in one template",
+      "breaks": "The enum formatter template (both .tt and its generated .cs) no longer emits ExcludeFromCodeCoverage.",
+      "violates": "#2297: all generated code gets ExcludeFromCodeCoverage"
+    },
+    {
+      "id": "template-source-drift",
+      "case": "2297",
+      "category": "change the tests do not exercise",
+      "breaks": "Only the union template source (.tt) drops the attribute; its checked-in .cs still emits it, so the next regeneration would silently remove it.",
+      "violates": "#2297: all generated code gets ExcludeFromCodeCoverage"
+    }
+  ]
+}

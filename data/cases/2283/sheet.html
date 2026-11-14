@@ -51,6 +51,8 @@ tr.total td{font-weight:600;border-bottom:none}
 .hunk{margin:18px 0;border:1px solid var(--rule)} .hunk h3{margin:0;padding:6px 10px;font:600 13px var(--mono);background:var(--wash);color:var(--text)}
 .hunk pre{padding:6px 0} .add,.del{display:block;padding:0 10px} .add{background:#E6F4EA} .del{background:#FBE7E5}
 .hunk:target{outline:3px solid var(--argued)}
+.sim-band{background:repeating-linear-gradient(-45deg,#F7E7B4 0 14px,#FFFFFF 14px 28px);border:3px solid var(--argued);padding:10px 16px;margin:0 0 18px}
+.sim-band b{font:800 22px var(--head);font-stretch:condensed;color:var(--argued);letter-spacing:.06em;margin-right:8px}
 input[type=text],textarea,select{font:inherit;color:var(--text);background:var(--sheet);border:0;border-bottom:1.5px solid var(--text);padding:4px 2px;width:100%}
 textarea{border:1.5px solid var(--rule);border-bottom-color:var(--text);padding:6px 8px;resize:vertical}
 input:focus-visible,textarea:focus-visible,select:focus-visible,button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
@@ -72,10 +74,11 @@ button:disabled{background:var(--rule);border-color:var(--rule);color:var(--mute
 @media (max-width:760px){.sheet{padding:20px 18px;margin:0;border:none}h2 .n{position:static;margin-right:8px}.verdict{grid-template-columns:1fr}.field{grid-template-columns:1fr}}
 @media print{body{background:#fff}.sheet{border:none;margin:0;padding:0 0 0 56px}.hunk{break-inside:avoid}}
 </style></head><body><main class="sheet">
+
 <h1>Sign-off sheet for #2283</h1>
 <p class="title">Generator and analyzer crash with IndexOutOfRangeException on a closed generic struct from a referenced assembly</p>
 <dl class="facts">
-<dt>Generated</dt><dd>2026-11-14T06:34:00.125Z, from test runs on this machine</dd>
+<dt>Generated</dt><dd>2026-11-14T06:42:14.181Z, from test runs on this machine</dd>
 <dt>Change</dt><dd>base <code>32258fdb</code> to head <code>9df83c38</code> in https://github.com/te-industry-tech-office/junction26-messagepack-csharp</dd>
 <dt>Policy</dt><dd>2026-11-14.1; its thresholds are illustrative and unvalidated</dd>
 <dt>AI reviewer</dt><dd>kimi-k3-1-pro, prompt sha256 <code>7e32fa48c768</code>, <a href="review/7e32fa48c76868add97e65b7292391f9a5fabf9a39d79c71fe53fa045d9f18c1.json">raw response</a></dd>

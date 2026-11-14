@@ -24,6 +24,7 @@ export type Profile = {
 export type Case = {
   id: string; profile: string; repository: string; base: string; head: string;
   requirement: { id: string; url?: string; text?: string };
+  synthetic?: string; // set for planted-bug cases; shown on every page that displays them
 };
 
 export function readJson(path: string): any {
@@ -47,4 +48,5 @@ export function loadProfile(name: string): Profile {
   return readJson(join(ROOT, "profiles", `${name}.json`));
 }
 
-export const caseDir = (id: string) => join(DATA, "cases", id);
+export const PLANTED = "planted-";
+export const caseDir = (id: string) => (id.startsWith(PLANTED) ? join(DATA, "calibration", id.slice(PLANTED.length)) : join(DATA, "cases", id));

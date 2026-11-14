@@ -136,6 +136,11 @@ test("tests: an overlay that does not compile is inconclusive, never passed", ()
   assert.equal(e["tests-at-head"].status, "passed");
 });
 
+test("tests: a project that does not build even at base is not_run, with the reason", () => {
+  const e = byCheck(testEvidence("p", run("inconclusive", [], "no result file; CS0117"), run("inconclusive", [], "no result file; CS0117"), run("inconclusive", [], "x"), false));
+  for (const k of ["tests-at-head", "tests-without-change", "existing-tests"]) { assert.equal(e[k].status, "not_run"); assert.match(e[k].reason!, /even at the base commit/); }
+});
+
 test("tests: an unfinished head run makes every check not passed; a project absent at base has no existing tests", () => {
   const e = byCheck(testEvidence("p", run("inconclusive", [], "timed out"), run("completed", [["A", "passed"]]), run("completed", [["A", "passed"]]), false));
   for (const k of ["tests-at-head", "existing-tests"]) assert.equal(e[k].status, "inconclusive");

@@ -146,6 +146,15 @@ const notCompleted = (r: RunView): Status => (r.status === "not_run" ? "not_run"
  * not exist at base, so every test at head is new.
  */
 export function testEvidence(project: string, head: RunView, base: RunView, without: RunView | undefined, baseAbsent: boolean): Evidence[] {
+  // a project that cannot be built even at base is an environment limit: nothing here can say anything about it
+  if (!baseAbsent && base.status !== "completed" && head.status !== "completed") {
+    const reason = `this test project does not build in the container even at the base commit, so no run can judge the change (base: ${base.reason})`;
+    return (["tests-at-head", "tests-without-change", "existing-tests"] as const).map((check) => ({
+      id: `${check}:${project}`, check, domain: spec(check).domain, asserts: spec(check).asserts, performedBy: head.performedBy,
+      commands: [head.command, base.command], commits: [...new Set([head.sourceCommit, base.sourceCommit])], status: "not_run" as const, reason,
+      summary: "Not run: the project does not build in this environment.", durationMs: head.durationMs + base.durationMs, logs: logsOf(head, base),
+    }));
+  }
   const H = outcomes(head), B = baseAbsent ? new Map<string, Outcome>() : outcomes(base), W = without ? outcomes(without) : undefined;
   const baseKnown = baseAbsent || base.status === "completed";
   const withoutOk = without?.status === "completed";

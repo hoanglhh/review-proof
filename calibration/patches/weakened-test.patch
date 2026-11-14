@@ -1,0 +1,13 @@
+diff --git a/tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs b/tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs
+index 92cb3ac3..4354277d 100644
+--- a/tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs
++++ b/tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs
+@@ -529,7 +529,7 @@ namespace TempProject
+     public class MyObject
+     {
+         [Key(0)]
+-        public MyGenericStruct<int> Value { get; set; }
++        public int Value { get; set; }
+     }
+ 
+     [GeneratedMessagePackResolver]

@@ -10,18 +10,20 @@
     "profile": "messagepack-csharp",
     "base": "32258fdbee4bcd653c79f51b4376b5103c6f4d27",
     "head": "9df83c38409c8bfad0517aebffe48211eda4a5b4",
-    "generatedAt": "2026-11-14T06:34:00.125Z",
+    "generatedAt": "2026-11-14T06:42:14.181Z",
     "pipelineVersion": "0.1.0",
     "policyVersion": "2026-11-14.1",
     "model": "kimi-k3-1-pro",
-    "promptHash": "7e32fa48c76868add97e65b7292391f9a5fabf9a39d79c71fe53fa045d9f18c1"
+    "promptHash": "7e32fa48c76868add97e65b7292391f9a5fabf9a39d79c71fe53fa045d9f18c1",
+    "synthetic": null
   },
   "reviewer": {
     "status": "ok",
     "rawResponse": "data/cases/2283/review/7e32fa48c76868add97e65b7292391f9a5fabf9a39d79c71fe53fa045d9f18c1.json",
     "fullFilesShown": [
       "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs"
-    ]
+    ],
+    "represented": []
   },
   "requirements": [
     {

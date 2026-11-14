@@ -29,3 +29,10 @@ Only failures actually observed while building and running ReviewProof, each wit
 - **Why it matters:** the state is computed honestly from the link, but the model chooses the link and words the claim. A broadly worded claim can borrow a narrow test.
 - **What we do now:** nothing automatic. The sheet shows the named test next to every proven claim so the owner can see the scope. The behaviour itself is raised as a decision (D1) for the owner.
 - **Evidence:** `data/cases/2283/report.json`, claim C5.
+
+## 5. The execution-test projects do not build in the container, even at base (2026-11-14)
+
+- **What happened:** `tests/MessagePack.SourceGenerator.ExecutionTests` and `tests/MessagePack.SourceGenerator.MapModeExecutionTests` fail to build in `mcr.microsoft.com/dotnet/sdk:8.0.402-jammy` at the base commit as well as at the heads of #2234 and #2129: `error CS0117: 'MyGeneratedCompositeResolver' does not contain a definition for 'Instance'`, meaning the source generator's output is missing from the build.
+- **Why it matters:** the runner first recorded these as `inconclusive`, which reads as "something about this change is unclear". It is an environment limit that says nothing about the change. The tests that #2234 and #2129 added there are not checked at all.
+- **What we do:** a test project that does not build even at base is recorded as `not_run` for all three test checks, with the build error as the reason (unit test "a project that does not build even at base is not_run"). Claims that rely only on those tests stay `argued` or `not_checked`. Why the generator does not run in this build was not investigated.
+- **Evidence:** `data/cases/2234/runs/base.MessagePack.SourceGenerator.ExecutionTests.log`, `data/cases/2129/runs/head.MessagePack.SourceGenerator.ExecutionTests.log`.

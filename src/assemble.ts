@@ -66,6 +66,9 @@ export function assembleReport(i: {
   const evIds = new Set(evidence.map((e) => e.id));
   const testNames = new Set(testFacts(evidence).keys());
   const hunkIds = new Set(hunks.map((h) => h.id));
+  // the reviewer may name a repeated-pattern group instead of each of its identical hunks
+  const groupHunks = new Map((((evidence.find((e) => e.check === "pattern-groups")?.details as any)?.groups ?? []) as { id: string; hunkIds: string[] }[]).map((g) => [g.id, g.hunkIds]));
+  const hunkRefs = (where: string, ids: string[]) => known(where, "hunk", ids.flatMap((id) => groupHunks.get(id) ?? [id]), hunkIds);
 
   const claims = (out?.claims ?? []).map((cl) => {
     const citations = cite(`claim ${cl.id}`, cl.citations);
@@ -73,7 +76,7 @@ export function assembleReport(i: {
       requirementIds: known(`claim ${cl.id}`, "requirement", cl.requirementIds, reqIds),
       evidenceIds: known(`claim ${cl.id}`, "evidence", cl.evidenceIds, evIds),
       testNames: known(`claim ${cl.id}`, "test", cl.testNames, testNames),
-      hunkIds: known(`claim ${cl.id}`, "hunk", cl.hunkIds, hunkIds),
+      hunkIds: hunkRefs(`claim ${cl.id}`, cl.hunkIds),
     };
     const s = claimState({ ...linked, citations: citations.length }, evidence);
     return { id: cl.id, statement: cl.statement, ...linked, citations, state: s.state, stateReason: s.reason };
@@ -90,7 +93,7 @@ export function assembleReport(i: {
   }));
   const modelDecisions = (out?.decisions ?? []).map((d) => ({
     id: d.id, statement: d.statement, whyHuman: d.whyHuman, options: d.options,
-    hunkIds: known(`decision ${d.id}`, "hunk", d.hunkIds, hunkIds), citations: cite(`decision ${d.id}`, d.citations),
+    hunkIds: hunkRefs(`decision ${d.id}`, d.hunkIds), citations: cite(`decision ${d.id}`, d.citations),
     raisedBy: { kind: "model" as const, name: i.review!.model! },
   }));
   const decisions = [...ruleDecisions, ...modelDecisions];
@@ -98,7 +101,7 @@ export function assembleReport(i: {
   // a finding must stand on at least one resolved citation
   const findings = (out?.findings ?? []).flatMap((f) => {
     const citations = cite(`finding ${f.id}`, f.citations);
-    return citations.length ? [{ id: f.id, statement: f.statement, status: "suspected" as const, citations, hunkIds: known(`finding ${f.id}`, "hunk", f.hunkIds, hunkIds) }] : [];
+    return citations.length ? [{ id: f.id, statement: f.statement, status: "suspected" as const, citations, hunkIds: hunkRefs(`finding ${f.id}`, f.hunkIds) }] : [];
   });
 
   const covered = new Set([...claims, ...decisions].flatMap((x) => x.hunkIds));
@@ -142,9 +145,9 @@ export function assembleReport(i: {
       id: c.id, requirementId: c.requirement.id, requirementUrl: c.requirement.url ?? null, requirementRetrievedAt: i.requirement.retrievedAt,
       title: i.requirement.title, repository: c.repository, profile: i.p.name, base: c.base, head: c.head,
       generatedAt: i.generatedAt, pipelineVersion: i.pipelineVersion, policyVersion: i.policy.version,
-      model: i.review?.model ?? null, promptHash: i.review?.promptHash ?? null,
+      model: i.review?.model ?? null, promptHash: i.review?.promptHash ?? null, synthetic: c.synthetic ?? null,
     },
-    reviewer: { status: i.review?.status ?? "unavailable", ...(i.review?.reason ? { reason: i.review.reason } : !i.review ? { reason: "the review stage has not run" } : {}), rawResponse: i.review?.rawResponse ?? null, fullFilesShown: i.review?.fullFiles ?? [] },
+    reviewer: { status: i.review?.status ?? "unavailable", ...(i.review?.reason ? { reason: i.review.reason } : !i.review ? { reason: "the review stage has not run" } : {}), rawResponse: i.review?.rawResponse ?? null, fullFilesShown: i.review?.fullFiles ?? [], represented: i.review?.represented ?? [] },
     requirements,
     inventory: { files, totals: inventory(files).totals },
     hunks, evidence, claims, decisions, unexplained, findings, notChecked, route,

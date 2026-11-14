@@ -4,7 +4,7 @@
 
 - `interpretation-unconfirmed` R4 is an interpretation no human has confirmed
 
-Read ratio: not applicable until unblocked (228 changed lines). Generated 2026-11-14T06:34:00.125Z, base `32258fdb` → head `9df83c38`, policy 2026-11-14.1 (illustrative thresholds). Full sheet: sheet.html
+Read ratio: not applicable until unblocked (228 changed lines). Generated 2026-11-14T06:42:14.181Z, base `32258fdb` → head `9df83c38`, policy 2026-11-14.1 (illustrative thresholds). Full sheet: sheet.html
 
 ### Requirement
 - **R1** (explicit) The generator and analyzer must not crash with IndexOutOfRangeException for the reported referenced-assembly generic struct scenario.

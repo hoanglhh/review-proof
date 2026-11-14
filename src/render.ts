@@ -61,6 +61,8 @@ tr.total td{font-weight:600;border-bottom:none}
 .hunk{margin:18px 0;border:1px solid var(--rule)} .hunk h3{margin:0;padding:6px 10px;font:600 13px var(--mono);background:var(--wash);color:var(--text)}
 .hunk pre{padding:6px 0} .add,.del{display:block;padding:0 10px} .add{background:#E6F4EA} .del{background:#FBE7E5}
 .hunk:target{outline:3px solid var(--argued)}
+.sim-band{background:repeating-linear-gradient(-45deg,#F7E7B4 0 14px,#FFFFFF 14px 28px);border:3px solid var(--argued);padding:10px 16px;margin:0 0 18px}
+.sim-band b{font:800 22px var(--head);font-stretch:condensed;color:var(--argued);letter-spacing:.06em;margin-right:8px}
 input[type=text],textarea,select{font:inherit;color:var(--text);background:var(--sheet);border:0;border-bottom:1.5px solid var(--text);padding:4px 2px;width:100%}
 textarea{border:1.5px solid var(--rule);border-bottom-color:var(--text);padding:6px 8px;resize:vertical}
 input:focus-visible,textarea:focus-visible,select:focus-visible,button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
@@ -119,6 +121,7 @@ export function renderHtml(r: Report, link: (repoPath: string) => string, maxFin
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sign-off sheet ${esc(r.case.requirementId)}: ${esc(r.case.title)}</title>
 <style>${CSS}</style></head><body><main class="sheet">
+${r.case.synthetic ? `<div class="sim-band" role="note"><b>SYNTHETIC</b> ${esc(r.case.synthetic)}. This change contains a deliberately planted bug and is not a real agent change.</div>` : ""}
 <h1>Sign-off sheet for ${esc(r.case.requirementId)}</h1>
 <p class="title">${esc(r.case.title)}</p>
 <dl class="facts">
@@ -223,6 +226,7 @@ export function renderMarkdown(r: Report, sheetHref: string, maxFindings: number
   const lines = [
     `## ReviewProof sign-off sheet: ${md(r.case.requirementId)} ${md(r.case.title)}`,
     ``,
+    ...(r.case.synthetic ? [`> **SYNTHETIC:** ${md(r.case.synthetic)}. This change contains a deliberately planted bug.`, ``] : []),
     `**Route: ${route.effectiveRoute.toUpperCase()}**${route.effectiveRoute === "blocked" ? " (cannot be signed yet)" : ""}. Evidence supports: ${route.evidenceRoute}. ` +
       (route.trustFloor !== route.evidenceRoute && route.effectiveRoute === route.trustFloor ? route.areas.filter((a) => a.floor === route.trustFloor).map((a) => `${md(a.reason.replaceAll("`", ""))}.`).join(" ") : ""),
     ``,

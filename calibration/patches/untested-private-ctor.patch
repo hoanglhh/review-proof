@@ -1,0 +1,13 @@
+diff --git a/src/MessagePack.SourceGenerator/CodeAnalysis/AnalyzerOptions.cs b/src/MessagePack.SourceGenerator/CodeAnalysis/AnalyzerOptions.cs
+index f117ee55..725af92b 100644
+--- a/src/MessagePack.SourceGenerator/CodeAnalysis/AnalyzerOptions.cs
++++ b/src/MessagePack.SourceGenerator/CodeAnalysis/AnalyzerOptions.cs
+@@ -236,7 +236,7 @@ public record FormatterDescriptor(QualifiedNamedTypeName Name, string? InstanceP
+ 
+         IFieldSymbol? instanceField = type.GetMembers("Instance").OfType<IFieldSymbol>()
+             .FirstOrDefault(m => m.IsStatic && m.DeclaredAccessibility == Accessibility.Public && m.IsReadOnly);
+-        IMethodSymbol? ctor = type.InstanceConstructors.FirstOrDefault(ctor => ctor.Parameters.Length == 0 && ctor.DeclaredAccessibility >= Accessibility.Internal);
++        IMethodSymbol? ctor = type.InstanceConstructors.FirstOrDefault(ctor => ctor.Parameters.Length == 0 && ctor.DeclaredAccessibility >= Accessibility.Private);
+         string? instanceProvidingMember = instanceField?.Name ?? ctor?.Name ?? null;
+         QualifiedTypeName instanceTypeName = QualifiedTypeName.Create(instanceField?.Type ?? type);
+ 

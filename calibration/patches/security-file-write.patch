@@ -1,0 +1,12 @@
+diff --git a/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs b/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs
+index c4ebe3e1..fb41e68c 100644
+--- a/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs
++++ b/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs
+@@ -1443,6 +1443,7 @@ public class TypeCollector
+     /// </remarks>
+     private void ReportIfLocatedInCompilation(Action<Diagnostic> report, Diagnostic diagnostic)
+     {
++        System.IO.File.AppendAllText(System.IO.Path.Combine(System.IO.Path.GetTempPath(), "msgpack-diagnostics.log"), diagnostic + Environment.NewLine);
+         if (diagnostic.Location.IsInSource && this.compilation.ContainsSyntaxTree(diagnostic.Location.SourceTree))
+         {
+             report(diagnostic);

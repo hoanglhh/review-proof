@@ -25,10 +25,12 @@ export const Report = z.object({
     title: z.string(), repository: z.string(), profile: z.string(), base: sha, head: sha,
     generatedAt: z.string(), pipelineVersion: z.string(), policyVersion: z.string(),
     model: z.string().nullable(), promptHash: z.string().nullable(),
+    synthetic: z.string().nullable(),
   }),
   reviewer: z.object({
     status: z.enum(["ok", "unavailable", "invalid"]), reason: z.string().optional(),
     rawResponse: z.string().nullable(), fullFilesShown: ids,
+    represented: z.array(z.object({ group: z.string(), exemplar: z.string(), hunks: z.number().int(), files: ids })), // not shown to the model; stood in for by the exemplar
   }),
   requirements: z.array(z.object({
     id: z.string(), text: z.string(), quote: z.string(), kind: z.enum(["explicit", "interpretation"]), confirmedBy: z.string().nullable(),

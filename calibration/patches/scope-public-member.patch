@@ -1,0 +1,13 @@
+diff --git a/src/MessagePack.Annotations/Attributes.cs b/src/MessagePack.Annotations/Attributes.cs
+index 13e3346f..40335c4b 100644
+--- a/src/MessagePack.Annotations/Attributes.cs
++++ b/src/MessagePack.Annotations/Attributes.cs
+@@ -64,6 +64,8 @@ namespace MessagePack
+ 
+         public string? StringKey { get; }
+ 
++        public bool AllowMetadataMembers { get; set; }
++
+         public KeyAttribute(int x)
+         {
+             this.IntKey = x;

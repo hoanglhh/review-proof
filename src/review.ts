@@ -74,7 +74,17 @@ export function buildPrompt(input: {
   base: string; head: string; files: FileChange[]; hunks: Hunk[]; evidence: Evidence[];
   readHead: (path: string) => string | null;
 }) {
-  const { files, hunks } = input;
+  const { files } = input;
+  // Large repetitive changes: one exemplar per repeated-pattern group stands in for its identical hunks.
+  const groups = ((input.evidence.find((e) => e.check === "pattern-groups")?.details as { groups?: { id: string; hunks: number; files: number; hunkIds: string[] }[] } | undefined)?.groups) ?? [];
+  const representedBy = new Map(groups.flatMap((g) => g.hunkIds.slice(1).map((id) => [id, g.id] as const)));
+  const hunks = input.hunks.filter((h) => !representedBy.has(h.id));
+  const shownHunks = new Set(hunks.map((h) => h.id));
+  const represented = groups.map((g) => ({
+    group: g.id, exemplar: g.hunkIds[0], hunks: g.hunks,
+    files: [...new Set(input.hunks.filter((h) => g.hunkIds.includes(h.id)).map((h) => h.file))],
+  }));
+  const listed = files.filter((f) => f.hunkIds.length === 0 || f.hunkIds.some((id) => shownHunks.has(id)) || !groups.length);
   const diff = hunks.map((h) => {
     const f = files.find((x) => x.path === h.file)!;
     return [`### ${h.id} ${h.file} (${f.class})`,
@@ -92,7 +102,10 @@ export function buildPrompt(input: {
     `REQUIREMENT ${input.requirement.id}`,
     `<untrusted kind="requirement">\nTITLE: ${input.requirement.title}\n\n${input.requirement.body}\n</untrusted>`,
     `CHANGE: base ${input.base}, head ${input.head}. ${files.length} files.`,
-    files.map((f) => `- ${f.path} (${f.class}, ${f.status}, +${f.added}/-${f.removed}, hunks ${f.hunkIds.join(",")})`).join("\n"),
+    listed.map((f) => `- ${f.path} (${f.class}, ${f.status}, +${f.added}/-${f.removed}, hunks ${f.hunkIds.map((id) => representedBy.get(id) ?? id).filter((x, i, a) => a.indexOf(x) === i).join(",")})`).join("\n") +
+      (listed.length < files.length ? `\n- and ${files.length - listed.length} more files whose only hunks belong to a repeated-pattern group (not listed)` : ""),
+    ...(groups.length ? [`REPEATED PATTERNS: these groups of identical hunks are each shown once, by an exemplar. Use the group ID in hunkIds to refer to every hunk in the group.\n` +
+      represented.map((r) => `- ${r.group}: ${r.hunks} identical hunks in ${r.files.length} files; exemplar ${r.exemplar} is shown below`).join("\n")] : []),
     `HUNKS (zero context lines; "- base N" is line N of the base file, "+ head N" is line N of the head file):`,
     `<untrusted kind="diff">\n${diff}\n</untrusted>`,
     `CHANGED SOURCE FILES AT HEAD, in full, with line numbers:`,
@@ -100,7 +113,7 @@ export function buildPrompt(input: {
     `EVIDENCE (records from deterministic checks; link claims to these IDs and test names):`,
     `<untrusted kind="evidence">\n${input.evidence.map(evidenceText).join("\n\n")}\n</untrusted>`,
   ].join("\n\n");
-  return { system: SYSTEM, user, fullFiles };
+  return { system: SYSTEM, user, fullFiles, represented };
 }
 
 /** Model settings come from the git-ignored .env, read into a local object so the key never enters process.env. */
@@ -131,12 +144,12 @@ async function callModel(cfg: { baseUrl: string; apiKey: string; model: string }
 
 export type ReviewRecord = {
   status: "ok" | "invalid" | "unavailable"; reason?: string; model: string | null; promptHash: string | null;
-  rawResponse: string | null; fullFiles: string[]; output?: ReviewOutput;
+  rawResponse: string | null; fullFiles: string[]; represented?: { group: string; exemplar: string; hunks: number; files: string[] }[]; output?: ReviewOutput;
 };
 
 export async function runReview(caseId: string, prompt: ReturnType<typeof buildPrompt>, fresh: boolean): Promise<ReviewRecord> {
   const cfg = modelConfig();
-  if (!cfg) return { status: "unavailable", reason: "no model configured (OPENAI_BASE_URL, OPENAI_API_KEY and REVIEWPROOF_MODEL in .env)", model: null, promptHash: null, rawResponse: null, fullFiles: prompt.fullFiles };
+  if (!cfg) return { status: "unavailable", reason: "no model configured (OPENAI_BASE_URL, OPENAI_API_KEY and REVIEWPROOF_MODEL in .env)", model: null, promptHash: null, rawResponse: null, fullFiles: prompt.fullFiles, represented: prompt.represented };
   const { $schema, ...schema } = z.toJSONSchema(ReviewOutput, { target: "draft-7" }) as Record<string, unknown>;
   const promptHash = createHash("sha256").update(JSON.stringify({ model: cfg.model, system: prompt.system, user: prompt.user, schema })).digest("hex");
   const rel = join("data", "cases", caseId, "review", `${promptHash}.json`);
@@ -152,7 +165,7 @@ export async function runReview(caseId: string, prompt: ReturnType<typeof buildP
     saved = { model: cfg.model, promptHash, requestedAt, durationMs: Date.now() - t0, request: { system: prompt.system, user: prompt.user, schema }, httpStatus: r.httpStatus, response: r.json };
     writeJson(file, saved);
   }
-  const base = { model: cfg.model, promptHash, rawResponse: rel, fullFiles: prompt.fullFiles };
+  const base = { model: cfg.model, promptHash, rawResponse: rel, fullFiles: prompt.fullFiles, represented: prompt.represented };
   if (saved.httpStatus !== 200) return { ...base, status: "unavailable", reason: `model call failed: HTTP ${saved.httpStatus} ${JSON.stringify(saved.response).slice(0, 300)}` };
   const choice = saved.response.choices?.[0];
   if (choice?.finish_reason !== "stop") return { ...base, status: "invalid", reason: `model output incomplete (finish_reason ${choice?.finish_reason})` };

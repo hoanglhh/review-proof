@@ -50,6 +50,18 @@ export function overlayWorktree(repo: string, name: string, base: string, head: 
   return dir;
 }
 
+/** Head plus a patch, committed with a fixed identity and date so the hash is reproducible. Local only, on no branch. */
+export function plantedCommit(repo: string, head: string, name: string, patchFile: string): string {
+  const dir = ensureWorktree(repo, `planted-${name}`, head, true);
+  git(dir, ["apply", "--whitespace=nowarn", patchFile]);
+  git(dir, ["add", "-A"]);
+  const who = { GIT_AUTHOR_NAME: "reviewproof calibration", GIT_AUTHOR_EMAIL: "calibration@invalid", GIT_AUTHOR_DATE: "2026-11-14T00:00:00Z" };
+  execFileSync("git", ["commit", "-q", "--no-verify", "-m", `calibration: ${name}`], {
+    cwd: dir, env: { ...process.env, ...who, GIT_COMMITTER_NAME: who.GIT_AUTHOR_NAME, GIT_COMMITTER_EMAIL: who.GIT_AUTHOR_EMAIL, GIT_COMMITTER_DATE: who.GIT_AUTHOR_DATE },
+  });
+  return git(dir, ["rev-parse", "HEAD"]).trim();
+}
+
 export const listFiles = (repo: string, commit: string) =>
   git(repo, ["ls-tree", "-r", "--name-only", "-z", commit]).split("\0").filter(Boolean);
 

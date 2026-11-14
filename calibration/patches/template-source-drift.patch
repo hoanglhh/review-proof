@@ -1,0 +1,14 @@
+diff --git a/src/MessagePack.SourceGenerator/Transforms/UnionTemplate.tt b/src/MessagePack.SourceGenerator/Transforms/UnionTemplate.tt
+index 7408b66f..67b78a53 100644
+--- a/src/MessagePack.SourceGenerator/Transforms/UnionTemplate.tt
++++ b/src/MessagePack.SourceGenerator/Transforms/UnionTemplate.tt
+@@ -7,9 +7,6 @@
+ using MsgPack = global::MessagePack;
+ 
+ <# using (this.EmitNestingTypesAndNamespaces(this.Write)) { #>
+-#if !NETSTANDARD2_0 && !NETFRAMEWORK
+-	[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+-#endif
+ 	internal sealed class <#= Info.Formatter.GetQualifiedName(Qualifiers.None) #>: MsgPack::Formatters.IMessagePackFormatter<<#= Info.DataType.GetQualifiedName() #>>
+ 	{
+ 		private readonly global::System.Collections.Generic.Dictionary<global::System.RuntimeTypeHandle, global::System.Collections.Generic.KeyValuePair<int, int>> typeToKeyAndJumpMap;
