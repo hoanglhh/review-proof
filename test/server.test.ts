@@ -51,6 +51,9 @@ test("server: refuses posts from other origins and wrong hosts; a blocked sheet 
     const post = (path: string, headers: Record<string, string>) => fetch(url + path, { method: "POST", headers: { "content-type": "application/x-www-form-urlencoded", ...headers }, body: form({}).toString(), redirect: "manual" });
     assert.equal((await post("/case/2283/signoff", { origin: "https://evil.example" })).status, 403);
     assert.equal((await post("/case/2283/signoff", {})).status, 403);
+    assert.equal((await post("/case/2283/signoff", { origin: "null", "sec-fetch-site": "cross-site" })).status, 403);
+    // a browser form on this server's own page: Origin may be "null", Sec-Fetch-Site says same-origin
+    assert.notEqual((await post("/case/2283/signoff", { origin: "null", "sec-fetch-site": "same-origin" })).status, 403);
     const blocked = JSON.parse(readFileSync(join(ROOT, "data/cases/2283/report.json"), "utf8")).route.effectiveRoute === "blocked";
     if (blocked) assert.equal((await post("/case/2283/signoff", { origin: url })).status, 400);
     const page = await fetch(`${url}/case/2283`);

@@ -54,7 +54,7 @@ export function startServer(port: number) {
 
   const send = (res: ServerResponse, status: number, body: string, nonce = "", type = "text/html; charset=utf-8") => {
     res.writeHead(status, {
-      "content-type": type, "x-content-type-options": "nosniff", "referrer-policy": "no-referrer", "x-frame-options": "DENY",
+      "content-type": type, "x-content-type-options": "nosniff", "referrer-policy": "same-origin", "x-frame-options": "DENY",
       "content-security-policy": `default-src 'none'; style-src 'unsafe-inline'; script-src 'nonce-${nonce}'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'`,
     });
     res.end(body);
@@ -78,7 +78,9 @@ export function startServer(port: number) {
     try {
       const url = new URL(req.url ?? "/", `http://${hosts[0]}`);
       if (!hosts.includes(req.headers.host ?? "")) return send(res, 421, "Wrong host", "", "text/plain"); // DNS rebinding guard
-      if (req.method === "POST" && !origins.includes(req.headers.origin ?? "")) return send(res, 403, "Posts are accepted only from this server's own pages.", "", "text/plain");
+      // browsers mark their own same-origin posts with Sec-Fetch-Site, which a web page cannot set
+      const sameOrigin = origins.includes(req.headers.origin ?? "") || req.headers["sec-fetch-site"] === "same-origin";
+      if (req.method === "POST" && !sameOrigin) return send(res, 403, "Posts are accepted only from this server's own pages.", "", "text/plain");
       const parts = url.pathname.split("/").filter(Boolean).map(decodeURIComponent);
 
       if (req.method === "GET" && parts.length === 0) {
