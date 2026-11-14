@@ -1,0 +1,25 @@
+
+  Determining projects to restore...
+/home/huyhoangle/junction/review-proof/.work/wt/43daf6ec1374b7d79687b895a5db5cfb08a88caf/tests/MessagePack.SourceGenerator.Tests/MessagePack.SourceGenerator.Tests.csproj : warning NU1901: Package 'NuGet.Protocol' 6.8.0 has a known low severity vulnerability, https://github.com/advisories/GHSA-g4vj-cjjj-v7hg
+  Restored /home/huyhoangle/junction/review-proof/.work/wt/43daf6ec1374b7d79687b895a5db5cfb08a88caf/src/MessagePack.Analyzers/MessagePack.Analyzers.csproj (in 347 ms).
+  Restored /home/huyhoangle/junction/review-proof/.work/wt/43daf6ec1374b7d79687b895a5db5cfb08a88caf/src/MessagePack.Annotations/MessagePack.Annotations.csproj (in 347 ms).
+  Restored /home/huyhoangle/junction/review-proof/.work/wt/43daf6ec1374b7d79687b895a5db5cfb08a88caf/src/MessagePack.Analyzers.CodeFixes/MessagePack.Analyzers.CodeFixes.csproj (in 347 ms).
+  Restored /home/huyhoangle/junction/review-proof/.work/wt/43daf6ec1374b7d79687b895a5db5cfb08a88caf/tests/MessagePack.SourceGenerator.Tests/MessagePack.SourceGenerator.Tests.csproj (in 348 ms).
+  Restored /home/huyhoangle/junction/review-proof/.work/wt/43daf6ec1374b7d79687b895a5db5cfb08a88caf/src/MessagePack.SourceGenerator/MessagePack.SourceGenerator.csproj (in 347 ms).
+  Restored /home/huyhoangle/junction/review-proof/.work/wt/43daf6ec1374b7d79687b895a5db5cfb08a88caf/src/MessagePack/MessagePack.csproj (in 347 ms).
+/home/huyhoangle/junction/review-proof/.work/wt/43daf6ec1374b7d79687b895a5db5cfb08a88caf/tests/MessagePack.SourceGenerator.Tests/MessagePack.SourceGenerator.Tests.csproj : warning NU1901: Package 'NuGet.Protocol' 6.8.0 has a known low severity vulnerability, https://github.com/advisories/GHSA-g4vj-cjjj-v7hg
+/home/huyhoangle/junction/review-proof/.work/wt/43daf6ec1374b7d79687b895a5db5cfb08a88caf/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs(1446,9): error RS1035: The symbol 'File' is banned for use by analyzers: Do not do file IO in analyzers [/home/huyhoangle/junction/review-proof/.work/wt/43daf6ec1374b7d79687b895a5db5cfb08a88caf/src/MessagePack.SourceGenerator/MessagePack.SourceGenerator.csproj]
+/home/huyhoangle/junction/review-proof/.work/wt/43daf6ec1374b7d79687b895a5db5cfb08a88caf/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs(1446,61): error RS1035: The symbol 'Path.GetTempPath()' is banned for use by analyzers: Do not do file IO in analyzers [/home/huyhoangle/junction/review-proof/.work/wt/43daf6ec1374b7d79687b895a5db5cfb08a88caf/src/MessagePack.SourceGenerator/MessagePack.SourceGenerator.csproj]
+/home/huyhoangle/junction/review-proof/.work/wt/43daf6ec1374b7d79687b895a5db5cfb08a88caf/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs(1446,132): error RS1035: The symbol 'Environment' is banned for use by analyzers: Analyzers should not read their settings directly from environment variables [/home/huyhoangle/junction/review-proof/.work/wt/43daf6ec1374b7d79687b895a5db5cfb08a88caf/src/MessagePack.SourceGenerator/MessagePack.SourceGenerator.csproj]
+
+Build FAILED.
+
+/home/huyhoangle/junction/review-proof/.work/wt/43daf6ec1374b7d79687b895a5db5cfb08a88caf/tests/MessagePack.SourceGenerator.Tests/MessagePack.SourceGenerator.Tests.csproj : warning NU1901: Package 'NuGet.Protocol' 6.8.0 has a known low severity vulnerability, https://github.com/advisories/GHSA-g4vj-cjjj-v7hg
+/home/huyhoangle/junction/review-proof/.work/wt/43daf6ec1374b7d79687b895a5db5cfb08a88caf/tests/MessagePack.SourceGenerator.Tests/MessagePack.SourceGenerator.Tests.csproj : warning NU1901: Package 'NuGet.Protocol' 6.8.0 has a known low severity vulnerability, https://github.com/advisories/GHSA-g4vj-cjjj-v7hg
+/home/huyhoangle/junction/review-proof/.work/wt/43daf6ec1374b7d79687b895a5db5cfb08a88caf/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs(1446,9): error RS1035: The symbol 'File' is banned for use by analyzers: Do not do file IO in analyzers [/home/huyhoangle/junction/review-proof/.work/wt/43daf6ec1374b7d79687b895a5db5cfb08a88caf/src/MessagePack.SourceGenerator/MessagePack.SourceGenerator.csproj]
+/home/huyhoangle/junction/review-proof/.work/wt/43daf6ec1374b7d79687b895a5db5cfb08a88caf/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs(1446,61): error RS1035: The symbol 'Path.GetTempPath()' is banned for use by analyzers: Do not do file IO in analyzers [/home/huyhoangle/junction/review-proof/.work/wt/43daf6ec1374b7d79687b895a5db5cfb08a88caf/src/MessagePack.SourceGenerator/MessagePack.SourceGenerator.csproj]
+/home/huyhoangle/junction/review-proof/.work/wt/43daf6ec1374b7d79687b895a5db5cfb08a88caf/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs(1446,132): error RS1035: The symbol 'Environment' is banned for use by analyzers: Analyzers should not read their settings directly from environment variables [/home/huyhoangle/junction/review-proof/.work/wt/43daf6ec1374b7d79687b895a5db5cfb08a88caf/src/MessagePack.SourceGenerator/MessagePack.SourceGenerator.csproj]
+    2 Warning(s)
+    3 Error(s)
+
+Time Elapsed 00:00:08.47

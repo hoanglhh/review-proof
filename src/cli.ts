@@ -1,10 +1,10 @@
 // ReviewProof command line. Every stage reads and writes files under data/cases/<id>/, so any stage can be rerun alone.
-import { existsSync, readFileSync, writeFileSync } from "node:fs";
+import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { basename, join, relative } from "node:path";
 import { parseArgs } from "node:util";
-import { caseDir, DATA, loadCase, loadProfile, PIPELINE_VERSION, readJson, ROOT, writeJson, type Case, type Profile } from "./config.ts";
+import { caseDir, DATA, loadCase, loadProfile, PIPELINE_VERSION, PLANTED, readJson, ROOT, writeJson, type Case, type Profile } from "./config.ts";
 import { classify, diffArgs, parseDiff, type FileChange, type Hunk } from "./diff.ts";
-import { ensureClone, ensureWorktree, git, listFiles, overlayWorktree, readAt } from "./git.ts";
+import { ensureClone, ensureWorktree, git, listFiles, overlayWorktree, plantedCommit, readAt } from "./git.ts";
 import { runTests, type Run } from "./runner.ts";
 import { inventory, issueReproduction, patternGroups, publicSurface, REGISTRY, securitySurface, testEvidence, testProjects } from "./checks.ts";
 import type { Evidence } from "./report.ts";
@@ -12,6 +12,8 @@ import { buildPrompt, runReview } from "./review.ts";
 import { assembleCase } from "./assemble.ts";
 import { startServer, writeSimulation } from "./server.ts";
 import { trustFloor } from "./states.ts";
+import { classifyPlant, summarize } from "./calibrate.ts";
+import { loadMetrics } from "./metrics.ts";
 
 const USAGE = `usage: node src/cli.ts <command> <case-id> [options]
   ingest <id>                      clone, worktrees, save the requirement, classify the diff
@@ -20,6 +22,8 @@ const USAGE = `usage: node src/cli.ts <command> <case-id> [options]
   assemble <id>                    validate citations, compute states and route, write report.json, sheet.html, sheet.md
   all <id>                         ingest, check, review, assemble
   serve [--port 4400]              local sign-off server: view sheets, confirm, sign, blind spot-checks
+  calibrate [--skip-review]        run the planted bugs in calibration/plants.json; writes data/calibration/summary.json
+  metrics                          trust measures from data/ (also at /metrics in serve); writes data/metrics.json
   simulate                         write a synthetic trust history to its own file (shown under a SIMULATED banner)
   test-run <id> --at head|base|without-change [--filter EXPR]   one container test run, printed`;
 
@@ -165,6 +169,37 @@ function assemble(c: Case, p: Profile) {
   for (const x of report.route.reasons) console.log(`  - ${x.code}: ${x.detail}`);
 }
 
+// ---- calibrate: planted bugs (synthetic) ----
+
+async function calibrate(skipReview: boolean) {
+  const { plants } = readJson(join(ROOT, "calibration", "plants.json")) as { plants: { id: string; case: string; category: string }[] };
+  const results = [];
+  for (const pl of plants) {
+    const c0 = loadCase(pl.case), p = loadProfile(c0.profile);
+    const repo = ensureClone(c0.repository, [c0.base, c0.head]);
+    const head = plantedCommit(repo, c0.head, pl.id, join(ROOT, "calibration", "patches", `${pl.id}.patch`));
+    const c: Case = { ...c0, id: `${PLANTED}${pl.id}`, head, synthetic: `Planted bug for calibration: ${pl.id}` };
+    const dir = caseDir(c.id), from = caseDir(c0.id);
+    mkdirSync(join(dir, "runs"), { recursive: true });
+    copyFileSync(join(from, "requirement.json"), join(dir, "requirement.json")); // the same saved requirement
+    for (const f of readdirSync(join(from, "runs")).filter((f) => /^base\..*\.json$/.test(f))) // the same base commit, so the same base run
+      if (!existsSync(join(dir, "runs", f))) copyFileSync(join(from, "runs", f), join(dir, "runs", f));
+    console.log(`\n== planted ${pl.id} on #${c0.id} (synthetic)`);
+    await ingest(c, p);
+    await check(c, p, false);
+    if (!skipReview) await review(c, p, false);
+    const verdict = classifyPlant(readJson(join(from, "report.json")), assembleCase(c, p));
+    console.log(`=> ${verdict.outcome}${verdict.runSignals.length ? `: ${verdict.runSignals[0].slice(0, 160)}` : ""}`);
+    results.push({ plant: pl.id, case: c0.id, category: pl.category, plantedHead: head, ...verdict });
+  }
+  const summary = summarize(results);
+  writeJson(join(DATA, "calibration", "summary.json"), {
+    synthetic: true, note: "Planted bugs are hand-written and synthetic; they are not real bugs.", generatedAt: new Date().toISOString(),
+    reviewer: skipReview ? "not run (--skip-review): plants no run caught are model_not_run, not missed" : "run", ...summary, results,
+  });
+  console.log(`\ncaught by a run ${summary.caughtByRun} of ${summary.total}; caught by the model only ${summary.caughtByModelOnly} of ${summary.total}; missed ${summary.missed} of ${summary.total}; model not run ${summary.modelNotRun} of ${summary.total}`);
+}
+
 // ---- test-run (environment proof and debugging) ----
 
 async function testRun(c: Case, p: Profile, at: string, filter?: string) {
@@ -191,10 +226,12 @@ async function testRun(c: Case, p: Profile, at: string, filter?: string) {
 
 const { positionals, values } = parseArgs({
   allowPositionals: true,
-  options: { fresh: { type: "boolean", default: false }, at: { type: "string" }, filter: { type: "string" }, port: { type: "string", default: "4400" } },
+  options: { fresh: { type: "boolean", default: false }, at: { type: "string" }, filter: { type: "string" }, port: { type: "string", default: "4400" }, "skip-review": { type: "boolean", default: false } },
 });
 const [cmd, id] = positionals;
 if (cmd === "serve") { startServer(Number(values.port)); }
+else if (cmd === "calibrate") await calibrate(values["skip-review"]!);
+else if (cmd === "metrics") { const m = loadMetrics(); writeJson(join(DATA, "metrics.json"), { generatedAt: new Date().toISOString(), ...m }); console.log(JSON.stringify(m, null, 2)); }
 else if (cmd === "simulate") {
   const per = readJson(join(ROOT, "policy.json")).trust.cleanSpotChecksPerStep;
   const events = writeSimulation(per);

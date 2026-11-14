@@ -8,8 +8,17 @@ export type PlantOutcome = "caught_by_run" | "caught_by_model_only" | "missed" |
 export function classifyPlant(original: Report, planted: Report) {
   const key = (h: Report["hunks"][number]) => `${h.file}\n${h.removed.join("\n")}\n=>\n${h.added.join("\n")}`;
   const before = new Set(original.hunks.map(key));
+  const after = new Set(planted.hunks.map(key));
   const plantedHunks = planted.hunks.filter((h) => !before.has(key(h)));
+  // a plant that undoes part of the change leaves no new hunk: the agent's hunk just disappears from the diff,
+  // so the model can only point at the lines where it used to be
+  const undoneHunks = original.hunks.filter((h) => !after.has(key(h)));
   const ids = new Set(plantedHunks.map((h) => h.id));
+  const NEAR = 3;
+  const places = [
+    ...plantedHunks.map((h) => ({ file: h.file, start: h.newStart, end: h.newStart + Math.max(h.newLines, 1) - 1 })),
+    ...undoneHunks.map((h) => ({ file: h.file, start: h.newStart - NEAR, end: h.newStart + Math.max(h.newLines, 1) - 1 + NEAR })),
+  ];
   const statusBefore = new Map(original.evidence.map((e) => [e.id, e.status]));
 
   // a run catches the plant if a check that passed on the original no longer passes, or a claim became broken
@@ -21,13 +30,13 @@ export function classifyPlant(original: Report, planted: Report) {
 
   // the model catches it if a finding or a model-raised decision points at a planted hunk
   const touches = (x: { hunkIds: string[]; citations: { path: string; startLine: number; endLine: number; commit: string }[] }) =>
-    x.hunkIds.some((id) => ids.has(id)) || x.citations.some((c) => c.commit === planted.case.head && plantedHunks.some((h) =>
-      h.file === c.path && c.startLine <= h.newStart + Math.max(h.newLines, 1) - 1 && c.endLine >= h.newStart));
+    x.hunkIds.some((id) => ids.has(id)) || x.citations.some((c) => c.commit === planted.case.head && places.some((p) =>
+      p.file === c.path && c.startLine <= p.end && c.endLine >= p.start));
   const modelSignals = planted.reviewer.status !== "ok" ? null
     : [...planted.findings, ...planted.decisions.filter((d) => d.raisedBy.kind === "model")].filter(touches).map((x) => `${x.id}: ${x.statement}`);
 
   const outcome: PlantOutcome = runSignals.length ? "caught_by_run" : modelSignals === null ? "model_not_run" : modelSignals.length ? "caught_by_model_only" : "missed";
-  return { outcome, plantedHunks: plantedHunks.map((h) => h.id), runSignals, modelSignals: modelSignals ?? [], route: planted.route.effectiveRoute };
+  return { outcome, plantedHunks: plantedHunks.map((h) => h.id), undoneOriginalHunks: undoneHunks.map((h) => `${h.id} ${h.file}:${h.newStart}`), runSignals, modelSignals: modelSignals ?? [], route: planted.route.effectiveRoute };
 }
 
 export function summarize(results: { outcome: PlantOutcome }[]) {

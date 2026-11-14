@@ -1,0 +1,2613 @@
+{
+  "checkedAt": "2026-11-14T06:53:03.931Z",
+  "evidence": [
+    {
+      "id": "inventory",
+      "check": "inventory",
+      "domain": "general",
+      "asserts": "every changed file is classified",
+      "performedBy": "reviewproof 0.1.0 (static check, in-process)",
+      "commands": [
+        "node src/cli.ts check planted-template-source-drift"
+      ],
+      "commits": [
+        "32258fdbee4bcd653c79f51b4376b5103c6f4d27",
+        "dc6b9f85ed64e6372fb277b7cc4d501cd51c9ac3"
+      ],
+      "status": "passed",
+      "summary": "236 files, +1380/-9: 1 docs (3 lines), 6 template-output (20 lines), 5 template (24 lines), 1 source (2 lines), 1 test (130 lines), 222 test-snapshot (1210 lines).",
+      "durationMs": 0,
+      "logs": [],
+      "details": {
+        "totals": {
+          "files": 236,
+          "added": 1380,
+          "removed": 9,
+          "byClass": {
+            "docs": {
+              "files": 1,
+              "lines": 3
+            },
+            "template-output": {
+              "files": 6,
+              "lines": 20
+            },
+            "template": {
+              "files": 5,
+              "lines": 24
+            },
+            "source": {
+              "files": 1,
+              "lines": 2
+            },
+            "test": {
+              "files": 1,
+              "lines": 130
+            },
+            "test-snapshot": {
+              "files": 222,
+              "lines": 1210
+            }
+          }
+        },
+        "unclassified": [],
+        "binary": []
+      }
+    },
+    {
+      "id": "pattern-groups",
+      "check": "pattern-groups",
+      "domain": "general",
+      "asserts": "every repetitive file changed in the same way as its group",
+      "performedBy": "reviewproof 0.1.0 (static check, in-process)",
+      "commands": [
+        "node src/cli.ts check planted-template-source-drift"
+      ],
+      "commits": [
+        "32258fdbee4bcd653c79f51b4376b5103c6f4d27",
+        "dc6b9f85ed64e6372fb277b7cc4d501cd51c9ac3"
+      ],
+      "status": "failed",
+      "summary": "G1: 402 identical hunks in 222 files; G2: 3 identical hunks in 3 files. 5 file(s) deviate.",
+      "durationMs": 0,
+      "logs": [],
+      "details": {
+        "eligibleFiles": 228,
+        "groups": [
+          {
+            "id": "G1",
+            "hunks": 402,
+            "files": 222,
+            "removed": [],
+            "added": [
+              "#if !NETSTANDARD2_0 && !NETFRAMEWORK",
+              "\t[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]",
+              "#endif"
+            ],
+            "hunkIds": [
+              "H3",
+              "H11",
+              "H21",
+              "H22",
+              "H23",
+              "H24",
+              "H25",
+              "H26",
+              "H27",
+              "H28",
+              "H29",
+              "H30",
+              "H31",
+              "H32",
+              "H33",
+              "H34",
+              "H35",
+              "H36",
+              "H37",
+              "H38",
+              "H39",
+              "H40",
+              "H41",
+              "H42",
+              "H43",
+              "H44",
+              "H45",
+              "H46",
+              "H47",
+              "H48",
+              "H49",
+              "H50",
+              "H51",
+              "H52",
+              "H53",
+              "H54",
+              "H55",
+              "H56",
+              "H57",
+              "H58",
+              "H59",
+              "H60",
+              "H61",
+              "H62",
+              "H63",
+              "H64",
+              "H65",
+              "H66",
+              "H67",
+              "H68",
+              "H69",
+              "H70",
+              "H71",
+              "H72",
+              "H73",
+              "H74",
+              "H75",
+              "H76",
+              "H77",
+              "H78",
+              "H79",
+              "H80",
+              "H81",
+              "H82",
+              "H83",
+              "H84",
+              "H85",
+              "H86",
+              "H87",
+              "H88",
+              "H89",
+              "H90",
+              "H91",
+              "H92",
+              "H93",
+              "H94",
+              "H95",
+              "H96",
+              "H97",
+              "H98",
+              "H99",
+              "H100",
+              "H101",
+              "H102",
+              "H103",
+              "H104",
+              "H105",
+              "H106",
+              "H107",
+              "H108",
+              "H109",
+              "H110",
+              "H111",
+              "H112",
+              "H113",
+              "H114",
+              "H115",
+              "H116",
+              "H117",
+              "H118",
+              "H119",
+              "H120",
+              "H121",
+              "H122",
+              "H123",
+              "H124",
+              "H125",
+              "H126",
+              "H127",
+              "H128",
+              "H129",
+              "H130",
+              "H131",
+              "H132",
+              "H133",
+              "H134",
+              "H135",
+              "H136",
+              "H137",
+              "H138",
+              "H139",
+              "H140",
+              "H141",
+              "H142",
+              "H143",
+              "H144",
+              "H145",
+              "H146",
+              "H147",
+              "H148",
+              "H149",
+              "H150",
+              "H151",
+              "H154",
+              "H155",
+              "H156",
+              "H157",
+              "H158",
+              "H159",
+              "H160",
+              "H161",
+              "H162",
+              "H163",
+              "H164",
+              "H165",
+              "H166",
+              "H167",
+              "H168",
+              "H169",
+              "H170",
+              "H171",
+              "H172",
+              "H173",
+              "H174",
+              "H175",
+              "H176",
+              "H177",
+              "H178",
+              "H179",
+              "H180",
+              "H181",
+              "H182",
+              "H183",
+              "H184",
+              "H185",
+              "H186",
+              "H187",
+              "H188",
+              "H189",
+              "H190",
+              "H191",
+              "H192",
+              "H193",
+              "H194",
+              "H195",
+              "H196",
+              "H197",
+              "H198",
+              "H199",
+              "H200",
+              "H201",
+              "H202",
+              "H203",
+              "H204",
+              "H205",
+              "H206",
+              "H207",
+              "H208",
+              "H209",
+              "H210",
+              "H211",
+              "H212",
+              "H213",
+              "H214",
+              "H215",
+              "H216",
+              "H217",
+              "H218",
+              "H219",
+              "H220",
+              "H221",
+              "H222",
+              "H223",
+              "H224",
+              "H225",
+              "H226",
+              "H227",
+              "H228",
+              "H229",
+              "H230",
+              "H231",
+              "H232",
+              "H233",
+              "H234",
+              "H235",
+              "H236",
+              "H237",
+              "H238",
+              "H239",
+              "H240",
+              "H241",
+              "H242",
+              "H243",
+              "H244",
+              "H245",
+              "H246",
+              "H247",
+              "H248",
+              "H249",
+              "H250",
+              "H251",
+              "H252",
+              "H253",
+              "H254",
+              "H255",
+              "H256",
+              "H257",
+              "H258",
+              "H259",
+              "H260",
+              "H261",
+              "H262",
+              "H263",
+              "H264",
+              "H265",
+              "H266",
+              "H267",
+              "H268",
+              "H269",
+              "H270",
+              "H271",
+              "H272",
+              "H273",
+              "H274",
+              "H275",
+              "H276",
+              "H277",
+              "H278",
+              "H279",
+              "H280",
+              "H281",
+              "H282",
+              "H283",
+              "H284",
+              "H285",
+              "H286",
+              "H287",
+              "H288",
+              "H289",
+              "H290",
+              "H291",
+              "H292",
+              "H293",
+              "H294",
+              "H295",
+              "H296",
+              "H297",
+              "H298",
+              "H299",
+              "H300",
+              "H301",
+              "H302",
+              "H303",
+              "H304",
+              "H305",
+              "H306",
+              "H307",
+              "H308",
+              "H309",
+              "H310",
+              "H311",
+              "H312",
+              "H313",
+              "H314",
+              "H315",
+              "H316",
+              "H317",
+              "H318",
+              "H319",
+              "H320",
+              "H321",
+              "H322",
+              "H323",
+              "H324",
+              "H325",
+              "H326",
+              "H327",
+              "H328",
+              "H329",
+              "H330",
+              "H331",
+              "H332",
+              "H333",
+              "H334",
+              "H335",
+              "H336",
+              "H337",
+              "H338",
+              "H339",
+              "H340",
+              "H341",
+              "H342",
+              "H343",
+              "H344",
+              "H345",
+              "H346",
+              "H347",
+              "H348",
+              "H349",
+              "H350",
+              "H351",
+              "H352",
+              "H353",
+              "H354",
+              "H355",
+              "H356",
+              "H357",
+              "H358",
+              "H359",
+              "H360",
+              "H361",
+              "H362",
+              "H363",
+              "H364",
+              "H365",
+              "H366",
+              "H367",
+              "H368",
+              "H369",
+              "H370",
+              "H371",
+              "H372",
+              "H373",
+              "H374",
+              "H375",
+              "H376",
+              "H377",
+              "H378",
+              "H379",
+              "H380",
+              "H381",
+              "H382",
+              "H383",
+              "H384",
+              "H385",
+              "H386",
+              "H387",
+              "H388",
+              "H389",
+              "H390",
+              "H391",
+              "H392",
+              "H393",
+              "H394",
+              "H395",
+              "H396",
+              "H397",
+              "H398",
+              "H399",
+              "H400",
+              "H401",
+              "H402",
+              "H403",
+              "H404",
+              "H405",
+              "H406",
+              "H407",
+              "H408",
+              "H409",
+              "H410",
+              "H411",
+              "H412",
+              "H413",
+              "H414",
+              "H415",
+              "H416",
+              "H417",
+              "H418",
+              "H419",
+              "H420",
+              "H421",
+              "H422"
+            ]
+          },
+          {
+            "id": "G2",
+            "hunks": 3,
+            "files": 3,
+            "removed": [
+              "            this.Write(\"\\tinternal sealed class \");"
+            ],
+            "added": [
+              "            this.Write(\"#if !NETSTANDARD2_0 && !NETFRAMEWORK\\r\\n\\t[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]\\r\\n#endif\\r\\n\\tinternal sealed class \");"
+            ],
+            "hunkIds": [
+              "H8",
+              "H16",
+              "H19"
+            ]
+          }
+        ],
+        "deviating": [
+          {
+            "file": "src/MessagePack.SourceGenerator/Transforms/CompositeResolverTemplate.cs",
+            "hunkIds": [
+              "H2"
+            ]
+          },
+          {
+            "file": "src/MessagePack.SourceGenerator/Transforms/EnumTemplate.cs",
+            "hunkIds": [
+              "H6"
+            ]
+          },
+          {
+            "file": "src/MessagePack.SourceGenerator/Transforms/ResolverTemplate.cs",
+            "hunkIds": [
+              "H10",
+              "H12"
+            ]
+          },
+          {
+            "file": "tests/MessagePack.SourceGenerator.Tests/Resources/GenericDataTypeWithPrivateMember/Formatters.HasPrivateSerializedMemberAndIsGenericNamed`1.HasPrivateSerializedMemberAndIsGenericNamedFormatter.g.cs",
+            "hunkIds": [
+              "H152"
+            ]
+          },
+          {
+            "file": "tests/MessagePack.SourceGenerator.Tests/Resources/GenericDataTypeWithPrivateMember/Formatters.HasPrivateSerializedMemberAndIsGenericOrdinal`1.HasPrivateSerializedMemberAndIsGenericOrdinalFormatter.g.cs",
+            "hunkIds": [
+              "H153"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "public-surface",
+      "check": "public-surface",
+      "domain": "backend",
+      "asserts": "no public declaration, public API entry or diagnostic ID was added, removed or changed",
+      "performedBy": "reviewproof 0.1.0 (static check, in-process)",
+      "commands": [
+        "node src/cli.ts check planted-template-source-drift"
+      ],
+      "commits": [
+        "32258fdbee4bcd653c79f51b4376b5103c6f4d27",
+        "dc6b9f85ed64e6372fb277b7cc4d501cd51c9ac3"
+      ],
+      "status": "passed",
+      "summary": "No public declaration, API file entry or diagnostic ID changed.",
+      "durationMs": 0,
+      "logs": [],
+      "details": {
+        "hits": []
+      }
+    },
+    {
+      "id": "tests-at-head:MessagePack.SourceGenerator.Tests",
+      "check": "tests-at-head",
+      "domain": "backend",
+      "asserts": "every test the change added or modified passes at head",
+      "performedBy": "dotnet test in container mcr.microsoft.com/dotnet/sdk:8.0.402-jammy",
+      "commands": [
+        "docker run --rm --user 1000:1000 -e HOME=/home/huyhoangle/junction/review-proof/.work/home -e DOTNET_CLI_HOME=/home/huyhoangle/junction/review-proof/.work/home -e NUGET_PACKAGES=/home/huyhoangle/junction/review-proof/.work/nuget -e DOTNET_CLI_TELEMETRY_OPTOUT=1 -e DOTNET_NOLOGO=1 -v /home/huyhoangle/junction/review-proof/.work:/home/huyhoangle/junction/review-proof/.work -w /home/huyhoangle/junction/review-proof/.work/wt/dc6b9f85ed64e6372fb277b7cc4d501cd51c9ac3 mcr.microsoft.com/dotnet/sdk:8.0.402-jammy dotnet test tests/MessagePack.SourceGenerator.Tests/MessagePack.SourceGenerator.Tests.csproj --logger 'trx;LogFileName=head.MessagePack.SourceGenerator.Tests.trx' --results-directory /home/huyhoangle/junction/review-proof/.work/results/data_calibration_template-source-drift_runs/head.MessagePack.SourceGenerator.Tests"
+      ],
+      "commits": [
+        "dc6b9f85ed64e6372fb277b7cc4d501cd51c9ac3"
+      ],
+      "durationMs": 35718,
+      "logs": [
+        "data/calibration/template-source-drift/runs/head.MessagePack.SourceGenerator.Tests.log",
+        "data/calibration/template-source-drift/runs/head.MessagePack.SourceGenerator.Tests.trx"
+      ],
+      "status": "passed",
+      "summary": "91 of 91 changed tests pass at head.",
+      "tests": [
+        {
+          "name": "GenerationTests.NonDefaultDeserializingConstructor_Private",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "CustomStringKeyFormatterTests.RecordWithPrimaryConstructor",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "CustomStringKeyFormatterTests.RecordWithWithInitOnlyProps",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "PrivateMemberAccessTests.FormatterForClassWithPrivateMembers(type: \"struct\", version: CSharp7_3)",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "PrivateMemberAccessTests.FormatterForClassWithPrivateMembers(type: \"record\", version: CSharp9)",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "GenerationTests.SpecifyFormatterFromStockSet",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "GenerationTests.ImplicitFormatterTypes",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterOnlyMixed",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "ImplicitResolverForCustomFormattersTests.MultipleFunctionalCustomFormattersForType_OnlyOneNonExcluded",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "GenerationTests.UnionFormatter(container: NestingClass)",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "CodeCoverageExclusionTests.AllGeneratedTypesAreExcludedFromCodeCoverage",
+          "outcome": "passed",
+          "new": true
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterSetterWithDefaultValueInputPartially",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "GenericsFormatterTests.Generics_Constraints_Type",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "GenerationTests.EnumFormatter(container: Namespace, usesMapMode: False)",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterSetterWithParameterizedConstructorDoNotUseSetter",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterSetterWithParameterizedConstructorPartially",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterOnlyDefaultValue",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "CompositeResolverGeneratorTests.CompositeResolver_Nested",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "PrivateMemberAccessTests.FormatterForClassWithPrivateMembers(type: \"record struct\", version: CSharp10)",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "GenerationTests.CustomFormatterViaAttributeOnField(usesMapMode: False)",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "PrivateMemberAccessTests.FormatterForClassWithPrivateMembers(type: \"class\", version: CSharp7_3)",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterOnlyWithParameterizedConstructor",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "MessagePackFormatterAttributeTests.CanGenerateMessagePackFormatterAttr",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "CompositeResolverGeneratorTests.CompositeResolver_MixedResolverTypes",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "MultipleTypesTests.TwoTypes(usesMapMode: False)",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "GenericsFormatterTests.Generics_Constraints_Multiple",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "MultipleTypesTests.TwoTypes(usesMapMode: True)",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "GenerationTests.UnionFormatter(container: Namespace)",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "GenerationTests.EmbeddedTypes",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "ImplicitResolverForCustomFormattersTests.OpenGenericFormatter",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "GenerationTests.ArrayTypedProperty",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "GenerationTests.SystemCollectionsObjectModelCollection",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "GenerationTests.AdditionalAllowTypes",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "GenerationTests.EnumFormatter_CollidingTypeNames",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "PrivateMemberAccessTests.FormatterForClassWithPrivateMembers_MapMode",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "GenerationTests.InterfaceUnionUsedWithNullableRefAnnotation",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "GenericsFormatterTests.Generics_Constraints_NullableReferenceType",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "GenerationTests.NestedMessagePackObjects",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "GenericsFormatterTests.GenericsOfTFormatter",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "GenericsFormatterTests.Generics_Constraints_ReferenceType_Nullable",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "GenerationTests.CustomFormatterViaAttributeOnField(usesMapMode: True)",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterOnlyIgnore",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "ImplicitResolverForCustomFormattersTests.MultipleFunctionalCustomFormattersForType_MultiFormatter",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "GenerationTests.GenericDataTypeWithPrivateMember",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterOnlyWithParameterizedConstructorPartially",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "GenerationTests.EnumFormatter(container: NestingClass, usesMapMode: True)",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "GenerationTests.SystemMemoryTypes",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "GenerationTests.NoPrivateAccessNeeded",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterSetterWithParameterizedConstructorAndDefaultValue",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "GenerationTests.CustomFormatterForGenericWithConstraints",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterSetterWithDefaultValue",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "GenericsFormatterTests.Generics_Constraints_Struct",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "GenerationTests.GenericWithConstraintsThatReferenceTypeParameter",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "GenerationTests.CustomFormatterViaAttributeOnProperty(usesMapMode: False)",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "GenericsFormatterTests.NullableFormatter",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "GenerationTests.CustomFormatterWithSingletonPattern",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "GenerationTests.NoPrivateMemberCollected",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "GenerationTests.UnionFormatter(container: None)",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "PrivateMemberAccessTests.FormatterForClassWithPrivateMembers_WithNamespace",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "GenerationTests.DeserializingConstructorParameterMemberTypeAssignability_Incompatible",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "GenerationTests.CustomFormatterViaAttributeOnProperty(usesMapMode: True)",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "GenerationTests.AdditionalFormatterTypes_RedundantAttribute",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "GenerationTests.EnumFormatter(container: NestingClass, usesMapMode: False)",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "GenericsFormatterTests.NestedGenericTypes",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "GenerationTests.NonGenericType_CollidingTypeNames",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "GenerationTests.NestedMessagePackObjects_Array",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterOnlyWithParameterizedConstructorDefaultValue",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "GenericsFormatterTests.GenericsUnionFormatter",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "GenericsFormatterTests.GenericsOfT1T2Formatter",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "GenericsFormatterTests.GenericsUnionFormatter_Nested",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "GenericsFormatterTests.WellKnownGenericsFormatter",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "GenerationTests.AdditionalFormatterTypes",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "GenerationTests.MixType_CollidingTypeNames",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "GenerationTests.DeserializingConstructorParameterMemberTypeAssignability_MemberAssignsToParamType",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "GenerationTests.GenericType",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "GenericsFormatterTests.GenericsOfTFormatter_FormatterOnly",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "GenericsFormatterTests.Generics_Defined_In_ReferencedProject",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "GenerationTests.EnumFormatter(container: None, usesMapMode: True)",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "GenerationTests.EnumFormatter(container: None, usesMapMode: False)",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "GenerationTests.GenericCustomFormatter",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterSetterWithParameterizedConstructor",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "GenerationTests.GenericType_CollidingTypeNames",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "GenericsFormatterTests.GenericsOfTFormatter_WithKnownTypes",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "GenerationTests.SimplifiedNameForKeywordsAndSyntaxSugar",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "GenerationTests.Array2DJaggedProperty",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "CodeCoverageExclusionTests.ExcludeAttributeIsGuardedForTargetsWhereItIsUnavailable",
+          "outcome": "passed",
+          "new": true
+        },
+        {
+          "name": "GenerationTests.GenericTypeArg",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "GenericsFormatterTests.RecursiveGenerics_Direct",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterSetter",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "GenerationTests.NoFieldWithCustomFormatterCollected",
+          "outcome": "passed",
+          "new": false
+        },
+        {
+          "name": "GenerationTests.EnumFormatter(container: Namespace, usesMapMode: True)",
+          "outcome": "passed",
+          "new": false
+        }
+      ]
+    },
+    {
+      "id": "tests-without-change:MessagePack.SourceGenerator.Tests",
+      "check": "tests-without-change",
+      "domain": "backend",
+      "asserts": "every changed test that passes at head fails with the base source",
+      "performedBy": "dotnet test in container mcr.microsoft.com/dotnet/sdk:8.0.402-jammy",
+      "commands": [
+        "docker run --rm --user 1000:1000 -e HOME=/home/huyhoangle/junction/review-proof/.work/home -e DOTNET_CLI_HOME=/home/huyhoangle/junction/review-proof/.work/home -e NUGET_PACKAGES=/home/huyhoangle/junction/review-proof/.work/nuget -e DOTNET_CLI_TELEMETRY_OPTOUT=1 -e DOTNET_NOLOGO=1 -v /home/huyhoangle/junction/review-proof/.work:/home/huyhoangle/junction/review-proof/.work -w /home/huyhoangle/junction/review-proof/.work/wt/overlay-planted-template-source-drift mcr.microsoft.com/dotnet/sdk:8.0.402-jammy dotnet test tests/MessagePack.SourceGenerator.Tests/MessagePack.SourceGenerator.Tests.csproj --logger 'trx;LogFileName=without-change.MessagePack.SourceGenerator.Tests.trx' --results-directory /home/huyhoangle/junction/review-proof/.work/results/data_calibration_template-source-drift_runs/without-change.MessagePack.SourceGenerator.Tests"
+      ],
+      "commits": [
+        "32258fdbee4bcd653c79f51b4376b5103c6f4d27",
+        "dc6b9f85ed64e6372fb277b7cc4d501cd51c9ac3"
+      ],
+      "durationMs": 34459,
+      "logs": [
+        "data/calibration/template-source-drift/runs/without-change.MessagePack.SourceGenerator.Tests.log",
+        "data/calibration/template-source-drift/runs/without-change.MessagePack.SourceGenerator.Tests.trx"
+      ],
+      "status": "passed",
+      "summary": "91 of 91 changed tests that pass at head fail without the change (discriminating).",
+      "tests": [
+        {
+          "name": "GenerationTests.NonDefaultDeserializingConstructor_Private",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.A.AFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "CustomStringKeyFormatterTests.RecordWithPrimaryConstructor",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "CustomStringKeyFormatterTests.RecordWithWithInitOnlyProps",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "PrivateMemberAccessTests.FormatterForClassWithPrivateMembers(type: \"struct\", version: CSharp7_3)",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MyObject.MyObjectFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "PrivateMemberAccessTests.FormatterForClassWithPrivateMembers(type: \"record\", version: CSharp9)",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MyObject.MyObjectFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "GenerationTests.SpecifyFormatterFromStockSet",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.GFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "GenerationTests.ImplicitFormatterTypes",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TypeWithAutoGeneratedFormatterFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterOnlyMixed",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "ImplicitResolverForCustomFormattersTests.MultipleFunctionalCustomFormattersForType_OnlyOneNonExcluded",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\ncontent of 'MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs' did not match. Diff shown with expected as baseline:\n // <auto-generated />\n \n #pragma warning disable 618, 612, 414, 168, CS1591, SA1129, SA1309, SA1312, SA1403, SA1649\n \n using MsgPack = global::MessagePack;\n \n [assembly: MsgPack::Internal.GeneratedAssemblyMessagePackResolverAttribute(typeof(MessagePack.GeneratedMessagePackResolver), 3, 0)]\n \n namespace MessagePack {\n \n /// <summary>A MessagePack resolver that uses generated formatters for types in this assembly.</summary>\n-#if !NETSTANDARD2_0 && !NETFRAMEWORK\n-[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]\n-#endif\n partial class GeneratedMessagePackResolver : MsgPack::IFormatterResolver\n {\n \t/// <summary>An instance of this resolver that only returns formatters specifically generated for types in this assembly.</summary>\n \tpublic static readonly MsgPack::IFormatterResolver Instance = new GeneratedMessagePackResolver();\n \n \tprivate GeneratedMessagePackResolver()\n \t{\n \t}\n \n \tpublic MsgPack::Formatters.IMessagePackFormatter<T> GetFormatter<T>()\n \t{\n \t\treturn FormatterCache<T>.Formatter;\n \t}\n \n-#if !NETSTANDARD2_0 && !NETFRAMEWORK\n-\t[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]\n-#endif\n \tprivate static class FormatterCache<T>\n \t{\n \t\tinternal static readonly MsgPack::Formatters.IMessagePackFormatter<T> Formatter;\n \n \t\tstatic FormatterCache()\n \t\t{\n \t\t\tvar f = GeneratedMessagePackResolverGetFormatterHelper.GetFormatter(typeof(T));\n \t\t\tif (f != null)\n \t\t\t{\n \t\t\t\tFormatter = (MsgPack::Formatters.IMessagePackFormatter<T>)f;\n \t\t\t}\n \t\t}\n \t}\n \n-#if !NETSTANDARD2_0 && !NETFRAMEWORK\n-\t[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]\n-#endif\n \tprivate static class GeneratedMessagePackResolverGetFormatterHelper\n \t{\n \t\tprivate static readonly global::System.Collections.Generic.Dictionary<global::System.Type, int> closedTypeLookup = new global::System.Collections.Generic.Dictionary<global::System.Type, int>(1)\n \t\t{\n \t\t\t{ typeof(global::A), 0 },\n \t\t};\n \n \t\tinternal static object GetFormatter(global::System.Type t)\n \t\t{\n \t\t\tif (closedTypeLookup.TryGetValue(t, out int closedKey))\n \t\t\t{\n \t\t\t\tswitch (closedKey)\n \t\t\t\t{\n \t\t\t\t\tcase 0: return new global::AFormatter2();\n \t\t\t\t\tdefault: return null; // unreachable\n \t\t\t\t};\n \t\t\t}\n \n \t\t\treturn null;\n \t\t}\n \t}\n }\n \n }\n \n"
+        },
+        {
+          "name": "GenerationTests.UnionFormatter(container: NestingClass)",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.ContainingClass.Derived1Formatter.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.ContainingClass.Derived2Formatter.g.cs\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.ContainingClass.MyMessagePackObjectFormatter.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.ContainingClass.IMyTypeFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.ContainingClass.MyMessagePackObjectFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "CodeCoverageExclusionTests.AllGeneratedTypesAreExcludedFromCodeCoverage",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "Generated file 'MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs' is missing [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]."
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterSetterWithDefaultValueInputPartially",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "GenericsFormatterTests.Generics_Constraints_Type",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`1.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "GenerationTests.EnumFormatter(container: Namespace, usesMapMode: False)",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.MyTestNamespace.MyMessagePackObjectFormatter.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.MyTestNamespace.MyEnumFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.MyTestNamespace.MyMessagePackObjectFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterSetterWithParameterizedConstructorDoNotUseSetter",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterSetterWithParameterizedConstructorPartially",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterOnlyDefaultValue",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "CompositeResolverGeneratorTests.CompositeResolver_Nested",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\ncontent of 'MessagePack.SourceGenerator/MessagePack.SourceGenerator.CompositeResolverGenerator/MyResolver.g.cs' did not match. Diff shown with expected as baseline:\n \n using MsgPack = global::MessagePack;\n \n partial class Test {\n \n-#if !NETSTANDARD2_0 && !NETFRAMEWORK\n-[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]\n-#endif\n partial class MyResolver : MsgPack::IFormatterResolver\n {\n \tpublic static readonly MyResolver Instance = new MyResolver();\n \n \tprivate static readonly MsgPack::Formatters.IMessagePackFormatter[] formatterList = new MsgPack::Formatters.IMessagePackFormatter[]\n \t{\n \t};\n \n \tprivate static readonly MsgPack::IFormatterResolver[] resolverList = new MsgPack::IFormatterResolver[]\n \t{\n \t};\n \n \tprivate MyResolver() { }\n \n \tpublic MsgPack::Formatters.IMessagePackFormatter<T> GetFormatter<T>()\n \t{\n \t\treturn FormatterCache<T>.Formatter;\n \t}\n \n-#if !NETSTANDARD2_0 && !NETFRAMEWORK\n-\t[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]\n-#endif\n \tstatic class FormatterCache<T>\n \t{\n \t\tinternal static readonly MsgPack::Formatters.IMessagePackFormatter<T> Formatter;\n \n \t\tstatic FormatterCache()\n \t\t{\n \t\t\tforeach (var formatter in formatterList)\n \t\t\t{\n \t\t\t\tif (formatter is MsgPack::Formatters.IMessagePackFormatter<T> f)\n \t\t\t\t{\n \t\t\t\t\tFormatter = f;\n \t\t\t\t\treturn;\n \t\t\t\t}\n \t\t\t}\n \n \t\t\tforeach (var resolver in resolverList)\n \t\t\t{\n \t\t\t\tvar f = resolver.GetFormatter<T>();\n \t\t\t\tif (f != null)\n \t\t\t\t{\n \t\t\t\t\tFormatter = f;\n \t\t\t\t\treturn;\n \t\t\t\t}\n \t\t\t}\n \t\t}\n \t}\n }\n \n }\n \n"
+        },
+        {
+          "name": "PrivateMemberAccessTests.FormatterForClassWithPrivateMembers(type: \"record struct\", version: CSharp10)",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MyObject.MyObjectFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "GenerationTests.CustomFormatterViaAttributeOnField(usesMapMode: False)",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.HasFieldWithCustomFormatterAttributeFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "PrivateMemberAccessTests.FormatterForClassWithPrivateMembers(type: \"class\", version: CSharp7_3)",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MyObject.MyObjectFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterOnlyWithParameterizedConstructor",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "MessagePackFormatterAttributeTests.CanGenerateMessagePackFormatterAttr",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.BarFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "CompositeResolverGeneratorTests.CompositeResolver_MixedResolverTypes",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\ncontent of 'MessagePack.SourceGenerator/MessagePack.SourceGenerator.CompositeResolverGenerator/MyResolver.g.cs' did not match. Diff shown with expected as baseline:\n \n using MsgPack = global::MessagePack;\n \n \n-#if !NETSTANDARD2_0 && !NETFRAMEWORK\n-[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]\n-#endif\n partial class MyResolver : MsgPack::IFormatterResolver\n {\n \tpublic static readonly MyResolver Instance = new MyResolver();\n \n \tprivate static readonly MsgPack::Formatters.IMessagePackFormatter[] formatterList = new MsgPack::Formatters.IMessagePackFormatter[]\n \t{\n \t};\n \n \tprivate static readonly MsgPack::IFormatterResolver[] resolverList = new MsgPack::IFormatterResolver[]\n \t{\n \t\tglobal::MessagePack.Resolvers.NativeGuidResolver.Instance,\n \t\tnew global::ResolverWithCtor(),\n \t};\n \n \tprivate MyResolver() { }\n \n \tpublic MsgPack::Formatters.IMessagePackFormatter<T> GetFormatter<T>()\n \t{\n \t\treturn FormatterCache<T>.Formatter;\n \t}\n \n-#if !NETSTANDARD2_0 && !NETFRAMEWORK\n-\t[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]\n-#endif\n \tstatic class FormatterCache<T>\n \t{\n \t\tinternal static readonly MsgPack::Formatters.IMessagePackFormatter<T> Formatter;\n \n \t\tstatic FormatterCache()\n \t\t{\n \t\t\tforeach (var formatter in formatterList)\n \t\t\t{\n \t\t\t\tif (formatter is MsgPack::Formatters.IMessagePackFormatter<T> f)\n \t\t\t\t{\n \t\t\t\t\tFormatter = f;\n \t\t\t\t\treturn;\n \t\t\t\t}\n \t\t\t}\n \n \t\t\tforeach (var resolver in resolverList)\n \t\t\t{\n \t\t\t\tvar f = resolver.GetFormatter<T>();\n \t\t\t\tif (f != null)\n \t\t\t\t{\n \t\t\t\t\tFormatter = f;\n \t\t\t\t\treturn;\n \t\t\t\t}\n \t\t\t}\n \t\t}\n \t}\n }\n \n \n"
+        },
+        {
+          "name": "MultipleTypesTests.TwoTypes(usesMapMode: False)",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.Object1Formatter.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.Object2Formatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "GenericsFormatterTests.Generics_Constraints_Multiple",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`4.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "MultipleTypesTests.TwoTypes(usesMapMode: True)",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.Object1Formatter.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.Object2Formatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "GenerationTests.UnionFormatter(container: Namespace)",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.MyTestNamespace.Derived1Formatter.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.MyTestNamespace.Derived2Formatter.g.cs\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.MyTestNamespace.MyMessagePackObjectFormatter.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.MyTestNamespace.IMyTypeFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.MyTestNamespace.MyMessagePackObjectFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "GenerationTests.EmbeddedTypes",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.AFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "ImplicitResolverForCustomFormattersTests.OpenGenericFormatter",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\ncontent of 'MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs' did not match. Diff shown with expected as baseline:\n // <auto-generated />\n \n #pragma warning disable 618, 612, 414, 168, CS1591, SA1129, SA1309, SA1312, SA1403, SA1649\n \n using MsgPack = global::MessagePack;\n \n [assembly: MsgPack::Internal.GeneratedAssemblyMessagePackResolverAttribute(typeof(MessagePack.GeneratedMessagePackResolver), 3, 0)]\n \n namespace MessagePack {\n \n /// <summary>A MessagePack resolver that uses generated formatters for types in this assembly.</summary>\n-#if !NETSTANDARD2_0 && !NETFRAMEWORK\n-[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]\n-#endif\n partial class GeneratedMessagePackResolver : MsgPack::IFormatterResolver\n {\n \t/// <summary>An instance of this resolver that only returns formatters specifically generated for types in this assembly.</summary>\n \tpublic static readonly MsgPack::IFormatterResolver Instance = new GeneratedMessagePackResolver();\n \n \tprivate GeneratedMessagePackResolver()\n \t{\n \t}\n \n \tpublic MsgPack::Formatters.IMessagePackFormatter<T> GetFormatter<T>()\n \t{\n \t\treturn FormatterCache<T>.Formatter;\n \t}\n \n-#if !NETSTANDARD2_0 && !NETFRAMEWORK\n-\t[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]\n-#endif\n \tprivate static class FormatterCache<T>\n \t{\n \t\tinternal static readonly MsgPack::Formatters.IMessagePackFormatter<T> Formatter;\n \n \t\tstatic FormatterCache()\n \t\t{\n \t\t\tvar f = GeneratedMessagePackResolverGetFormatterHelper.GetFormatter(typeof(T));\n \t\t\tif (f != null)\n \t\t\t{\n \t\t\t\tFormatter = (MsgPack::Formatters.IMessagePackFormatter<T>)f;\n \t\t\t}\n \t\t}\n \t}\n \n-#if !NETSTANDARD2_0 && !NETFRAMEWORK\n-\t[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]\n-#endif\n \tprivate static class GeneratedMessagePackResolverGetFormatterHelper\n \t{\n \t\tprivate static readonly global::System.Collections.Generic.Dictionary<global::System.Type, int> openTypeLookup = new global::System.Collections.Generic.Dictionary<global::System.Type, int>(1)\n \t\t{\n \t\t\t{ typeof(global::DynamicArgumentTuple<,>), 0 },\n \t\t};\n \n \t\tinternal static object GetFormatter(global::System.Type t)\n \t\t{\n \t\t\tif (t.IsGenericType && openTypeLookup.TryGetValue(t.GetGenericTypeDefinition(), out int openKey))\n \t\t\t{\n \t\t\t\tswitch (openKey)\n \t\t\t\t{\n \t\t\t\t\tcase 0: return global::System.Activator.CreateInstance(typeof(global::DynamicArgumentTupleFormatter<,>).MakeGenericType(t.GenericTypeArguments));\n \t\t\t\t\tdefault: return null; // unreachable\n \t\t\t\t};\n \t\t\t}\n \n \t\t\treturn null;\n \t\t}\n \t}\n }\n \n }\n \n"
+        },
+        {
+          "name": "GenerationTests.ArrayTypedProperty",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.ContainerObjectFormatter.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.SubObjectFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "GenerationTests.SystemCollectionsObjectModelCollection",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.AFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "GenerationTests.AdditionalAllowTypes",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TypeWithAutoGeneratedFormatterFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "GenerationTests.EnumFormatter_CollidingTypeNames",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.MyMessagePackObjectFormatter.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.NS1.MyEnumFormatter.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.NS2.MyEnumFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "PrivateMemberAccessTests.FormatterForClassWithPrivateMembers_MapMode",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MyObject.MyObjectFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "GenerationTests.InterfaceUnionUsedWithNullableRefAnnotation",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.UnionContainerFormatter.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.IMyTypeFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.UnionContainerFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "GenericsFormatterTests.Generics_Constraints_NullableReferenceType",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`4.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "GenerationTests.NestedMessagePackObjects",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.A.B.CFormatter.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.A.BFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "GenericsFormatterTests.GenericsOfTFormatter",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`1.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObjectFormatter.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObjectNestedFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "GenericsFormatterTests.Generics_Constraints_ReferenceType_Nullable",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`2.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "GenerationTests.CustomFormatterViaAttributeOnField(usesMapMode: True)",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.HasFieldWithCustomFormatterAttributeFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterOnlyIgnore",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "ImplicitResolverForCustomFormattersTests.MultipleFunctionalCustomFormattersForType_MultiFormatter",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\ncontent of 'MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs' did not match. Diff shown with expected as baseline:\n // <auto-generated />\n \n #pragma warning disable 618, 612, 414, 168, CS1591, SA1129, SA1309, SA1312, SA1403, SA1649\n \n using MsgPack = global::MessagePack;\n \n [assembly: MsgPack::Internal.GeneratedAssemblyMessagePackResolverAttribute(typeof(MessagePack.GeneratedMessagePackResolver), 3, 0)]\n \n namespace MessagePack {\n \n /// <summary>A MessagePack resolver that uses generated formatters for types in this assembly.</summary>\n-#if !NETSTANDARD2_0 && !NETFRAMEWORK\n-[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]\n-#endif\n partial class GeneratedMessagePackResolver : MsgPack::IFormatterResolver\n {\n \t/// <summary>An instance of this resolver that only returns formatters specifically generated for types in this assembly.</summary>\n \tpublic static readonly MsgPack::IFormatterResolver Instance = new GeneratedMessagePackResolver();\n \n \tprivate GeneratedMessagePackResolver()\n \t{\n \t}\n \n \tpublic MsgPack::Formatters.IMessagePackFormatter<T> GetFormatter<T>()\n \t{\n \t\treturn FormatterCache<T>.Formatter;\n \t}\n \n-#if !NETSTANDARD2_0 && !NETFRAMEWORK\n-\t[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]\n-#endif\n \tprivate static class FormatterCache<T>\n \t{\n \t\tinternal static readonly MsgPack::Formatters.IMessagePackFormatter<T> Formatter;\n \n \t\tstatic FormatterCache()\n \t\t{\n \t\t\tvar f = GeneratedMessagePackResolverGetFormatterHelper.GetFormatter(typeof(T));\n \t\t\tif (f != null)\n \t\t\t{\n \t\t\t\tFormatter = (MsgPack::Formatters.IMessagePackFormatter<T>)f;\n \t\t\t}\n \t\t}\n \t}\n \n-#if !NETSTANDARD2_0 && !NETFRAMEWORK\n-\t[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]\n-#endif\n \tprivate static class GeneratedMessagePackResolverGetFormatterHelper\n \t{\n \t\tprivate static readonly global::System.Collections.Generic.Dictionary<global::System.Type, int> closedTypeLookup = new global::System.Collections.Generic.Dictionary<global::System.Type, int>(1)\n \t\t{\n \t\t\t{ typeof(global::B), 0 },\n \t\t};\n \n \t\tinternal static object GetFormatter(global::System.Type t)\n \t\t{\n \t\t\tif (closedTypeLookup.TryGetValue(t, out int closedKey))\n \t\t\t{\n \t\t\t\tswitch (closedKey)\n \t\t\t\t{\n \t\t\t\t\tcase 0: return new global::MultiFormatter();\n \t\t\t\t\tdefault: return null; // unreachable\n \t\t\t\t};\n \t\t\t}\n \n \t\t\treturn null;\n \t\t}\n \t}\n }\n \n }\n \n"
+        },
+        {
+          "name": "GenerationTests.GenericDataTypeWithPrivateMember",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.HasPrivateSerializedMemberAndIsGenericNamed`1.HasPrivateSerializedMemberAndIsGenericNamedFormatter.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.HasPrivateSerializedMemberAndIsGenericOrdinal`1.HasPrivateSerializedMemberAndIsGenericOrdinalFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterOnlyWithParameterizedConstructorPartially",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "GenerationTests.EnumFormatter(container: NestingClass, usesMapMode: True)",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.ContainingClass.MyMessagePackObjectFormatter.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.ContainingClass.MyEnumFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.ContainingClass.MyMessagePackObjectFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "GenerationTests.SystemMemoryTypes",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.AFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "GenerationTests.NoPrivateAccessNeeded",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.Test3Formatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterSetterWithParameterizedConstructorAndDefaultValue",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "GenerationTests.CustomFormatterForGenericWithConstraints",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.SampleObjectFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterSetterWithDefaultValue",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "GenericsFormatterTests.Generics_Constraints_Struct",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`1.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "GenerationTests.GenericWithConstraintsThatReferenceTypeParameter",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.GenericConstrainedClassIntKeyFormatter`2.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "GenerationTests.CustomFormatterViaAttributeOnProperty(usesMapMode: False)",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.HasPropertyWithCustomFormatterAttributeFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "GenericsFormatterTests.NullableFormatter",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObjectFormatter.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyEnumFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObjectFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "GenerationTests.CustomFormatterWithSingletonPattern",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.GFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "GenerationTests.NoPrivateMemberCollected",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TestFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "GenerationTests.UnionFormatter(container: None)",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.Derived1Formatter.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.Derived2Formatter.g.cs\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.MyMessagePackObjectFormatter.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.IMyTypeFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.MyMessagePackObjectFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "PrivateMemberAccessTests.FormatterForClassWithPrivateMembers_WithNamespace",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.A.MyObject.MyObjectFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "GenerationTests.DeserializingConstructorParameterMemberTypeAssignability_Incompatible",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\ncontent of 'MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs' did not match. Diff shown with expected as baseline:\n // <auto-generated />\n \n #pragma warning disable 618, 612, 414, 168, CS1591, SA1129, SA1309, SA1312, SA1403, SA1649\n \n using MsgPack = global::MessagePack;\n \n [assembly: MsgPack::Internal.GeneratedAssemblyMessagePackResolverAttribute(typeof(MessagePack.GeneratedMessagePackResolver), 3, 0)]\n \n namespace MessagePack {\n \n /// <summary>A MessagePack resolver that uses generated formatters for types in this assembly.</summary>\n-#if !NETSTANDARD2_0 && !NETFRAMEWORK\n-[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]\n-#endif\n partial class GeneratedMessagePackResolver : MsgPack::IFormatterResolver\n {\n \t/// <summary>An instance of this resolver that only returns formatters specifically generated for types in this assembly.</summary>\n \tpublic static readonly MsgPack::IFormatterResolver Instance = new GeneratedMessagePackResolver();\n \n \tprivate GeneratedMessagePackResolver()\n \t{\n \t}\n \n \tpublic MsgPack::Formatters.IMessagePackFormatter<T> GetFormatter<T>()\n \t{\n \t\treturn FormatterCache<T>.Formatter;\n \t}\n \n-#if !NETSTANDARD2_0 && !NETFRAMEWORK\n-\t[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]\n-#endif\n \tprivate static class FormatterCache<T>\n \t{\n \t\tinternal static readonly MsgPack::Formatters.IMessagePackFormatter<T> Formatter;\n \n \t\tstatic FormatterCache()\n \t\t{\n \t\t\tvar f = GeneratedMessagePackResolverGetFormatterHelper.GetFormatter(typeof(T));\n \t\t\tif (f != null)\n \t\t\t{\n \t\t\t\tFormatter = (MsgPack::Formatters.IMessagePackFormatter<T>)f;\n \t\t\t}\n \t\t}\n \t}\n \n-#if !NETSTANDARD2_0 && !NETFRAMEWORK\n-\t[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]\n-#endif\n \tprivate static class GeneratedMessagePackResolverGetFormatterHelper\n \t{\n \t\tprivate static readonly global::System.Collections.Generic.Dictionary<global::System.Type, int> closedTypeLookup = new global::System.Collections.Generic.Dictionary<global::System.Type, int>(1)\n \t\t{\n \t\t\t{ typeof(global::System.Collections.Generic.List<int?>), 0 },\n \t\t};\n \n \t\tinternal static object GetFormatter(global::System.Type t)\n \t\t{\n \t\t\tif (closedTypeLookup.TryGetValue(t, out int closedKey))\n \t\t\t{\n \t\t\t\tswitch (closedKey)\n \t\t\t\t{\n \t\t\t\t\tcase 0: return new MsgPack::Formatters.ListFormatter<int?>();\n \t\t\t\t\tdefault: return null; // unreachable\n \t\t\t\t};\n \t\t\t}\n \n \t\t\treturn null;\n \t\t}\n \t}\n }\n \n }\n \n"
+        },
+        {
+          "name": "GenerationTests.CustomFormatterViaAttributeOnProperty(usesMapMode: True)",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.HasPropertyWithCustomFormatterAttributeFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "GenerationTests.AdditionalFormatterTypes_RedundantAttribute",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TypeWithAutoGeneratedFormatterFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "GenerationTests.EnumFormatter(container: NestingClass, usesMapMode: False)",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.ContainingClass.MyMessagePackObjectFormatter.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.ContainingClass.MyEnumFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.ContainingClass.MyMessagePackObjectFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "GenericsFormatterTests.NestedGenericTypes",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`1.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyInnerGenericObjectFormatter`1.g.cs\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObjectFormatter.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObject2Formatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObjectFormatter.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.WrapperFormatter`1.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "GenerationTests.NonGenericType_CollidingTypeNames",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.MyMessagePackObjectFormatter.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.NS1.MyTypeFormatter.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.NS2.MyTypeFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "GenerationTests.NestedMessagePackObjects_Array",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.A.B.CFormatter.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.A.BFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterOnlyWithParameterizedConstructorDefaultValue",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "GenericsFormatterTests.GenericsUnionFormatter",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.WrapperFormatter`1.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "GenericsFormatterTests.GenericsOfT1T2Formatter",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`2.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObjectFormatter.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObjectNestedFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "GenericsFormatterTests.GenericsUnionFormatter_Nested",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`1.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyInnerGenericObjectFormatter`1.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.WrapperFormatter`1.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "GenericsFormatterTests.WellKnownGenericsFormatter",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObjectFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "GenerationTests.AdditionalFormatterTypes",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TypeWithAutoGeneratedFormatterFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "GenerationTests.MixType_CollidingTypeNames",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.MyMessagePackObjectFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.NS1.MyTypeFormatter.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.NS2.MyTypeFormatter.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.NS3.MyTypeFormatter`1.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.NS1.MyTypeFormatter.g.cs\n"
+        },
+        {
+          "name": "GenerationTests.DeserializingConstructorParameterMemberTypeAssignability_MemberAssignsToParamType",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.AFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "GenerationTests.GenericType",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.ContainerObjectFormatter.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.MyGenericTypeFormatter`1.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "GenericsFormatterTests.GenericsOfTFormatter_FormatterOnly",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`1.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "GenericsFormatterTests.Generics_Defined_In_ReferencedProject",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`1.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObjectFormatter.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObjectNestedFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "GenerationTests.EnumFormatter(container: None, usesMapMode: True)",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.MyMessagePackObjectFormatter.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.MyEnumFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.MyMessagePackObjectFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "GenerationTests.EnumFormatter(container: None, usesMapMode: False)",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.MyMessagePackObjectFormatter.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.MyEnumFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.MyMessagePackObjectFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "GenerationTests.GenericCustomFormatter",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.SampleObject.SampleObjectFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterSetterWithParameterizedConstructor",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "GenerationTests.GenericType_CollidingTypeNames",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.MyMessagePackObjectFormatter.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.NS1.MyTypeFormatter`1.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.NS2.MyTypeFormatter`1.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "GenericsFormatterTests.GenericsOfTFormatter_WithKnownTypes",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`1.g.cs\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObjectFormatter.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObject2Formatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObjectFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "GenerationTests.SimplifiedNameForKeywordsAndSyntaxSugar",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.SampleObjectFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "GenerationTests.Array2DJaggedProperty",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.ContainerObjectFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "CodeCoverageExclusionTests.ExcludeAttributeIsGuardedForTargetsWhereItIsUnavailable",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "Generated file 'MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs' has no [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]."
+        },
+        {
+          "name": "GenerationTests.GenericTypeArg",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.GenericClassFormatter`2.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "GenericsFormatterTests.RecursiveGenerics_Direct",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.AFormatter`1.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterSetter",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "GenerationTests.NoFieldWithCustomFormatterCollected",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TestFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        },
+        {
+          "name": "GenerationTests.EnumFormatter(container: Namespace, usesMapMode: True)",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n+MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.MyTestNamespace.MyMessagePackObjectFormatter.g.cs\n MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.MyTestNamespace.MyEnumFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.MyTestNamespace.MyMessagePackObjectFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n"
+        }
+      ]
+    },
+    {
+      "id": "existing-tests:MessagePack.SourceGenerator.Tests",
+      "check": "existing-tests",
+      "domain": "backend",
+      "asserts": "no pre-existing test that passed at base fails at head",
+      "performedBy": "dotnet test in container mcr.microsoft.com/dotnet/sdk:8.0.402-jammy",
+      "commands": [
+        "docker run --rm --user 1000:1000 -e HOME=/home/huyhoangle/junction/review-proof/.work/home -e DOTNET_CLI_HOME=/home/huyhoangle/junction/review-proof/.work/home -e NUGET_PACKAGES=/home/huyhoangle/junction/review-proof/.work/nuget -e DOTNET_CLI_TELEMETRY_OPTOUT=1 -e DOTNET_NOLOGO=1 -v /home/huyhoangle/junction/review-proof/.work:/home/huyhoangle/junction/review-proof/.work -w /home/huyhoangle/junction/review-proof/.work/wt/dc6b9f85ed64e6372fb277b7cc4d501cd51c9ac3 mcr.microsoft.com/dotnet/sdk:8.0.402-jammy dotnet test tests/MessagePack.SourceGenerator.Tests/MessagePack.SourceGenerator.Tests.csproj --logger 'trx;LogFileName=head.MessagePack.SourceGenerator.Tests.trx' --results-directory /home/huyhoangle/junction/review-proof/.work/results/data_calibration_template-source-drift_runs/head.MessagePack.SourceGenerator.Tests",
+        "docker run --rm --user 1000:1000 -e HOME=/home/huyhoangle/junction/review-proof/.work/home -e DOTNET_CLI_HOME=/home/huyhoangle/junction/review-proof/.work/home -e NUGET_PACKAGES=/home/huyhoangle/junction/review-proof/.work/nuget -e DOTNET_CLI_TELEMETRY_OPTOUT=1 -e DOTNET_NOLOGO=1 -v /home/huyhoangle/junction/review-proof/.work:/home/huyhoangle/junction/review-proof/.work -w /home/huyhoangle/junction/review-proof/.work/wt/32258fdbee4bcd653c79f51b4376b5103c6f4d27 mcr.microsoft.com/dotnet/sdk:8.0.402-jammy dotnet test tests/MessagePack.SourceGenerator.Tests/MessagePack.SourceGenerator.Tests.csproj --logger 'trx;LogFileName=base.MessagePack.SourceGenerator.Tests.trx' --results-directory /home/huyhoangle/junction/review-proof/.work/results/data_cases_2297_runs/base.MessagePack.SourceGenerator.Tests"
+      ],
+      "commits": [
+        "dc6b9f85ed64e6372fb277b7cc4d501cd51c9ac3",
+        "32258fdbee4bcd653c79f51b4376b5103c6f4d27"
+      ],
+      "durationMs": 54242,
+      "logs": [
+        "data/calibration/template-source-drift/runs/head.MessagePack.SourceGenerator.Tests.log",
+        "data/calibration/template-source-drift/runs/head.MessagePack.SourceGenerator.Tests.trx",
+        "data/cases/2297/runs/base.MessagePack.SourceGenerator.Tests.log",
+        "data/cases/2297/runs/base.MessagePack.SourceGenerator.Tests.trx"
+      ],
+      "status": "passed",
+      "summary": "167 pre-existing tests: 167 pass at both, 0 regressed, 0 newly pass, 0 fail at both; 0 removed at head.",
+      "tests": [
+        {
+          "name": "GenerationTests.Array2DJaggedProperty",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack011PartialTypeRequiredTests.NestedPartialTypeRequiresPartialSelfAndDeclaringType",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.GenericTypeArg",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.MessageFormatterAttribute",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.NoPrivateAccessNeeded",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack014NullableRefTypeFormatterTests.RefTypeWithoutNullableAnnotationsEnabled",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MemberSerializationInfoTests.Equals_ByValue",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "CompositeResolverGeneratorTests.CompositeResolver_MixedResolverTypes",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack002UseConstantOptionsAnalyzerTests.Properties",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.CustomFormatterViaAttributeOnField(usesMapMode: False)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.AbstractFormatterDoesNotAttractAttention",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.AddAttributeToTypeForRecord2",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.ExcludeFormatterFromSourceGeneratedResolver",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.NoGenerationForAnnotationOnly",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenericsFormatterTests.WellKnownGenericsFormatter",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.DoNotAddAttributesToClassWithPrimaryCtor",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack002UseConstantOptionsAnalyzerTests.Members_BasedOnStaticOptions",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.GenericDataTypeWithPrivateMember",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.AddAttributesToMembersOfRecordStruct",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenericsFormatterTests.Generics_Constraints_Struct",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "PrivateMemberAccessTests.FormatterForClassWithPrivateMembers_Nested_NonPartialTypes(type: \"struct\", languageVersion: CSharp7_3)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "FormatterCodeFixProviderTests.InaccessibleCustomFormatterType(initialModifiers: \"protected \", expectedModifiers: \"protected internal \")",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "PrivateMemberAccessTests.FormatterForClassWithPrivateMembers_MapMode",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "FormatterCodeFixProviderTests.InaccessibleCustomFormatterConstructor(initialModifiers: \"private protected \", expectedModifiers: \"internal \")",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.SystemMemoryTypes",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterSetterWithParameterizedConstructor",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.AddAttributesToMembersOfRecord",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.UnionFormatter(container: None)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterSetterWithParameterizedConstructorAndDefaultValue",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.EnumFormatter(container: NestingClass, usesMapMode: False)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack002UseConstantOptionsAnalyzerTests.Fields",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.UnionFormatter(container: Namespace)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "FormatterCodeFixProviderTests.InaccessibleCustomFormatterType(initialModifiers: \"\", expectedModifiers: \"internal \")",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MultipleTypesTests.TwoTypes(usesMapMode: False)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack002UseConstantOptionsAnalyzerTests.Invocation_WithMutableStaticOptions",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenericsFormatterTests.Generics_Constraints_NullableReferenceType",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenericsFormatterTests.GenericsUnionFormatter",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack015AllowPrivateRequiredTests.SetWhenNonPublicPropertyIsAnnotated",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.AdditionalAllowTypes",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "FormatterCodeFixProviderTests.InaccessibleCustomFormatterConstructor(initialModifiers: \"private \", expectedModifiers: \"internal \")",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "CustomStringKeyFormatterTests.RecordWithWithInitOnlyProps",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.AddAttributeToType_Generic",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MultipleTypesTests.TwoTypes(usesMapMode: True)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.AddAttributeToType_Properties",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.DerivedAttributes_SourceGenerationDisabled",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.InterfaceUnionUsedWithNullableRefAnnotation",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.CodeFixAppliesAcrossFiles",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.DeserializingConstructorParameterMemberTypeAssignability_MemberAssignsToParamType",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.GenericCustomFormatter",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "CompositeResolverGeneratorTests.CompositeResolver_Nested",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.CustomFormatterForGenericWithConstraints",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.NestedMessagePackObjects_Array",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.AddAttributeToTypeForRecord1",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.SystemCollectionsObjectModelCollection",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.AddAttributeToTypeForRecordPrimaryConstructor",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenericsFormatterTests.GenericsOfTFormatter",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenericsFormatterTests.Generics_Defined_In_ReferencedProject",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.AddAttributesToMembersOfRecordStructWithPrimaryCtor",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "ImplicitResolverForCustomFormattersTests.OpenGenericFormatter",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "PrivateMemberAccessTests.FormatterForClassWithPrivateMembers_NonPartialTypes(type: \"record\", languageVersion: CSharp9)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "PrivateMemberAccessTests.FormatterForClassWithPrivateMembers(type: \"record\", version: CSharp9)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenericsFormatterTests.GenericsUnionFormatter_Nested",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.UnionFormatter(container: NestingClass)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterOnlyWithParameterizedConstructor",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterOnlyWithParameterizedConstructorDefaultValue",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.NoFieldWithCustomFormatterCollected",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenericsFormatterTests.Generics_Constraints_Type",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "FullModelTests.Equals_Null",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.EnumFormatter(container: None, usesMapMode: False)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.CustomFormatterViaAttributeOnProperty(usesMapMode: True)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack002UseConstantOptionsAnalyzerTests.Invocation_WithImmutableStaticOptions",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.AddIgnoreAttributesToMembers",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterOnlyMixed",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack011PartialTypeRequiredTests.NestedPartialTypeRequiresPartialDeclaringType",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.DeserializingConstructorParameterMemberTypeAssignability_Incompatible",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "PrivateMemberAccessTests.FormatterForClassWithPrivateMembers_WithNamespace",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenericsFormatterTests.GenericsOfT1T2Formatter",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "FormatterCodeFixProviderTests.InaccessibleCustomFormatterType(initialModifiers: \"private \", expectedModifiers: \"internal \")",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.ImplicitFormatterTypes",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack015AllowPrivateRequiredTests.AddWhenNonPublicPropertyIsAnnotated",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.InvalidMessageFormatterType",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterSetterWithDefaultValue",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.EnumFormatter(container: Namespace, usesMapMode: True)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterOnlyIgnore",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MessagePackFormatterAttributeTests.CanGenerateMessagePackFormatterAttr",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MultipleTypesTests.ZeroTypes",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "ImplicitResolverForCustomFormattersTests.MultipleFunctionalCustomFormattersForType",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "FormatterCodeFixProviderTests.InaccessibleCustomFormatterType(initialModifiers: \"private protected \", expectedModifiers: \"internal \")",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.PrivateMembersInBaseClassNeedNoAttribution",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenericsFormatterTests.Generics_Constraints_Multiple",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.NoPrivateMemberCollected",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "PrivateMemberAccessTests.FormatterForClassWithPrivateMembers_NonPartialTypes(type: \"struct\", languageVersion: CSharp7_3)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenericsFormatterTests.GenericsOfTFormatter_FormatterOnly",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.NonGenericType_CollidingTypeNames",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "ImplicitResolverForCustomFormattersTests.MultipleFunctionalCustomFormattersForType_MultiFormatter",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack001SpecifyOptionsAnalyzerTests.InvocationWithOptions_LocalVariable",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.AdditionalFormatterTypes_RedundantAttribute",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.NoMessagePackReference",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.AddAttributeToField_WithComment",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenericsFormatterTests.RecursiveGenerics_Direct",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "FullModelTests.Equals_ByValue",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack014NullableRefTypeFormatterTests.ValueTypeWithoutNullableAnnotation",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "FormatterCodeFixProviderTests.InaccessibleCustomFormatterConstructor(initialModifiers: \"\", expectedModifiers: \"internal \")",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterSetterWithParameterizedConstructorPartially",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenericsFormatterTests.Generics_Constraints_ReferenceType_Nullable",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.AddAttributesToMembers_MixedVisibility",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.EnumFormatter(container: None, usesMapMode: True)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "UnionSerializationInfoTests.Equals_ByValue",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack015AllowPrivateRequiredTests.AddForNonPublicType",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "PrivateMemberAccessTests.FormatterForClassWithPrivateMembers(type: \"class\", version: CSharp7_3)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack015AllowPrivateRequiredTests.AddForPublicTypeNestedUnderNonPublicType",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.CustomFormatterViaAttributeOnField(usesMapMode: True)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.AddAttributesToMembers_AllowPrivateAttribute",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.AddAttributeToType_Fields",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack014NullableRefTypeFormatterTests.RefTypeWithoutNullableGetsFixed",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack001SpecifyOptionsAnalyzerTests.Invocation_OmittedOptionalParameter_VB",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "PrivateMemberAccessTests.FormatterForClassWithPrivateMembers(type: \"struct\", version: CSharp7_3)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterOnlyWithParameterizedConstructorPartially",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "ImplicitResolverForCustomFormattersTests.CustomFormatterWithoutDefaultConstructor",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack001SpecifyOptionsAnalyzerTests.Invocation_ExplicitlyNull",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "PrivateMemberAccessTests.FormatterForClassWithPrivateMembers_NonPartialTypes(type: \"class\", languageVersion: CSharp7_3)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "PrivateMemberAccessTests.FormatterForClassWithPrivateMembers(type: \"record struct\", version: CSharp10)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.SpecifyFormatterFromStockSet",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.AddAttributesToMembersOfRecordWithPrimaryCtor",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack001SpecifyOptionsAnalyzerTests.Invocation_OmittedOptionalParameter",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "FormatterCodeFixProviderTests.InaccessibleCustomFormatterConstructor(initialModifiers: \"protected \", expectedModifiers: \"protected internal \")",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "ImplicitResolverForCustomFormattersTests.MultipleFunctionalCustomFormattersForType_OnlyOneNonExcluded",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.CustomFormatterViaAttributeOnProperty(usesMapMode: False)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterOnlyDefaultValue",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.NestedMessagePackObjects",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack002UseConstantOptionsAnalyzerTests.Invocation_WithImmutableStaticOptions_VB",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.AddAttributeToGenericType",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.EnumFormatter(container: Namespace, usesMapMode: False)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "ImplicitResolverForCustomFormattersTests.CustomFormatterWithoutDefaultConstructor_Excluded",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterSetter",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack011PartialTypeRequiredTests.CodeFixOffered",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterSetterWithParameterizedConstructorDoNotUseSetter",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.InitPropertyInitializer",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.CustomFormatterWithSingletonPattern",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "PrivateMemberAccessTests.FormatterForClassWithPrivateMembers_Nested_NonPartialTypes(type: \"class\", languageVersion: CSharp7_3)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.AddAttributesToMembers",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack012InaccessibleDataTypeTests.InaccessibleNestedDataType",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterSetterWithDefaultValueInputPartially",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenericsFormatterTests.GenericsOfTFormatter_WithKnownTypes",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.SimplifiedNameForKeywordsAndSyntaxSugar",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack014NullableRefTypeFormatterTests.RefTypeWithNullableAnnotation",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenericsFormatterTests.NestedGenericTypes",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.ArrayTypedProperty",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack012InaccessibleDataTypeTests.InaccessibleNestedDataType_OuterNesting",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenericsFormatterTests.NullableFormatter",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "CustomStringKeyFormatterTests.RecordWithPrimaryConstructor",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.EmbeddedTypes",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.GenericWithConstraintsThatReferenceTypeParameter",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.NullStringKey",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.AddAttributesToMembers_PublicOnly",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.GenericType_CollidingTypeNames",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.NonDefaultDeserializingConstructor_Private",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.DerivedAttributes",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.NameCollisionsInForceMapMode",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.EnumFormatter_CollidingTypeNames",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack015AllowPrivateRequiredTests.AddForNonPublicDeserializingConstructor",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.AdditionalFormatterTypes",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.EnumFormatter(container: NestingClass, usesMapMode: True)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "PrivateMemberAccessTests.FormatterForClassWithPrivateMembers_Nested_NonPartialTypes(type: \"record\", languageVersion: CSharp9)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.GenericType",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.AddAttributeToType_Nullable",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.MixType_CollidingTypeNames",
+          "base": "passed",
+          "head": "passed"
+        }
+      ],
+      "details": {
+        "preExisting": 167,
+        "removedAtHead": []
+      }
+    },
+    {
+      "id": "issue-reproduction",
+      "check": "issue-reproduction",
+      "domain": "general",
+      "asserts": "a test the change added contains a code block from the requirement",
+      "performedBy": "reviewproof 0.1.0 (static check, in-process)",
+      "commands": [
+        "node src/cli.ts check planted-template-source-drift"
+      ],
+      "commits": [
+        "32258fdbee4bcd653c79f51b4376b5103c6f4d27",
+        "dc6b9f85ed64e6372fb277b7cc4d501cd51c9ac3"
+      ],
+      "status": "not_run",
+      "reason": "the requirement contains no code blocks",
+      "summary": "The requirement contains no code blocks.",
+      "durationMs": 0,
+      "logs": [],
+      "details": {
+        "blocks": []
+      }
+    },
+    {
+      "id": "security-surface",
+      "check": "security-surface",
+      "domain": "security",
+      "asserts": "no build or dependency file changed and no added line matches a security-sensitive pattern",
+      "performedBy": "reviewproof 0.1.0 (static check, in-process)",
+      "commands": [
+        "node src/cli.ts check planted-template-source-drift"
+      ],
+      "commits": [
+        "32258fdbee4bcd653c79f51b4376b5103c6f4d27",
+        "dc6b9f85ed64e6372fb277b7cc4d501cd51c9ac3"
+      ],
+      "status": "passed",
+      "summary": "Pattern scan found nothing; this is not proof that no vulnerability exists.",
+      "durationMs": 0,
+      "logs": [],
+      "details": {
+        "buildConfigFiles": [],
+        "hits": []
+      }
+    }
+  ],
+  "notChecked": []
+}

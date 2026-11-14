@@ -1,0 +1,2118 @@
+
+  Determining projects to restore...
+/home/huyhoangle/junction/review-proof/.work/wt/b715699ce309930670e9dbcbe6f3276aff7fa287/tests/MessagePack.SourceGenerator.Tests/MessagePack.SourceGenerator.Tests.csproj : warning NU1901: Package 'NuGet.Protocol' 6.8.0 has a known low severity vulnerability, https://github.com/advisories/GHSA-g4vj-cjjj-v7hg
+  Restored /home/huyhoangle/junction/review-proof/.work/wt/b715699ce309930670e9dbcbe6f3276aff7fa287/src/MessagePack.Annotations/MessagePack.Annotations.csproj (in 327 ms).
+  Restored /home/huyhoangle/junction/review-proof/.work/wt/b715699ce309930670e9dbcbe6f3276aff7fa287/src/MessagePack.SourceGenerator/MessagePack.SourceGenerator.csproj (in 327 ms).
+  Restored /home/huyhoangle/junction/review-proof/.work/wt/b715699ce309930670e9dbcbe6f3276aff7fa287/src/MessagePack.Analyzers/MessagePack.Analyzers.csproj (in 327 ms).
+  Restored /home/huyhoangle/junction/review-proof/.work/wt/b715699ce309930670e9dbcbe6f3276aff7fa287/src/MessagePack/MessagePack.csproj (in 327 ms).
+  Restored /home/huyhoangle/junction/review-proof/.work/wt/b715699ce309930670e9dbcbe6f3276aff7fa287/src/MessagePack.Analyzers.CodeFixes/MessagePack.Analyzers.CodeFixes.csproj (in 327 ms).
+  Restored /home/huyhoangle/junction/review-proof/.work/wt/b715699ce309930670e9dbcbe6f3276aff7fa287/tests/MessagePack.SourceGenerator.Tests/MessagePack.SourceGenerator.Tests.csproj (in 362 ms).
+/home/huyhoangle/junction/review-proof/.work/wt/b715699ce309930670e9dbcbe6f3276aff7fa287/tests/MessagePack.SourceGenerator.Tests/MessagePack.SourceGenerator.Tests.csproj : warning NU1901: Package 'NuGet.Protocol' 6.8.0 has a known low severity vulnerability, https://github.com/advisories/GHSA-g4vj-cjjj-v7hg
+  MessagePack.SourceGenerator -> /home/huyhoangle/junction/review-proof/.work/wt/b715699ce309930670e9dbcbe6f3276aff7fa287/bin/MessagePack.SourceGenerator/Debug/netstandard2.0/MessagePack.SourceGenerator.dll
+  MessagePack.Analyzers.CodeFixes -> /home/huyhoangle/junction/review-proof/.work/wt/b715699ce309930670e9dbcbe6f3276aff7fa287/bin/MessagePack.Analyzers.CodeFixes/Debug/netstandard2.0/MessagePack.Analyzers.CodeFixes.dll
+  MessagePack.Analyzers -> /home/huyhoangle/junction/review-proof/.work/wt/b715699ce309930670e9dbcbe6f3276aff7fa287/bin/MessagePack.Analyzers/Debug/netstandard2.0/MessagePack.Analyzers.dll
+  MessagePack.Annotations -> /home/huyhoangle/junction/review-proof/.work/wt/b715699ce309930670e9dbcbe6f3276aff7fa287/bin/MessagePack.Annotations/Debug/netstandard2.0/MessagePack.Annotations.dll
+  MessagePack -> /home/huyhoangle/junction/review-proof/.work/wt/b715699ce309930670e9dbcbe6f3276aff7fa287/bin/MessagePack/Debug/net8.0/MessagePack.dll
+  MessagePack.SourceGenerator.Tests -> /home/huyhoangle/junction/review-proof/.work/wt/b715699ce309930670e9dbcbe6f3276aff7fa287/bin/MessagePack.SourceGenerator.Tests/Debug/net8.0/MessagePack.SourceGenerator.Tests.dll
+Test run for /home/huyhoangle/junction/review-proof/.work/wt/b715699ce309930670e9dbcbe6f3276aff7fa287/bin/MessagePack.SourceGenerator.Tests/Debug/net8.0/MessagePack.SourceGenerator.Tests.dll (.NETCoreApp,Version=v8.0)
+VSTest version 17.11.0 (x64)
+
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+[xUnit.net 00:00:05.29]     GenerationTests.EnumFormatter(container: None, usesMapMode: False) [FAIL]
+[xUnit.net 00:00:05.41]     GenerationTests.EnumFormatter(container: None, usesMapMode: True) [FAIL]
+[xUnit.net 00:00:05.48]     GenerationTests.EnumFormatter(container: NestingClass, usesMapMode: False) [FAIL]
+  Failed GenerationTests.EnumFormatter(container: None, usesMapMode: False) [193 ms]
+  Error Message:
+   System.InvalidOperationException : Context: Source generator application
+Context: Verifying source generated files
+Expected source file list to match
++MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs
++MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.MyMessagePackObjectFormatter.g.cs
+ MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.MyEnumFormatter.g.cs
+-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.MyMessagePackObjectFormatter.g.cs
+-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs
+
+  Stack Trace:
+     at Microsoft.CodeAnalysis.Testing.DefaultVerifier.Fail(String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/DefaultVerifier.cs:line 105
+   at Microsoft.CodeAnalysis.Testing.IVerifierExtensions.EqualOrDiff(IVerifier verifier, String expected, String actual, String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/Extensions/IVerifierExtensions.cs:line 67
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.<VerifySourceGeneratorAsync>g__VerifyDocuments|66_0(IVerifier verifier, ImmutableArray`1 actualDocuments, ImmutableArray`1 expectedDocuments, Boolean allowReordering, String defaultFilePathPrefix, Func`3 getNameAndFolders, TimeSpan matchTimeout) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 407
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifySourceGeneratorAsync(String language, ImmutableArray`1 sourceGenerators, SolutionState testState, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 313
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifySourceGeneratorAsync(SolutionState testState, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 268
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunImplAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 202
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 172
+   at CSharpSourceGeneratorVerifier`1.Test.RunDefaultAsync(ITestOutputHelper logger) in /home/huyhoangle/junction/review-proof/.work/wt/b715699ce309930670e9dbcbe6f3276aff7fa287/tests/MessagePack.SourceGenerator.Tests/Verifiers/CSharpSourceGeneratorVerifier`1+Test.cs:line 75
+   at GenerationTests.EnumFormatter(ContainerKind container, Boolean usesMapMode) in /home/huyhoangle/junction/review-proof/.work/wt/b715699ce309930670e9dbcbe6f3276aff7fa287/tests/MessagePack.SourceGenerator.Tests/GenerationTests.cs:line 41
+--- End of stack trace from previous location ---
+  Standard Output Messages:
+ --------------------------------------------------------------
+ MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.MyEnumFormatter.g.cs
+ --------------------------------------------------------------
+      1: // <auto-generated />
+      2: 
+      3: #pragma warning disable 618, 612, 414, 168, CS1591, SA1129, SA1309, SA1312, SA1403, SA1649
+      4: 
+      5: using MsgPack = global::MessagePack;
+      6: 
+      7: namespace MessagePack {
+      8: partial class GeneratedMessagePackResolver {
+      9: 
+     10: #if !NETSTANDARD2_0 && !NETFRAMEWORK
+     11: 	[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+     12: #endif
+     13: 	internal sealed class MyEnumFormatter : MsgPack::Formatters.IMessagePackFormatter<global::MyEnum>
+     14: 	{
+     15: 		public void Serialize(ref MsgPack::MessagePackWriter writer, global::MyEnum value, MsgPack::MessagePackSerializerOptions options)
+     16: 		{
+     17: 			writer.Write((int)value);
+     18: 		}
+     19: 
+     20: 		public global::MyEnum Deserialize(ref MsgPack::MessagePackReader reader, MsgPack::MessagePackSerializerOptions options)
+     21: 		{
+     22: 			return (global::MyEnum)reader.ReadInt32();
+     23: 		}
+     24: 	}
+     25: 
+     26: }
+     27: }
+     28: 
+ --------------------------------------------------------------
+ --------------------------------------------------------------
+ MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.MyMessagePackObjectFormatter.g.cs
+ --------------------------------------------------------------
+      1: // <auto-generated />
+      2: 
+      3: #pragma warning disable 618, 612, 414, 168, CS1591, SA1129, SA1309, SA1312, SA1403, SA1649
+      4: 
+      5: #pragma warning disable CS8669 // We may leak nullable annotations into generated code.
+      6: 
+      7: using MsgPack = global::MessagePack;
+      8: 
+      9: namespace MessagePack {
+     10: partial class GeneratedMessagePackResolver {
+     11: 
+     12: #if !NETSTANDARD2_0 && !NETFRAMEWORK
+     13: 	[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+     14: #endif
+     15: 	internal sealed class MyMessagePackObjectFormatter : MsgPack::Formatters.IMessagePackFormatter<global::MyMessagePackObject>
+     16: 	{
+     17: 
+     18: 		public void Serialize(ref MsgPack::MessagePackWriter writer, global::MyMessagePackObject value, MsgPack::MessagePackSerializerOptions options)
+     19: 		{
+     20: 			if (value == null)
+     21: 			{
+     22: 				writer.WriteNil();
+     23: 				return;
+     24: 			}
+     25: 
+     26: 			MsgPack::IFormatterResolver formatterResolver = options.Resolver;
+     27: 			writer.WriteArrayHeader(1);
+     28: 			MsgPack::FormatterResolverExtensions.GetFormatterWithVerify<global::MyEnum>(formatterResolver).Serialize(ref writer, value.EnumValue, options);
+     29: 		}
+     30: 
+     31: 		public global::MyMessagePackObject Deserialize(ref MsgPack::MessagePackReader reader, MsgPack::MessagePackSerializerOptions options)
+     32: 		{
+     33: 			if (reader.TryReadNil())
+     34: 			{
+     35: 				return null;
+     36: 			}
+     37: 
+     38: 			options.Security.DepthStep(ref reader);
+     39: 			MsgPack::IFormatterResolver formatterResolver = options.Resolver;
+     40: 			var length = reader.ReadArrayHeader();
+     41: 			var ____result = new global::MyMessagePackObject();
+     42: 
+     43: 			for (int i = 0; i < length; i++)
+     44: 			{
+     45: 				switch (i)
+     46: 				{
+     47: 					case 0:
+     48: 						____result.EnumValue = MsgPack::FormatterResolverExtensions.GetFormatterWithVerify<global::MyEnum>(formatterResolver).Deserialize(ref reader, options);
+     49: 						break;
+     50: 					default:
+     51: 						reader.Skip();
+     52: 						break;
+     53: 				}
+     54: 			}
+     55: 
+     56: 			reader.Depth--;
+     57: 			return ____result;
+     58: 		}
+     59: 	}
+     60: }
+     61: }
+     62: 
+ --------------------------------------------------------------
+ --------------------------------------------------------------
+ MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs
+ --------------------------------------------------------------
+      1: // <auto-generated />
+      2: 
+      3: #pragma warning disable 618, 612, 414, 168, CS1591, SA1129, SA1309, SA1312, SA1403, SA1649
+      4: 
+      5: using MsgPack = global::MessagePack;
+      6: 
+      7: [assembly: MsgPack::Internal.GeneratedAssemblyMessagePackResolverAttribute(typeof(MessagePack.GeneratedMessagePackResolver), 3, 0)]
+      8: 
+      9: namespace MessagePack {
+     10: 
+     11: /// <summary>A MessagePack resolver that uses generated formatters for types in this assembly.</summary>
+     12: #if !NETSTANDARD2_0 && !NETFRAMEWORK
+     13: [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+     14: #endif
+     15: partial class GeneratedMessagePackResolver : MsgPack::IFormatterResolver
+     16: {
+     17: 	/// <summary>An instance of this resolver that only returns formatters specifically generated for types in this assembly.</summary>
+     18: 	public static readonly MsgPack::IFormatterResolver Instance = new GeneratedMessagePackResolver();
+     19: 
+     20: 	private GeneratedMessagePackResolver()
+     21: 	{
+     22: 	}
+     23: 
+     24: 	public MsgPack::Formatters.IMessagePackFormatter<T> GetFormatter<T>()
+     25: 	{
+     26: 		return FormatterCache<T>.Formatter;
+     27: 	}
+     28: 
+     29: #if !NETSTANDARD2_0 && !NETFRAMEWORK
+     30: 	[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+     31: #endif
+     32: 	private static class FormatterCache<T>
+     33: 	{
+     34: 		internal static readonly MsgPack::Formatters.IMessagePackFormatter<T> Formatter;
+     35: 
+     36: 		static FormatterCache()
+     37: 		{
+     38: 			var f = GeneratedMessagePackResolverGetFormatterHelper.GetFormatter(typeof(T));
+     39: 			if (f != null)
+     40: 			{
+     41: 				Formatter = (MsgPack::Formatters.IMessagePackFormatter<T>)f;
+     42: 			}
+     43: 		}
+     44: 	}
+     45: 
+     46: #if !NETSTANDARD2_0 && !NETFRAMEWORK
+     47: 	[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+     48: #endif
+     49: 	private static class GeneratedMessagePackResolverGetFormatterHelper
+     50: 	{
+     51: 		private static readonly global::System.Collections.Generic.Dictionary<global::System.Type, int> closedTypeLookup = new global::System.Collections.Generic.Dictionary<global::System.Type, int>(2)
+     52: 		{
+     53: 			{ typeof(global::MyEnum), 0 },
+     54: 			{ typeof(global::MyMessagePackObject), 1 },
+     55: 		};
+     56: 
+     57: 		internal static object GetFormatter(global::System.Type t)
+     58: 		{
+     59: 			if (closedTypeLookup.TryGetValue(t, out int closedKey))
+     60: 			{
+     61: 				switch (closedKey)
+     62: 				{
+     63: 					case 0: return new global::MessagePack.GeneratedMessagePackResolver.MyEnumFormatter();
+     64: 					case 1: return new global::MessagePack.GeneratedMessagePackResolver.MyMessagePackObjectFormatter();
+     65: 					default: return null; // unreachable
+     66: 				};
+     67: 			}
+     68: 
+     69: 			return null;
+     70: 		}
+     71: 	}
+     72: }
+     73: 
+     74: }
+     75: 
+ --------------------------------------------------------------
+
+
+  Failed GenerationTests.EnumFormatter(container: None, usesMapMode: True) [130 ms]
+  Error Message:
+   System.InvalidOperationException : Context: Source generator application
+Context: Verifying source generated files
+Expected source file list to match
++MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs
++MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.MyMessagePackObjectFormatter.g.cs
+ MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.MyEnumFormatter.g.cs
+-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.MyMessagePackObjectFormatter.g.cs
+-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs
+
+  Stack Trace:
+     at Microsoft.CodeAnalysis.Testing.DefaultVerifier.Fail(String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/DefaultVerifier.cs:line 105
+   at Microsoft.CodeAnalysis.Testing.IVerifierExtensions.EqualOrDiff(IVerifier verifier, String expected, String actual, String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/Extensions/IVerifierExtensions.cs:line 67
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.<VerifySourceGeneratorAsync>g__VerifyDocuments|66_0(IVerifier verifier, ImmutableArray`1 actualDocuments, ImmutableArray`1 expectedDocuments, Boolean allowReordering, String defaultFilePathPrefix, Func`3 getNameAndFolders, TimeSpan matchTimeout) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 407
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifySourceGeneratorAsync(String language, ImmutableArray`1 sourceGenerators, SolutionState testState, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 313
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifySourceGeneratorAsync(SolutionState testState, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 268
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunImplAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 202
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 172
+   at CSharpSourceGeneratorVerifier`1.Test.RunDefaultAsync(ITestOutputHelper logger) in /home/huyhoangle/junction/review-proof/.work/wt/b715699ce309930670e9dbcbe6f3276aff7fa287/tests/MessagePack.SourceGenerator.Tests/Verifiers/CSharpSourceGeneratorVerifier`1+Test.cs:line 75
+   at GenerationTests.EnumFormatter(ContainerKind container, Boolean usesMapMode) in /home/huyhoangle/junction/review-proof/.work/wt/b715699ce309930670e9dbcbe6f3276aff7fa287/tests/MessagePack.SourceGenerator.Tests/GenerationTests.cs:line 41
+--- End of stack trace from previous location ---
+  Standard Output Messages:
+ --------------------------------------------------------------
+ MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.MyEnumFormatter.g.cs
+ --------------------------------------------------------------
+      1: // <auto-generated />
+      2: 
+      3: #pragma warning disable 618, 612, 414, 168, CS1591, SA1129, SA1309, SA1312, SA1403, SA1649
+      4: 
+      5: using MsgPack = global::MessagePack;
+      6: 
+      7: namespace MessagePack {
+      8: partial class GeneratedMessagePackResolver {
+      9: 
+     10: #if !NETSTANDARD2_0 && !NETFRAMEWORK
+     11: 	[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+     12: #endif
+     13: 	internal sealed class MyEnumFormatter : MsgPack::Formatters.IMessagePackFormatter<global::MyEnum>
+     14: 	{
+     15: 		public void Serialize(ref MsgPack::MessagePackWriter writer, global::MyEnum value, MsgPack::MessagePackSerializerOptions options)
+     16: 		{
+     17: 			writer.Write((int)value);
+     18: 		}
+     19: 
+     20: 		public global::MyEnum Deserialize(ref MsgPack::MessagePackReader reader, MsgPack::MessagePackSerializerOptions options)
+     21: 		{
+     22: 			return (global::MyEnum)reader.ReadInt32();
+     23: 		}
+     24: 	}
+     25: 
+     26: }
+     27: }
+     28: 
+ --------------------------------------------------------------
+ --------------------------------------------------------------
+ MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.MyMessagePackObjectFormatter.g.cs
+ --------------------------------------------------------------
+      1: // <auto-generated />
+      2: 
+      3: #pragma warning disable 618, 612, 414, 168, CS1591, SA1129, SA1309, SA1312, SA1403, SA1649
+      4: 
+      5: using MsgPack = global::MessagePack;
+      6: 
+      7: namespace MessagePack {
+      8: partial class GeneratedMessagePackResolver {
+      9: #if !NETSTANDARD2_0 && !NETFRAMEWORK
+     10: 	[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+     11: #endif
+     12: 	internal sealed class MyMessagePackObjectFormatter : global::MessagePack.Formatters.IMessagePackFormatter<global::MyMessagePackObject>
+     13: 	{
+     14: 		// EnumValue
+     15: 		private static global::System.ReadOnlySpan<byte> GetSpan_EnumValue() => new byte[1 + 9] { 169, 69, 110, 117, 109, 86, 97, 108, 117, 101 };
+     16: 
+     17: 		public void Serialize(ref global::MessagePack.MessagePackWriter writer, global::MyMessagePackObject value, global::MessagePack.MessagePackSerializerOptions options)
+     18: 		{
+     19: 			if (value is null)
+     20: 			{
+     21: 				writer.WriteNil();
+     22: 				return;
+     23: 			}
+     24: 
+     25: 			var formatterResolver = options.Resolver;
+     26: 			writer.WriteMapHeader(1);
+     27: 			writer.WriteRaw(GetSpan_EnumValue());
+     28: 			MsgPack::FormatterResolverExtensions.GetFormatterWithVerify<global::MyEnum>(formatterResolver).Serialize(ref writer, value.EnumValue, options);
+     29: 		}
+     30: 
+     31: 		public global::MyMessagePackObject Deserialize(ref global::MessagePack.MessagePackReader reader, global::MessagePack.MessagePackSerializerOptions options)
+     32: 		{
+     33: 			if (reader.TryReadNil())
+     34: 			{
+     35: 				return null;
+     36: 			}
+     37: 
+     38: 			options.Security.DepthStep(ref reader);
+     39: 			var formatterResolver = options.Resolver;
+     40: 			var length = reader.ReadMapHeader();
+     41: 			var ____result = new global::MyMessagePackObject();
+     42: 
+     43: 			for (int i = 0; i < length; i++)
+     44: 			{
+     45: 				var stringKey = global::MessagePack.Internal.CodeGenHelpers.ReadStringSpan(ref reader);
+     46: 				switch (stringKey.Length)
+     47: 				{
+     48: 					default:
+     49: 					FAIL:
+     50: 					  reader.Skip();
+     51: 					  continue;
+     52: 					case 9:
+     53: 					    if (!global::System.MemoryExtensions.SequenceEqual(stringKey, GetSpan_EnumValue().Slice(1))) { goto FAIL; }
+     54: 
+     55: 					    ____result.EnumValue = MsgPack::FormatterResolverExtensions.GetFormatterWithVerify<global::MyEnum>(formatterResolver).Deserialize(ref reader, options);
+     56: 					    continue;
+     57: 
+     58: 				}
+     59: 			}
+     60: 
+     61: 			reader.Depth--;
+     62: 			return ____result;
+     63: 		}
+     64: 	}
+     65: 
+     66: }
+     67: }
+     68: 
+ --------------------------------------------------------------
+ --------------------------------------------------------------
+ MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs
+ --------------------------------------------------------------
+      1: // <auto-generated />
+      2: 
+      3: #pragma warning disable 618, 612, 414, 168, CS1591, SA1129, SA1309, SA1312, SA1403, SA1649
+      4: 
+      5: using MsgPack = global::MessagePack;
+      6: 
+      7: [assembly: MsgPack::Internal.GeneratedAssemblyMessagePackResolverAttribute(typeof(MessagePack.GeneratedMessagePackResolver), 3, 0)]
+      8: 
+      9: namespace MessagePack {
+     10: 
+     11: /// <summary>A MessagePack resolver that uses generated formatters for types in this assembly.</summary>
+     12: #if !NETSTANDARD2_0 && !NETFRAMEWORK
+     13: [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+     14: #endif
+     15: partial class GeneratedMessagePackResolver : MsgPack::IFormatterResolver
+     16: {
+     17: 	/// <summary>An instance of this resolver that only returns formatters specifically generated for types in this assembly.</summary>
+     18: 	public static readonly MsgPack::IFormatterResolver Instance = new GeneratedMessagePackResolver();
+     19: 
+     20: 	private GeneratedMessagePackResolver()
+     21: 	{
+     22: 	}
+     23: 
+     24: 	public MsgPack::Formatters.IMessagePackFormatter<T> GetFormatter<T>()
+     25: 	{
+     26: 		return FormatterCache<T>.Formatter;
+     27: 	}
+     28: 
+     29: #if !NETSTANDARD2_0 && !NETFRAMEWORK
+     30: 	[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+     31: #endif
+     32: 	private static class FormatterCache<T>
+     33: 	{
+     34: 		internal static readonly MsgPack::Formatters.IMessagePackFormatter<T> Formatter;
+     35: 
+     36: 		static FormatterCache()
+     37: 		{
+     38: 			var f = GeneratedMessagePackResolverGetFormatterHelper.GetFormatter(typeof(T));
+     39: 			if (f != null)
+     40: 			{
+     41: 				Formatter = (MsgPack::Formatters.IMessagePackFormatter<T>)f;
+     42: 			}
+     43: 		}
+     44: 	}
+     45: 
+     46: #if !NETSTANDARD2_0 && !NETFRAMEWORK
+     47: 	[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+     48: #endif
+     49: 	private static class GeneratedMessagePackResolverGetFormatterHelper
+     50: 	{
+     51: 		private static readonly global::System.Collections.Generic.Dictionary<global::System.Type, int> closedTypeLookup = new global::System.Collections.Generic.Dictionary<global::System.Type, int>(2)
+     52: 		{
+     53: 			{ typeof(global::MyEnum), 0 },
+     54: 			{ typeof(global::MyMessagePackObject), 1 },
+     55: 		};
+     56: 
+     57: 		internal static object GetFormatter(global::System.Type t)
+     58: 		{
+     59: 			if (closedTypeLookup.TryGetValue(t, out int closedKey))
+     60: 			{
+     61: 				switch (closedKey)
+     62: 				{
+     63: 					case 0: return new global::MessagePack.GeneratedMessagePackResolver.MyEnumFormatter();
+     64: 					case 1: return new global::MessagePack.GeneratedMessagePackResolver.MyMessagePackObjectFormatter();
+     65: 					default: return null; // unreachable
+     66: 				};
+     67: 			}
+     68: 
+     69: 			return null;
+     70: 		}
+     71: 	}
+     72: }
+     73: 
+     74: }
+     75: 
+ --------------------------------------------------------------
+
+
+  Failed GenerationTests.EnumFormatter(container: NestingClass, usesMapMode: False) [73 ms]
+  Error Message:
+   System.InvalidOperationException : Context: Source generator application
+Context: Verifying source generated files
+Expected source file list to match
++MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs
++MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.ContainingClass.MyMessagePackObjectFormatter.g.cs
+ MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.ContainingClass.MyEnumFormatter.g.cs
+-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.ContainingClass.MyMessagePackObjectFormatter.g.cs
+-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs
+
+  Stack Trace:
+     at Microsoft.CodeAnalysis.Testing.DefaultVerifier.Fail(String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/DefaultVerifier.cs:line 105
+   at Microsoft.CodeAnalysis.Testing.IVerifierExtensions.EqualOrDiff(IVerifier verifier, String expected, String actual, String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/Extensions/IVerifierExtensions.cs:line 67
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.<VerifySourceGeneratorAsync>g__VerifyDocuments|66_0(IVerifier verifier, ImmutableArray`1 actualDocuments, ImmutableArray`1 expectedDocuments, Boolean allowReordering, String defaultFilePathPrefix, Func`3 getNameAndFolders, TimeSpan matchTimeout) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 407
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifySourceGeneratorAsync(String language, ImmutableArray`1 sourceGenerators, SolutionState testState, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 313
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifySourceGeneratorAsync(SolutionState testState, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 268
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunImplAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 202
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 172
+   at CSharpSourceGeneratorVerifier`1.Test.RunDefaultAsync(ITestOutputHelper logger) in /home/huyhoangle/junction/review-proof/.work/wt/b715699ce309930670e9dbcbe6f3276aff7fa287/tests/MessagePack.SourceGenerator.Tests/Verifiers/CSharpSourceGeneratorVerifier`1+Test.cs:line 75
+   at GenerationTests.EnumFormatter(ContainerKind container, Boolean usesMapMode) in /home/huyhoangle/junction/review-proof/.work/wt/b715699ce309930670e9dbcbe6f3276aff7fa287/tests/MessagePack.SourceGenerator.Tests/GenerationTests.cs:line 41
+--- End of stack trace from previous location ---
+  Standard Output Messages:
+ --------------------------------------------------------------
+ MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.ContainingClass.MyEnumFormatter.g.cs
+ --------------------------------------------------------------
+      1: // <auto-generated />
+      2: 
+      3: #pragma warning disable 618, 612, 414, 168, CS1591, SA1129, SA1309, SA1312, SA1403, SA1649
+      4: 
+      5: using MsgPack = global::MessagePack;
+      6: 
+      7: namespace MessagePack {
+      8: partial class GeneratedMessagePackResolver {
+      9: internal partial class ContainingClass {
+     10: 
+     11: #if !NETSTANDARD2_0 && !NETFRAMEWORK
+     12: 	[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+     13: #endif
+     14: 	internal sealed class MyEnumFormatter : MsgPack::Formatters.IMessagePackFormatter<global::ContainingClass.MyEnum>
+     15: 	{
+     16: 		public void Serialize(ref MsgPack::MessagePackWriter writer, global::ContainingClass.MyEnum value, MsgPack::MessagePackSerializerOptions options)
+     17: 		{
+     18: 			writer.Write((int)value);
+     19: 		}
+     20: 
+     21: 		public global::ContainingClass.MyEnum Deserialize(ref MsgPack::MessagePackReader reader, MsgPack::MessagePackSerializerOptions options)
+     22: 		{
+     23: 			return (global::ContainingClass.MyEnum)reader.ReadInt32();
+     24: 		}
+     25: 	}
+     26: 
+     27: }
+     28: }
+     29: }
+     30: 
+ --------------------------------------------------------------
+ --------------------------------------------------------------
+ MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.ContainingClass.MyMessagePackObjectFormatter.g.cs
+ --------------------------------------------------------------
+      1: // <auto-generated />
+      2: 
+      3: #pragma warning disable 618, 612, 414, 168, CS1591, SA1129, SA1309, SA1312, SA1403, SA1649
+      4: 
+      5: #pragma warning disable CS8669 // We may leak nullable annotations into generated code.
+      6: 
+      7: using MsgPack = global::MessagePack;
+      8: 
+      9: namespace MessagePack {
+     10: partial class GeneratedMessagePackResolver {
+     11: internal partial class ContainingClass {
+     12: 
+     13: #if !NETSTANDARD2_0 && !NETFRAMEWORK
+     14: 	[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+     15: #endif
+     16: 	internal sealed class MyMessagePackObjectFormatter : MsgPack::Formatters.IMessagePackFormatter<global::ContainingClass.MyMessagePackObject>
+     17: 	{
+     18: 
+     19: 		public void Serialize(ref MsgPack::MessagePackWriter writer, global::ContainingClass.MyMessagePackObject value, MsgPack::MessagePackSerializerOptions options)
+     20: 		{
+     21: 			if (value == null)
+     22: 			{
+     23: 				writer.WriteNil();
+     24: 				return;
+     25: 			}
+     26: 
+     27: 			MsgPack::IFormatterResolver formatterResolver = options.Resolver;
+     28: 			writer.WriteArrayHeader(1);
+     29: 			MsgPack::FormatterResolverExtensions.GetFormatterWithVerify<global::ContainingClass.MyEnum>(formatterResolver).Serialize(ref writer, value.EnumValue, options);
+     30: 		}
+     31: 
+     32: 		public global::ContainingClass.MyMessagePackObject Deserialize(ref MsgPack::MessagePackReader reader, MsgPack::MessagePackSerializerOptions options)
+     33: 		{
+     34: 			if (reader.TryReadNil())
+     35: 			{
+     36: 				return null;
+     37: 			}
+     38: 
+     39: 			options.Security.DepthStep(ref reader);
+     40: 			MsgPack::IFormatterResolver formatterResolver = options.Resolver;
+     41: 			var length = reader.ReadArrayHeader();
+     42: 			var ____result = new global::ContainingClass.MyMessagePackObject();
+     43: 
+     44: 			for (int i = 0; i < length; i++)
+     45: 			{
+     46: 				switch (i)
+     47: 				{
+     48: 					case 0:
+     49: 						____result.EnumValue = MsgPack::FormatterResolverExtensions.GetFormatterWithVerify<global::ContainingClass.MyEnum>(formatterResolver).Deserialize(ref reader, options);
+     50: 						break;
+     51: 					default:
+     52: 						reader.Skip();
+     53: 						break;
+     54: 				}
+     55: 			}
+     56: 
+     57: 			reader.Depth--;
+     58: 			return ____result;
+     59: 		}
+     60: 	}
+     61: }
+     62: }
+     63: }
+     64: 
+ --------------------------------------------------------------
+ --------------------------------------------------------------
+ MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs
+ --------------------------------------------------------------
+      1: // <auto-generated />
+      2: 
+      3: #pragma warning disable 618, 612, 414, 168, CS1591, SA1129, SA1309, SA1312, SA1403, SA1649
+      4: 
+      5: using MsgPack = global::MessagePack;
+      6: 
+      7: [assembly: MsgPack::Internal.GeneratedAssemblyMessagePackResolverAttribute(typeof(MessagePack.GeneratedMessagePackResolver), 3, 0)]
+      8: 
+      9: namespace MessagePack {
+     10: 
+     11: /// <summary>A MessagePack resolver that uses generated formatters for types in this assembly.</summary>
+     12: #if !NETSTANDARD2_0 && !NETFRAMEWORK
+     13: [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+     14: #endif
+     15: partial class GeneratedMessagePackResolver : MsgPack::IFormatterResolver
+     16: {
+     17: 	/// <summary>An instance of this resolver that only returns formatters specifically generated for types in this assembly.</summary>
+     18: 	public static readonly MsgPack::IFormatterResolver Instance = new GeneratedMessagePackResolver();
+     19: 
+     20: 	private GeneratedMessagePackResolver()
+     21: 	{
+     22: 	}
+     23: 
+     24: 	public MsgPack::Formatters.IMessagePackFormatter<T> GetFormatter<T>()
+     25: 	{
+     26: 		return FormatterCache<T>.Formatter;
+     27: 	}
+     28: 
+     29: #if !NETSTANDARD2_0 && !NETFRAMEWORK
+     30: 	[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+     31: #endif
+     32: 	private static class FormatterCache<T>
+     33: 	{
+     34: 		internal static readonly MsgPack::Formatters.IMessagePackFormatter<T> Formatter;
+     35: 
+     36: 		static FormatterCache()
+     37: 		{
+     38: 			var f = GeneratedMessagePackResolverGetFormatterHelper.GetFormatter(typeof(T));
+     39: 			if (f != null)
+     40: 			{
+     41: 				Formatter = (MsgPack::Formatters.IMessagePackFormatter<T>)f;
+     42: 			}
+     43: 		}
+     44: 	}
+     45: 
+     46: #if !NETSTANDARD2_0 && !NETFRAMEWORK
+     47: 	[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+     48: #endif
+     49: 	private static class GeneratedMessagePackResolverGetFormatterHelper
+     50: 	{
+     51: 		private static readonly global::System.Collections.Generic.Dictionary<global::System.Type, int> closedTypeLookup = new global::System.Collections.Generic.Dictionary<global::System.Type, int>(2)
+     52: 		{
+     53: 			{ typeof(global::ContainingClass.MyEnum), 0 },
+     54: 			{ typeof(global::ContainingClass.MyMessagePackObject), 1 },
+     55: 		};
+     56: 
+     57: 		internal static object GetFormatter(global::System.Type t)
+     58: 		{
+     59: 			if (closedTypeLookup.TryGetValue(t, out int closedKey))
+     60: 			{
+     61: 				switch (closedKey)
+     62: 				{
+     63: 					case 0: return new global::MessagePack.GeneratedMessagePackResolver.ContainingClass.MyEnumFormatter();
+     64: 					case 1: return new global::MessagePack.GeneratedMessagePackResolver.ContainingClass.MyMessagePackObjectFormatter();
+     65: 					default: return null; // unreachable
+     66: 				};
+     67: 			}
+     68: 
+     69: 			return null;
+     70: 		}
+     71: 	}
+     72: }
+     73: 
+     74: }
+     75: 
+ --------------------------------------------------------------
+
+
+[xUnit.net 00:00:05.60]     GenerationTests.EnumFormatter(container: Namespace, usesMapMode: True) [FAIL]
+  Failed GenerationTests.EnumFormatter(container: Namespace, usesMapMode: True) [110 ms]
+  Error Message:
+   System.InvalidOperationException : Context: Source generator application
+Context: Verifying source generated files
+Expected source file list to match
++MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs
++MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.MyTestNamespace.MyMessagePackObjectFormatter.g.cs
+ MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.MyTestNamespace.MyEnumFormatter.g.cs
+-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.MyTestNamespace.MyMessagePackObjectFormatter.g.cs
+-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs
+
+  Stack Trace:
+     at Microsoft.CodeAnalysis.Testing.DefaultVerifier.Fail(String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/DefaultVerifier.cs:line 105
+   at Microsoft.CodeAnalysis.Testing.IVerifierExtensions.EqualOrDiff(IVerifier verifier, String expected, String actual, String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/Extensions/IVerifierExtensions.cs:line 67
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.<VerifySourceGeneratorAsync>g__VerifyDocuments|66_0(IVerifier verifier, ImmutableArray`1 actualDocuments, ImmutableArray`1 expectedDocuments, Boolean allowReordering, String defaultFilePathPrefix, Func`3 getNameAndFolders, TimeSpan matchTimeout) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 407
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifySourceGeneratorAsync(String language, ImmutableArray`1 sourceGenerators, SolutionState testState, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 313
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifySourceGeneratorAsync(SolutionState testState, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 268
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunImplAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 202
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 172
+   at CSharpSourceGeneratorVerifier`1.Test.RunDefaultAsync(ITestOutputHelper logger) in /home/huyhoangle/junction/review-proof/.work/wt/b715699ce309930670e9dbcbe6f3276aff7fa287/tests/MessagePack.SourceGenerator.Tests/Verifiers/CSharpSourceGeneratorVerifier`1+Test.cs:line 75
+   at GenerationTests.EnumFormatter(ContainerKind container, Boolean usesMapMode) in /home/huyhoangle/junction/review-proof/.work/wt/b715699ce309930670e9dbcbe6f3276aff7fa287/tests/MessagePack.SourceGenerator.Tests/GenerationTests.cs:line 41
+--- End of stack trace from previous location ---
+  Standard Output Messages:
+ --------------------------------------------------------------
+ MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.MyTestNamespace.MyEnumFormatter.g.cs
+ --------------------------------------------------------------
+      1: // <auto-generated />
+      2: 
+      3: #pragma warning disable 618, 612, 414, 168, CS1591, SA1129, SA1309, SA1312, SA1403, SA1649
+      4: 
+      5: using MsgPack = global::MessagePack;
+      6: 
+      7: namespace MessagePack {
+      8: partial class GeneratedMessagePackResolver {
+      9: internal partial class MyTestNamespace {
+     10: 
+     11: #if !NETSTANDARD2_0 && !NETFRAMEWORK
+     12: 	[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+     13: #endif
+     14: 	internal sealed class MyEnumFormatter : MsgPack::Formatters.IMessagePackFormatter<global::MyTestNamespace.MyEnum>
+     15: 	{
+     16: 		public void Serialize(ref MsgPack::MessagePackWriter writer, global::MyTestNamespace.MyEnum value, MsgPack::MessagePackSerializerOptions options)
+     17: 		{
+     18: 			writer.Write((int)value);
+     19: 		}
+     20: 
+     21: 		public global::MyTestNamespace.MyEnum Deserialize(ref MsgPack::MessagePackReader reader, MsgPack::MessagePackSerializerOptions options)
+     22: 		{
+     23: 			return (global::MyTestNamespace.MyEnum)reader.ReadInt32();
+     24: 		}
+     25: 	}
+     26: 
+     27: }
+     28: }
+     29: }
+     30: 
+ --------------------------------------------------------------
+ --------------------------------------------------------------
+ MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.MyTestNamespace.MyMessagePackObjectFormatter.g.cs
+ --------------------------------------------------------------
+      1: // <auto-generated />
+      2: 
+      3: #pragma warning disable 618, 612, 414, 168, CS1591, SA1129, SA1309, SA1312, SA1403, SA1649
+      4: 
+      5: using MsgPack = global::MessagePack;
+      6: 
+      7: namespace MessagePack {
+      8: partial class GeneratedMessagePackResolver {
+      9: internal partial class MyTestNamespace {
+     10: #if !NETSTANDARD2_0 && !NETFRAMEWORK
+     11: 	[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+     12: #endif
+     13: 	internal sealed class MyMessagePackObjectFormatter : global::MessagePack.Formatters.IMessagePackFormatter<global::MyTestNamespace.MyMessagePackObject>
+     14: 	{
+     15: 		// EnumValue
+     16: 		private static global::System.ReadOnlySpan<byte> GetSpan_EnumValue() => new byte[1 + 9] { 169, 69, 110, 117, 109, 86, 97, 108, 117, 101 };
+     17: 
+     18: 		public void Serialize(ref global::MessagePack.MessagePackWriter writer, global::MyTestNamespace.MyMessagePackObject value, global::MessagePack.MessagePackSerializerOptions options)
+     19: 		{
+     20: 			if (value is null)
+     21: 			{
+     22: 				writer.WriteNil();
+     23: 				return;
+     24: 			}
+     25: 
+     26: 			var formatterResolver = options.Resolver;
+     27: 			writer.WriteMapHeader(1);
+     28: 			writer.WriteRaw(GetSpan_EnumValue());
+     29: 			MsgPack::FormatterResolverExtensions.GetFormatterWithVerify<global::MyTestNamespace.MyEnum>(formatterResolver).Serialize(ref writer, value.EnumValue, options);
+     30: 		}
+     31: 
+     32: 		public global::MyTestNamespace.MyMessagePackObject Deserialize(ref global::MessagePack.MessagePackReader reader, global::MessagePack.MessagePackSerializerOptions options)
+     33: 		{
+     34: 			if (reader.TryReadNil())
+     35: 			{
+     36: 				return null;
+     37: 			}
+     38: 
+     39: 			options.Security.DepthStep(ref reader);
+     40: 			var formatterResolver = options.Resolver;
+     41: 			var length = reader.ReadMapHeader();
+     42: 			var ____result = new global::MyTestNamespace.MyMessagePackObject();
+     43: 
+     44: 			for (int i = 0; i < length; i++)
+     45: 			{
+     46: 				var stringKey = global::MessagePack.Internal.CodeGenHelpers.ReadStringSpan(ref reader);
+     47: 				switch (stringKey.Length)
+     48: 				{
+     49: 					default:
+     50: 					FAIL:
+     51: 					  reader.Skip();
+     52: 					  continue;
+     53: 					case 9:
+     54: 					    if (!global::System.MemoryExtensions.SequenceEqual(stringKey, GetSpan_EnumValue().Slice(1))) { goto FAIL; }
+     55: 
+     56: 					    ____result.EnumValue = MsgPack::FormatterResolverExtensions.GetFormatterWithVerify<global::MyTestNamespace.MyEnum>(formatterResolver).Deserialize(ref reader, options);
+     57: 					    continue;
+     58: 
+     59: 				}
+     60: 			}
+     61: 
+     62: 			reader.Depth--;
+     63: 			return ____result;
+     64: 		}
+     65: 	}
+     66: 
+     67: }
+     68: }
+     69: }
+     70: 
+ --------------------------------------------------------------
+ --------------------------------------------------------------
+ MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs
+ --------------------------------------------------------------
+      1: // <auto-generated />
+      2: 
+      3: #pragma warning disable 618, 612, 414, 168, CS1591, SA1129, SA1309, SA1312, SA1403, SA1649
+      4: 
+      5: using MsgPack = global::MessagePack;
+      6: 
+      7: [assembly: MsgPack::Internal.GeneratedAssemblyMessagePackResolverAttribute(typeof(MessagePack.GeneratedMessagePackResolver), 3, 0)]
+      8: 
+      9: namespace MessagePack {
+     10: 
+     11: /// <summary>A MessagePack resolver that uses generated formatters for types in this assembly.</summary>
+     12: #if !NETSTANDARD2_0 && !NETFRAMEWORK
+     13: [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+     14: #endif
+     15: partial class GeneratedMessagePackResolver : MsgPack::IFormatterResolver
+     16: {
+     17: 	/// <summary>An instance of this resolver that only returns formatters specifically generated for types in this assembly.</summary>
+     18: 	public static readonly MsgPack::IFormatterResolver Instance = new GeneratedMessagePackResolver();
+     19: 
+     20: 	private GeneratedMessagePackResolver()
+     21: 	{
+     22: 	}
+     23: 
+     24: 	public MsgPack::Formatters.IMessagePackFormatter<T> GetFormatter<T>()
+     25: 	{
+     26: 		return FormatterCache<T>.Formatter;
+     27: 	}
+     28: 
+     29: #if !NETSTANDARD2_0 && !NETFRAMEWORK
+     30: 	[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+     31: #endif
+     32: 	private static class FormatterCache<T>
+     33: 	{
+     34: 		internal static readonly MsgPack::Formatters.IMessagePackFormatter<T> Formatter;
+     35: 
+     36: 		static FormatterCache()
+     37: 		{
+     38: 			var f = GeneratedMessagePackResolverGetFormatterHelper.GetFormatter(typeof(T));
+     39: 			if (f != null)
+     40: 			{
+     41: 				Formatter = (MsgPack::Formatters.IMessagePackFormatter<T>)f;
+     42: 			}
+     43: 		}
+     44: 	}
+     45: 
+     46: #if !NETSTANDARD2_0 && !NETFRAMEWORK
+     47: 	[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+     48: #endif
+     49: 	private static class GeneratedMessagePackResolverGetFormatterHelper
+     50: 	{
+     51: 		private static readonly global::System.Collections.Generic.Dictionary<global::System.Type, int> closedTypeLookup = new global::System.Collections.Generic.Dictionary<global::System.Type, int>(2)
+     52: 		{
+     53: 			{ typeof(global::MyTestNamespace.MyEnum), 0 },
+     54: 			{ typeof(global::MyTestNamespace.MyMessagePackObject), 1 },
+     55: 		};
+     56: 
+     57: 		internal static object GetFormatter(global::System.Type t)
+     58: 		{
+     59: 			if (closedTypeLookup.TryGetValue(t, out int closedKey))
+     60: 			{
+     61: 				switch (closedKey)
+     62: 				{
+     63: 					case 0: return new global::MessagePack.GeneratedMessagePackResolver.MyTestNamespace.MyEnumFormatter();
+     64: 					case 1: return new global::MessagePack.GeneratedMessagePackResolver.MyTestNamespace.MyMessagePackObjectFormatter();
+     65: 					default: return null; // unreachable
+     66: 				};
+     67: 			}
+     68: 
+     69: 			return null;
+     70: 		}
+     71: 	}
+     72: }
+     73: 
+     74: }
+     75: 
+ --------------------------------------------------------------
+
+
+[xUnit.net 00:00:05.70]     GenerationTests.EnumFormatter(container: Namespace, usesMapMode: False) [FAIL]
+[xUnit.net 00:00:05.80]     GenerationTests.EnumFormatter(container: NestingClass, usesMapMode: True) [FAIL]
+  Failed GenerationTests.EnumFormatter(container: Namespace, usesMapMode: False) [98 ms]
+  Error Message:
+   System.InvalidOperationException : Context: Source generator application
+Context: Verifying source generated files
+Expected source file list to match
++MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs
++MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.MyTestNamespace.MyMessagePackObjectFormatter.g.cs
+ MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.MyTestNamespace.MyEnumFormatter.g.cs
+-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.MyTestNamespace.MyMessagePackObjectFormatter.g.cs
+-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs
+
+  Stack Trace:
+     at Microsoft.CodeAnalysis.Testing.DefaultVerifier.Fail(String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/DefaultVerifier.cs:line 105
+   at Microsoft.CodeAnalysis.Testing.IVerifierExtensions.EqualOrDiff(IVerifier verifier, String expected, String actual, String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/Extensions/IVerifierExtensions.cs:line 67
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.<VerifySourceGeneratorAsync>g__VerifyDocuments|66_0(IVerifier verifier, ImmutableArray`1 actualDocuments, ImmutableArray`1 expectedDocuments, Boolean allowReordering, String defaultFilePathPrefix, Func`3 getNameAndFolders, TimeSpan matchTimeout) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 407
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifySourceGeneratorAsync(String language, ImmutableArray`1 sourceGenerators, SolutionState testState, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 313
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifySourceGeneratorAsync(SolutionState testState, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 268
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunImplAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 202
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 172
+   at CSharpSourceGeneratorVerifier`1.Test.RunDefaultAsync(ITestOutputHelper logger) in /home/huyhoangle/junction/review-proof/.work/wt/b715699ce309930670e9dbcbe6f3276aff7fa287/tests/MessagePack.SourceGenerator.Tests/Verifiers/CSharpSourceGeneratorVerifier`1+Test.cs:line 75
+   at GenerationTests.EnumFormatter(ContainerKind container, Boolean usesMapMode) in /home/huyhoangle/junction/review-proof/.work/wt/b715699ce309930670e9dbcbe6f3276aff7fa287/tests/MessagePack.SourceGenerator.Tests/GenerationTests.cs:line 41
+--- End of stack trace from previous location ---
+  Standard Output Messages:
+ --------------------------------------------------------------
+ MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.MyTestNamespace.MyEnumFormatter.g.cs
+ --------------------------------------------------------------
+      1: // <auto-generated />
+      2: 
+      3: #pragma warning disable 618, 612, 414, 168, CS1591, SA1129, SA1309, SA1312, SA1403, SA1649
+      4: 
+      5: using MsgPack = global::MessagePack;
+      6: 
+      7: namespace MessagePack {
+      8: partial class GeneratedMessagePackResolver {
+      9: internal partial class MyTestNamespace {
+     10: 
+     11: #if !NETSTANDARD2_0 && !NETFRAMEWORK
+     12: 	[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+     13: #endif
+     14: 	internal sealed class MyEnumFormatter : MsgPack::Formatters.IMessagePackFormatter<global::MyTestNamespace.MyEnum>
+     15: 	{
+     16: 		public void Serialize(ref MsgPack::MessagePackWriter writer, global::MyTestNamespace.MyEnum value, MsgPack::MessagePackSerializerOptions options)
+     17: 		{
+     18: 			writer.Write((int)value);
+     19: 		}
+     20: 
+     21: 		public global::MyTestNamespace.MyEnum Deserialize(ref MsgPack::MessagePackReader reader, MsgPack::MessagePackSerializerOptions options)
+     22: 		{
+     23: 			return (global::MyTestNamespace.MyEnum)reader.ReadInt32();
+     24: 		}
+     25: 	}
+     26: 
+     27: }
+     28: }
+     29: }
+     30: 
+ --------------------------------------------------------------
+ --------------------------------------------------------------
+ MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.MyTestNamespace.MyMessagePackObjectFormatter.g.cs
+ --------------------------------------------------------------
+      1: // <auto-generated />
+      2: 
+      3: #pragma warning disable 618, 612, 414, 168, CS1591, SA1129, SA1309, SA1312, SA1403, SA1649
+      4: 
+      5: #pragma warning disable CS8669 // We may leak nullable annotations into generated code.
+      6: 
+      7: using MsgPack = global::MessagePack;
+      8: 
+      9: namespace MessagePack {
+     10: partial class GeneratedMessagePackResolver {
+     11: internal partial class MyTestNamespace {
+     12: 
+     13: #if !NETSTANDARD2_0 && !NETFRAMEWORK
+     14: 	[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+     15: #endif
+     16: 	internal sealed class MyMessagePackObjectFormatter : MsgPack::Formatters.IMessagePackFormatter<global::MyTestNamespace.MyMessagePackObject>
+     17: 	{
+     18: 
+     19: 		public void Serialize(ref MsgPack::MessagePackWriter writer, global::MyTestNamespace.MyMessagePackObject value, MsgPack::MessagePackSerializerOptions options)
+     20: 		{
+     21: 			if (value == null)
+     22: 			{
+     23: 				writer.WriteNil();
+     24: 				return;
+     25: 			}
+     26: 
+     27: 			MsgPack::IFormatterResolver formatterResolver = options.Resolver;
+     28: 			writer.WriteArrayHeader(1);
+     29: 			MsgPack::FormatterResolverExtensions.GetFormatterWithVerify<global::MyTestNamespace.MyEnum>(formatterResolver).Serialize(ref writer, value.EnumValue, options);
+     30: 		}
+     31: 
+     32: 		public global::MyTestNamespace.MyMessagePackObject Deserialize(ref MsgPack::MessagePackReader reader, MsgPack::MessagePackSerializerOptions options)
+     33: 		{
+     34: 			if (reader.TryReadNil())
+     35: 			{
+     36: 				return null;
+     37: 			}
+     38: 
+     39: 			options.Security.DepthStep(ref reader);
+     40: 			MsgPack::IFormatterResolver formatterResolver = options.Resolver;
+     41: 			var length = reader.ReadArrayHeader();
+     42: 			var ____result = new global::MyTestNamespace.MyMessagePackObject();
+     43: 
+     44: 			for (int i = 0; i < length; i++)
+     45: 			{
+     46: 				switch (i)
+     47: 				{
+     48: 					case 0:
+     49: 						____result.EnumValue = MsgPack::FormatterResolverExtensions.GetFormatterWithVerify<global::MyTestNamespace.MyEnum>(formatterResolver).Deserialize(ref reader, options);
+     50: 						break;
+     51: 					default:
+     52: 						reader.Skip();
+     53: 						break;
+     54: 				}
+     55: 			}
+     56: 
+     57: 			reader.Depth--;
+     58: 			return ____result;
+     59: 		}
+     60: 	}
+     61: }
+     62: }
+     63: }
+     64: 
+ --------------------------------------------------------------
+ --------------------------------------------------------------
+ MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs
+ --------------------------------------------------------------
+      1: // <auto-generated />
+      2: 
+      3: #pragma warning disable 618, 612, 414, 168, CS1591, SA1129, SA1309, SA1312, SA1403, SA1649
+      4: 
+      5: using MsgPack = global::MessagePack;
+      6: 
+      7: [assembly: MsgPack::Internal.GeneratedAssemblyMessagePackResolverAttribute(typeof(MessagePack.GeneratedMessagePackResolver), 3, 0)]
+      8: 
+      9: namespace MessagePack {
+     10: 
+     11: /// <summary>A MessagePack resolver that uses generated formatters for types in this assembly.</summary>
+     12: #if !NETSTANDARD2_0 && !NETFRAMEWORK
+     13: [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+     14: #endif
+     15: partial class GeneratedMessagePackResolver : MsgPack::IFormatterResolver
+     16: {
+     17: 	/// <summary>An instance of this resolver that only returns formatters specifically generated for types in this assembly.</summary>
+     18: 	public static readonly MsgPack::IFormatterResolver Instance = new GeneratedMessagePackResolver();
+     19: 
+     20: 	private GeneratedMessagePackResolver()
+     21: 	{
+     22: 	}
+     23: 
+     24: 	public MsgPack::Formatters.IMessagePackFormatter<T> GetFormatter<T>()
+     25: 	{
+     26: 		return FormatterCache<T>.Formatter;
+     27: 	}
+     28: 
+     29: #if !NETSTANDARD2_0 && !NETFRAMEWORK
+     30: 	[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+     31: #endif
+     32: 	private static class FormatterCache<T>
+     33: 	{
+     34: 		internal static readonly MsgPack::Formatters.IMessagePackFormatter<T> Formatter;
+     35: 
+     36: 		static FormatterCache()
+     37: 		{
+     38: 			var f = GeneratedMessagePackResolverGetFormatterHelper.GetFormatter(typeof(T));
+     39: 			if (f != null)
+     40: 			{
+     41: 				Formatter = (MsgPack::Formatters.IMessagePackFormatter<T>)f;
+     42: 			}
+     43: 		}
+     44: 	}
+     45: 
+     46: #if !NETSTANDARD2_0 && !NETFRAMEWORK
+     47: 	[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+     48: #endif
+     49: 	private static class GeneratedMessagePackResolverGetFormatterHelper
+     50: 	{
+     51: 		private static readonly global::System.Collections.Generic.Dictionary<global::System.Type, int> closedTypeLookup = new global::System.Collections.Generic.Dictionary<global::System.Type, int>(2)
+     52: 		{
+     53: 			{ typeof(global::MyTestNamespace.MyEnum), 0 },
+     54: 			{ typeof(global::MyTestNamespace.MyMessagePackObject), 1 },
+     55: 		};
+     56: 
+     57: 		internal static object GetFormatter(global::System.Type t)
+     58: 		{
+     59: 			if (closedTypeLookup.TryGetValue(t, out int closedKey))
+     60: 			{
+     61: 				switch (closedKey)
+     62: 				{
+     63: 					case 0: return new global::MessagePack.GeneratedMessagePackResolver.MyTestNamespace.MyEnumFormatter();
+     64: 					case 1: return new global::MessagePack.GeneratedMessagePackResolver.MyTestNamespace.MyMessagePackObjectFormatter();
+     65: 					default: return null; // unreachable
+     66: 				};
+     67: 			}
+     68: 
+     69: 			return null;
+     70: 		}
+     71: 	}
+     72: }
+     73: 
+     74: }
+     75: 
+ --------------------------------------------------------------
+
+
+  Failed GenerationTests.EnumFormatter(container: NestingClass, usesMapMode: True) [93 ms]
+  Error Message:
+   System.InvalidOperationException : Context: Source generator application
+Context: Verifying source generated files
+Expected source file list to match
++MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs
++MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.ContainingClass.MyMessagePackObjectFormatter.g.cs
+ MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.ContainingClass.MyEnumFormatter.g.cs
+-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.ContainingClass.MyMessagePackObjectFormatter.g.cs
+-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs
+
+  Stack Trace:
+     at Microsoft.CodeAnalysis.Testing.DefaultVerifier.Fail(String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/DefaultVerifier.cs:line 105
+   at Microsoft.CodeAnalysis.Testing.IVerifierExtensions.EqualOrDiff(IVerifier verifier, String expected, String actual, String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/Extensions/IVerifierExtensions.cs:line 67
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.<VerifySourceGeneratorAsync>g__VerifyDocuments|66_0(IVerifier verifier, ImmutableArray`1 actualDocuments, ImmutableArray`1 expectedDocuments, Boolean allowReordering, String defaultFilePathPrefix, Func`3 getNameAndFolders, TimeSpan matchTimeout) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 407
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifySourceGeneratorAsync(String language, ImmutableArray`1 sourceGenerators, SolutionState testState, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 313
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifySourceGeneratorAsync(SolutionState testState, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 268
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunImplAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 202
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 172
+   at CSharpSourceGeneratorVerifier`1.Test.RunDefaultAsync(ITestOutputHelper logger) in /home/huyhoangle/junction/review-proof/.work/wt/b715699ce309930670e9dbcbe6f3276aff7fa287/tests/MessagePack.SourceGenerator.Tests/Verifiers/CSharpSourceGeneratorVerifier`1+Test.cs:line 75
+   at GenerationTests.EnumFormatter(ContainerKind container, Boolean usesMapMode) in /home/huyhoangle/junction/review-proof/.work/wt/b715699ce309930670e9dbcbe6f3276aff7fa287/tests/MessagePack.SourceGenerator.Tests/GenerationTests.cs:line 41
+--- End of stack trace from previous location ---
+  Standard Output Messages:
+ --------------------------------------------------------------
+ MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.ContainingClass.MyEnumFormatter.g.cs
+ --------------------------------------------------------------
+      1: // <auto-generated />
+      2: 
+      3: #pragma warning disable 618, 612, 414, 168, CS1591, SA1129, SA1309, SA1312, SA1403, SA1649
+      4: 
+      5: using MsgPack = global::MessagePack;
+      6: 
+      7: namespace MessagePack {
+      8: partial class GeneratedMessagePackResolver {
+      9: internal partial class ContainingClass {
+     10: 
+     11: #if !NETSTANDARD2_0 && !NETFRAMEWORK
+     12: 	[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+     13: #endif
+     14: 	internal sealed class MyEnumFormatter : MsgPack::Formatters.IMessagePackFormatter<global::ContainingClass.MyEnum>
+     15: 	{
+     16: 		public void Serialize(ref MsgPack::MessagePackWriter writer, global::ContainingClass.MyEnum value, MsgPack::MessagePackSerializerOptions options)
+     17: 		{
+     18: 			writer.Write((int)value);
+     19: 		}
+     20: 
+     21: 		public global::ContainingClass.MyEnum Deserialize(ref MsgPack::MessagePackReader reader, MsgPack::MessagePackSerializerOptions options)
+     22: 		{
+     23: 			return (global::ContainingClass.MyEnum)reader.ReadInt32();
+     24: 		}
+     25: 	}
+     26: 
+     27: }
+     28: }
+     29: }
+     30: 
+ --------------------------------------------------------------
+ --------------------------------------------------------------
+ MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.ContainingClass.MyMessagePackObjectFormatter.g.cs
+ --------------------------------------------------------------
+      1: // <auto-generated />
+      2: 
+      3: #pragma warning disable 618, 612, 414, 168, CS1591, SA1129, SA1309, SA1312, SA1403, SA1649
+      4: 
+      5: using MsgPack = global::MessagePack;
+      6: 
+      7: namespace MessagePack {
+      8: partial class GeneratedMessagePackResolver {
+      9: internal partial class ContainingClass {
+     10: #if !NETSTANDARD2_0 && !NETFRAMEWORK
+     11: 	[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+     12: #endif
+     13: 	internal sealed class MyMessagePackObjectFormatter : global::MessagePack.Formatters.IMessagePackFormatter<global::ContainingClass.MyMessagePackObject>
+     14: 	{
+     15: 		// EnumValue
+     16: 		private static global::System.ReadOnlySpan<byte> GetSpan_EnumValue() => new byte[1 + 9] { 169, 69, 110, 117, 109, 86, 97, 108, 117, 101 };
+     17: 
+     18: 		public void Serialize(ref global::MessagePack.MessagePackWriter writer, global::ContainingClass.MyMessagePackObject value, global::MessagePack.MessagePackSerializerOptions options)
+     19: 		{
+     20: 			if (value is null)
+     21: 			{
+     22: 				writer.WriteNil();
+     23: 				return;
+     24: 			}
+     25: 
+     26: 			var formatterResolver = options.Resolver;
+     27: 			writer.WriteMapHeader(1);
+     28: 			writer.WriteRaw(GetSpan_EnumValue());
+     29: 			MsgPack::FormatterResolverExtensions.GetFormatterWithVerify<global::ContainingClass.MyEnum>(formatterResolver).Serialize(ref writer, value.EnumValue, options);
+     30: 		}
+     31: 
+     32: 		public global::ContainingClass.MyMessagePackObject Deserialize(ref global::MessagePack.MessagePackReader reader, global::MessagePack.MessagePackSerializerOptions options)
+     33: 		{
+     34: 			if (reader.TryReadNil())
+     35: 			{
+     36: 				return null;
+     37: 			}
+     38: 
+     39: 			options.Security.DepthStep(ref reader);
+     40: 			var formatterResolver = options.Resolver;
+     41: 			var length = reader.ReadMapHeader();
+     42: 			var ____result = new global::ContainingClass.MyMessagePackObject();
+     43: 
+     44: 			for (int i = 0; i < length; i++)
+     45: 			{
+     46: 				var stringKey = global::MessagePack.Internal.CodeGenHelpers.ReadStringSpan(ref reader);
+     47: 				switch (stringKey.Length)
+     48: 				{
+     49: 					default:
+     50: 					FAIL:
+     51: 					  reader.Skip();
+     52: 					  continue;
+     53: 					case 9:
+     54: 					    if (!global::System.MemoryExtensions.SequenceEqual(stringKey, GetSpan_EnumValue().Slice(1))) { goto FAIL; }
+     55: 
+     56: 					    ____result.EnumValue = MsgPack::FormatterResolverExtensions.GetFormatterWithVerify<global::ContainingClass.MyEnum>(formatterResolver).Deserialize(ref reader, options);
+     57: 					    continue;
+     58: 
+     59: 				}
+     60: 			}
+     61: 
+     62: 			reader.Depth--;
+     63: 			return ____result;
+     64: 		}
+     65: 	}
+     66: 
+     67: }
+     68: }
+     69: }
+     70: 
+ --------------------------------------------------------------
+ --------------------------------------------------------------
+ MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs
+ --------------------------------------------------------------
+      1: // <auto-generated />
+      2: 
+      3: #pragma warning disable 618, 612, 414, 168, CS1591, SA1129, SA1309, SA1312, SA1403, SA1649
+      4: 
+      5: using MsgPack = global::MessagePack;
+      6: 
+      7: [assembly: MsgPack::Internal.GeneratedAssemblyMessagePackResolverAttribute(typeof(MessagePack.GeneratedMessagePackResolver), 3, 0)]
+      8: 
+      9: namespace MessagePack {
+     10: 
+     11: /// <summary>A MessagePack resolver that uses generated formatters for types in this assembly.</summary>
+     12: #if !NETSTANDARD2_0 && !NETFRAMEWORK
+     13: [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+     14: #endif
+     15: partial class GeneratedMessagePackResolver : MsgPack::IFormatterResolver
+     16: {
+     17: 	/// <summary>An instance of this resolver that only returns formatters specifically generated for types in this assembly.</summary>
+     18: 	public static readonly MsgPack::IFormatterResolver Instance = new GeneratedMessagePackResolver();
+     19: 
+     20: 	private GeneratedMessagePackResolver()
+     21: 	{
+     22: 	}
+     23: 
+     24: 	public MsgPack::Formatters.IMessagePackFormatter<T> GetFormatter<T>()
+     25: 	{
+     26: 		return FormatterCache<T>.Formatter;
+     27: 	}
+     28: 
+     29: #if !NETSTANDARD2_0 && !NETFRAMEWORK
+     30: 	[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+     31: #endif
+     32: 	private static class FormatterCache<T>
+     33: 	{
+     34: 		internal static readonly MsgPack::Formatters.IMessagePackFormatter<T> Formatter;
+     35: 
+     36: 		static FormatterCache()
+     37: 		{
+     38: 			var f = GeneratedMessagePackResolverGetFormatterHelper.GetFormatter(typeof(T));
+     39: 			if (f != null)
+     40: 			{
+     41: 				Formatter = (MsgPack::Formatters.IMessagePackFormatter<T>)f;
+     42: 			}
+     43: 		}
+     44: 	}
+     45: 
+     46: #if !NETSTANDARD2_0 && !NETFRAMEWORK
+     47: 	[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+     48: #endif
+     49: 	private static class GeneratedMessagePackResolverGetFormatterHelper
+     50: 	{
+     51: 		private static readonly global::System.Collections.Generic.Dictionary<global::System.Type, int> closedTypeLookup = new global::System.Collections.Generic.Dictionary<global::System.Type, int>(2)
+     52: 		{
+     53: 			{ typeof(global::ContainingClass.MyEnum), 0 },
+     54: 			{ typeof(global::ContainingClass.MyMessagePackObject), 1 },
+     55: 		};
+     56: 
+     57: 		internal static object GetFormatter(global::System.Type t)
+     58: 		{
+     59: 			if (closedTypeLookup.TryGetValue(t, out int closedKey))
+     60: 			{
+     61: 				switch (closedKey)
+     62: 				{
+     63: 					case 0: return new global::MessagePack.GeneratedMessagePackResolver.ContainingClass.MyEnumFormatter();
+     64: 					case 1: return new global::MessagePack.GeneratedMessagePackResolver.ContainingClass.MyMessagePackObjectFormatter();
+     65: 					default: return null; // unreachable
+     66: 				};
+     67: 			}
+     68: 
+     69: 			return null;
+     70: 		}
+     71: 	}
+     72: }
+     73: 
+     74: }
+     75: 
+ --------------------------------------------------------------
+
+
+[xUnit.net 00:00:06.84]     GenericsFormatterTests.NullableFormatter [FAIL]
+  Failed GenericsFormatterTests.NullableFormatter [63 ms]
+  Error Message:
+   System.InvalidOperationException : Context: Source generator application
+Context: Verifying source generated files
+Expected source file list to match
++MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs
++MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObjectFormatter.g.cs
+ MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyEnumFormatter.g.cs
+-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObjectFormatter.g.cs
+-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs
+
+  Stack Trace:
+     at Microsoft.CodeAnalysis.Testing.DefaultVerifier.Fail(String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/DefaultVerifier.cs:line 105
+   at Microsoft.CodeAnalysis.Testing.IVerifierExtensions.EqualOrDiff(IVerifier verifier, String expected, String actual, String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/Extensions/IVerifierExtensions.cs:line 67
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.<VerifySourceGeneratorAsync>g__VerifyDocuments|66_0(IVerifier verifier, ImmutableArray`1 actualDocuments, ImmutableArray`1 expectedDocuments, Boolean allowReordering, String defaultFilePathPrefix, Func`3 getNameAndFolders, TimeSpan matchTimeout) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 407
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifySourceGeneratorAsync(String language, ImmutableArray`1 sourceGenerators, SolutionState testState, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 313
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifySourceGeneratorAsync(SolutionState testState, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 268
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunImplAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 202
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 172
+   at CSharpSourceGeneratorVerifier`1.Test.RunDefaultAsync(ITestOutputHelper logger) in /home/huyhoangle/junction/review-proof/.work/wt/b715699ce309930670e9dbcbe6f3276aff7fa287/tests/MessagePack.SourceGenerator.Tests/Verifiers/CSharpSourceGeneratorVerifier`1+Test.cs:line 75
+   at GenericsFormatterTests.NullableFormatter() in /home/huyhoangle/junction/review-proof/.work/wt/b715699ce309930670e9dbcbe6f3276aff7fa287/tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs:line 43
+--- End of stack trace from previous location ---
+  Standard Output Messages:
+ --------------------------------------------------------------
+ MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyEnumFormatter.g.cs
+ --------------------------------------------------------------
+      1: // <auto-generated />
+      2: 
+      3: #pragma warning disable 618, 612, 414, 168, CS1591, SA1129, SA1309, SA1312, SA1403, SA1649
+      4: 
+      5: using MsgPack = global::MessagePack;
+      6: 
+      7: namespace MessagePack {
+      8: partial class GeneratedMessagePackResolver {
+      9: internal partial class TempProject {
+     10: 
+     11: #if !NETSTANDARD2_0 && !NETFRAMEWORK
+     12: 	[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+     13: #endif
+     14: 	internal sealed class MyEnumFormatter : MsgPack::Formatters.IMessagePackFormatter<global::TempProject.MyEnum>
+     15: 	{
+     16: 		public void Serialize(ref MsgPack::MessagePackWriter writer, global::TempProject.MyEnum value, MsgPack::MessagePackSerializerOptions options)
+     17: 		{
+     18: 			writer.Write((int)value);
+     19: 		}
+     20: 
+     21: 		public global::TempProject.MyEnum Deserialize(ref MsgPack::MessagePackReader reader, MsgPack::MessagePackSerializerOptions options)
+     22: 		{
+     23: 			return (global::TempProject.MyEnum)reader.ReadInt32();
+     24: 		}
+     25: 	}
+     26: 
+     27: }
+     28: }
+     29: }
+     30: 
+ --------------------------------------------------------------
+ --------------------------------------------------------------
+ MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObjectFormatter.g.cs
+ --------------------------------------------------------------
+      1: // <auto-generated />
+      2: 
+      3: #pragma warning disable 618, 612, 414, 168, CS1591, SA1129, SA1309, SA1312, SA1403, SA1649
+      4: 
+      5: #pragma warning disable CS8669 // We may leak nullable annotations into generated code.
+      6: 
+      7: using MsgPack = global::MessagePack;
+      8: 
+      9: namespace MessagePack {
+     10: partial class GeneratedMessagePackResolver {
+     11: internal partial class TempProject {
+     12: 
+     13: #if !NETSTANDARD2_0 && !NETFRAMEWORK
+     14: 	[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+     15: #endif
+     16: 	internal sealed class MyObjectFormatter : MsgPack::Formatters.IMessagePackFormatter<global::TempProject.MyObject>
+     17: 	{
+     18: 
+     19: 		public void Serialize(ref MsgPack::MessagePackWriter writer, global::TempProject.MyObject value, MsgPack::MessagePackSerializerOptions options)
+     20: 		{
+     21: 			if (value == null)
+     22: 			{
+     23: 				writer.WriteNil();
+     24: 				return;
+     25: 			}
+     26: 
+     27: 			MsgPack::IFormatterResolver formatterResolver = options.Resolver;
+     28: 			writer.WriteArrayHeader(3);
+     29: 			MsgPack::FormatterResolverExtensions.GetFormatterWithVerify<int?>(formatterResolver).Serialize(ref writer, value.ValueNullableInt, options);
+     30: 			MsgPack::FormatterResolverExtensions.GetFormatterWithVerify<global::TempProject.MyEnum?>(formatterResolver).Serialize(ref writer, value.ValueNullableEnum, options);
+     31: 			MsgPack::FormatterResolverExtensions.GetFormatterWithVerify<(int, long)?>(formatterResolver).Serialize(ref writer, value.ValueNullableStruct, options);
+     32: 		}
+     33: 
+     34: 		public global::TempProject.MyObject Deserialize(ref MsgPack::MessagePackReader reader, MsgPack::MessagePackSerializerOptions options)
+     35: 		{
+     36: 			if (reader.TryReadNil())
+     37: 			{
+     38: 				return null;
+     39: 			}
+     40: 
+     41: 			options.Security.DepthStep(ref reader);
+     42: 			MsgPack::IFormatterResolver formatterResolver = options.Resolver;
+     43: 			var length = reader.ReadArrayHeader();
+     44: 			var ____result = new global::TempProject.MyObject();
+     45: 
+     46: 			for (int i = 0; i < length; i++)
+     47: 			{
+     48: 				switch (i)
+     49: 				{
+     50: 					case 0:
+     51: 						____result.ValueNullableInt = MsgPack::FormatterResolverExtensions.GetFormatterWithVerify<int?>(formatterResolver).Deserialize(ref reader, options);
+     52: 						break;
+     53: 					case 1:
+     54: 						____result.ValueNullableEnum = MsgPack::FormatterResolverExtensions.GetFormatterWithVerify<global::TempProject.MyEnum?>(formatterResolver).Deserialize(ref reader, options);
+     55: 						break;
+     56: 					case 2:
+     57: 						____result.ValueNullableStruct = MsgPack::FormatterResolverExtensions.GetFormatterWithVerify<(int, long)?>(formatterResolver).Deserialize(ref reader, options);
+     58: 						break;
+     59: 					default:
+     60: 						reader.Skip();
+     61: 						break;
+     62: 				}
+     63: 			}
+     64: 
+     65: 			reader.Depth--;
+     66: 			return ____result;
+     67: 		}
+     68: 	}
+     69: }
+     70: }
+     71: }
+     72: 
+ --------------------------------------------------------------
+ --------------------------------------------------------------
+ MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs
+ --------------------------------------------------------------
+      1: // <auto-generated />
+      2: 
+      3: #pragma warning disable 618, 612, 414, 168, CS1591, SA1129, SA1309, SA1312, SA1403, SA1649
+      4: 
+      5: using MsgPack = global::MessagePack;
+      6: 
+      7: [assembly: MsgPack::Internal.GeneratedAssemblyMessagePackResolverAttribute(typeof(MessagePack.GeneratedMessagePackResolver), 3, 0)]
+      8: 
+      9: namespace MessagePack {
+     10: 
+     11: /// <summary>A MessagePack resolver that uses generated formatters for types in this assembly.</summary>
+     12: #if !NETSTANDARD2_0 && !NETFRAMEWORK
+     13: [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+     14: #endif
+     15: partial class GeneratedMessagePackResolver : MsgPack::IFormatterResolver
+     16: {
+     17: 	/// <summary>An instance of this resolver that only returns formatters specifically generated for types in this assembly.</summary>
+     18: 	public static readonly MsgPack::IFormatterResolver Instance = new GeneratedMessagePackResolver();
+     19: 
+     20: 	private GeneratedMessagePackResolver()
+     21: 	{
+     22: 	}
+     23: 
+     24: 	public MsgPack::Formatters.IMessagePackFormatter<T> GetFormatter<T>()
+     25: 	{
+     26: 		return FormatterCache<T>.Formatter;
+     27: 	}
+     28: 
+     29: #if !NETSTANDARD2_0 && !NETFRAMEWORK
+     30: 	[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+     31: #endif
+     32: 	private static class FormatterCache<T>
+     33: 	{
+     34: 		internal static readonly MsgPack::Formatters.IMessagePackFormatter<T> Formatter;
+     35: 
+     36: 		static FormatterCache()
+     37: 		{
+     38: 			var f = GeneratedMessagePackResolverGetFormatterHelper.GetFormatter(typeof(T));
+     39: 			if (f != null)
+     40: 			{
+     41: 				Formatter = (MsgPack::Formatters.IMessagePackFormatter<T>)f;
+     42: 			}
+     43: 		}
+     44: 	}
+     45: 
+     46: #if !NETSTANDARD2_0 && !NETFRAMEWORK
+     47: 	[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+     48: #endif
+     49: 	private static class GeneratedMessagePackResolverGetFormatterHelper
+     50: 	{
+     51: 		private static readonly global::System.Collections.Generic.Dictionary<global::System.Type, int> closedTypeLookup = new global::System.Collections.Generic.Dictionary<global::System.Type, int>(5)
+     52: 		{
+     53: 			{ typeof((int, long)?), 0 },
+     54: 			{ typeof(global::TempProject.MyEnum?), 1 },
+     55: 			{ typeof((int, long)), 2 },
+     56: 			{ typeof(global::TempProject.MyEnum), 3 },
+     57: 			{ typeof(global::TempProject.MyObject), 4 },
+     58: 		};
+     59: 
+     60: 		internal static object GetFormatter(global::System.Type t)
+     61: 		{
+     62: 			if (closedTypeLookup.TryGetValue(t, out int closedKey))
+     63: 			{
+     64: 				switch (closedKey)
+     65: 				{
+     66: 					case 0: return new MsgPack::Formatters.NullableFormatter<(int, long)>();
+     67: 					case 1: return new MsgPack::Formatters.NullableFormatter<global::TempProject.MyEnum>();
+     68: 					case 2: return new MsgPack::Formatters.ValueTupleFormatter<int, long>();
+     69: 					case 3: return new global::MessagePack.GeneratedMessagePackResolver.TempProject.MyEnumFormatter();
+     70: 					case 4: return new global::MessagePack.GeneratedMessagePackResolver.TempProject.MyObjectFormatter();
+     71: 					default: return null; // unreachable
+     72: 				};
+     73: 			}
+     74: 
+     75: 			return null;
+     76: 		}
+     77: 	}
+     78: }
+     79: 
+     80: }
+     81: 
+ --------------------------------------------------------------
+
+
+[xUnit.net 00:00:08.50]     GenerationTests.EnumFormatter_CollidingTypeNames [FAIL]
+  Failed GenerationTests.EnumFormatter_CollidingTypeNames [22 ms]
+  Error Message:
+   System.InvalidOperationException : Context: Source generator application
+Context: Verifying source generated files
+Expected source file list to match
++MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs
+ MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.MyMessagePackObjectFormatter.g.cs
+ MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.NS1.MyEnumFormatter.g.cs
+ MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.NS2.MyEnumFormatter.g.cs
+-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs
+
+  Stack Trace:
+     at Microsoft.CodeAnalysis.Testing.DefaultVerifier.Fail(String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/DefaultVerifier.cs:line 105
+   at Microsoft.CodeAnalysis.Testing.IVerifierExtensions.EqualOrDiff(IVerifier verifier, String expected, String actual, String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/Extensions/IVerifierExtensions.cs:line 67
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.<VerifySourceGeneratorAsync>g__VerifyDocuments|66_0(IVerifier verifier, ImmutableArray`1 actualDocuments, ImmutableArray`1 expectedDocuments, Boolean allowReordering, String defaultFilePathPrefix, Func`3 getNameAndFolders, TimeSpan matchTimeout) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 407
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifySourceGeneratorAsync(String language, ImmutableArray`1 sourceGenerators, SolutionState testState, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 313
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifySourceGeneratorAsync(SolutionState testState, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 268
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunImplAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 202
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 172
+   at CSharpSourceGeneratorVerifier`1.Test.RunDefaultAsync(ITestOutputHelper logger) in /home/huyhoangle/junction/review-proof/.work/wt/b715699ce309930670e9dbcbe6f3276aff7fa287/tests/MessagePack.SourceGenerator.Tests/Verifiers/CSharpSourceGeneratorVerifier`1+Test.cs:line 75
+   at GenerationTests.EnumFormatter_CollidingTypeNames() in /home/huyhoangle/junction/review-proof/.work/wt/b715699ce309930670e9dbcbe6f3276aff7fa287/tests/MessagePack.SourceGenerator.Tests/GenerationTests.cs:line 75
+--- End of stack trace from previous location ---
+  Standard Output Messages:
+ --------------------------------------------------------------
+ MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.MyMessagePackObjectFormatter.g.cs
+ --------------------------------------------------------------
+      1: // <auto-generated />
+      2: 
+      3: #pragma warning disable 618, 612, 414, 168, CS1591, SA1129, SA1309, SA1312, SA1403, SA1649
+      4: 
+      5: #pragma warning disable CS8669 // We may leak nullable annotations into generated code.
+      6: 
+      7: using MsgPack = global::MessagePack;
+      8: 
+      9: namespace MessagePack {
+     10: partial class GeneratedMessagePackResolver {
+     11: 
+     12: #if !NETSTANDARD2_0 && !NETFRAMEWORK
+     13: 	[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+     14: #endif
+     15: 	internal sealed class MyMessagePackObjectFormatter : MsgPack::Formatters.IMessagePackFormatter<global::MyMessagePackObject>
+     16: 	{
+     17: 
+     18: 		public void Serialize(ref MsgPack::MessagePackWriter writer, global::MyMessagePackObject value, MsgPack::MessagePackSerializerOptions options)
+     19: 		{
+     20: 			if (value == null)
+     21: 			{
+     22: 				writer.WriteNil();
+     23: 				return;
+     24: 			}
+     25: 
+     26: 			MsgPack::IFormatterResolver formatterResolver = options.Resolver;
+     27: 			writer.WriteArrayHeader(2);
+     28: 			MsgPack::FormatterResolverExtensions.GetFormatterWithVerify<global::NS1.MyEnum>(formatterResolver).Serialize(ref writer, value.EnumValue1, options);
+     29: 			MsgPack::FormatterResolverExtensions.GetFormatterWithVerify<global::NS2.MyEnum>(formatterResolver).Serialize(ref writer, value.EnumValue2, options);
+     30: 		}
+     31: 
+     32: 		public global::MyMessagePackObject Deserialize(ref MsgPack::MessagePackReader reader, MsgPack::MessagePackSerializerOptions options)
+     33: 		{
+     34: 			if (reader.TryReadNil())
+     35: 			{
+     36: 				return null;
+     37: 			}
+     38: 
+     39: 			options.Security.DepthStep(ref reader);
+     40: 			MsgPack::IFormatterResolver formatterResolver = options.Resolver;
+     41: 			var length = reader.ReadArrayHeader();
+     42: 			var ____result = new global::MyMessagePackObject();
+     43: 
+     44: 			for (int i = 0; i < length; i++)
+     45: 			{
+     46: 				switch (i)
+     47: 				{
+     48: 					case 0:
+     49: 						____result.EnumValue1 = MsgPack::FormatterResolverExtensions.GetFormatterWithVerify<global::NS1.MyEnum>(formatterResolver).Deserialize(ref reader, options);
+     50: 						break;
+     51: 					case 1:
+     52: 						____result.EnumValue2 = MsgPack::FormatterResolverExtensions.GetFormatterWithVerify<global::NS2.MyEnum>(formatterResolver).Deserialize(ref reader, options);
+     53: 						break;
+     54: 					default:
+     55: 						reader.Skip();
+     56: 						break;
+     57: 				}
+     58: 			}
+     59: 
+     60: 			reader.Depth--;
+     61: 			return ____result;
+     62: 		}
+     63: 	}
+     64: }
+     65: }
+     66: 
+ --------------------------------------------------------------
+ --------------------------------------------------------------
+ MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.NS1.MyEnumFormatter.g.cs
+ --------------------------------------------------------------
+      1: // <auto-generated />
+      2: 
+      3: #pragma warning disable 618, 612, 414, 168, CS1591, SA1129, SA1309, SA1312, SA1403, SA1649
+      4: 
+      5: using MsgPack = global::MessagePack;
+      6: 
+      7: namespace MessagePack {
+      8: partial class GeneratedMessagePackResolver {
+      9: internal partial class NS1 {
+     10: 
+     11: #if !NETSTANDARD2_0 && !NETFRAMEWORK
+     12: 	[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+     13: #endif
+     14: 	internal sealed class MyEnumFormatter : MsgPack::Formatters.IMessagePackFormatter<global::NS1.MyEnum>
+     15: 	{
+     16: 		public void Serialize(ref MsgPack::MessagePackWriter writer, global::NS1.MyEnum value, MsgPack::MessagePackSerializerOptions options)
+     17: 		{
+     18: 			writer.Write((int)value);
+     19: 		}
+     20: 
+     21: 		public global::NS1.MyEnum Deserialize(ref MsgPack::MessagePackReader reader, MsgPack::MessagePackSerializerOptions options)
+     22: 		{
+     23: 			return (global::NS1.MyEnum)reader.ReadInt32();
+     24: 		}
+     25: 	}
+     26: 
+     27: }
+     28: }
+     29: }
+     30: 
+ --------------------------------------------------------------
+ --------------------------------------------------------------
+ MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.NS2.MyEnumFormatter.g.cs
+ --------------------------------------------------------------
+      1: // <auto-generated />
+      2: 
+      3: #pragma warning disable 618, 612, 414, 168, CS1591, SA1129, SA1309, SA1312, SA1403, SA1649
+      4: 
+      5: using MsgPack = global::MessagePack;
+      6: 
+      7: namespace MessagePack {
+      8: partial class GeneratedMessagePackResolver {
+      9: internal partial class NS2 {
+     10: 
+     11: #if !NETSTANDARD2_0 && !NETFRAMEWORK
+     12: 	[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+     13: #endif
+     14: 	internal sealed class MyEnumFormatter : MsgPack::Formatters.IMessagePackFormatter<global::NS2.MyEnum>
+     15: 	{
+     16: 		public void Serialize(ref MsgPack::MessagePackWriter writer, global::NS2.MyEnum value, MsgPack::MessagePackSerializerOptions options)
+     17: 		{
+     18: 			writer.Write((int)value);
+     19: 		}
+     20: 
+     21: 		public global::NS2.MyEnum Deserialize(ref MsgPack::MessagePackReader reader, MsgPack::MessagePackSerializerOptions options)
+     22: 		{
+     23: 			return (global::NS2.MyEnum)reader.ReadInt32();
+     24: 		}
+     25: 	}
+     26: 
+     27: }
+     28: }
+     29: }
+     30: 
+ --------------------------------------------------------------
+ --------------------------------------------------------------
+ MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs
+ --------------------------------------------------------------
+      1: // <auto-generated />
+      2: 
+      3: #pragma warning disable 618, 612, 414, 168, CS1591, SA1129, SA1309, SA1312, SA1403, SA1649
+      4: 
+      5: using MsgPack = global::MessagePack;
+      6: 
+      7: [assembly: MsgPack::Internal.GeneratedAssemblyMessagePackResolverAttribute(typeof(MessagePack.GeneratedMessagePackResolver), 3, 0)]
+      8: 
+      9: namespace MessagePack {
+     10: 
+     11: /// <summary>A MessagePack resolver that uses generated formatters for types in this assembly.</summary>
+     12: #if !NETSTANDARD2_0 && !NETFRAMEWORK
+     13: [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+     14: #endif
+     15: partial class GeneratedMessagePackResolver : MsgPack::IFormatterResolver
+     16: {
+     17: 	/// <summary>An instance of this resolver that only returns formatters specifically generated for types in this assembly.</summary>
+     18: 	public static readonly MsgPack::IFormatterResolver Instance = new GeneratedMessagePackResolver();
+     19: 
+     20: 	private GeneratedMessagePackResolver()
+     21: 	{
+     22: 	}
+     23: 
+     24: 	public MsgPack::Formatters.IMessagePackFormatter<T> GetFormatter<T>()
+     25: 	{
+     26: 		return FormatterCache<T>.Formatter;
+     27: 	}
+     28: 
+     29: #if !NETSTANDARD2_0 && !NETFRAMEWORK
+     30: 	[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+     31: #endif
+     32: 	private static class FormatterCache<T>
+     33: 	{
+     34: 		internal static readonly MsgPack::Formatters.IMessagePackFormatter<T> Formatter;
+     35: 
+     36: 		static FormatterCache()
+     37: 		{
+     38: 			var f = GeneratedMessagePackResolverGetFormatterHelper.GetFormatter(typeof(T));
+     39: 			if (f != null)
+     40: 			{
+     41: 				Formatter = (MsgPack::Formatters.IMessagePackFormatter<T>)f;
+     42: 			}
+     43: 		}
+     44: 	}
+     45: 
+     46: #if !NETSTANDARD2_0 && !NETFRAMEWORK
+     47: 	[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+     48: #endif
+     49: 	private static class GeneratedMessagePackResolverGetFormatterHelper
+     50: 	{
+     51: 		private static readonly global::System.Collections.Generic.Dictionary<global::System.Type, int> closedTypeLookup = new global::System.Collections.Generic.Dictionary<global::System.Type, int>(3)
+     52: 		{
+     53: 			{ typeof(global::NS1.MyEnum), 0 },
+     54: 			{ typeof(global::NS2.MyEnum), 1 },
+     55: 			{ typeof(global::MyMessagePackObject), 2 },
+     56: 		};
+     57: 
+     58: 		internal static object GetFormatter(global::System.Type t)
+     59: 		{
+     60: 			if (closedTypeLookup.TryGetValue(t, out int closedKey))
+     61: 			{
+     62: 				switch (closedKey)
+     63: 				{
+     64: 					case 0: return new global::MessagePack.GeneratedMessagePackResolver.NS1.MyEnumFormatter();
+     65: 					case 1: return new global::MessagePack.GeneratedMessagePackResolver.NS2.MyEnumFormatter();
+     66: 					case 2: return new global::MessagePack.GeneratedMessagePackResolver.MyMessagePackObjectFormatter();
+     67: 					default: return null; // unreachable
+     68: 				};
+     69: 			}
+     70: 
+     71: 			return null;
+     72: 		}
+     73: 	}
+     74: }
+     75: 
+     76: }
+     77: 
+ --------------------------------------------------------------
+
+
+[xUnit.net 00:00:09.73]     GenerationTests.MixType_CollidingTypeNames [FAIL]
+  Failed GenerationTests.MixType_CollidingTypeNames [37 ms]
+  Error Message:
+   System.InvalidOperationException : Context: Source generator application
+Context: Verifying source generated files
+Expected source file list to match
++MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs
+ MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.MyMessagePackObjectFormatter.g.cs
+-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.NS1.MyTypeFormatter.g.cs
+ MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.NS2.MyTypeFormatter.g.cs
+ MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.NS3.MyTypeFormatter`1.g.cs
+-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs
++MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.NS1.MyTypeFormatter.g.cs
+
+  Stack Trace:
+     at Microsoft.CodeAnalysis.Testing.DefaultVerifier.Fail(String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/DefaultVerifier.cs:line 105
+   at Microsoft.CodeAnalysis.Testing.IVerifierExtensions.EqualOrDiff(IVerifier verifier, String expected, String actual, String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/Extensions/IVerifierExtensions.cs:line 67
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.<VerifySourceGeneratorAsync>g__VerifyDocuments|66_0(IVerifier verifier, ImmutableArray`1 actualDocuments, ImmutableArray`1 expectedDocuments, Boolean allowReordering, String defaultFilePathPrefix, Func`3 getNameAndFolders, TimeSpan matchTimeout) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 407
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifySourceGeneratorAsync(String language, ImmutableArray`1 sourceGenerators, SolutionState testState, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 313
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifySourceGeneratorAsync(SolutionState testState, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 268
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunImplAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 202
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 172
+   at CSharpSourceGeneratorVerifier`1.Test.RunDefaultAsync(ITestOutputHelper logger) in /home/huyhoangle/junction/review-proof/.work/wt/b715699ce309930670e9dbcbe6f3276aff7fa287/tests/MessagePack.SourceGenerator.Tests/Verifiers/CSharpSourceGeneratorVerifier`1+Test.cs:line 75
+   at GenerationTests.MixType_CollidingTypeNames() in /home/huyhoangle/junction/review-proof/.work/wt/b715699ce309930670e9dbcbe6f3276aff7fa287/tests/MessagePack.SourceGenerator.Tests/GenerationTests.cs:line 199
+--- End of stack trace from previous location ---
+  Standard Output Messages:
+ --------------------------------------------------------------
+ MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.MyMessagePackObjectFormatter.g.cs
+ --------------------------------------------------------------
+      1: // <auto-generated />
+      2: 
+      3: #pragma warning disable 618, 612, 414, 168, CS1591, SA1129, SA1309, SA1312, SA1403, SA1649
+      4: 
+      5: #pragma warning disable CS8669 // We may leak nullable annotations into generated code.
+      6: 
+      7: using MsgPack = global::MessagePack;
+      8: 
+      9: namespace MessagePack {
+     10: partial class GeneratedMessagePackResolver {
+     11: 
+     12: #if !NETSTANDARD2_0 && !NETFRAMEWORK
+     13: 	[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+     14: #endif
+     15: 	internal sealed class MyMessagePackObjectFormatter : MsgPack::Formatters.IMessagePackFormatter<global::MyMessagePackObject>
+     16: 	{
+     17: 
+     18: 		public void Serialize(ref MsgPack::MessagePackWriter writer, global::MyMessagePackObject value, MsgPack::MessagePackSerializerOptions options)
+     19: 		{
+     20: 			if (value == null)
+     21: 			{
+     22: 				writer.WriteNil();
+     23: 				return;
+     24: 			}
+     25: 
+     26: 			MsgPack::IFormatterResolver formatterResolver = options.Resolver;
+     27: 			writer.WriteArrayHeader(3);
+     28: 			MsgPack::FormatterResolverExtensions.GetFormatterWithVerify<global::NS1.MyType>(formatterResolver).Serialize(ref writer, value.Value1, options);
+     29: 			MsgPack::FormatterResolverExtensions.GetFormatterWithVerify<global::NS2.MyType>(formatterResolver).Serialize(ref writer, value.Value2, options);
+     30: 			MsgPack::FormatterResolverExtensions.GetFormatterWithVerify<global::NS3.MyType<int>>(formatterResolver).Serialize(ref writer, value.Value3, options);
+     31: 		}
+     32: 
+     33: 		public global::MyMessagePackObject Deserialize(ref MsgPack::MessagePackReader reader, MsgPack::MessagePackSerializerOptions options)
+     34: 		{
+     35: 			if (reader.TryReadNil())
+     36: 			{
+     37: 				return null;
+     38: 			}
+     39: 
+     40: 			options.Security.DepthStep(ref reader);
+     41: 			MsgPack::IFormatterResolver formatterResolver = options.Resolver;
+     42: 			var length = reader.ReadArrayHeader();
+     43: 			var ____result = new global::MyMessagePackObject();
+     44: 
+     45: 			for (int i = 0; i < length; i++)
+     46: 			{
+     47: 				switch (i)
+     48: 				{
+     49: 					case 0:
+     50: 						____result.Value1 = MsgPack::FormatterResolverExtensions.GetFormatterWithVerify<global::NS1.MyType>(formatterResolver).Deserialize(ref reader, options);
+     51: 						break;
+     52: 					case 1:
+     53: 						____result.Value2 = MsgPack::FormatterResolverExtensions.GetFormatterWithVerify<global::NS2.MyType>(formatterResolver).Deserialize(ref reader, options);
+     54: 						break;
+     55: 					case 2:
+     56: 						____result.Value3 = MsgPack::FormatterResolverExtensions.GetFormatterWithVerify<global::NS3.MyType<int>>(formatterResolver).Deserialize(ref reader, options);
+     57: 						break;
+     58: 					default:
+     59: 						reader.Skip();
+     60: 						break;
+     61: 				}
+     62: 			}
+     63: 
+     64: 			reader.Depth--;
+     65: 			return ____result;
+     66: 		}
+     67: 	}
+     68: }
+     69: }
+     70: 
+ --------------------------------------------------------------
+ --------------------------------------------------------------
+ MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.NS1.MyTypeFormatter.g.cs
+ --------------------------------------------------------------
+      1: // <auto-generated />
+      2: 
+      3: #pragma warning disable 618, 612, 414, 168, CS1591, SA1129, SA1309, SA1312, SA1403, SA1649
+      4: 
+      5: using MsgPack = global::MessagePack;
+      6: 
+      7: namespace MessagePack {
+      8: partial class GeneratedMessagePackResolver {
+      9: internal partial class NS1 {
+     10: 
+     11: #if !NETSTANDARD2_0 && !NETFRAMEWORK
+     12: 	[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+     13: #endif
+     14: 	internal sealed class MyTypeFormatter : MsgPack::Formatters.IMessagePackFormatter<global::NS1.MyType>
+     15: 	{
+     16: 		public void Serialize(ref MsgPack::MessagePackWriter writer, global::NS1.MyType value, MsgPack::MessagePackSerializerOptions options)
+     17: 		{
+     18: 			writer.Write((int)value);
+     19: 		}
+     20: 
+     21: 		public global::NS1.MyType Deserialize(ref MsgPack::MessagePackReader reader, MsgPack::MessagePackSerializerOptions options)
+     22: 		{
+     23: 			return (global::NS1.MyType)reader.ReadInt32();
+     24: 		}
+     25: 	}
+     26: 
+     27: }
+     28: }
+     29: }
+     30: 
+ --------------------------------------------------------------
+ --------------------------------------------------------------
+ MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.NS2.MyTypeFormatter.g.cs
+ --------------------------------------------------------------
+      1: // <auto-generated />
+      2: 
+      3: #pragma warning disable 618, 612, 414, 168, CS1591, SA1129, SA1309, SA1312, SA1403, SA1649
+      4: 
+      5: #pragma warning disable CS8669 // We may leak nullable annotations into generated code.
+      6: 
+      7: using MsgPack = global::MessagePack;
+      8: 
+      9: namespace MessagePack {
+     10: partial class GeneratedMessagePackResolver {
+     11: internal partial class NS2 {
+     12: 
+     13: #if !NETSTANDARD2_0 && !NETFRAMEWORK
+     14: 	[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+     15: #endif
+     16: 	internal sealed class MyTypeFormatter : MsgPack::Formatters.IMessagePackFormatter<global::NS2.MyType>
+     17: 	{
+     18: 
+     19: 		public void Serialize(ref MsgPack::MessagePackWriter writer, global::NS2.MyType value, MsgPack::MessagePackSerializerOptions options)
+     20: 		{
+     21: 			if (value == null)
+     22: 			{
+     23: 				writer.WriteNil();
+     24: 				return;
+     25: 			}
+     26: 
+     27: 			MsgPack::IFormatterResolver formatterResolver = options.Resolver;
+     28: 			writer.WriteArrayHeader(1);
+     29: 			MsgPack::FormatterResolverExtensions.GetFormatterWithVerify<string>(formatterResolver).Serialize(ref writer, value.Foo, options);
+     30: 		}
+     31: 
+     32: 		public global::NS2.MyType Deserialize(ref MsgPack::MessagePackReader reader, MsgPack::MessagePackSerializerOptions options)
+     33: 		{
+     34: 			if (reader.TryReadNil())
+     35: 			{
+     36: 				return null;
+     37: 			}
+     38: 
+     39: 			options.Security.DepthStep(ref reader);
+     40: 			MsgPack::IFormatterResolver formatterResolver = options.Resolver;
+     41: 			var length = reader.ReadArrayHeader();
+     42: 			var ____result = new global::NS2.MyType();
+     43: 
+     44: 			for (int i = 0; i < length; i++)
+     45: 			{
+     46: 				switch (i)
+     47: 				{
+     48: 					case 0:
+     49: 						____result.Foo = MsgPack::FormatterResolverExtensions.GetFormatterWithVerify<string>(formatterResolver).Deserialize(ref reader, options);
+     50: 						break;
+     51: 					default:
+     52: 						reader.Skip();
+     53: 						break;
+     54: 				}
+     55: 			}
+     56: 
+     57: 			reader.Depth--;
+     58: 			return ____result;
+     59: 		}
+     60: 	}
+     61: }
+     62: }
+     63: }
+     64: 
+ --------------------------------------------------------------
+ --------------------------------------------------------------
+ MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.NS3.MyTypeFormatter`1.g.cs
+ --------------------------------------------------------------
+      1: // <auto-generated />
+      2: 
+      3: #pragma warning disable 618, 612, 414, 168, CS1591, SA1129, SA1309, SA1312, SA1403, SA1649
+      4: 
+      5: #pragma warning disable CS8669 // We may leak nullable annotations into generated code.
+      6: 
+      7: using MsgPack = global::MessagePack;
+      8: 
+      9: namespace MessagePack {
+     10: partial class GeneratedMessagePackResolver {
+     11: internal partial class NS3 {
+     12: 
+     13: #if !NETSTANDARD2_0 && !NETFRAMEWORK
+     14: 	[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+     15: #endif
+     16: 	internal sealed class MyTypeFormatter<T> : MsgPack::Formatters.IMessagePackFormatter<global::NS3.MyType<T>>
+     17: 	{
+     18: 
+     19: 		public void Serialize(ref MsgPack::MessagePackWriter writer, global::NS3.MyType<T> value, MsgPack::MessagePackSerializerOptions options)
+     20: 		{
+     21: 			if (value == null)
+     22: 			{
+     23: 				writer.WriteNil();
+     24: 				return;
+     25: 			}
+     26: 
+     27: 			MsgPack::IFormatterResolver formatterResolver = options.Resolver;
+     28: 			writer.WriteArrayHeader(1);
+     29: 			MsgPack::FormatterResolverExtensions.GetFormatterWithVerify<string>(formatterResolver).Serialize(ref writer, value.Foo, options);
+     30: 		}
+     31: 
+     32: 		public global::NS3.MyType<T> Deserialize(ref MsgPack::MessagePackReader reader, MsgPack::MessagePackSerializerOptions options)
+     33: 		{
+     34: 			if (reader.TryReadNil())
+     35: 			{
+     36: 				return null;
+     37: 			}
+     38: 
+     39: 			options.Security.DepthStep(ref reader);
+     40: 			MsgPack::IFormatterResolver formatterResolver = options.Resolver;
+     41: 			var length = reader.ReadArrayHeader();
+     42: 			var ____result = new global::NS3.MyType<T>();
+     43: 
+     44: 			for (int i = 0; i < length; i++)
+     45: 			{
+     46: 				switch (i)
+     47: 				{
+     48: 					case 0:
+     49: 						____result.Foo = MsgPack::FormatterResolverExtensions.GetFormatterWithVerify<string>(formatterResolver).Deserialize(ref reader, options);
+     50: 						break;
+     51: 					default:
+     52: 						reader.Skip();
+     53: 						break;
+     54: 				}
+     55: 			}
+     56: 
+     57: 			reader.Depth--;
+     58: 			return ____result;
+     59: 		}
+     60: 	}
+     61: }
+     62: }
+     63: }
+     64: 
+ --------------------------------------------------------------
+ --------------------------------------------------------------
+ MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs
+ --------------------------------------------------------------
+      1: // <auto-generated />
+      2: 
+      3: #pragma warning disable 618, 612, 414, 168, CS1591, SA1129, SA1309, SA1312, SA1403, SA1649
+      4: 
+      5: using MsgPack = global::MessagePack;
+      6: 
+      7: [assembly: MsgPack::Internal.GeneratedAssemblyMessagePackResolverAttribute(typeof(MessagePack.GeneratedMessagePackResolver), 3, 0)]
+      8: 
+      9: namespace MessagePack {
+     10: 
+     11: /// <summary>A MessagePack resolver that uses generated formatters for types in this assembly.</summary>
+     12: #if !NETSTANDARD2_0 && !NETFRAMEWORK
+     13: [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+     14: #endif
+     15: partial class GeneratedMessagePackResolver : MsgPack::IFormatterResolver
+     16: {
+     17: 	/// <summary>An instance of this resolver that only returns formatters specifically generated for types in this assembly.</summary>
+     18: 	public static readonly MsgPack::IFormatterResolver Instance = new GeneratedMessagePackResolver();
+     19: 
+     20: 	private GeneratedMessagePackResolver()
+     21: 	{
+     22: 	}
+     23: 
+     24: 	public MsgPack::Formatters.IMessagePackFormatter<T> GetFormatter<T>()
+     25: 	{
+     26: 		return FormatterCache<T>.Formatter;
+     27: 	}
+     28: 
+     29: #if !NETSTANDARD2_0 && !NETFRAMEWORK
+     30: 	[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+     31: #endif
+     32: 	private static class FormatterCache<T>
+     33: 	{
+     34: 		internal static readonly MsgPack::Formatters.IMessagePackFormatter<T> Formatter;
+     35: 
+     36: 		static FormatterCache()
+     37: 		{
+     38: 			var f = GeneratedMessagePackResolverGetFormatterHelper.GetFormatter(typeof(T));
+     39: 			if (f != null)
+     40: 			{
+     41: 				Formatter = (MsgPack::Formatters.IMessagePackFormatter<T>)f;
+     42: 			}
+     43: 		}
+     44: 	}
+     45: 
+     46: #if !NETSTANDARD2_0 && !NETFRAMEWORK
+     47: 	[global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+     48: #endif
+     49: 	private static class GeneratedMessagePackResolverGetFormatterHelper
+     50: 	{
+     51: 		private static readonly global::System.Collections.Generic.Dictionary<global::System.Type, int> closedTypeLookup = new global::System.Collections.Generic.Dictionary<global::System.Type, int>(4)
+     52: 		{
+     53: 			{ typeof(global::NS3.MyType<int>), 0 },
+     54: 			{ typeof(global::NS1.MyType), 1 },
+     55: 			{ typeof(global::MyMessagePackObject), 2 },
+     56: 			{ typeof(global::NS2.MyType), 3 },
+     57: 		};
+     58: 		private static readonly global::System.Collections.Generic.Dictionary<global::System.Type, int> openTypeLookup = new global::System.Collections.Generic.Dictionary<global::System.Type, int>(1)
+     59: 		{
+     60: 			{ typeof(global::NS3.MyType<>), 0 },
+     61: 		};
+     62: 
+     63: 		internal static object GetFormatter(global::System.Type t)
+     64: 		{
+     65: 			if (closedTypeLookup.TryGetValue(t, out int closedKey))
+     66: 			{
+     67: 				switch (closedKey)
+     68: 				{
+     69: 					case 0: return new global::MessagePack.GeneratedMessagePackResolver.NS3.MyTypeFormatter<int>();
+     70: 					case 1: return new global::MessagePack.GeneratedMessagePackResolver.NS1.MyTypeFormatter();
+     71: 					case 2: return new global::MessagePack.GeneratedMessagePackResolver.MyMessagePackObjectFormatter();
+     72: 					case 3: return new global::MessagePack.GeneratedMessagePackResolver.NS2.MyTypeFormatter();
+     73: 					default: return null; // unreachable
+     74: 				};
+     75: 			}
+     76: 			if (t.IsGenericType && openTypeLookup.TryGetValue(t.GetGenericTypeDefinition(), out int openKey))
+     77: 			{
+     78: 				switch (openKey)
+     79: 				{
+     80: 					case 0: return global::System.Activator.CreateInstance(typeof(global::MessagePack.GeneratedMessagePackResolver.NS3.MyTypeFormatter<>).MakeGenericType(t.GenericTypeArguments));
+     81: 					default: return null; // unreachable
+     82: 				};
+     83: 			}
+     84: 
+     85: 			return null;
+     86: 		}
+     87: 	}
+     88: }
+     89: 
+     90: }
+     91: 
+ --------------------------------------------------------------
+
+
+Results File: /home/huyhoangle/junction/review-proof/.work/results/data_calibration_template-output-enum_runs/head.MessagePack.SourceGenerator.Tests/head.MessagePack.SourceGenerator.Tests.trx
+
+Failed!  - Failed:     9, Passed:   160, Skipped:     0, Total:   169, Duration: 11 s - MessagePack.SourceGenerator.Tests.dll (net8.0)
+
+Build FAILED.
+
+/home/huyhoangle/junction/review-proof/.work/wt/b715699ce309930670e9dbcbe6f3276aff7fa287/tests/MessagePack.SourceGenerator.Tests/MessagePack.SourceGenerator.Tests.csproj : warning NU1901: Package 'NuGet.Protocol' 6.8.0 has a known low severity vulnerability, https://github.com/advisories/GHSA-g4vj-cjjj-v7hg
+/home/huyhoangle/junction/review-proof/.work/wt/b715699ce309930670e9dbcbe6f3276aff7fa287/tests/MessagePack.SourceGenerator.Tests/MessagePack.SourceGenerator.Tests.csproj : warning NU1901: Package 'NuGet.Protocol' 6.8.0 has a known low severity vulnerability, https://github.com/advisories/GHSA-g4vj-cjjj-v7hg
+    2 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:33.33

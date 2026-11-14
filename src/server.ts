@@ -7,7 +7,8 @@ import { dirname, extname, join, resolve, sep } from "node:path";
 import { caseDir, DATA, loadCase, loadProfile, readJson, ROOT, type Case } from "./config.ts";
 import { assembleCase, readJsonl, signoffsOf, TRUST_LOG, type Policy } from "./assemble.ts";
 import { esc, renderHtml } from "./render.ts";
-import { renderBlind, renderIndex, renderMessage, renderReveal, renderTrust } from "./pages.ts";
+import { renderBlind, renderIndex, renderMessage, renderMetrics, renderReveal, renderTrust } from "./pages.ts";
+import { loadMetrics } from "./metrics.ts";
 import type { Report } from "./report.ts";
 
 export const SIMULATED_LOG = join(DATA, "trust", "simulated-events.jsonl");
@@ -80,6 +81,8 @@ export function startServer(port: number) {
         return send(res, 200, renderTrust(readJsonl(TRUST_LOG), readJsonl(SIMULATED_LOG), areas, policy.trust.cleanSpotChecksPerStep, policy.version, url.searchParams.get("notice") ?? undefined));
       }
 
+      if (req.method === "GET" && parts[0] === "metrics") return send(res, 200, renderMetrics(loadMetrics()));
+
       if (req.method === "GET" && parts[0] === "data") { // evidence files; agent output is served as plain text, never as a page
         const file = resolve(ROOT, ...parts);
         if (!file.startsWith(DATA + sep) || !existsSync(file)) return send(res, 404, "Not found", "", "text/plain");
@@ -121,6 +124,7 @@ export function startServer(port: number) {
           caseId: c.id, reportHash: current, signedAt: new Date().toISOString(), owner: name, identity: "self-declared",
           action: f.get("action"), reason: f.get("reason")!.trim(),
           decisions: Object.fromEntries(r.decisions.map((d) => [d.id, f.get(`decision.${d.id}`)])),
+          findings: Object.fromEntries(r.findings.map((x) => [x.id, ["real", "not_real", "unsure"].includes(f.get(`finding.${x.id}`) ?? "") ? f.get(`finding.${x.id}`) : null])),
           route: { effective: r.route.effectiveRoute, evidence: r.route.evidenceRoute, trustFloor: r.route.trustFloor },
           activeSeconds: seconds(f.get("activeSeconds")), activeSecondsSource: "measured by the page while visible and focused",
         });

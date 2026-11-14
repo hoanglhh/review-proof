@@ -95,6 +95,7 @@ for(const f of document.forms)f.addEventListener("submit",()=>{k();const i=f.ele
 
 const ACTIONS = [["accept", "Accept"], ["request_changes", "Request changes"], ["escalate", "Escalate"]];
 const RESPONSES = [["accept", "Accept"], ["reject", "Reject"], ["escalate", "Escalate"]];
+const FEEDBACK = [["real", "Real problem"], ["not_real", "Not a problem"], ["unsure", "Not sure"]];
 
 /** `link` turns a repo-relative path (a log, a raw model response) into an href relative to the sheet. */
 export function renderHtml(r: Report, link: (repoPath: string) => string, maxFindings: number, ui?: Interactive): string {
@@ -178,7 +179,9 @@ ${r.decisions.map((d) => `<div class="decision"><b>${esc(d.id)}</b> ${esc(d.stat
 ${ui ? `<fieldset id="decision-${esc(d.id)}"><legend>Your response to ${esc(d.id)}</legend>${radios(`decision.${d.id}`, RESPONSES, ' form="signoff"')}</fieldset>`
   : `<ul class="options" aria-label="Owner response, not given yet"><li>Accept</li><li>Reject</li><li>Escalate</li></ul>`}</div>`).join("") || "<p>No open decisions.</p>"}`)}
 
-${section(7, "Suspected problems", `${r.findings.slice(0, maxFindings).map((f) => `<div class="decision"><b>${esc(f.id)}</b> ${esc(f.statement)} <span class="muted">(${f.status})</span><div class="detail">Hunks ${hunks(f.hunkIds)}.</div>${cites(f.citations)}</div>`).join("") || "<p>None that the reviewer could back with a citation that resolves.</p>"}
+${section(7, "Suspected problems", `${r.findings.slice(0, maxFindings).map((f) => `<div class="decision"><b>${esc(f.id)}</b> ${esc(f.statement)} <span class="muted">(${f.status})</span><div class="detail">Hunks ${hunks(f.hunkIds)}.</div>${cites(f.citations)}
+${ui ? `<fieldset><legend>Is ${esc(f.id)} a real problem? <span class="muted">(optional)</span></legend><div class="choices">${FEEDBACK.map(([v, label]) =>
+    `<label><input type="radio" form="signoff" name="finding.${esc(f.id)}" value="${v}"${ui.form?.get(`finding.${f.id}`) === v ? " checked" : ""}> ${label}</label>`).join("")}</div></fieldset>` : ""}</div>`).join("") || "<p>None that the reviewer could back with a citation that resolves.</p>"}
 ${r.findings.length > maxFindings ? `<p class="muted">${r.findings.length - maxFindings} more are in report.json.</p>` : ""}`)}
 
 ${section(8, "Risk you accept by signing", `<ul>${notProven.map((c) => `<li>${state(c.state)} ${esc(c.id)}: ${esc(c.statement)}</li>`).join("")}

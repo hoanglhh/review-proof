@@ -1,0 +1,805 @@
+
+  Determining projects to restore...
+/home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/tests/MessagePack.SourceGenerator.Tests/MessagePack.SourceGenerator.Tests.csproj : warning NU1901: Package 'NuGet.Protocol' 6.8.0 has a known low severity vulnerability, https://github.com/advisories/GHSA-g4vj-cjjj-v7hg
+  Restored /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/src/MessagePack.Analyzers.CodeFixes/MessagePack.Analyzers.CodeFixes.csproj (in 375 ms).
+  Restored /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/src/MessagePack.SourceGenerator/MessagePack.SourceGenerator.csproj (in 375 ms).
+  Restored /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/src/MessagePack/MessagePack.csproj (in 375 ms).
+  Restored /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/src/MessagePack.Analyzers/MessagePack.Analyzers.csproj (in 375 ms).
+  Restored /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/src/MessagePack.Annotations/MessagePack.Annotations.csproj (in 375 ms).
+  Restored /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/tests/MessagePack.SourceGenerator.Tests/MessagePack.SourceGenerator.Tests.csproj (in 411 ms).
+/home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/tests/MessagePack.SourceGenerator.Tests/MessagePack.SourceGenerator.Tests.csproj : warning NU1901: Package 'NuGet.Protocol' 6.8.0 has a known low severity vulnerability, https://github.com/advisories/GHSA-g4vj-cjjj-v7hg
+  MessagePack.SourceGenerator -> /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/bin/MessagePack.SourceGenerator/Debug/netstandard2.0/MessagePack.SourceGenerator.dll
+  MessagePack.Analyzers.CodeFixes -> /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/bin/MessagePack.Analyzers.CodeFixes/Debug/netstandard2.0/MessagePack.Analyzers.CodeFixes.dll
+  MessagePack.Analyzers -> /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/bin/MessagePack.Analyzers/Debug/netstandard2.0/MessagePack.Analyzers.dll
+  MessagePack.Annotations -> /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/bin/MessagePack.Annotations/Debug/netstandard2.0/MessagePack.Annotations.dll
+  MessagePack -> /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/bin/MessagePack/Debug/net8.0/MessagePack.dll
+  MessagePack.SourceGenerator.Tests -> /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/bin/MessagePack.SourceGenerator.Tests/Debug/net8.0/MessagePack.SourceGenerator.Tests.dll
+Test run for /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/bin/MessagePack.SourceGenerator.Tests/Debug/net8.0/MessagePack.SourceGenerator.Tests.dll (.NETCoreApp,Version=v8.0)
+VSTest version 17.11.0 (x64)
+
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+[xUnit.net 00:00:03.72]     MsgPack00xAnalyzerTests.AddAttributeToTypeForRecord1 [FAIL]
+[xUnit.net 00:00:03.73]     PrivateMemberAccessTests.FormatterForClassWithPrivateMembers_Nested_NonPartialTypes(type: "class", languageVersion: CSharp7_3) [FAIL]
+[xUnit.net 00:00:03.73]     MsgPack015AllowPrivateRequiredTests.SetWhenNonPublicPropertyIsAnnotated [FAIL]
+[xUnit.net 00:00:03.74]     MsgPack011PartialTypeRequiredTests.NestedPartialTypeRequiresPartialSelfAndDeclaringType [FAIL]
+[xUnit.net 00:00:03.78]     MsgPack015AllowPrivateRequiredTests.AddForPublicTypeNestedUnderNonPublicType [FAIL]
+  Failed MsgPack00xAnalyzerTests.AddAttributeToTypeForRecord1 [3 s]
+  Error Message:
+   System.InvalidOperationException : Context: Diagnostics of test state
+Mismatch between number of diagnostics returned, expected "1" actual "0"
+
+Diagnostics:
+    NONE.
+
+  Stack Trace:
+     at Microsoft.CodeAnalysis.Testing.DefaultVerifier.Equal[T](T expected, T actual, String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/DefaultVerifier.cs:line 79
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticResults(IEnumerable`1 actualResults, ImmutableArray`1 analyzers, DiagnosticResult[] expectedResults, IVerifier verifier) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 546
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticsAsync(EvaluatedProjectState primaryProject, ImmutableArray`1 additionalProjects, DiagnosticResult[] expected, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 449
+   at Microsoft.CodeAnalysis.Testing.CodeFixTest`1.RunImplAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.CodeFix.Testing/CodeFixTest`1.cs:line 311
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 172
+   at MsgPack00xAnalyzerTests.AddAttributeToTypeForRecord1() in /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/tests/MessagePack.SourceGenerator.Tests/MsgPack00xAnalyzerTests.cs:line 513
+--- End of stack trace from previous location ---
+  Failed PrivateMemberAccessTests.FormatterForClassWithPrivateMembers_Nested_NonPartialTypes(type: "class", languageVersion: CSharp7_3) [3 s]
+  Error Message:
+   System.InvalidOperationException : Mismatch between number of diagnostics returned, expected "1" actual "0"
+
+Diagnostics:
+    NONE.
+
+  Stack Trace:
+     at Microsoft.CodeAnalysis.Testing.DefaultVerifier.Equal[T](T expected, T actual, String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/DefaultVerifier.cs:line 79
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticResults(IEnumerable`1 actualResults, ImmutableArray`1 analyzers, DiagnosticResult[] expectedResults, IVerifier verifier) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 546
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticsAsync(EvaluatedProjectState primaryProject, ImmutableArray`1 additionalProjects, DiagnosticResult[] expected, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 449
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunImplAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 203
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 172
+   at CSharpSourceGeneratorVerifier`1.Test.RunDefaultAsync(ITestOutputHelper logger) in /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/tests/MessagePack.SourceGenerator.Tests/Verifiers/CSharpSourceGeneratorVerifier`1+Test.cs:line 75
+   at PrivateMemberAccessTests.FormatterForClassWithPrivateMembers_Nested_NonPartialTypes(String type, LanguageVersion languageVersion) in /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/tests/MessagePack.SourceGenerator.Tests/PrivateMemberAccessTests.cs:line 123
+--- End of stack trace from previous location ---
+  Failed MsgPack015AllowPrivateRequiredTests.SetWhenNonPublicPropertyIsAnnotated [3 s]
+  Error Message:
+   System.InvalidOperationException : Context: Diagnostics of test state
+Mismatch between number of diagnostics returned, expected "1" actual "0"
+
+Diagnostics:
+    NONE.
+
+  Stack Trace:
+     at Microsoft.CodeAnalysis.Testing.DefaultVerifier.Equal[T](T expected, T actual, String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/DefaultVerifier.cs:line 79
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticResults(IEnumerable`1 actualResults, ImmutableArray`1 analyzers, DiagnosticResult[] expectedResults, IVerifier verifier) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 546
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticsAsync(EvaluatedProjectState primaryProject, ImmutableArray`1 additionalProjects, DiagnosticResult[] expected, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 449
+   at Microsoft.CodeAnalysis.Testing.CodeFixTest`1.RunImplAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.CodeFix.Testing/CodeFixTest`1.cs:line 311
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 172
+   at MsgPack015AllowPrivateRequiredTests.SetWhenNonPublicPropertyIsAnnotated() in /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/tests/MessagePack.SourceGenerator.Tests/MsgPack015AllowPrivateRequiredTests.cs:line 72
+--- End of stack trace from previous location ---
+  Failed MsgPack011PartialTypeRequiredTests.NestedPartialTypeRequiresPartialSelfAndDeclaringType [3 s]
+  Error Message:
+   System.InvalidOperationException : Context: Diagnostics of test state
+Mismatch between number of diagnostics returned, expected "2" actual "0"
+
+Diagnostics:
+    NONE.
+
+  Stack Trace:
+     at Microsoft.CodeAnalysis.Testing.DefaultVerifier.Equal[T](T expected, T actual, String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/DefaultVerifier.cs:line 79
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticResults(IEnumerable`1 actualResults, ImmutableArray`1 analyzers, DiagnosticResult[] expectedResults, IVerifier verifier) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 546
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticsAsync(EvaluatedProjectState primaryProject, ImmutableArray`1 additionalProjects, DiagnosticResult[] expected, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 449
+   at Microsoft.CodeAnalysis.Testing.CodeFixTest`1.RunImplAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.CodeFix.Testing/CodeFixTest`1.cs:line 311
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 172
+   at MsgPack011PartialTypeRequiredTests.NestedPartialTypeRequiresPartialSelfAndDeclaringType() in /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/tests/MessagePack.SourceGenerator.Tests/MsgPack011PartialTypeRequiredTests.cs:line 73
+--- End of stack trace from previous location ---
+  Failed MsgPack015AllowPrivateRequiredTests.AddForPublicTypeNestedUnderNonPublicType [89 ms]
+  Error Message:
+   System.InvalidOperationException : Context: Diagnostics of test state
+Mismatch between number of diagnostics returned, expected "1" actual "0"
+
+Diagnostics:
+    NONE.
+
+  Stack Trace:
+     at Microsoft.CodeAnalysis.Testing.DefaultVerifier.Equal[T](T expected, T actual, String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/DefaultVerifier.cs:line 79
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticResults(IEnumerable`1 actualResults, ImmutableArray`1 analyzers, DiagnosticResult[] expectedResults, IVerifier verifier) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 546
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticsAsync(EvaluatedProjectState primaryProject, ImmutableArray`1 additionalProjects, DiagnosticResult[] expected, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 449
+   at Microsoft.CodeAnalysis.Testing.CodeFixTest`1.RunImplAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.CodeFix.Testing/CodeFixTest`1.cs:line 311
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 172
+   at MsgPack015AllowPrivateRequiredTests.AddForPublicTypeNestedUnderNonPublicType() in /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/tests/MessagePack.SourceGenerator.Tests/MsgPack015AllowPrivateRequiredTests.cs:line 126
+--- End of stack trace from previous location ---
+[xUnit.net 00:00:03.80]     MsgPack011PartialTypeRequiredTests.NestedPartialTypeRequiresPartialDeclaringType [FAIL]
+[xUnit.net 00:00:03.83]     MsgPack015AllowPrivateRequiredTests.AddWhenNonPublicPropertyIsAnnotated [FAIL]
+  Failed MsgPack011PartialTypeRequiredTests.NestedPartialTypeRequiresPartialDeclaringType [96 ms]
+  Error Message:
+   System.InvalidOperationException : Context: Diagnostics of test state
+Mismatch between number of diagnostics returned, expected "2" actual "0"
+
+Diagnostics:
+    NONE.
+
+  Stack Trace:
+     at Microsoft.CodeAnalysis.Testing.DefaultVerifier.Equal[T](T expected, T actual, String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/DefaultVerifier.cs:line 79
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticResults(IEnumerable`1 actualResults, ImmutableArray`1 analyzers, DiagnosticResult[] expectedResults, IVerifier verifier) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 546
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticsAsync(EvaluatedProjectState primaryProject, ImmutableArray`1 additionalProjects, DiagnosticResult[] expected, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 449
+   at Microsoft.CodeAnalysis.Testing.CodeFixTest`1.RunImplAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.CodeFix.Testing/CodeFixTest`1.cs:line 311
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 172
+   at MsgPack011PartialTypeRequiredTests.NestedPartialTypeRequiresPartialDeclaringType() in /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/tests/MessagePack.SourceGenerator.Tests/MsgPack011PartialTypeRequiredTests.cs:line 122
+--- End of stack trace from previous location ---
+  Failed MsgPack015AllowPrivateRequiredTests.AddWhenNonPublicPropertyIsAnnotated [50 ms]
+  Error Message:
+   System.InvalidOperationException : Context: Diagnostics of test state
+Mismatch between number of diagnostics returned, expected "1" actual "0"
+
+Diagnostics:
+    NONE.
+
+  Stack Trace:
+     at Microsoft.CodeAnalysis.Testing.DefaultVerifier.Equal[T](T expected, T actual, String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/DefaultVerifier.cs:line 79
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticResults(IEnumerable`1 actualResults, ImmutableArray`1 analyzers, DiagnosticResult[] expectedResults, IVerifier verifier) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 546
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticsAsync(EvaluatedProjectState primaryProject, ImmutableArray`1 additionalProjects, DiagnosticResult[] expected, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 449
+   at Microsoft.CodeAnalysis.Testing.CodeFixTest`1.RunImplAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.CodeFix.Testing/CodeFixTest`1.cs:line 311
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 172
+   at MsgPack015AllowPrivateRequiredTests.AddWhenNonPublicPropertyIsAnnotated() in /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/tests/MessagePack.SourceGenerator.Tests/MsgPack015AllowPrivateRequiredTests.cs:line 40
+--- End of stack trace from previous location ---
+[xUnit.net 00:00:03.86]     PrivateMemberAccessTests.FormatterForClassWithPrivateMembers_Nested_NonPartialTypes(type: "record", languageVersion: CSharp9) [FAIL]
+[xUnit.net 00:00:03.87]     MsgPack011PartialTypeRequiredTests.CodeFixOffered [FAIL]
+[xUnit.net 00:00:03.88]     MsgPack015AllowPrivateRequiredTests.AddForNonPublicDeserializingConstructor [FAIL]
+  Failed PrivateMemberAccessTests.FormatterForClassWithPrivateMembers_Nested_NonPartialTypes(type: "record", languageVersion: CSharp9) [177 ms]
+  Error Message:
+   System.InvalidOperationException : Mismatch between number of diagnostics returned, expected "1" actual "0"
+
+Diagnostics:
+    NONE.
+
+  Stack Trace:
+     at Microsoft.CodeAnalysis.Testing.DefaultVerifier.Equal[T](T expected, T actual, String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/DefaultVerifier.cs:line 79
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticResults(IEnumerable`1 actualResults, ImmutableArray`1 analyzers, DiagnosticResult[] expectedResults, IVerifier verifier) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 546
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticsAsync(EvaluatedProjectState primaryProject, ImmutableArray`1 additionalProjects, DiagnosticResult[] expected, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 449
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunImplAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 203
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 172
+   at CSharpSourceGeneratorVerifier`1.Test.RunDefaultAsync(ITestOutputHelper logger) in /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/tests/MessagePack.SourceGenerator.Tests/Verifiers/CSharpSourceGeneratorVerifier`1+Test.cs:line 75
+   at PrivateMemberAccessTests.FormatterForClassWithPrivateMembers_Nested_NonPartialTypes(String type, LanguageVersion languageVersion) in /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/tests/MessagePack.SourceGenerator.Tests/PrivateMemberAccessTests.cs:line 123
+--- End of stack trace from previous location ---
+  Failed MsgPack011PartialTypeRequiredTests.CodeFixOffered [80 ms]
+  Error Message:
+   System.InvalidOperationException : Context: Diagnostics of test state
+Mismatch between number of diagnostics returned, expected "2" actual "0"
+
+Diagnostics:
+    NONE.
+
+  Stack Trace:
+     at Microsoft.CodeAnalysis.Testing.DefaultVerifier.Equal[T](T expected, T actual, String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/DefaultVerifier.cs:line 79
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticResults(IEnumerable`1 actualResults, ImmutableArray`1 analyzers, DiagnosticResult[] expectedResults, IVerifier verifier) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 546
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticsAsync(EvaluatedProjectState primaryProject, ImmutableArray`1 additionalProjects, DiagnosticResult[] expected, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 449
+   at Microsoft.CodeAnalysis.Testing.CodeFixTest`1.RunImplAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.CodeFix.Testing/CodeFixTest`1.cs:line 311
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 172
+   at MsgPack011PartialTypeRequiredTests.CodeFixOffered() in /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/tests/MessagePack.SourceGenerator.Tests/MsgPack011PartialTypeRequiredTests.cs:line 37
+--- End of stack trace from previous location ---
+  Failed MsgPack015AllowPrivateRequiredTests.AddForNonPublicDeserializingConstructor [54 ms]
+  Error Message:
+   System.InvalidOperationException : Context: Diagnostics of test state
+Mismatch between number of diagnostics returned, expected "1" actual "0"
+
+Diagnostics:
+    NONE.
+
+  Stack Trace:
+     at Microsoft.CodeAnalysis.Testing.DefaultVerifier.Equal[T](T expected, T actual, String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/DefaultVerifier.cs:line 79
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticResults(IEnumerable`1 actualResults, ImmutableArray`1 analyzers, DiagnosticResult[] expectedResults, IVerifier verifier) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 546
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticsAsync(EvaluatedProjectState primaryProject, ImmutableArray`1 additionalProjects, DiagnosticResult[] expected, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 449
+   at Microsoft.CodeAnalysis.Testing.CodeFixTest`1.RunImplAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.CodeFix.Testing/CodeFixTest`1.cs:line 311
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 172
+   at MsgPack015AllowPrivateRequiredTests.AddForNonPublicDeserializingConstructor() in /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/tests/MessagePack.SourceGenerator.Tests/MsgPack015AllowPrivateRequiredTests.cs:line 152
+--- End of stack trace from previous location ---
+[xUnit.net 00:00:03.98]     MsgPack015AllowPrivateRequiredTests.AddForNonPublicType [FAIL]
+[xUnit.net 00:00:04.02]     PrivateMemberAccessTests.FormatterForClassWithPrivateMembers_Nested_NonPartialTypes(type: "struct", languageVersion: CSharp7_3) [FAIL]
+  Failed MsgPack015AllowPrivateRequiredTests.AddForNonPublicType [88 ms]
+  Error Message:
+   System.InvalidOperationException : Context: Diagnostics of test state
+Mismatch between number of diagnostics returned, expected "1" actual "0"
+
+Diagnostics:
+    NONE.
+
+  Stack Trace:
+     at Microsoft.CodeAnalysis.Testing.DefaultVerifier.Equal[T](T expected, T actual, String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/DefaultVerifier.cs:line 79
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticResults(IEnumerable`1 actualResults, ImmutableArray`1 analyzers, DiagnosticResult[] expectedResults, IVerifier verifier) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 546
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticsAsync(EvaluatedProjectState primaryProject, ImmutableArray`1 additionalProjects, DiagnosticResult[] expected, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 449
+   at Microsoft.CodeAnalysis.Testing.CodeFixTest`1.RunImplAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.CodeFix.Testing/CodeFixTest`1.cs:line 311
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 172
+   at MsgPack015AllowPrivateRequiredTests.AddForNonPublicType() in /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/tests/MessagePack.SourceGenerator.Tests/MsgPack015AllowPrivateRequiredTests.cs:line 96
+--- End of stack trace from previous location ---
+  Failed PrivateMemberAccessTests.FormatterForClassWithPrivateMembers_Nested_NonPartialTypes(type: "struct", languageVersion: CSharp7_3) [154 ms]
+  Error Message:
+   System.InvalidOperationException : Mismatch between number of diagnostics returned, expected "1" actual "0"
+
+Diagnostics:
+    NONE.
+
+  Stack Trace:
+     at Microsoft.CodeAnalysis.Testing.DefaultVerifier.Equal[T](T expected, T actual, String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/DefaultVerifier.cs:line 79
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticResults(IEnumerable`1 actualResults, ImmutableArray`1 analyzers, DiagnosticResult[] expectedResults, IVerifier verifier) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 546
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticsAsync(EvaluatedProjectState primaryProject, ImmutableArray`1 additionalProjects, DiagnosticResult[] expected, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 449
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunImplAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 203
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 172
+   at CSharpSourceGeneratorVerifier`1.Test.RunDefaultAsync(ITestOutputHelper logger) in /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/tests/MessagePack.SourceGenerator.Tests/Verifiers/CSharpSourceGeneratorVerifier`1+Test.cs:line 75
+   at PrivateMemberAccessTests.FormatterForClassWithPrivateMembers_Nested_NonPartialTypes(String type, LanguageVersion languageVersion) in /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/tests/MessagePack.SourceGenerator.Tests/PrivateMemberAccessTests.cs:line 123
+--- End of stack trace from previous location ---
+[xUnit.net 00:00:04.57]     PrivateMemberAccessTests.FormatterForClassWithPrivateMembers_NonPartialTypes(type: "class", languageVersion: CSharp7_3) [FAIL]
+[xUnit.net 00:00:04.63]     PrivateMemberAccessTests.FormatterForClassWithPrivateMembers_NonPartialTypes(type: "struct", languageVersion: CSharp7_3) [FAIL]
+  Failed PrivateMemberAccessTests.FormatterForClassWithPrivateMembers_NonPartialTypes(type: "class", languageVersion: CSharp7_3) [69 ms]
+  Error Message:
+   System.InvalidOperationException : Mismatch between number of diagnostics returned, expected "1" actual "0"
+
+Diagnostics:
+    NONE.
+
+  Stack Trace:
+     at Microsoft.CodeAnalysis.Testing.DefaultVerifier.Equal[T](T expected, T actual, String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/DefaultVerifier.cs:line 79
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticResults(IEnumerable`1 actualResults, ImmutableArray`1 analyzers, DiagnosticResult[] expectedResults, IVerifier verifier) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 546
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticsAsync(EvaluatedProjectState primaryProject, ImmutableArray`1 additionalProjects, DiagnosticResult[] expected, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 449
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunImplAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 203
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 172
+   at CSharpSourceGeneratorVerifier`1.Test.RunDefaultAsync(ITestOutputHelper logger) in /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/tests/MessagePack.SourceGenerator.Tests/Verifiers/CSharpSourceGeneratorVerifier`1+Test.cs:line 75
+   at PrivateMemberAccessTests.FormatterForClassWithPrivateMembers_NonPartialTypes(String type, LanguageVersion languageVersion) in /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/tests/MessagePack.SourceGenerator.Tests/PrivateMemberAccessTests.cs:line 98
+--- End of stack trace from previous location ---
+  Failed PrivateMemberAccessTests.FormatterForClassWithPrivateMembers_NonPartialTypes(type: "struct", languageVersion: CSharp7_3) [57 ms]
+  Error Message:
+   System.InvalidOperationException : Mismatch between number of diagnostics returned, expected "1" actual "0"
+
+Diagnostics:
+    NONE.
+
+  Stack Trace:
+     at Microsoft.CodeAnalysis.Testing.DefaultVerifier.Equal[T](T expected, T actual, String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/DefaultVerifier.cs:line 79
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticResults(IEnumerable`1 actualResults, ImmutableArray`1 analyzers, DiagnosticResult[] expectedResults, IVerifier verifier) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 546
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticsAsync(EvaluatedProjectState primaryProject, ImmutableArray`1 additionalProjects, DiagnosticResult[] expected, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 449
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunImplAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 203
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 172
+   at CSharpSourceGeneratorVerifier`1.Test.RunDefaultAsync(ITestOutputHelper logger) in /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/tests/MessagePack.SourceGenerator.Tests/Verifiers/CSharpSourceGeneratorVerifier`1+Test.cs:line 75
+   at PrivateMemberAccessTests.FormatterForClassWithPrivateMembers_NonPartialTypes(String type, LanguageVersion languageVersion) in /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/tests/MessagePack.SourceGenerator.Tests/PrivateMemberAccessTests.cs:line 98
+--- End of stack trace from previous location ---
+[xUnit.net 00:00:04.73]     PrivateMemberAccessTests.FormatterForClassWithPrivateMembers_NonPartialTypes(type: "record", languageVersion: CSharp9) [FAIL]
+[xUnit.net 00:00:04.94]     MsgPack00xAnalyzerTests.AddAttributesToMembersOfRecordStruct [FAIL]
+  Failed PrivateMemberAccessTests.FormatterForClassWithPrivateMembers_NonPartialTypes(type: "record", languageVersion: CSharp9) [95 ms]
+  Error Message:
+   System.InvalidOperationException : Mismatch between number of diagnostics returned, expected "1" actual "0"
+
+Diagnostics:
+    NONE.
+
+  Stack Trace:
+     at Microsoft.CodeAnalysis.Testing.DefaultVerifier.Equal[T](T expected, T actual, String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/DefaultVerifier.cs:line 79
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticResults(IEnumerable`1 actualResults, ImmutableArray`1 analyzers, DiagnosticResult[] expectedResults, IVerifier verifier) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 546
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticsAsync(EvaluatedProjectState primaryProject, ImmutableArray`1 additionalProjects, DiagnosticResult[] expected, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 449
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunImplAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 203
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 172
+   at CSharpSourceGeneratorVerifier`1.Test.RunDefaultAsync(ITestOutputHelper logger) in /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/tests/MessagePack.SourceGenerator.Tests/Verifiers/CSharpSourceGeneratorVerifier`1+Test.cs:line 75
+   at PrivateMemberAccessTests.FormatterForClassWithPrivateMembers_NonPartialTypes(String type, LanguageVersion languageVersion) in /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/tests/MessagePack.SourceGenerator.Tests/PrivateMemberAccessTests.cs:line 98
+--- End of stack trace from previous location ---
+  Failed MsgPack00xAnalyzerTests.AddAttributesToMembersOfRecordStruct [1 s]
+  Error Message:
+   System.InvalidOperationException : Context: Diagnostics of test state
+Mismatch between number of diagnostics returned, expected "2" actual "0"
+
+Diagnostics:
+    NONE.
+
+  Stack Trace:
+     at Microsoft.CodeAnalysis.Testing.DefaultVerifier.Equal[T](T expected, T actual, String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/DefaultVerifier.cs:line 79
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticResults(IEnumerable`1 actualResults, ImmutableArray`1 analyzers, DiagnosticResult[] expectedResults, IVerifier verifier) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 546
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticsAsync(EvaluatedProjectState primaryProject, ImmutableArray`1 additionalProjects, DiagnosticResult[] expected, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 449
+   at Microsoft.CodeAnalysis.Testing.CodeFixTest`1.RunImplAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.CodeFix.Testing/CodeFixTest`1.cs:line 311
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 172
+   at MsgPack00xAnalyzerTests.AddAttributesToMembersOfRecordStruct() in /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/tests/MessagePack.SourceGenerator.Tests/MsgPack00xAnalyzerTests.cs:line 776
+--- End of stack trace from previous location ---
+[xUnit.net 00:00:05.01]     MsgPack00xAnalyzerTests.CodeFixAppliesAcrossFiles [FAIL]
+[xUnit.net 00:00:05.14]     MsgPack00xAnalyzerTests.AddAttributesToMembersOfRecordWithPrimaryCtor [FAIL]
+  Failed MsgPack00xAnalyzerTests.CodeFixAppliesAcrossFiles [69 ms]
+  Error Message:
+   System.InvalidOperationException : Context: Diagnostics of test state
+Mismatch between number of diagnostics returned, expected "2" actual "0"
+
+Diagnostics:
+    NONE.
+
+  Stack Trace:
+     at Microsoft.CodeAnalysis.Testing.DefaultVerifier.Equal[T](T expected, T actual, String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/DefaultVerifier.cs:line 79
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticResults(IEnumerable`1 actualResults, ImmutableArray`1 analyzers, DiagnosticResult[] expectedResults, IVerifier verifier) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 546
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticsAsync(EvaluatedProjectState primaryProject, ImmutableArray`1 additionalProjects, DiagnosticResult[] expected, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 449
+   at Microsoft.CodeAnalysis.Testing.CodeFixTest`1.RunImplAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.CodeFix.Testing/CodeFixTest`1.cs:line 311
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 172
+   at MsgPack00xAnalyzerTests.CodeFixAppliesAcrossFiles() in /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/tests/MessagePack.SourceGenerator.Tests/MsgPack00xAnalyzerTests.cs:line 650
+--- End of stack trace from previous location ---
+  Failed MsgPack00xAnalyzerTests.AddAttributesToMembersOfRecordWithPrimaryCtor [122 ms]
+  Error Message:
+   System.InvalidOperationException : Context: Diagnostics of test state
+Mismatch between number of diagnostics returned, expected "3" actual "0"
+
+Diagnostics:
+    NONE.
+
+  Stack Trace:
+     at Microsoft.CodeAnalysis.Testing.DefaultVerifier.Equal[T](T expected, T actual, String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/DefaultVerifier.cs:line 79
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticResults(IEnumerable`1 actualResults, ImmutableArray`1 analyzers, DiagnosticResult[] expectedResults, IVerifier verifier) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 546
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticsAsync(EvaluatedProjectState primaryProject, ImmutableArray`1 additionalProjects, DiagnosticResult[] expected, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 449
+   at Microsoft.CodeAnalysis.Testing.CodeFixTest`1.RunImplAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.CodeFix.Testing/CodeFixTest`1.cs:line 311
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 172
+   at MsgPack00xAnalyzerTests.AddAttributesToMembersOfRecordWithPrimaryCtor() in /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/tests/MessagePack.SourceGenerator.Tests/MsgPack00xAnalyzerTests.cs:line 810
+--- End of stack trace from previous location ---
+[xUnit.net 00:00:05.27]     MsgPack00xAnalyzerTests.DerivedAttributes [FAIL]
+  Failed MsgPack00xAnalyzerTests.DerivedAttributes [129 ms]
+  Error Message:
+   System.InvalidOperationException : Context: Diagnostics of test state
+Mismatch between number of diagnostics returned, expected "5" actual "0"
+
+Diagnostics:
+    NONE.
+
+  Stack Trace:
+     at Microsoft.CodeAnalysis.Testing.DefaultVerifier.Equal[T](T expected, T actual, String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/DefaultVerifier.cs:line 79
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticResults(IEnumerable`1 actualResults, ImmutableArray`1 analyzers, DiagnosticResult[] expectedResults, IVerifier verifier) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 546
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticsAsync(EvaluatedProjectState primaryProject, ImmutableArray`1 additionalProjects, DiagnosticResult[] expected, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 449
+   at Microsoft.CodeAnalysis.Testing.CodeFixTest`1.RunImplAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.CodeFix.Testing/CodeFixTest`1.cs:line 311
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 172
+   at MsgPack00xAnalyzerTests.DerivedAttributes() in /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/tests/MessagePack.SourceGenerator.Tests/MsgPack00xAnalyzerTests.cs:line 934
+--- End of stack trace from previous location ---
+[xUnit.net 00:00:05.34]     MsgPack00xAnalyzerTests.AddAttributeToType_Properties [FAIL]
+[xUnit.net 00:00:05.49]     MsgPack00xAnalyzerTests.InitPropertyInitializer [FAIL]
+  Failed MsgPack00xAnalyzerTests.AddAttributeToType_Properties [63 ms]
+  Error Message:
+   System.InvalidOperationException : Context: Diagnostics of test state
+Mismatch between number of diagnostics returned, expected "1" actual "0"
+
+Diagnostics:
+    NONE.
+
+  Stack Trace:
+     at Microsoft.CodeAnalysis.Testing.DefaultVerifier.Equal[T](T expected, T actual, String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/DefaultVerifier.cs:line 79
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticResults(IEnumerable`1 actualResults, ImmutableArray`1 analyzers, DiagnosticResult[] expectedResults, IVerifier verifier) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 546
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticsAsync(EvaluatedProjectState primaryProject, ImmutableArray`1 additionalProjects, DiagnosticResult[] expected, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 449
+   at Microsoft.CodeAnalysis.Testing.CodeFixTest`1.RunImplAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.CodeFix.Testing/CodeFixTest`1.cs:line 311
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 172
+   at MsgPack00xAnalyzerTests.AddAttributeToType_Properties() in /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/tests/MessagePack.SourceGenerator.Tests/MsgPack00xAnalyzerTests.cs:line 341
+--- End of stack trace from previous location ---
+  Failed MsgPack00xAnalyzerTests.InitPropertyInitializer [89 ms]
+  Error Message:
+   System.InvalidOperationException : Context: Diagnostics of test state
+Mismatch between number of diagnostics returned, expected "1" actual "0"
+
+Diagnostics:
+    NONE.
+
+  Stack Trace:
+     at Microsoft.CodeAnalysis.Testing.DefaultVerifier.Equal[T](T expected, T actual, String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/DefaultVerifier.cs:line 79
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticResults(IEnumerable`1 actualResults, ImmutableArray`1 analyzers, DiagnosticResult[] expectedResults, IVerifier verifier) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 546
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticsAsync(EvaluatedProjectState primaryProject, ImmutableArray`1 additionalProjects, DiagnosticResult[] expected, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 449
+   at Microsoft.CodeAnalysis.Testing.CodeFixTest`1.RunImplAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.CodeFix.Testing/CodeFixTest`1.cs:line 311
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 172
+   at MsgPack00xAnalyzerTests.InitPropertyInitializer() in /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/tests/MessagePack.SourceGenerator.Tests/MsgPack00xAnalyzerTests.cs:line 1007
+--- End of stack trace from previous location ---
+[xUnit.net 00:00:05.53]     MsgPack00xAnalyzerTests.AddAttributesToMembers [FAIL]
+[xUnit.net 00:00:05.61]     MsgPack00xAnalyzerTests.AddAttributeToField_WithComment [FAIL]
+  Failed MsgPack00xAnalyzerTests.AddAttributesToMembers [38 ms]
+  Error Message:
+   System.InvalidOperationException : Context: Diagnostics of test state
+Mismatch between number of diagnostics returned, expected "2" actual "0"
+
+Diagnostics:
+    NONE.
+
+  Stack Trace:
+     at Microsoft.CodeAnalysis.Testing.DefaultVerifier.Equal[T](T expected, T actual, String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/DefaultVerifier.cs:line 79
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticResults(IEnumerable`1 actualResults, ImmutableArray`1 analyzers, DiagnosticResult[] expectedResults, IVerifier verifier) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 546
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticsAsync(EvaluatedProjectState primaryProject, ImmutableArray`1 additionalProjects, DiagnosticResult[] expected, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 449
+   at Microsoft.CodeAnalysis.Testing.CodeFixTest`1.RunImplAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.CodeFix.Testing/CodeFixTest`1.cs:line 311
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 172
+   at MsgPack00xAnalyzerTests.AddAttributesToMembers() in /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/tests/MessagePack.SourceGenerator.Tests/MsgPack00xAnalyzerTests.cs:line 118
+--- End of stack trace from previous location ---
+  Failed MsgPack00xAnalyzerTests.AddAttributeToField_WithComment [49 ms]
+  Error Message:
+   System.InvalidOperationException : Context: Diagnostics of test state
+Mismatch between number of diagnostics returned, expected "1" actual "0"
+
+Diagnostics:
+    NONE.
+
+  Stack Trace:
+     at Microsoft.CodeAnalysis.Testing.DefaultVerifier.Equal[T](T expected, T actual, String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/DefaultVerifier.cs:line 79
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticResults(IEnumerable`1 actualResults, ImmutableArray`1 analyzers, DiagnosticResult[] expectedResults, IVerifier verifier) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 546
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticsAsync(EvaluatedProjectState primaryProject, ImmutableArray`1 additionalProjects, DiagnosticResult[] expected, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 449
+   at Microsoft.CodeAnalysis.Testing.CodeFixTest`1.RunImplAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.CodeFix.Testing/CodeFixTest`1.cs:line 311
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 172
+   at MsgPack00xAnalyzerTests.AddAttributeToField_WithComment() in /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/tests/MessagePack.SourceGenerator.Tests/MsgPack00xAnalyzerTests.cs:line 298
+--- End of stack trace from previous location ---
+[xUnit.net 00:00:05.68]     MsgPack00xAnalyzerTests.AddAttributeToTypeForRecord2 [FAIL]
+[xUnit.net 00:00:05.75]     MsgPack00xAnalyzerTests.AddAttributesToMembersOfRecordStructWithPrimaryCtor [FAIL]
+[xUnit.net 00:00:05.83]     MsgPack00xAnalyzerTests.AddAttributeToGenericType [FAIL]
+  Failed MsgPack00xAnalyzerTests.AddAttributeToTypeForRecord2 [67 ms]
+  Error Message:
+   System.InvalidOperationException : Context: Diagnostics of test state
+Mismatch between number of diagnostics returned, expected "1" actual "0"
+
+Diagnostics:
+    NONE.
+
+  Stack Trace:
+     at Microsoft.CodeAnalysis.Testing.DefaultVerifier.Equal[T](T expected, T actual, String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/DefaultVerifier.cs:line 79
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticResults(IEnumerable`1 actualResults, ImmutableArray`1 analyzers, DiagnosticResult[] expectedResults, IVerifier verifier) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 546
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticsAsync(EvaluatedProjectState primaryProject, ImmutableArray`1 additionalProjects, DiagnosticResult[] expected, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 449
+   at Microsoft.CodeAnalysis.Testing.CodeFixTest`1.RunImplAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.CodeFix.Testing/CodeFixTest`1.cs:line 311
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 172
+   at MsgPack00xAnalyzerTests.AddAttributeToTypeForRecord2() in /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/tests/MessagePack.SourceGenerator.Tests/MsgPack00xAnalyzerTests.cs:line 556
+--- End of stack trace from previous location ---
+  Failed MsgPack00xAnalyzerTests.AddAttributesToMembersOfRecordStructWithPrimaryCtor [64 ms]
+  Error Message:
+   System.InvalidOperationException : Context: Diagnostics of test state
+Mismatch between number of diagnostics returned, expected "2" actual "0"
+
+Diagnostics:
+    NONE.
+
+  Stack Trace:
+     at Microsoft.CodeAnalysis.Testing.DefaultVerifier.Equal[T](T expected, T actual, String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/DefaultVerifier.cs:line 79
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticResults(IEnumerable`1 actualResults, ImmutableArray`1 analyzers, DiagnosticResult[] expectedResults, IVerifier verifier) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 546
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticsAsync(EvaluatedProjectState primaryProject, ImmutableArray`1 additionalProjects, DiagnosticResult[] expected, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 449
+   at Microsoft.CodeAnalysis.Testing.CodeFixTest`1.RunImplAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.CodeFix.Testing/CodeFixTest`1.cs:line 311
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 172
+   at MsgPack00xAnalyzerTests.AddAttributesToMembersOfRecordStructWithPrimaryCtor() in /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/tests/MessagePack.SourceGenerator.Tests/MsgPack00xAnalyzerTests.cs:line 844
+--- End of stack trace from previous location ---
+  Failed MsgPack00xAnalyzerTests.AddAttributeToGenericType [76 ms]
+  Error Message:
+   System.InvalidOperationException : Context: Diagnostics of test state
+Mismatch between number of diagnostics returned, expected "1" actual "0"
+
+Diagnostics:
+    NONE.
+
+  Stack Trace:
+     at Microsoft.CodeAnalysis.Testing.DefaultVerifier.Equal[T](T expected, T actual, String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/DefaultVerifier.cs:line 79
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticResults(IEnumerable`1 actualResults, ImmutableArray`1 analyzers, DiagnosticResult[] expectedResults, IVerifier verifier) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 546
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticsAsync(EvaluatedProjectState primaryProject, ImmutableArray`1 additionalProjects, DiagnosticResult[] expected, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 449
+   at Microsoft.CodeAnalysis.Testing.CodeFixTest`1.RunImplAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.CodeFix.Testing/CodeFixTest`1.cs:line 311
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 172
+   at MsgPack00xAnalyzerTests.AddAttributeToGenericType() in /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/tests/MessagePack.SourceGenerator.Tests/MsgPack00xAnalyzerTests.cs:line 706
+--- End of stack trace from previous location ---
+[xUnit.net 00:00:05.88]     MsgPack00xAnalyzerTests.AddAttributeToType_Generic [FAIL]
+[xUnit.net 00:00:05.92]     MsgPack00xAnalyzerTests.NameCollisionsInForceMapMode [FAIL]
+[xUnit.net 00:00:05.98]     MsgPack00xAnalyzerTests.NullStringKey [FAIL]
+[xUnit.net 00:00:06.04]     MsgPack00xAnalyzerTests.AddAttributesToMembersOfRecord [FAIL]
+  Failed MsgPack00xAnalyzerTests.AddAttributeToType_Generic [50 ms]
+  Error Message:
+   System.InvalidOperationException : Context: Diagnostics of test state
+Mismatch between number of diagnostics returned, expected "1" actual "0"
+
+Diagnostics:
+    NONE.
+
+  Stack Trace:
+     at Microsoft.CodeAnalysis.Testing.DefaultVerifier.Equal[T](T expected, T actual, String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/DefaultVerifier.cs:line 79
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticResults(IEnumerable`1 actualResults, ImmutableArray`1 analyzers, DiagnosticResult[] expectedResults, IVerifier verifier) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 546
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticsAsync(EvaluatedProjectState primaryProject, ImmutableArray`1 additionalProjects, DiagnosticResult[] expected, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 449
+   at Microsoft.CodeAnalysis.Testing.CodeFixTest`1.RunImplAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.CodeFix.Testing/CodeFixTest`1.cs:line 311
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 172
+   at MsgPack00xAnalyzerTests.AddAttributeToType_Generic() in /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/tests/MessagePack.SourceGenerator.Tests/MsgPack00xAnalyzerTests.cs:line 470
+--- End of stack trace from previous location ---
+  Failed MsgPack00xAnalyzerTests.NameCollisionsInForceMapMode [31 ms]
+  Error Message:
+   System.InvalidOperationException : Context: Diagnostics of test state
+Mismatch between number of diagnostics returned, expected "3" actual "0"
+
+Diagnostics:
+    NONE.
+
+  Stack Trace:
+     at Microsoft.CodeAnalysis.Testing.DefaultVerifier.Equal[T](T expected, T actual, String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/DefaultVerifier.cs:line 79
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticResults(IEnumerable`1 actualResults, ImmutableArray`1 analyzers, DiagnosticResult[] expectedResults, IVerifier verifier) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 546
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticsAsync(EvaluatedProjectState primaryProject, ImmutableArray`1 additionalProjects, DiagnosticResult[] expected, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 449
+   at Microsoft.CodeAnalysis.Testing.CodeFixTest`1.RunImplAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.CodeFix.Testing/CodeFixTest`1.cs:line 311
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 172
+   at MsgPack00xAnalyzerTests.NameCollisionsInForceMapMode() in /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/tests/MessagePack.SourceGenerator.Tests/MsgPack00xAnalyzerTests.cs:line 1065
+--- End of stack trace from previous location ---
+  Failed MsgPack00xAnalyzerTests.NullStringKey [55 ms]
+  Error Message:
+   System.InvalidOperationException : Context: Diagnostics of test state
+Mismatch between number of diagnostics returned, expected "1" actual "0"
+
+Diagnostics:
+    NONE.
+
+  Stack Trace:
+     at Microsoft.CodeAnalysis.Testing.DefaultVerifier.Equal[T](T expected, T actual, String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/DefaultVerifier.cs:line 79
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticResults(IEnumerable`1 actualResults, ImmutableArray`1 analyzers, DiagnosticResult[] expectedResults, IVerifier verifier) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 546
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticsAsync(EvaluatedProjectState primaryProject, ImmutableArray`1 additionalProjects, DiagnosticResult[] expected, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 449
+   at Microsoft.CodeAnalysis.Testing.CodeFixTest`1.RunImplAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.CodeFix.Testing/CodeFixTest`1.cs:line 311
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 172
+   at MsgPack00xAnalyzerTests.NullStringKey() in /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/tests/MessagePack.SourceGenerator.Tests/MsgPack00xAnalyzerTests.cs:line 88
+--- End of stack trace from previous location ---
+  Failed MsgPack00xAnalyzerTests.AddAttributesToMembersOfRecord [66 ms]
+  Error Message:
+   System.InvalidOperationException : Context: Diagnostics of test state
+Mismatch between number of diagnostics returned, expected "2" actual "0"
+
+Diagnostics:
+    NONE.
+
+  Stack Trace:
+     at Microsoft.CodeAnalysis.Testing.DefaultVerifier.Equal[T](T expected, T actual, String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/DefaultVerifier.cs:line 79
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticResults(IEnumerable`1 actualResults, ImmutableArray`1 analyzers, DiagnosticResult[] expectedResults, IVerifier verifier) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 546
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticsAsync(EvaluatedProjectState primaryProject, ImmutableArray`1 additionalProjects, DiagnosticResult[] expected, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 449
+   at Microsoft.CodeAnalysis.Testing.CodeFixTest`1.RunImplAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.CodeFix.Testing/CodeFixTest`1.cs:line 311
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 172
+   at MsgPack00xAnalyzerTests.AddAttributesToMembersOfRecord() in /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/tests/MessagePack.SourceGenerator.Tests/MsgPack00xAnalyzerTests.cs:line 737
+--- End of stack trace from previous location ---
+[xUnit.net 00:00:06.15]     MsgPack00xAnalyzerTests.AddAttributeToType_Nullable [FAIL]
+[xUnit.net 00:00:06.21]     MsgPack00xAnalyzerTests.AddAttributeToTypeForRecordPrimaryConstructor [FAIL]
+[xUnit.net 00:00:06.32]     MsgPack00xAnalyzerTests.AddAttributeToType_Fields [FAIL]
+  Failed MsgPack00xAnalyzerTests.AddAttributeToType_Nullable [56 ms]
+  Error Message:
+   System.InvalidOperationException : Context: Diagnostics of test state
+Mismatch between number of diagnostics returned, expected "1" actual "0"
+
+Diagnostics:
+    NONE.
+
+  Stack Trace:
+     at Microsoft.CodeAnalysis.Testing.DefaultVerifier.Equal[T](T expected, T actual, String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/DefaultVerifier.cs:line 79
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticResults(IEnumerable`1 actualResults, ImmutableArray`1 analyzers, DiagnosticResult[] expectedResults, IVerifier verifier) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 546
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticsAsync(EvaluatedProjectState primaryProject, ImmutableArray`1 additionalProjects, DiagnosticResult[] expected, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 449
+   at Microsoft.CodeAnalysis.Testing.CodeFixTest`1.RunImplAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.CodeFix.Testing/CodeFixTest`1.cs:line 311
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 172
+   at MsgPack00xAnalyzerTests.AddAttributeToType_Nullable() in /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/tests/MessagePack.SourceGenerator.Tests/MsgPack00xAnalyzerTests.cs:line 427
+--- End of stack trace from previous location ---
+  Failed MsgPack00xAnalyzerTests.AddAttributeToTypeForRecordPrimaryConstructor [56 ms]
+  Error Message:
+   System.InvalidOperationException : Context: Diagnostics of test state
+Mismatch between number of diagnostics returned, expected "1" actual "0"
+
+Diagnostics:
+    NONE.
+
+  Stack Trace:
+     at Microsoft.CodeAnalysis.Testing.DefaultVerifier.Equal[T](T expected, T actual, String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/DefaultVerifier.cs:line 79
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticResults(IEnumerable`1 actualResults, ImmutableArray`1 analyzers, DiagnosticResult[] expectedResults, IVerifier verifier) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 546
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticsAsync(EvaluatedProjectState primaryProject, ImmutableArray`1 additionalProjects, DiagnosticResult[] expected, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 449
+   at Microsoft.CodeAnalysis.Testing.CodeFixTest`1.RunImplAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.CodeFix.Testing/CodeFixTest`1.cs:line 311
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 172
+   at MsgPack00xAnalyzerTests.AddAttributeToTypeForRecordPrimaryConstructor() in /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/tests/MessagePack.SourceGenerator.Tests/MsgPack00xAnalyzerTests.cs:line 605
+--- End of stack trace from previous location ---
+  Failed MsgPack00xAnalyzerTests.AddAttributeToType_Fields [57 ms]
+  Error Message:
+   System.InvalidOperationException : Context: Diagnostics of test state
+Mismatch between number of diagnostics returned, expected "1" actual "0"
+
+Diagnostics:
+    NONE.
+
+  Stack Trace:
+     at Microsoft.CodeAnalysis.Testing.DefaultVerifier.Equal[T](T expected, T actual, String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/DefaultVerifier.cs:line 79
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticResults(IEnumerable`1 actualResults, ImmutableArray`1 analyzers, DiagnosticResult[] expectedResults, IVerifier verifier) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 546
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticsAsync(EvaluatedProjectState primaryProject, ImmutableArray`1 additionalProjects, DiagnosticResult[] expected, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 449
+   at Microsoft.CodeAnalysis.Testing.CodeFixTest`1.RunImplAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.CodeFix.Testing/CodeFixTest`1.cs:line 311
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 172
+   at MsgPack00xAnalyzerTests.AddAttributeToType_Fields() in /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/tests/MessagePack.SourceGenerator.Tests/MsgPack00xAnalyzerTests.cs:line 384
+--- End of stack trace from previous location ---
+[xUnit.net 00:00:06.36]     MsgPack00xAnalyzerTests.AddAttributesToMembers_AllowPrivateAttribute [FAIL]
+[xUnit.net 00:00:06.42]     MsgPack00xAnalyzerTests.DoNotAddAttributesToClassWithPrimaryCtor [FAIL]
+[xUnit.net 00:00:06.50]     MsgPack00xAnalyzerTests.InvalidMessageFormatterType [FAIL]
+[xUnit.net 00:00:06.53]     MsgPack00xAnalyzerTests.AddAttributesToMembers_MixedVisibility [FAIL]
+[xUnit.net 00:00:06.59]     MsgPack00xAnalyzerTests.AddAttributesToMembers_PublicOnly [FAIL]
+[xUnit.net 00:00:06.64]     MsgPack00xAnalyzerTests.AddIgnoreAttributesToMembers [FAIL]
+  Failed MsgPack00xAnalyzerTests.AddAttributesToMembers_AllowPrivateAttribute [34 ms]
+  Error Message:
+   System.InvalidOperationException : Context: Diagnostics of test state
+Mismatch between number of diagnostics returned, expected "2" actual "0"
+
+Diagnostics:
+    NONE.
+
+  Stack Trace:
+     at Microsoft.CodeAnalysis.Testing.DefaultVerifier.Equal[T](T expected, T actual, String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/DefaultVerifier.cs:line 79
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticResults(IEnumerable`1 actualResults, ImmutableArray`1 analyzers, DiagnosticResult[] expectedResults, IVerifier verifier) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 546
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticsAsync(EvaluatedProjectState primaryProject, ImmutableArray`1 additionalProjects, DiagnosticResult[] expected, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 449
+   at Microsoft.CodeAnalysis.Testing.CodeFixTest`1.RunImplAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.CodeFix.Testing/CodeFixTest`1.cs:line 311
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 172
+   at MsgPack00xAnalyzerTests.AddAttributesToMembers_AllowPrivateAttribute() in /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/tests/MessagePack.SourceGenerator.Tests/MsgPack00xAnalyzerTests.cs:line 187
+--- End of stack trace from previous location ---
+  Failed MsgPack00xAnalyzerTests.DoNotAddAttributesToClassWithPrimaryCtor [59 ms]
+  Error Message:
+   System.InvalidOperationException : Context: Diagnostics of test state
+Mismatch between number of diagnostics returned, expected "1" actual "0"
+
+Diagnostics:
+    NONE.
+
+  Stack Trace:
+     at Microsoft.CodeAnalysis.Testing.DefaultVerifier.Equal[T](T expected, T actual, String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/DefaultVerifier.cs:line 79
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticResults(IEnumerable`1 actualResults, ImmutableArray`1 analyzers, DiagnosticResult[] expectedResults, IVerifier verifier) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 546
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticsAsync(EvaluatedProjectState primaryProject, ImmutableArray`1 additionalProjects, DiagnosticResult[] expected, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 449
+   at Microsoft.CodeAnalysis.Testing.CodeFixTest`1.RunImplAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.CodeFix.Testing/CodeFixTest`1.cs:line 311
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 172
+   at MsgPack00xAnalyzerTests.DoNotAddAttributesToClassWithPrimaryCtor() in /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/tests/MessagePack.SourceGenerator.Tests/MsgPack00xAnalyzerTests.cs:line 878
+--- End of stack trace from previous location ---
+  Failed MsgPack00xAnalyzerTests.InvalidMessageFormatterType [39 ms]
+  Error Message:
+   System.InvalidOperationException : Context: Diagnostics of test state
+Mismatch between number of diagnostics returned, expected "1" actual "0"
+
+Diagnostics:
+    NONE.
+
+  Stack Trace:
+     at Microsoft.CodeAnalysis.Testing.DefaultVerifier.Equal[T](T expected, T actual, String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/DefaultVerifier.cs:line 79
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticResults(IEnumerable`1 actualResults, ImmutableArray`1 analyzers, DiagnosticResult[] expectedResults, IVerifier verifier) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 546
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticsAsync(EvaluatedProjectState primaryProject, ImmutableArray`1 additionalProjects, DiagnosticResult[] expected, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 449
+   at Microsoft.CodeAnalysis.Testing.CodeFixTest`1.RunImplAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.CodeFix.Testing/CodeFixTest`1.cs:line 311
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 172
+   at MsgPack00xAnalyzerTests.InvalidMessageFormatterType() in /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/tests/MessagePack.SourceGenerator.Tests/MsgPack00xAnalyzerTests.cs:line 73
+--- End of stack trace from previous location ---
+  Failed MsgPack00xAnalyzerTests.AddAttributesToMembers_MixedVisibility [32 ms]
+  Error Message:
+   System.InvalidOperationException : Context: Diagnostics of test state
+Mismatch between number of diagnostics returned, expected "3" actual "0"
+
+Diagnostics:
+    NONE.
+
+  Stack Trace:
+     at Microsoft.CodeAnalysis.Testing.DefaultVerifier.Equal[T](T expected, T actual, String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/DefaultVerifier.cs:line 79
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticResults(IEnumerable`1 actualResults, ImmutableArray`1 analyzers, DiagnosticResult[] expectedResults, IVerifier verifier) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 546
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticsAsync(EvaluatedProjectState primaryProject, ImmutableArray`1 additionalProjects, DiagnosticResult[] expected, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 449
+   at Microsoft.CodeAnalysis.Testing.CodeFixTest`1.RunImplAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.CodeFix.Testing/CodeFixTest`1.cs:line 311
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 172
+   at MsgPack00xAnalyzerTests.AddAttributesToMembers_MixedVisibility() in /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/tests/MessagePack.SourceGenerator.Tests/MsgPack00xAnalyzerTests.cs:line 231
+--- End of stack trace from previous location ---
+  Failed MsgPack00xAnalyzerTests.AddAttributesToMembers_PublicOnly [50 ms]
+  Error Message:
+   System.InvalidOperationException : Context: Diagnostics of test state
+Mismatch between number of diagnostics returned, expected "1" actual "0"
+
+Diagnostics:
+    NONE.
+
+  Stack Trace:
+     at Microsoft.CodeAnalysis.Testing.DefaultVerifier.Equal[T](T expected, T actual, String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/DefaultVerifier.cs:line 79
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticResults(IEnumerable`1 actualResults, ImmutableArray`1 analyzers, DiagnosticResult[] expectedResults, IVerifier verifier) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 546
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticsAsync(EvaluatedProjectState primaryProject, ImmutableArray`1 additionalProjects, DiagnosticResult[] expected, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 449
+   at Microsoft.CodeAnalysis.Testing.CodeFixTest`1.RunImplAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.CodeFix.Testing/CodeFixTest`1.cs:line 311
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 172
+   at MsgPack00xAnalyzerTests.AddAttributesToMembers_PublicOnly() in /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/tests/MessagePack.SourceGenerator.Tests/MsgPack00xAnalyzerTests.cs:line 152
+--- End of stack trace from previous location ---
+  Failed MsgPack00xAnalyzerTests.AddIgnoreAttributesToMembers [49 ms]
+  Error Message:
+   System.InvalidOperationException : Context: Diagnostics of test state
+Mismatch between number of diagnostics returned, expected "2" actual "0"
+
+Diagnostics:
+    NONE.
+
+  Stack Trace:
+     at Microsoft.CodeAnalysis.Testing.DefaultVerifier.Equal[T](T expected, T actual, String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/DefaultVerifier.cs:line 79
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticResults(IEnumerable`1 actualResults, ImmutableArray`1 analyzers, DiagnosticResult[] expectedResults, IVerifier verifier) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 546
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticsAsync(EvaluatedProjectState primaryProject, ImmutableArray`1 additionalProjects, DiagnosticResult[] expected, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 449
+   at Microsoft.CodeAnalysis.Testing.CodeFixTest`1.RunImplAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.CodeFix.Testing/CodeFixTest`1.cs:line 311
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 172
+   at MsgPack00xAnalyzerTests.AddIgnoreAttributesToMembers() in /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/tests/MessagePack.SourceGenerator.Tests/MsgPack00xAnalyzerTests.cs:line 267
+--- End of stack trace from previous location ---
+[xUnit.net 00:00:07.37]     GenericsFormatterTests.ClosedGenericStruct_FromMetadataReference_UnkeyedMember [FAIL]
+  Failed GenericsFormatterTests.ClosedGenericStruct_FromMetadataReference_UnkeyedMember [95 ms]
+  Error Message:
+   System.InvalidOperationException : Mismatch between number of diagnostics returned, expected "0" actual "2"
+
+Diagnostics:
+// error MsgPack004: Properties and fields of MessagePackObject-attributed types require either KeyAttribute or IgnoreMemberAttribute: global::TempProject.MyGenericStruct<T>.Unkeyed
+new DiagnosticResult(MsgPack00xMessagePackAnalyzer.MsgPack004).WithArguments("global::TempProject.MyGenericStruct<T>", "Unkeyed"),
+// error MsgPack004: Properties and fields of MessagePackObject-attributed types require either KeyAttribute or IgnoreMemberAttribute: global::TempProject.MyGenericStruct<int>.Unkeyed
+new DiagnosticResult(MsgPack00xMessagePackAnalyzer.MsgPack004).WithArguments("global::TempProject.MyGenericStruct<int>", "Unkeyed"),
+
+
+  Stack Trace:
+     at Microsoft.CodeAnalysis.Testing.DefaultVerifier.Equal[T](T expected, T actual, String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/DefaultVerifier.cs:line 79
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticResults(IEnumerable`1 actualResults, ImmutableArray`1 analyzers, DiagnosticResult[] expectedResults, IVerifier verifier) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 546
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticsAsync(EvaluatedProjectState primaryProject, ImmutableArray`1 additionalProjects, DiagnosticResult[] expected, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 449
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunImplAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 203
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 172
+   at GenericsFormatterTests.RunWithMetadataReferenceAsync(String defineSource, String usageSource, String expectedResolverHintName, LanguageVersion languageVersion) in /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs:line 648
+   at GenericsFormatterTests.ClosedGenericStruct_FromMetadataReference_UnkeyedMember() in /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs:line 625
+--- End of stack trace from previous location ---
+[xUnit.net 00:00:09.54]     GenerationTests.DeserializingConstructorParameterMemberTypeAssignability_Incompatible [FAIL]
+  Failed GenerationTests.DeserializingConstructorParameterMemberTypeAssignability_Incompatible [87 ms]
+  Error Message:
+   System.InvalidOperationException : Mismatch between number of diagnostics returned, expected "1" actual "0"
+
+Diagnostics:
+    NONE.
+
+  Stack Trace:
+     at Microsoft.CodeAnalysis.Testing.DefaultVerifier.Equal[T](T expected, T actual, String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/DefaultVerifier.cs:line 79
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticResults(IEnumerable`1 actualResults, ImmutableArray`1 analyzers, DiagnosticResult[] expectedResults, IVerifier verifier) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 546
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticsAsync(EvaluatedProjectState primaryProject, ImmutableArray`1 additionalProjects, DiagnosticResult[] expected, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 449
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunImplAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 203
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 172
+   at CSharpSourceGeneratorVerifier`1.Test.RunDefaultAsync(ITestOutputHelper logger) in /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/tests/MessagePack.SourceGenerator.Tests/Verifiers/CSharpSourceGeneratorVerifier`1+Test.cs:line 75
+   at GenerationTests.DeserializingConstructorParameterMemberTypeAssignability_Incompatible() in /home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/tests/MessagePack.SourceGenerator.Tests/GenerationTests.cs:line 701
+--- End of stack trace from previous location ---
+  Standard Output Messages:
+ --------------------------------------------------------------
+ MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs
+ --------------------------------------------------------------
+      1: // <auto-generated />
+      2: 
+      3: #pragma warning disable 618, 612, 414, 168, CS1591, SA1129, SA1309, SA1312, SA1403, SA1649
+      4: 
+      5: using MsgPack = global::MessagePack;
+      6: 
+      7: [assembly: MsgPack::Internal.GeneratedAssemblyMessagePackResolverAttribute(typeof(MessagePack.GeneratedMessagePackResolver), 3, 0)]
+      8: 
+      9: namespace MessagePack {
+     10: 
+     11: /// <summary>A MessagePack resolver that uses generated formatters for types in this assembly.</summary>
+     12: partial class GeneratedMessagePackResolver : MsgPack::IFormatterResolver
+     13: {
+     14: 	/// <summary>An instance of this resolver that only returns formatters specifically generated for types in this assembly.</summary>
+     15: 	public static readonly MsgPack::IFormatterResolver Instance = new GeneratedMessagePackResolver();
+     16: 
+     17: 	private GeneratedMessagePackResolver()
+     18: 	{
+     19: 	}
+     20: 
+     21: 	public MsgPack::Formatters.IMessagePackFormatter<T> GetFormatter<T>()
+     22: 	{
+     23: 		return FormatterCache<T>.Formatter;
+     24: 	}
+     25: 
+     26: 	private static class FormatterCache<T>
+     27: 	{
+     28: 		internal static readonly MsgPack::Formatters.IMessagePackFormatter<T> Formatter;
+     29: 
+     30: 		static FormatterCache()
+     31: 		{
+     32: 			var f = GeneratedMessagePackResolverGetFormatterHelper.GetFormatter(typeof(T));
+     33: 			if (f != null)
+     34: 			{
+     35: 				Formatter = (MsgPack::Formatters.IMessagePackFormatter<T>)f;
+     36: 			}
+     37: 		}
+     38: 	}
+     39: 
+     40: 	private static class GeneratedMessagePackResolverGetFormatterHelper
+     41: 	{
+     42: 		private static readonly global::System.Collections.Generic.Dictionary<global::System.Type, int> closedTypeLookup = new global::System.Collections.Generic.Dictionary<global::System.Type, int>(1)
+     43: 		{
+     44: 			{ typeof(global::System.Collections.Generic.List<int?>), 0 },
+     45: 		};
+     46: 
+     47: 		internal static object GetFormatter(global::System.Type t)
+     48: 		{
+     49: 			if (closedTypeLookup.TryGetValue(t, out int closedKey))
+     50: 			{
+     51: 				switch (closedKey)
+     52: 				{
+     53: 					case 0: return new MsgPack::Formatters.ListFormatter<int?>();
+     54: 					default: return null; // unreachable
+     55: 				};
+     56: 			}
+     57: 
+     58: 			return null;
+     59: 		}
+     60: 	}
+     61: }
+     62: 
+     63: }
+     64: 
+ --------------------------------------------------------------
+
+
+Results File: /home/huyhoangle/junction/review-proof/.work/results/data_calibration_inverted-filter_runs/head.MessagePack.SourceGenerator.Tests/head.MessagePack.SourceGenerator.Tests.trx
+
+Failed!  - Failed:    41, Passed:   129, Skipped:     0, Total:   170, Duration: 13 s - MessagePack.SourceGenerator.Tests.dll (net8.0)
+
+Build FAILED.
+
+/home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/tests/MessagePack.SourceGenerator.Tests/MessagePack.SourceGenerator.Tests.csproj : warning NU1901: Package 'NuGet.Protocol' 6.8.0 has a known low severity vulnerability, https://github.com/advisories/GHSA-g4vj-cjjj-v7hg
+/home/huyhoangle/junction/review-proof/.work/wt/b542bc449cc1aec0860dd397d91c538c2584f22d/tests/MessagePack.SourceGenerator.Tests/MessagePack.SourceGenerator.Tests.csproj : warning NU1901: Package 'NuGet.Protocol' 6.8.0 has a known low severity vulnerability, https://github.com/advisories/GHSA-g4vj-cjjj-v7hg
+    2 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:38.26

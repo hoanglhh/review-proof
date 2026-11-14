@@ -1,0 +1,16 @@
+{
+  "name": "head.MessagePack.SourceGenerator.Tests",
+  "performedBy": "dotnet test in container mcr.microsoft.com/dotnet/sdk:8.0.402-jammy",
+  "command": "docker run --rm --user 1000:1000 -e HOME=/home/huyhoangle/junction/review-proof/.work/home -e DOTNET_CLI_HOME=/home/huyhoangle/junction/review-proof/.work/home -e NUGET_PACKAGES=/home/huyhoangle/junction/review-proof/.work/nuget -e DOTNET_CLI_TELEMETRY_OPTOUT=1 -e DOTNET_NOLOGO=1 -v /home/huyhoangle/junction/review-proof/.work:/home/huyhoangle/junction/review-proof/.work -w /home/huyhoangle/junction/review-proof/.work/wt/43daf6ec1374b7d79687b895a5db5cfb08a88caf mcr.microsoft.com/dotnet/sdk:8.0.402-jammy dotnet test tests/MessagePack.SourceGenerator.Tests/MessagePack.SourceGenerator.Tests.csproj --logger 'trx;LogFileName=head.MessagePack.SourceGenerator.Tests.trx' --results-directory /home/huyhoangle/junction/review-proof/.work/results/data_calibration_security-file-write_runs/head.MessagePack.SourceGenerator.Tests",
+  "worktree": ".work/wt/43daf6ec1374b7d79687b895a5db5cfb08a88caf",
+  "sourceCommit": "43daf6ec1374b7d79687b895a5db5cfb08a88caf",
+  "testsCommit": "43daf6ec1374b7d79687b895a5db5cfb08a88caf",
+  "project": "tests/MessagePack.SourceGenerator.Tests/MessagePack.SourceGenerator.Tests.csproj",
+  "startedAt": "2026-11-14T06:47:35.578Z",
+  "log": "data/calibration/security-file-write/runs/head.MessagePack.SourceGenerator.Tests.log",
+  "tests": [],
+  "durationMs": 9199,
+  "exitCode": 1,
+  "status": "inconclusive",
+  "reason": "no trx result file was produced (exit code 1); first build errors: /home/huyhoangle/junction/review-proof/.work/wt/43daf6ec1374b7d79687b895a5db5cfb08a88caf/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs(1446,9): error RS1035: The symbol 'File' is banned for use by analyzers: Do not do file IO in analyzers [/home/huyhoangle/junction/review-proof/.work/wt/43daf6ec1374b7d79687b895a5db5cfb08a88caf/src/MessagePack.SourceGenerator/MessagePack.SourceGenerator.csproj] | /home/huyhoangle/junction/review-proof/.work/wt/43daf6ec1374b7d79687b895a5db5cfb08a88caf/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs(1446,61): error RS1035: The symbol 'Path.GetTempPath()' is banned for use by analyzers: Do not do file IO in analyzers [/home/huyhoangle/junction/review-proof/.work/wt/43daf6ec1374b7d79687b895a5db5cfb08a88caf/src/MessagePack.SourceGenerator/MessagePack.SourceGenerator.csproj] | /home/huyhoangle/junction/review-proof/.work/wt/43daf6ec1374b7d79687b895a5db5cfb08a88caf/src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs(1446,132): error RS1035: The symbol 'Environment' is banned for use by analyzers: Analyzers should not read their settings directly from environment variables [/home/huyhoangle/junction/review-proof/.work/wt/43daf6ec1374b7d79687b895a5db5cfb08a88caf/src/MessagePack.SourceGenerator/MessagePack.SourceGenerator.csproj]"
+}

@@ -36,7 +36,7 @@ ${rows.map((r) => `<tr><td><b>${esc(r.requirementId)}</b> ${esc(r.title)}</td>
 <td class="muted nowrap">${esc(when(r.generatedAt))}</td><td>${r.signoffs}</td>
 <td class="nowrap">${r.route ? `<a href="/case/${encodeURIComponent(r.id)}">Open sheet</a><br><a href="/case/${encodeURIComponent(r.id)}/blind">Blind spot-check</a>` : `<span class="muted">Generate with</span><br><code>node src/cli.ts all ${esc(r.id)}</code>`}</td></tr>`).join("")}
 </tbody></table></div>
-<p><a href="/trust">Trust record by area</a></p></div>`);
+<p><a href="/trust">Trust record by area</a><br><a href="/metrics">How trust is measured</a></p></div>`);
 }
 
 export function renderBlind(r: Report, requirement: { title: string; body: string }, nonce: string) {
@@ -99,3 +99,37 @@ ${simulated.map((e, i) => `<tr><td>${i + 1}</td><td><code>${esc(e.area)}</code><
 
 export const renderMessage = (title: string, message: string, back: string) =>
   page(title, `<h1>${esc(title)}</h1><div class="errors" role="alert"><p>${esc(message)}</p></div><p><a href="${esc(back)}">Go back</a></p>`);
+
+const of = (f: { n: number; of: number }) => (f.of ? `${f.n} of ${f.of} (${Math.round((f.n / f.of) * 100)}%)` : "no data yet");
+
+export function renderMetrics(m: import("./metrics.ts").Metrics) {
+  const row = (label: string, value: string, note = "") => `<tr><td>${esc(label)}</td><td class="nowrap"><b>${esc(value)}</b></td><td class="muted">${esc(note)}</td></tr>`;
+  const table = (rows: string) => `<div class="scroll"><table><thead><tr><th>Measure</th><th>Value</th><th>What it counts</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+  const cal = m.calibration;
+  return page("How trust is measured", `
+<h1>How trust is measured</h1>
+<p>Every figure is computed from files under <code>data/</code> and shows its denominator. Four changes show how the method works; they are not statistical evidence of anything.</p>
+<section><h2>Per change</h2><div class="scroll"><table><thead><tr><th>Requirement</th><th>Files</th><th>Changed lines</th><th>Targeted reading list</th><th>Read ratio</th><th>Evidence route</th><th>Effective route</th></tr></thead><tbody>
+${m.cases.map((c) => `<tr><td><a href="/case/${encodeURIComponent(c.id)}">#${esc(c.id)}</a>${c.reviewer !== "ok" ? `<div class="detail">AI reviewer ${esc(c.reviewer)}</div>` : ""}</td><td>${c.files}</td><td>${c.lines}</td><td>${c.readingListLines} lines</td>
+<td>${c.readRatio === null ? `<span class="muted">n/a, blocked</span>` : `${Math.round(c.readRatio * 100)}%`}</td><td>${esc(VERDICT[c.evidenceRoute])}</td><td><span class="route-word r-${esc(c.effectiveRoute)}">${esc(VERDICT[c.effectiveRoute])}</span></td></tr>`).join("")}
+</tbody></table></div>
+${table(Object.entries(m.routeShare).map(([k, v], i) => row(`Changes routed ${VERDICT[k as keyof typeof VERDICT].toLowerCase()}`, of(v), i === 0 ? "The effective route on each change's current sheet." : "")).join(""))}</section>
+<section><h2>What the evidence supports</h2>${table(
+  Object.entries(m.claimsByState).map(([k, v], i) => row(`Claims ${k.replace("_", " ")}`, of(v), i === 0 ? `Claims on the ${m.citationCasesWithReviewer.n} of ${m.citationCasesWithReviewer.of} sheets the AI reviewer has seen. States are computed by code from evidence, never by the model.` : "")).join("") +
+  row("Changed tests that discriminate", of(m.discriminatingTests), "Pass at head and fail with the base source. The rest pass either way and prove nothing about the change.") +
+  row("Citations that resolved", of(m.citationValidity), `Quote found at the stated file, lines and commit. Over the ${m.citationCasesWithReviewer.n} of ${m.citationCasesWithReviewer.of} changes the AI reviewer has seen.`))}</section>
+<section class="sim" aria-labelledby="cal"><div class="sim-band"><b id="cal">SYNTHETIC</b><div>Calibration with hand-written planted bugs. Planted bugs are not real bugs.</div></div><div class="sim-body">
+${cal ? table(row("Caught by a run", of({ n: cal.caughtByRun, of: cal.total }), "A check that passed on the original change fails with the plant.") +
+  row("Caught by the AI reviewer only", of({ n: cal.caughtByModelOnly, of: cal.total }), "A finding or decision points at the planted lines and no run caught it.") +
+  row("Missed", of({ n: cal.missed, of: cal.total }), "Nothing on the sheet points at the plant.") +
+  row("AI reviewer not run yet", of({ n: cal.modelNotRun, of: cal.total }), "No run caught these; whether the reviewer would is still open.")) : `<p>No calibration run yet. Run <code>node src/cli.ts calibrate</code>.</p>`}
+</div></section>
+<section><h2>What the owners did</h2>${table(row("Sign-offs recorded", String(m.signoffs), "Each signed by a named person; identity is self-declared in this prototype.") +
+  row("Findings marked a real problem", of(m.findingsMarked.real), "Owner feedback given when signing.") +
+  row("Findings marked not a problem", of(m.findingsMarked.notReal), "Owner feedback given when signing.") +
+  (m.activeSeconds.length ? m.activeSeconds.map((a) => row(`Active review time, #${a.caseId}`, `${a.seconds} s`, "Seconds the sheet was visible and focused.")).join("") : row("Active review time per sign-off", "no data yet", "Seconds the sheet was visible and focused while the owner signed.")))}</section>
+<section><h2>No data yet</h2><div class="scroll"><table><thead><tr><th>Measure</th><th>Definition</th></tr></thead><tbody>
+${m.noDataYet.map((x) => `<tr><td>${esc(x.metric)}</td><td>${esc(x.definition)}</td></tr>`).join("")}</tbody></table></div>
+<p><b>Guard rule:</b> ${esc(m.guardRule)}</p></section>
+<p><a href="/">All changes</a></p>`);
+}

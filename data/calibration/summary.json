@@ -1,0 +1,150 @@
+{
+  "synthetic": true,
+  "note": "Planted bugs are hand-written and synthetic; they are not real bugs.",
+  "generatedAt": "2026-11-14T06:53:03.951Z",
+  "reviewer": "not run (--skip-review): plants no run caught are model_not_run, not missed",
+  "total": 8,
+  "caughtByRun": 7,
+  "caughtByModelOnly": 0,
+  "missed": 0,
+  "modelNotRun": 1,
+  "results": [
+    {
+      "plant": "undo-fix",
+      "case": "2283",
+      "category": "undo part of the fix",
+      "plantedHead": "69d109a0e9bde3d05cbb70bcb9a75225d35841f0",
+      "outcome": "caught_by_run",
+      "plantedHunks": [],
+      "undoneOriginalHunks": [
+        "H5 src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:1077"
+      ],
+      "runSignals": [
+        "tests-at-head:MessagePack.SourceGenerator.Tests failed: 0 of 3 changed tests pass at head."
+      ],
+      "modelSignals": [],
+      "route": "blocked"
+    },
+    {
+      "plant": "untested-private-ctor",
+      "case": "2283",
+      "category": "change the tests do not exercise",
+      "plantedHead": "818634daf2dcf0aac622e8cf40ae6e4709f5538b",
+      "outcome": "caught_by_run",
+      "plantedHunks": [
+        "H3"
+      ],
+      "undoneOriginalHunks": [],
+      "runSignals": [
+        "existing-tests:MessagePack.SourceGenerator.Tests failed: 167 pre-existing tests: 163 pass at both, 4 regressed, 0 newly pass, 0 fail at both; 0 removed at head."
+      ],
+      "modelSignals": [],
+      "route": "blocked"
+    },
+    {
+      "plant": "scope-public-member",
+      "case": "2283",
+      "category": "scope drift: unrelated new public member",
+      "plantedHead": "e31137310ce388df74e8a310bff835df19cecb66",
+      "outcome": "caught_by_run",
+      "plantedHunks": [
+        "H3"
+      ],
+      "undoneOriginalHunks": [],
+      "runSignals": [
+        "public-surface failed: 1 public-surface line(s) changed in 1 file(s)."
+      ],
+      "modelSignals": [],
+      "route": "blocked"
+    },
+    {
+      "plant": "weakened-test",
+      "case": "2283",
+      "category": "weaken a test so it no longer discriminates",
+      "plantedHead": "59cef57d21d1bed9876bddf8427e200161ce7ae4",
+      "outcome": "caught_by_run",
+      "plantedHunks": [
+        "H9"
+      ],
+      "undoneOriginalHunks": [
+        "H9 tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs:499"
+      ],
+      "runSignals": [
+        "tests-without-change:MessagePack.SourceGenerator.Tests failed: 2 of 3 changed tests that pass at head fail without the change (discriminating). Non-discriminating (prove nothing about this change): GenericsFormatterTests.ClosedGenericStruct_FromMetadataReference."
+      ],
+      "modelSignals": [],
+      "route": "blocked"
+    },
+    {
+      "plant": "security-file-write",
+      "case": "2283",
+      "category": "something the security surface scan should notice",
+      "plantedHead": "43daf6ec1374b7d79687b895a5db5cfb08a88caf",
+      "outcome": "caught_by_run",
+      "plantedHunks": [
+        "H6"
+      ],
+      "undoneOriginalHunks": [
+        "H6 src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:1429"
+      ],
+      "runSignals": [
+        "tests-at-head:MessagePack.SourceGenerator.Tests inconclusive: The head run did not complete.",
+        "existing-tests:MessagePack.SourceGenerator.Tests inconclusive: Pre-existing tests could not be compared.",
+        "security-surface failed: 0 build/dependency file(s) changed; 1 added line(s) match security-sensitive patterns."
+      ],
+      "modelSignals": [],
+      "route": "blocked"
+    },
+    {
+      "plant": "inverted-filter",
+      "case": "2283",
+      "category": "undo part of the fix",
+      "plantedHead": "b542bc449cc1aec0860dd397d91c538c2584f22d",
+      "outcome": "caught_by_run",
+      "plantedHunks": [
+        "H6"
+      ],
+      "undoneOriginalHunks": [
+        "H6 src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:1429"
+      ],
+      "runSignals": [
+        "tests-at-head:MessagePack.SourceGenerator.Tests failed: 2 of 3 changed tests pass at head.",
+        "existing-tests:MessagePack.SourceGenerator.Tests failed: 167 pre-existing tests: 127 pass at both, 40 regressed, 0 newly pass, 0 fail at both; 0 removed at head."
+      ],
+      "modelSignals": [],
+      "route": "blocked"
+    },
+    {
+      "plant": "template-output-enum",
+      "case": "2297",
+      "category": "break generated output in one template",
+      "plantedHead": "b715699ce309930670e9dbcbe6f3276aff7fa287",
+      "outcome": "caught_by_run",
+      "plantedHunks": [],
+      "undoneOriginalHunks": [
+        "H6 src/MessagePack.SourceGenerator/Transforms/EnumTemplate.cs:27",
+        "H7 src/MessagePack.SourceGenerator/Transforms/EnumTemplate.tt:8"
+      ],
+      "runSignals": [
+        "tests-at-head:MessagePack.SourceGenerator.Tests failed: 82 of 91 changed tests pass at head.",
+        "existing-tests:MessagePack.SourceGenerator.Tests failed: 167 pre-existing tests: 158 pass at both, 9 regressed, 0 newly pass, 0 fail at both; 0 removed at head."
+      ],
+      "modelSignals": [],
+      "route": "blocked"
+    },
+    {
+      "plant": "template-source-drift",
+      "case": "2297",
+      "category": "change the tests do not exercise",
+      "plantedHead": "dc6b9f85ed64e6372fb277b7cc4d501cd51c9ac3",
+      "outcome": "model_not_run",
+      "plantedHunks": [],
+      "undoneOriginalHunks": [
+        "H20 src/MessagePack.SourceGenerator/Transforms/UnionTemplate.tt:10"
+      ],
+      "runSignals": [],
+      "modelSignals": [],
+      "route": "blocked"
+    }
+  ]
+}
