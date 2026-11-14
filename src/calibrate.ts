@@ -36,7 +36,7 @@ export function classifyPlant(original: Report, planted: Report) {
     : [...planted.findings, ...planted.decisions.filter((d) => d.raisedBy.kind === "model")].filter(touches).map((x) => `${x.id}: ${x.statement}`);
 
   const outcome: PlantOutcome = runSignals.length ? "caught_by_run" : modelSignals === null ? "model_not_run" : modelSignals.length ? "caught_by_model_only" : "missed";
-  return { outcome, plantedHunks: plantedHunks.map((h) => h.id), undoneOriginalHunks: undoneHunks.map((h) => `${h.id} ${h.file}:${h.newStart}`), runSignals, modelSignals: modelSignals ?? [], route: planted.route.effectiveRoute };
+  return { outcome, files: [...new Set(places.map((p) => p.file))], plantedHunks: plantedHunks.map((h) => h.id), undoneOriginalHunks: undoneHunks.map((h) => `${h.id} ${h.file}:${h.newStart}`), runSignals, modelSignals: modelSignals ?? [], route: planted.route.effectiveRoute };
 }
 
 export function summarize(results: { outcome: PlantOutcome }[]) {

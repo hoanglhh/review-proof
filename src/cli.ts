@@ -1,5 +1,5 @@
 // ReviewProof command line. Every stage reads and writes files under data/cases/<id>/, so any stage can be rerun alone.
-import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
+import { appendFileSync, copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { basename, join, relative } from "node:path";
 import { parseArgs } from "node:util";
 import { caseDir, DATA, loadCase, loadProfile, PIPELINE_VERSION, PLANTED, readJson, ROOT, writeJson, type Case, type Profile } from "./config.ts";
@@ -9,7 +9,7 @@ import { runTests, type Run } from "./runner.ts";
 import { inventory, issueReproduction, patternGroups, publicSurface, REGISTRY, securitySurface, testEvidence, testProjects } from "./checks.ts";
 import type { Evidence } from "./report.ts";
 import { buildPrompt, runReview } from "./review.ts";
-import { assembleCase } from "./assemble.ts";
+import { assembleCase, readJsonl, TRUST_LOG } from "./assemble.ts";
 import { startServer, writeSimulation } from "./server.ts";
 import { trustFloor } from "./states.ts";
 import { classifyPlant, summarize } from "./calibrate.ts";
@@ -187,15 +187,26 @@ async function calibrate(skipReview: boolean) {
     console.log(`\n== planted ${pl.id} on #${c0.id} (synthetic)`);
     await ingest(c, p);
     await check(c, p, false);
-    if (!skipReview) await review(c, p, false);
-    const verdict = classifyPlant(readJson(join(from, "report.json")), assembleCase(c, p));
+    const original = readJson(join(from, "report.json"));
+    let verdict = classifyPlant(original, assembleCase(c, p));
+    // the model can only change the outcome of a plant no run caught, so only those cost a model call
+    if (!skipReview && verdict.outcome === "model_not_run") { await review(c, p, false); verdict = classifyPlant(original, assembleCase(c, p)); }
     console.log(`=> ${verdict.outcome}${verdict.runSignals.length ? `: ${verdict.runSignals[0].slice(0, 160)}` : ""}`);
+    // a final outcome goes into the trust record of the areas the plant touched; a miss resets them (append-only, once per plant)
+    if (verdict.outcome !== "model_not_run") {
+      const seen = readJsonl(TRUST_LOG).some((e) => e.plant === pl.id && e.plantedHead === head);
+      const areas = [...new Set(verdict.files.map((f) => p.areas.find((a) => a.paths.some((r) => new RegExp(r).test(f)))?.name).filter((a): a is string => !!a))];
+      if (!seen) {
+        mkdirSync(join(DATA, "trust"), { recursive: true });
+        for (const area of areas) appendFileSync(TRUST_LOG, JSON.stringify({ area, type: verdict.outcome === "missed" ? "planted_missed" : "planted_caught", at: new Date().toISOString(), caseId: c.id, plant: pl.id, plantedHead: head, synthetic: true }) + "\n");
+      }
+    }
     results.push({ plant: pl.id, case: c0.id, category: pl.category, plantedHead: head, ...verdict });
   }
   const summary = summarize(results);
   writeJson(join(DATA, "calibration", "summary.json"), {
     synthetic: true, note: "Planted bugs are hand-written and synthetic; they are not real bugs.", generatedAt: new Date().toISOString(),
-    reviewer: skipReview ? "not run (--skip-review): plants no run caught are model_not_run, not missed" : "run", ...summary, results,
+    reviewer: skipReview ? "not run (--skip-review): plants no run caught are model_not_run, not missed" : "run only for plants no run caught (it cannot change the others)", ...summary, results,
   });
   console.log(`\ncaught by a run ${summary.caughtByRun} of ${summary.total}; caught by the model only ${summary.caughtByModelOnly} of ${summary.total}; missed ${summary.missed} of ${summary.total}; model not run ${summary.modelNotRun} of ${summary.total}`);
 }

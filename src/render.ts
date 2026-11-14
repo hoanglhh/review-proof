@@ -85,6 +85,14 @@ button:disabled{background:var(--rule);border-color:var(--rule);color:var(--mute
 @media print{body{background:#fff}.sheet{border:none;margin:0;padding:0 0 0 56px}.hunk{break-inside:avoid}}
 `;
 
+/** What a blocked report's evidence supports once its blockers are resolved, in one sentence. */
+function unblockedLine(route: Report["route"], fmt: (s: unknown) => string) {
+  const u = route.ifUnblocked;
+  if (!u) return "";
+  const why = u.reasons.slice(0, 3).map((x) => fmt(x.detail)).join("; ") + (u.reasons.length > 3 ? `; and ${u.reasons.length - 3} more` : "");
+  return `<p class="muted">Once these are resolved, the evidence supports a ${VERDICT[u.route].toLowerCase()}${u.route === "targeted" ? ` of ${pct(u.readRatio!)} of the changed lines` : ""}: ${why}.${u.effectiveRoute !== u.route ? ` The areas' trust floors would still require a ${VERDICT[u.effectiveRoute].toLowerCase()}.` : ""}</p>`;
+}
+
 /** Present only when the sheet is served by the sign-off server: real controls instead of printed boxes. */
 export type Interactive = { reportHash: string; nonce: string; signoffs: any[]; errors: string[]; form?: URLSearchParams; notice?: string };
 
@@ -138,7 +146,8 @@ ${r.case.synthetic ? `<div class="sim-band" role="note"><b>SYNTHETIC</b> ${esc(r
 <span class="verdict-sub">${route.effectiveRoute === "blocked" ? "This change cannot be signed yet." : `Read ${route.readRatio === null ? "" : Math.round(route.readRatio * 100) + "% of "}${route.totalLines} changed lines.`}</span>
 ${route.spotCheck.selected ? `<span class="verdict-sub"><b>Selected for a blind spot-check.</b></span>` : ""}</div>
 <div>Evidence supports: <b>${VERDICT[route.evidenceRoute].toLowerCase()}</b>.${floorReasons.length ? ` ${floorReasons.join(" ")}` : ""}
-<ul>${route.reasons.map((x) => `<li>${esc(x.detail)} <span class="muted">(${esc(x.code)})</span></li>`).join("")}</ul></div>
+<ul>${route.reasons.map((x) => `<li>${esc(x.detail)} <span class="muted">(${esc(x.code)})</span></li>`).join("")}</ul>
+${unblockedLine(route, esc)}</div>
 </div>
 ${ui?.notice ? `<p class="notice" role="status">${esc(ui.notice)}</p>` : ""}
 ${r.reviewer.status !== "ok" ? `<p><span class="flag">AI reviewer ${esc(r.reviewer.status)}.</span> ${esc(r.reviewer.reason ?? "")}</p>` : ""}
@@ -234,6 +243,7 @@ export function renderMarkdown(r: Report, sheetHref: string, maxFindings: number
       (route.trustFloor !== route.evidenceRoute && route.effectiveRoute === route.trustFloor ? route.areas.filter((a) => a.floor === route.trustFloor).map((a) => `${md(a.reason.replaceAll("`", ""))}.`).join(" ") : ""),
     ``,
     ...route.reasons.map((x) => `- \`${x.code}\` ${md(x.detail)}`),
+    ...(route.ifUnblocked ? [``, unblockedLine(route, md).replace(/<\/?p[^>]*>/g, "")] : []),
     ``,
     `${route.readRatio === null ? `Read ratio: not applicable until unblocked (${route.totalLines} changed lines).` : `Read ratio: ${pct(route.readRatio!)} of ${route.totalLines} changed lines.`} Generated ${r.case.generatedAt}, base \`${short(r.case.base)}\` → head \`${short(r.case.head)}\`, policy ${md(r.case.policyVersion)} (illustrative thresholds). Full sheet: ${sheetHref}`,
     ``,

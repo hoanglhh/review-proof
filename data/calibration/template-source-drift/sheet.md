@@ -4,18 +4,34 @@
 
 **Route: BLOCKED** (cannot be signed yet). Evidence supports: blocked. 
 
-- `reviewer-missing` the AI reviewer output is missing or invalid
+- `interpretation-unconfirmed` R3 is an interpretation no human has confirmed
+- `interpretation-unconfirmed` R4 is an interpretation no human has confirmed
 
-Read ratio: not applicable until unblocked (1389 changed lines). Generated 2026-11-14T06:53:03.943Z, base `32258fdb` → head `dc6b9f85`, policy 2026-11-14.1 (illustrative thresholds). Full sheet: sheet.html
+Once these are resolved, the evidence supports a targeted read of 12% of the changed lines: C10 is argued; C11 is argued; D1 needs the owner; and 6 more. The areas' trust floors would still require a full read.
+
+Read ratio: not applicable until unblocked (1389 changed lines). Generated 2026-11-14T07:17:44.463Z, base `32258fdb` → head `dc6b9f85`, policy 2026-11-14.1 (illustrative thresholds). Full sheet: sheet.html
 
 ### Requirement
-- none
+- **R1** (explicit) All MessagePack-generated code should be decorated with ExcludeFromCodeCoverage.
+- **R2** (explicit) The behavior may be always on; a configuration setting is optional rather than required.
+- **R3** (interpretation, **unconfirmed**) Generated output should remain compilable on targets where the framework attribute is unavailable.
+- **R4** (interpretation, **unconfirmed**) The requested scope includes generated resolver cache and helper types, not only the outer formatter and resolver declarations.
 
 ### What it touches
-236 files, +1380/−9: 1 docs (3 lines), 6 template-output (20 lines), 5 template (24 lines), 1 source (2 lines), 1 test (130 lines), 222 test-snapshot (1210 lines). Unexplained hunks: H1, H2, H3, H4, H5, H6, H7, H8, H9, H10, H11, H12, H13, H14, H15, H16, H17, H18, H19, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33, H34, H35, H36, H37, H38, H39, H40, H41, H42, H43, H44, H45, H46, H47, H48, H49, H50, H51, H52, H53, H54, H55, H56, H57, H58, H59, H60, H61, H62, H63, H64, H65, H66, H67, H68, H69, H70, H71, H72, H73, H74, H75, H76, H77, H78, H79, H80, H81, H82, H83, H84, H85, H86, H87, H88, H89, H90, H91, H92, H93, H94, H95, H96, H97, H98, H99, H100, H101, H102, H103, H104, H105, H106, H107, H108, H109, H110, H111, H112, H113, H114, H115, H116, H117, H118, H119, H120, H121, H122, H123, H124, H125, H126, H127, H128, H129, H130, H131, H132, H133, H134, H135, H136, H137, H138, H139, H140, H141, H142, H143, H144, H145, H146, H147, H148, H149, H150, H151, H152, H153, H154, H155, H156, H157, H158, H159, H160, H161, H162, H163, H164, H165, H166, H167, H168, H169, H170, H171, H172, H173, H174, H175, H176, H177, H178, H179, H180, H181, H182, H183, H184, H185, H186, H187, H188, H189, H190, H191, H192, H193, H194, H195, H196, H197, H198, H199, H200, H201, H202, H203, H204, H205, H206, H207, H208, H209, H210, H211, H212, H213, H214, H215, H216, H217, H218, H219, H220, H221, H222, H223, H224, H225, H226, H227, H228, H229, H230, H231, H232, H233, H234, H235, H236, H237, H238, H239, H240, H241, H242, H243, H244, H245, H246, H247, H248, H249, H250, H251, H252, H253, H254, H255, H256, H257, H258, H259, H260, H261, H262, H263, H264, H265, H266, H267, H268, H269, H270, H271, H272, H273, H274, H275, H276, H277, H278, H279, H280, H281, H282, H283, H284, H285, H286, H287, H288, H289, H290, H291, H292, H293, H294, H295, H296, H297, H298, H299, H300, H301, H302, H303, H304, H305, H306, H307, H308, H309, H310, H311, H312, H313, H314, H315, H316, H317, H318, H319, H320, H321, H322, H323, H324, H325, H326, H327, H328, H329, H330, H331, H332, H333, H334, H335, H336, H337, H338, H339, H340, H341, H342, H343, H344, H345, H346, H347, H348, H349, H350, H351, H352, H353, H354, H355, H356, H357, H358, H359, H360, H361, H362, H363, H364, H365, H366, H367, H368, H369, H370, H371, H372, H373, H374, H375, H376, H377, H378, H379, H380, H381, H382, H383, H384, H385, H386, H387, H388, H389, H390, H391, H392, H393, H394, H395, H396, H397, H398, H399, H400, H401, H402, H403, H404, H405, H406, H407, H408, H409, H410, H411, H412, H413, H414, H415, H416, H417, H418, H419, H420, H421, H422.
+236 files, +1380/−9: 1 docs (3 lines), 6 template-output (20 lines), 5 template (24 lines), 1 source (2 lines), 1 test (130 lines), 222 test-snapshot (1210 lines). Unexplained hunks: none.
 
 ### Claims (states computed from evidence)
-- none
+- **argued** C10: README documentation describes formatter and resolver decoration and explicitly documents netstandard2.0 and .NET Framework as conditional exceptions. — 1 resolved citation(s) and no run that supports it
+- **argued** C11: The exclusion behavior is added without a new public configuration API; the public-surface check reports no changed public declaration, public API entry, or diagnostic ID. — 1 resolved citation(s) and no run that supports it
+- **proven** C1: Integer-keyed object formatter generation places the fully qualified exclusion attribute on the formatter class inside the NETSTANDARD2\_0/NETFRAMEWORK preprocessor guard. — test GenerationTests.ArrayTypedProperty passes at head and fails without the change
+- **proven** C2: String-keyed formatter generation applies the same guarded exclusion attribute to its formatter class in both the T4 template and checked-in template output. — test CustomStringKeyFormatterTests.RecordWithPrimaryConstructor passes at head and fails without the change
+- **proven** C3: Enum formatter generation decorates the generated formatter class with the guarded exclusion attribute. — test GenerationTests.EnumFormatter(container: Namespace, usesMapMode: False) passes at head and fails without the change
+- **proven** C4: The checked-in union template output decorates the union formatter class with the guarded exclusion attribute. — test GenerationTests.UnionFormatter(container: Namespace) passes at head and fails without the change
+- **proven** C5: GeneratedMessagePackResolver output decorates three declarations: the resolver class, its nested FormatterCache\<T\>, and its nested GetFormatterHelper class. — test CodeCoverageExclusionTests.AllGeneratedTypesAreExcludedFromCodeCoverage passes at head and fails without the change
+- **proven** C6: Composite resolver output decorates both the outer resolver class and its nested FormatterCache\<T\> class with guarded exclusion attributes. — test CompositeResolverGeneratorTests.CompositeResolver\_MixedResolverTypes passes at head and fails without the change
+- **proven** C7: The new tests run the generator over declared object, string-keyed object, enum, union, and resolver inputs, require at least five generated files, assert at least one exclusion attribute in every returned file, and count only the two supported guarded attribute layouts as guarded occurrences. — test CodeCoverageExclusionTests.AllGeneratedTypesAreExcludedFromCodeCoverage passes at head and fails without the change
+- **proven** C8: When a generated nesting type has generic constraints, the nesting utility now emits a newline after its opening brace, separating that brace from subsequent generated declarations. — test GenerationTests.GenericDataTypeWithPrivateMember passes at head and fails without the change
+- **proven** C9: The updated expected-output resources contain the new guarded decorations and agree with the head generator for the changed snapshot-based tests, while those tests discriminate against output produced with the base generator source. — test GenerationTests.EmbeddedTypes passes at head and fails without the change
 
 ### Checks
 | Check | Status | Result |
@@ -28,21 +44,31 @@ Read ratio: not applicable until unblocked (1389 changed lines). Generated 2026-
 | `existing-tests:MessagePack.SourceGenerator.Tests` | passed | 167 pre-existing tests: 167 pass at both, 0 regressed, 0 newly pass, 0 fail at both; 0 removed at head. |
 | `issue-reproduction` | not_run | The requirement contains no code blocks. (the requirement contains no code blocks) |
 | `security-surface` | passed | Pattern scan found nothing; this is not proof that no vulnerability exists. |
-| `citation-validation` | not_run | Nothing to validate. (no valid reviewer output) |
+| `citation-validation` | passed | 32 of 32 citations resolved; 0 dropped as unresolvable; 0 reference(s) to unknown requirements, evidence, tests or hunks dropped. |
 
 ### Not checked
 - **issue-reproduction**: the requirement contains no code blocks
-- **citation-validation**: no valid reviewer output
-- **requirements, claims, model-raised decisions and findings**: AI reviewer did not run
+- **Does ExcludeFromCodeCoverageAttribute exist on every .NET Framework and netstandard version targeted by consumers, and are NETSTANDARD2\_0 and NETFRAMEWORK exactly the right availability boundaries?**: the AI reviewer could not decide: The material contains assertions in the README and test comments, but no reference-assembly matrix or target-specific compilation results. The attribute's availability is not established independently by the supplied records.
+- **Would regenerating UnionTemplate.cs from UnionTemplate.tt preserve the new union attribute block?**: the AI reviewer could not decide: UnionTemplate.tt is not included at base or head and has no supplied hunk. Its existing contents and regeneration output cannot be compared with the changed UnionTemplate.cs.
+- **What are all five deviations reported by the pattern-groups check, and are any of them unintended snapshot differences?**: the AI reviewer could not decide: The check reports five deviating files, but its details are truncated. Only the two GenericDataTypeWithPrivateMember examples are shown; the other deviating files and their complete hunks are unavailable.
+- **Exactly which generated files and type declarations were returned by the two new CodeCoverageExclusionTests, including whether an enum formatter was generated?**: the AI reviewer could not decide: Passing test output does not include the generated path list or a declaration inventory. The test asserts only a minimum file count and per-file substrings, and its standalone MyEnum declaration alone does not show the generator's collection behavior.
+- **Do consumer projects compile successfully and produce the intended coverage exclusions with each preprocessor branch enabled?**: the AI reviewer could not decide: The supplied tests inspect generated text and exercise the default test configuration, but no netstandard2.0/.NET Framework consumer compilation or end-to-end coverage-tool run is present.
 - **absence of new vulnerabilities**: cannot be proven by any check here; the security surface scan only finds patterns. Always a human judgement.
 
 ### Refused to decide (owner must answer)
-- none
+- **D1** The implementation chooses textual preprocessor guards, so the attribute is inactive when NETSTANDARD2\_0 or NETFRAMEWORK is defined, instead of pursuing unconditional decoration on every target. Options: Emit the attribute under \#if !NETSTANDARD2\_0 && !NETFRAMEWORK, as implemented / Emit the attribute unconditionally for every target under a literal reading of the request / Inspect each consumer compilation for the attribute type and generate target-specific output rather than emitting preprocessor branches / Use a compatibility declaration or polyfill for targets lacking the framework attribute, subject to avoiding type conflicts. _Raised by the AI reviewer._
+- **D2** The change implements always-on generation without an opt-in or opt-out setting. Options: No setting; always generate the guarded decoration, as implemented / Add an opt-out setting with decoration enabled by default / Add an opt-in setting with decoration disabled by default. _Raised by the AI reviewer._
+- **D3** The decoration granularity includes concrete generated formatters, resolvers, caches, and helper classes, but not the partial nesting/container type declarations emitted to host generated code. Options: Decorate concrete generated formatter/resolver/helper types but not generated user-type nesting declarations, as implemented / Also decorate generated partial nesting/container declarations and accept their whole-type coverage semantics / Decorate only outer generated formatter/resolver classes and omit separate nested helper decorations. _Raised by the AI reviewer._
 
 ### Suspected findings
-- none with a resolvable citation
+- **F1** The union formatter decoration is present in checked-in UnionTemplate.cs, but the supplied diff has no corresponding UnionTemplate.tt change. Unlike the other edited template outputs, the source template is not shown to reproduce this output; if it does not already contain equivalent text, a future T4 regeneration will drop the union decoration. No template-regeneration check is included in the evidence. (`src/MessagePack.SourceGenerator/Transforms/UnionTemplate.cs:30`)
+- **F2** AllGeneratedTypesAreExcludedFromCodeCoverage does not test every generated type: it checks only whether each file contains the attribute at least once. The nesting utility emits partial type declarations without an exclusion attribute, so a file can contain such an undecorated declaration and still pass whenever another declaration in that file has the attribute. This leaves the test's stated per-type guarantee unsupported even though decorating user partial containers is itself a separate scope decision. (`tests/MessagePack.SourceGenerator.Tests/CodeCoverageExclusionTests.cs:73`, `src/MessagePack.SourceGenerator/Transforms/TransformUtilities.cs:55`)
+- **F3** ExcludeAttributeIsGuardedForTargetsWhereItIsUnavailable does not compile either preprocessor configuration named by the test. It normalizes and counts strings after one generator run using default references; it supplies no NETSTANDARD2\_0 or NETFRAMEWORK parse options and checks no compilation diagnostics. Guard-specific syntax errors or attribute-resolution failures can therefore remain undetected. (`tests/MessagePack.SourceGenerator.Tests/CodeCoverageExclusionTests.cs:86`, `tests/MessagePack.SourceGenerator.Tests/CodeCoverageExclusionTests.cs:116`)
+- **F4** The new tests do not enforce the generated category set described by their own comment. The only cardinality assertion is generated.Count \>= 5, followed by assertions over whatever files happen to be returned; no assertion requires an enum formatter, a union formatter, both object formatter variants, and a resolver by path. A category omitted by the generator is not directly detected if at least five other files remain. (`tests/MessagePack.SourceGenerator.Tests/CodeCoverageExclusionTests.cs:69`)
 
 ### Residual risk accepted by signing
+- C10 (argued): README documentation describes formatter and resolver decoration and explicitly documents netstandard2.0 and .NET Framework as conditional exceptions.
+- C11 (argued): The exclusion behavior is added without a new public configuration API; the public-surface check reports no changed public declaration, public API entry, or diagnostic ID.
 - That the change adds no vulnerability (cannot be proven here).
 
 **Owner:** not signed. Owner identity is self-declared in this prototype.

@@ -10,21 +10,51 @@
     "profile": "messagepack-csharp",
     "base": "32258fdbee4bcd653c79f51b4376b5103c6f4d27",
     "head": "9007cee1163c4a274fd60c3cc20c21ae63622786",
-    "generatedAt": "2026-11-14T06:41:39.419Z",
+    "generatedAt": "2026-11-14T07:18:06.685Z",
     "pipelineVersion": "0.1.0",
     "policyVersion": "2026-11-14.1",
-    "model": null,
-    "promptHash": null,
+    "model": "kimi-k3-1-pro",
+    "promptHash": "e9ac08bcecb2553fe7437a8d33baf578710101e843ed1220d75e31ac8adbffaf",
     "synthetic": null
   },
   "reviewer": {
-    "status": "unavailable",
-    "reason": "the review stage has not run",
-    "rawResponse": null,
-    "fullFilesShown": [],
+    "status": "ok",
+    "rawResponse": "data/cases/2234/review/e9ac08bcecb2553fe7437a8d33baf578710101e843ed1220d75e31ac8adbffaf.json",
+    "fullFilesShown": [
+      "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs"
+    ],
     "represented": []
   },
-  "requirements": [],
+  "requirements": [
+    {
+      "id": "R1",
+      "text": "Restore analyzer operation when a message-pack type sets SuppressSourceGeneration to true.",
+      "quote": "The analyzer does not work if SuppressSourceGeneration = true",
+      "kind": "explicit",
+      "confirmedBy": null
+    },
+    {
+      "id": "R2",
+      "text": "Treat the defect as a regression that appeared in 3.1.1, with 3.1.0 identified as working.",
+      "quote": "This has happened since version 3.1.1. It still worked in 3.1.0.",
+      "kind": "explicit",
+      "confirmedBy": null
+    },
+    {
+      "id": "R3",
+      "text": "Interpret the reported analyzer failure as including exceptions while checking duplicate or mixed key kinds; the normal key diagnostic should be reported without an analyzer-crash diagnostic.",
+      "quote": "The analyzer does not work if SuppressSourceGeneration = true.",
+      "kind": "interpretation",
+      "confirmedBy": null
+    },
+    {
+      "id": "R4",
+      "text": "Interpret suppression as opting out of formatter generation rather than disabling runtime serialization and the analyzer checks needed for a valid runtime contract.",
+      "quote": "The analyzer does not work if SuppressSourceGeneration = true",
+      "kind": "interpretation",
+      "confirmedBy": null
+    }
+  ],
   "inventory": {
     "files": [
       {
@@ -1683,33 +1713,610 @@
         "32258fdbee4bcd653c79f51b4376b5103c6f4d27",
         "9007cee1163c4a274fd60c3cc20c21ae63622786"
       ],
-      "status": "not_run",
-      "reason": "no valid reviewer output",
-      "summary": "Nothing to validate.",
+      "status": "passed",
+      "summary": "46 of 46 citations resolved; 0 dropped as unresolvable; 2 reference(s) to unknown requirements, evidence, tests or hunks dropped.",
       "durationMs": 0,
-      "logs": [],
+      "logs": [
+        "data/cases/2234/review/e9ac08bcecb2553fe7437a8d33baf578710101e843ed1220d75e31ac8adbffaf.json"
+      ],
       "details": {
-        "citations": 0,
-        "resolved": 0,
+        "citations": 46,
+        "resolved": 46,
         "dropped": [],
-        "invalidRefs": []
+        "invalidRefs": [
+          {
+            "where": "claim C7",
+            "kind": "test",
+            "ref": "SuppressedSourceGenerationTests.NoFormatterIsGeneratedForSuppressedType"
+          },
+          {
+            "where": "claim C8",
+            "kind": "test",
+            "ref": "SuppressedSourceGenerationTests.SuppressedTypeRoundTripsThroughDynamicResolver"
+          }
+        ]
       }
     }
   ],
-  "claims": [],
-  "decisions": [],
-  "unexplained": [
-    "H1",
-    "H2",
-    "H3",
-    "H4",
-    "H5",
-    "H6",
-    "H7",
-    "H8",
-    "H9"
+  "claims": [
+    {
+      "id": "C1",
+      "statement": "For a suppressed type with duplicate integer or duplicate string keys on properties, the analyzer reports MsgPack005 and the first member remains in the dictionary instead of a second Add throwing a duplicate-key ArgumentException.",
+      "requirementIds": [
+        "R1",
+        "R3"
+      ],
+      "evidenceIds": [
+        "tests-at-head:MessagePack.SourceGenerator.Tests",
+        "tests-without-change:MessagePack.SourceGenerator.Tests"
+      ],
+      "testNames": [
+        "SuppressSourceGenerationAnalyzerTests.DuplicateIntKeysAreReportedWithoutAnalyzerFailure",
+        "SuppressSourceGenerationAnalyzerTests.DuplicateStringKeysAreReportedWithoutAnalyzerFailure"
+      ],
+      "hunkIds": [
+        "H3",
+        "H4",
+        "H9"
+      ],
+      "citations": [
+        {
+          "path": "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
+          "commit": "9007cee1163c4a274fd60c3cc20c21ae63622786",
+          "startLine": 1014,
+          "endLine": 1025,
+          "quote": "if (!intMembers.ContainsKey(member.IntKey))"
+        },
+        {
+          "path": "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
+          "commit": "9007cee1163c4a274fd60c3cc20c21ae63622786",
+          "startLine": 1030,
+          "endLine": 1041,
+          "quote": "if (!stringMembers.ContainsKey(member.StringKey))"
+        },
+        {
+          "path": "tests/MessagePack.SourceGenerator.Tests/SuppressSourceGenerationAnalyzerTests.cs",
+          "commit": "9007cee1163c4a274fd60c3cc20c21ae63622786",
+          "startLine": 90,
+          "endLine": 91,
+          "quote": "{|MsgPack005:[Key(0)]\n    public string Member2 { get; set; }|}"
+        },
+        {
+          "path": "tests/MessagePack.SourceGenerator.Tests/SuppressSourceGenerationAnalyzerTests.cs",
+          "commit": "9007cee1163c4a274fd60c3cc20c21ae63622786",
+          "startLine": 112,
+          "endLine": 113,
+          "quote": "{|MsgPack005:[Key(\"\"a\"\")]\n    public string Member2 { get; set; }|}"
+        }
+      ],
+      "state": "proven",
+      "stateReason": "test SuppressSourceGenerationAnalyzerTests.DuplicateIntKeysAreReportedWithoutAnalyzerFailure passes at head and fails without the change"
+    },
+    {
+      "id": "C2",
+      "statement": "For a suppressed type whose properties mix integer and string keys, the analyzer reports MsgPack005 and skips the mismatched property, preventing the subsequent integer-key path from dereferencing a null nullable integer key.",
+      "requirementIds": [
+        "R1",
+        "R3"
+      ],
+      "evidenceIds": [
+        "tests-at-head:MessagePack.SourceGenerator.Tests",
+        "tests-without-change:MessagePack.SourceGenerator.Tests"
+      ],
+      "testNames": [
+        "SuppressSourceGenerationAnalyzerTests.MixedKeyKindsAreReportedWithoutAnalyzerFailure"
+      ],
+      "hunkIds": [
+        "H2",
+        "H9"
+      ],
+      "citations": [
+        {
+          "path": "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
+          "commit": "9007cee1163c4a274fd60c3cc20c21ae63622786",
+          "startLine": 1005,
+          "endLine": 1008,
+          "quote": "continue; // The key kind does not match the other members; the diagnostic is reported, so skip this member."
+        },
+        {
+          "path": "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
+          "commit": "9007cee1163c4a274fd60c3cc20c21ae63622786",
+          "startLine": 1012,
+          "endLine": 1014,
+          "quote": "if (intMembers.ContainsKey(intKey!.Value))"
+        },
+        {
+          "path": "tests/MessagePack.SourceGenerator.Tests/SuppressSourceGenerationAnalyzerTests.cs",
+          "commit": "9007cee1163c4a274fd60c3cc20c21ae63622786",
+          "startLine": 131,
+          "endLine": 135,
+          "quote": "{|MsgPack005:[Key(\"\"Member2\"\")]\n    public string Member2 { get; set; }|}"
+        }
+      ],
+      "state": "proven",
+      "stateReason": "test SuppressSourceGenerationAnalyzerTests.MixedKeyKindsAreReportedWithoutAnalyzerFailure passes at head and fails without the change"
+    },
+    {
+      "id": "C3",
+      "statement": "The duplicate-key recovery also applies to an ordinary, non-suppressed MessagePackObject: two integer-zero keys on properties produce MsgPack005 without the analyzer failure seen with the base source.",
+      "requirementIds": [],
+      "evidenceIds": [
+        "tests-at-head:MessagePack.SourceGenerator.Tests",
+        "tests-without-change:MessagePack.SourceGenerator.Tests"
+      ],
+      "testNames": [
+        "SuppressSourceGenerationAnalyzerTests.DuplicateKeysAreReportedWithoutAnalyzerFailureForGeneratedTypes"
+      ],
+      "hunkIds": [
+        "H3",
+        "H9"
+      ],
+      "citations": [
+        {
+          "path": "tests/MessagePack.SourceGenerator.Tests/SuppressSourceGenerationAnalyzerTests.cs",
+          "commit": "9007cee1163c4a274fd60c3cc20c21ae63622786",
+          "startLine": 149,
+          "endLine": 157,
+          "quote": "[MessagePackObject]"
+        },
+        {
+          "path": "tests/MessagePack.SourceGenerator.Tests/SuppressSourceGenerationAnalyzerTests.cs",
+          "commit": "9007cee1163c4a274fd60c3cc20c21ae63622786",
+          "startLine": 156,
+          "endLine": 157,
+          "quote": "{|MsgPack005:[Key(0)]\n    public string Member2 { get; set; }|}"
+        },
+        {
+          "path": "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
+          "commit": "9007cee1163c4a274fd60c3cc20c21ae63622786",
+          "startLine": 1023,
+          "endLine": 1026,
+          "quote": "if (!intMembers.ContainsKey(member.IntKey))"
+        }
+      ],
+      "state": "proven",
+      "stateReason": "test SuppressSourceGenerationAnalyzerTests.DuplicateKeysAreReportedWithoutAnalyzerFailureForGeneratedTypes passes at head and fails without the change"
+    },
+    {
+      "id": "C4",
+      "statement": "The keyed-field path receives analogous recovery: mixed-kind fields are skipped after their diagnostic, and duplicate integer or string field keys retain the first dictionary entry rather than calling Add a second time.",
+      "requirementIds": [
+        "R1",
+        "R3"
+      ],
+      "evidenceIds": [],
+      "testNames": [],
+      "hunkIds": [
+        "H5",
+        "H6",
+        "H7"
+      ],
+      "citations": [
+        {
+          "path": "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
+          "commit": "9007cee1163c4a274fd60c3cc20c21ae63622786",
+          "startLine": 1055,
+          "endLine": 1055,
+          "quote": "foreach (IFieldSymbol item in formattedType.GetAllMembers().OfType<IFieldSymbol>())"
+        },
+        {
+          "path": "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
+          "commit": "9007cee1163c4a274fd60c3cc20c21ae63622786",
+          "startLine": 1145,
+          "endLine": 1148,
+          "quote": "continue; // The key kind does not match the other members; the diagnostic is reported, so skip this member."
+        },
+        {
+          "path": "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
+          "commit": "9007cee1163c4a274fd60c3cc20c21ae63622786",
+          "startLine": 1163,
+          "endLine": 1166,
+          "quote": "if (!intMembers.ContainsKey(member.IntKey))"
+        },
+        {
+          "path": "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
+          "commit": "9007cee1163c4a274fd60c3cc20c21ae63622786",
+          "startLine": 1179,
+          "endLine": 1182,
+          "quote": "if (!stringMembers.ContainsKey(member.StringKey))"
+        }
+      ],
+      "state": "argued",
+      "stateReason": "4 resolved citation(s) and no run that supports it"
+    },
+    {
+      "id": "C5",
+      "statement": "Suppressed types continue to receive runtime-contract diagnostics for a member without a key (MsgPack004), a non-public keyed member without AllowPrivate (MsgPack015), and a member whose type is not a MessagePackObject (MsgPack003).",
+      "requirementIds": [
+        "R1",
+        "R4"
+      ],
+      "evidenceIds": [
+        "tests-at-head:MessagePack.SourceGenerator.Tests",
+        "tests-without-change:MessagePack.SourceGenerator.Tests"
+      ],
+      "testNames": [
+        "SuppressSourceGenerationAnalyzerTests.MemberWithoutKeyIsReported",
+        "SuppressSourceGenerationAnalyzerTests.AllowPrivateRequiredIsReported",
+        "SuppressSourceGenerationAnalyzerTests.MemberTypeMustBeMessagePackObjectIsReported"
+      ],
+      "hunkIds": [
+        "H9"
+      ],
+      "citations": [
+        {
+          "path": "tests/MessagePack.SourceGenerator.Tests/SuppressSourceGenerationAnalyzerTests.cs",
+          "commit": "9007cee1163c4a274fd60c3cc20c21ae63622786",
+          "startLine": 24,
+          "endLine": 27,
+          "quote": "public string {|MsgPack004:Member|} { get; set; }"
+        },
+        {
+          "path": "tests/MessagePack.SourceGenerator.Tests/SuppressSourceGenerationAnalyzerTests.cs",
+          "commit": "9007cee1163c4a274fd60c3cc20c21ae63622786",
+          "startLine": 42,
+          "endLine": 46,
+          "quote": "[{|MsgPack015:MessagePackObject(SuppressSourceGeneration = true)|}]"
+        },
+        {
+          "path": "tests/MessagePack.SourceGenerator.Tests/SuppressSourceGenerationAnalyzerTests.cs",
+          "commit": "9007cee1163c4a274fd60c3cc20c21ae63622786",
+          "startLine": 65,
+          "endLine": 69,
+          "quote": "public Other {|MsgPack003:Member|} { get; set; }"
+        }
+      ],
+      "state": "argued",
+      "stateReason": "test SuppressSourceGenerationAnalyzerTests.AllowPrivateRequiredIsReported passes at head but was not shown to fail without the change"
+    },
+    {
+      "id": "C6",
+      "statement": "A suppressed type with AllowPrivate, a private keyed field, and an initialized init-only property is expected to produce no partial-type or AOT-init diagnostic; the README generalizes this policy to omitting MsgPack011, MsgPack016, and MsgPack017 while retaining runtime-contract checks.",
+      "requirementIds": [
+        "R4"
+      ],
+      "evidenceIds": [
+        "tests-at-head:MessagePack.SourceGenerator.Tests",
+        "tests-without-change:MessagePack.SourceGenerator.Tests"
+      ],
+      "testNames": [
+        "SuppressSourceGenerationAnalyzerTests.SourceGenerationOnlyDiagnosticsAreNotReportedWhenSuppressed"
+      ],
+      "hunkIds": [
+        "H1",
+        "H9"
+      ],
+      "citations": [
+        {
+          "path": "tests/MessagePack.SourceGenerator.Tests/SuppressSourceGenerationAnalyzerTests.cs",
+          "commit": "9007cee1163c4a274fd60c3cc20c21ae63622786",
+          "startLine": 171,
+          "endLine": 184,
+          "quote": "// The partial-class requirement (MsgPack011) and the AOT-only checks (MsgPack016, MsgPack017)"
+        },
+        {
+          "path": "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
+          "commit": "9007cee1163c4a274fd60c3cc20c21ae63622786",
+          "startLine": 989,
+          "endLine": 995,
+          "quote": "if (suppressSourceGeneration is not true && isInitOnly)"
+        },
+        {
+          "path": "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
+          "commit": "9007cee1163c4a274fd60c3cc20c21ae63622786",
+          "startLine": 1382,
+          "endLine": 1386,
+          "quote": "// Do not source generate the formatter for this type if the attribute opted out."
+        },
+        {
+          "path": "README.md",
+          "commit": "9007cee1163c4a274fd60c3cc20c21ae63622786",
+          "startLine": 1625,
+          "endLine": 1632,
+          "quote": "The analyzer does not report the partial-class requirement"
+        }
+      ],
+      "state": "argued",
+      "stateReason": "test SuppressSourceGenerationAnalyzerTests.SourceGenerationOnlyDiagnosticsAreNotReportedWhenSuppressed passes at head but was not shown to fail without the change"
+    },
+    {
+      "id": "C7",
+      "statement": "SuppressSourceGeneration prevents an ObjectSerializationInfo and generated-resolver formatter for the suppressed type itself.",
+      "requirementIds": [
+        "R4"
+      ],
+      "evidenceIds": [
+        "existing-tests:MessagePack.SourceGenerator.Tests",
+        "tests-at-head:MessagePack.SourceGenerator.ExecutionTests",
+        "tests-without-change:MessagePack.SourceGenerator.ExecutionTests"
+      ],
+      "testNames": [
+        "GenerationTests.ExcludeFormatterFromSourceGeneratedResolver"
+      ],
+      "hunkIds": [
+        "H8"
+      ],
+      "citations": [
+        {
+          "path": "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
+          "commit": "9007cee1163c4a274fd60c3cc20c21ae63622786",
+          "startLine": 1382,
+          "endLine": 1387,
+          "quote": "if (suppressSourceGeneration is true)"
+        },
+        {
+          "path": "tests/MessagePack.SourceGenerator.ExecutionTests/SuppressedSourceGenerationTests.cs",
+          "commit": "9007cee1163c4a274fd60c3cc20c21ae63622786",
+          "startLine": 20,
+          "endLine": 23,
+          "quote": "Assert.Null(GeneratedMessagePackResolver.Instance.GetFormatter<SuppressedSourceGenerationType>());"
+        }
+      ],
+      "state": "argued",
+      "stateReason": "pre-existing test GenerationTests.ExcludeFormatterFromSourceGeneratedResolver passes at base and at head; it was not shown able to fail for this claim"
+    },
+    {
+      "id": "C8",
+      "statement": "A suppressed type with integer keys zero and one can round-trip its Id and Name values through MessagePackSerializerOptions.Standard using runtime resolver behavior rather than a generated formatter for that type.",
+      "requirementIds": [
+        "R4"
+      ],
+      "evidenceIds": [
+        "tests-at-head:MessagePack.SourceGenerator.ExecutionTests",
+        "tests-without-change:MessagePack.SourceGenerator.ExecutionTests"
+      ],
+      "testNames": [],
+      "hunkIds": [
+        "H8"
+      ],
+      "citations": [
+        {
+          "path": "tests/MessagePack.SourceGenerator.ExecutionTests/SuppressedSourceGenerationTests.cs",
+          "commit": "9007cee1163c4a274fd60c3cc20c21ae63622786",
+          "startLine": 27,
+          "endLine": 35,
+          "quote": "byte[] bytes = MessagePackSerializer.Serialize(value, MessagePackSerializerOptions.Standard);"
+        },
+        {
+          "path": "tests/MessagePack.SourceGenerator.ExecutionTests/SuppressedSourceGenerationTests.cs",
+          "commit": "9007cee1163c4a274fd60c3cc20c21ae63622786",
+          "startLine": 32,
+          "endLine": 35,
+          "quote": "Assert.Equal(\"seven\", result.Name);"
+        }
+      ],
+      "state": "argued",
+      "stateReason": "2 resolved citation(s) and no run that supports it"
+    }
   ],
-  "findings": [],
+  "decisions": [
+    {
+      "id": "D1",
+      "statement": "Choose an error-recovery model for invalid key contracts: the implementation keeps the first duplicate member and skips a member whose key kind conflicts with earlier members.",
+      "whyHuman": "The requirement asks for a working analyzer but does not define which member an invalid type's partial model should contain. The added analyzer tests check diagnostics and the absence of an analyzer exception, not which member should be retained for subsequent constructor analysis or generation. A test can describe the selected recovery policy but cannot establish that it is the intended policy.",
+      "options": [
+        "Report the diagnostic, keep the first duplicate, and skip mismatched-kind members, as implemented.",
+        "Report the diagnostic but replace the earlier entry with the last duplicate.",
+        "Report the diagnostic and abandon collection of the whole type instead of retaining a partial member set.",
+        "Adopt different recovery policies for property and field paths."
+      ],
+      "hunkIds": [
+        "H2",
+        "H3",
+        "H4",
+        "H5",
+        "H6",
+        "H7"
+      ],
+      "citations": [
+        {
+          "path": "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
+          "commit": "9007cee1163c4a274fd60c3cc20c21ae63622786",
+          "startLine": 1023,
+          "endLine": 1026,
+          "quote": "if (!intMembers.ContainsKey(member.IntKey))"
+        },
+        {
+          "path": "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
+          "commit": "9007cee1163c4a274fd60c3cc20c21ae63622786",
+          "startLine": 1007,
+          "endLine": 1008,
+          "quote": "continue; // The key kind does not match the other members; the diagnostic is reported, so skip this member."
+        }
+      ],
+      "raisedBy": {
+        "kind": "model",
+        "name": "kimi-k3-1-pro"
+      }
+    },
+    {
+      "id": "D2",
+      "statement": "Define the supported diagnostic policy for suppressed types as runtime-contract validation without source-generation-only diagnostics, and document that policy as a user-facing contract.",
+      "whyHuman": "The bug report does not enumerate which analyzers should run for suppressed types. Tests can establish which diagnostics are emitted, but they cannot determine whether the promised distinction between runtime and generation-only checks is the desired product behavior or whether the README should make that broader commitment.",
+      "options": [
+        "Retain runtime-contract checks and omit MsgPack011, MsgPack016, and MsgPack017, as implemented and documented.",
+        "Run the same complete diagnostic set for suppressed and generated types.",
+        "Only guarantee freedom from analyzer exceptions, leaving the remaining diagnostic policy unspecified.",
+        "Disable contract diagnostics as well as formatter generation for suppressed types."
+      ],
+      "hunkIds": [
+        "H1",
+        "H9"
+      ],
+      "citations": [
+        {
+          "path": "README.md",
+          "commit": "9007cee1163c4a274fd60c3cc20c21ae63622786",
+          "startLine": 1625,
+          "endLine": 1630,
+          "quote": "The analyzer still validates these types, because they are serialized at run time and must still have a valid contract:"
+        },
+        {
+          "path": "README.md",
+          "commit": "9007cee1163c4a274fd60c3cc20c21ae63622786",
+          "startLine": 1632,
+          "endLine": 1632,
+          "quote": "because they only apply when a formatter is generated."
+        }
+      ],
+      "raisedBy": {
+        "kind": "model",
+        "name": "kimi-k3-1-pro"
+      }
+    },
+    {
+      "id": "D3",
+      "statement": "Apply the duplicate-key recovery generally in TypeCollector, including non-suppressed generated types, rather than restricting it to SuppressSourceGeneration.",
+      "whyHuman": "The requirement names only suppressed generation, while the implementation changes shared collection logic and adds an unsuppressed regression test. Runs can show behavior in both modes, but cannot decide whether changing invalid generated-type handling belongs in this bug fix or should have a separately accepted scope.",
+      "options": [
+        "Use the shared guards for both suppressed and non-suppressed types, as implemented.",
+        "Condition the new recovery on suppressSourceGeneration being true.",
+        "Keep this fix limited to mixed-key failures and handle ordinary generated-type duplicate keys separately."
+      ],
+      "hunkIds": [
+        "H3",
+        "H4",
+        "H6",
+        "H7",
+        "H9"
+      ],
+      "citations": [
+        {
+          "path": "tests/MessagePack.SourceGenerator.Tests/SuppressSourceGenerationAnalyzerTests.cs",
+          "commit": "9007cee1163c4a274fd60c3cc20c21ae63622786",
+          "startLine": 147,
+          "endLine": 150,
+          "quote": "DuplicateKeysAreReportedWithoutAnalyzerFailureForGeneratedTypes"
+        },
+        {
+          "path": "tests/MessagePack.SourceGenerator.Tests/SuppressSourceGenerationAnalyzerTests.cs",
+          "commit": "9007cee1163c4a274fd60c3cc20c21ae63622786",
+          "startLine": 150,
+          "endLine": 150,
+          "quote": "[MessagePackObject]"
+        }
+      ],
+      "raisedBy": {
+        "kind": "model",
+        "name": "kimi-k3-1-pro"
+      }
+    }
+  ],
+  "unexplained": [],
+  "findings": [
+    {
+      "id": "F1",
+      "statement": "A remaining analyzer-exception path exists for the first keyed field with a null string key, including on a suppressed type. In the field loop, intKey and stringKey can both be null; when searchFirst is true, isIntKey becomes false and execution reaches stringMembers.ContainsKey(stringKey!) with a null key. The null-forgiving operator does not prevent Dictionary's null-key exception. The property path has an explicit stringKey-is-not-null branch, but the field path does not. This path was not shown to be introduced by the patch, but it leaves another way for collection to fail before the SuppressSourceGeneration return.",
+      "status": "suspected",
+      "citations": [
+        {
+          "path": "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
+          "commit": "9007cee1163c4a274fd60c3cc20c21ae63622786",
+          "startLine": 1131,
+          "endLine": 1141,
+          "quote": "var stringKey = key is { Value: string stringKeyValue } ? stringKeyValue : default;"
+        },
+        {
+          "path": "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
+          "commit": "9007cee1163c4a274fd60c3cc20c21ae63622786",
+          "startLine": 1138,
+          "endLine": 1141,
+          "quote": "isIntKey = intKey != null;"
+        },
+        {
+          "path": "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
+          "commit": "9007cee1163c4a274fd60c3cc20c21ae63622786",
+          "startLine": 1168,
+          "endLine": 1172,
+          "quote": "if (stringMembers.ContainsKey(stringKey!))"
+        },
+        {
+          "path": "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
+          "commit": "9007cee1163c4a274fd60c3cc20c21ae63622786",
+          "startLine": 1028,
+          "endLine": 1028,
+          "quote": "else if (stringKey is not null)"
+        },
+        {
+          "path": "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
+          "commit": "9007cee1163c4a274fd60c3cc20c21ae63622786",
+          "startLine": 1382,
+          "endLine": 1386,
+          "quote": "if (suppressSourceGeneration is true)"
+        }
+      ],
+      "hunkIds": [
+        "H5",
+        "H7",
+        "H9"
+      ]
+    },
+    {
+      "id": "F2",
+      "statement": "The two new execution tests have no execution result. EVIDENCE marks tests-at-head and tests-without-change for MessagePack.SourceGenerator.ExecutionTests as not_run because the project does not build in the container even at the base commit, initially failing on missing MyGeneratedCompositeResolver.Instance definitions. Thus the new generated-formatter-null assertion and dynamic-resolver round-trip assertion have not been exercised by the supplied runs.",
+      "status": "suspected",
+      "citations": [
+        {
+          "path": "tests/MessagePack.SourceGenerator.ExecutionTests/SuppressedSourceGenerationTests.cs",
+          "commit": "9007cee1163c4a274fd60c3cc20c21ae63622786",
+          "startLine": 20,
+          "endLine": 23,
+          "quote": "public void NoFormatterIsGeneratedForSuppressedType()"
+        },
+        {
+          "path": "tests/MessagePack.SourceGenerator.ExecutionTests/SuppressedSourceGenerationTests.cs",
+          "commit": "9007cee1163c4a274fd60c3cc20c21ae63622786",
+          "startLine": 26,
+          "endLine": 32,
+          "quote": "public void SuppressedTypeRoundTripsThroughDynamicResolver()"
+        }
+      ],
+      "hunkIds": [
+        "H8"
+      ]
+    },
+    {
+      "id": "F3",
+      "statement": "The new discriminating key-error tests exercise properties, not the keyed-field error branches. Duplicate integer keys, duplicate string keys, mixed key kinds, and the generated-type duplicate case all declare properties, while H5-H7 change the separate IFieldSymbol loop. Consequently those three field-specific edits have no direct discriminating test for their new continue or duplicate-entry conditions.",
+      "status": "suspected",
+      "citations": [
+        {
+          "path": "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
+          "commit": "9007cee1163c4a274fd60c3cc20c21ae63622786",
+          "startLine": 1055,
+          "endLine": 1055,
+          "quote": "foreach (IFieldSymbol item in formattedType.GetAllMembers().OfType<IFieldSymbol>())"
+        },
+        {
+          "path": "tests/MessagePack.SourceGenerator.Tests/SuppressSourceGenerationAnalyzerTests.cs",
+          "commit": "9007cee1163c4a274fd60c3cc20c21ae63622786",
+          "startLine": 84,
+          "endLine": 91,
+          "quote": "public string Member2 { get; set; }|}"
+        },
+        {
+          "path": "tests/MessagePack.SourceGenerator.Tests/SuppressSourceGenerationAnalyzerTests.cs",
+          "commit": "9007cee1163c4a274fd60c3cc20c21ae63622786",
+          "startLine": 128,
+          "endLine": 135,
+          "quote": "public string Member2 { get; set; }|}"
+        },
+        {
+          "path": "tests/MessagePack.SourceGenerator.Tests/SuppressSourceGenerationAnalyzerTests.cs",
+          "commit": "9007cee1163c4a274fd60c3cc20c21ae63622786",
+          "startLine": 150,
+          "endLine": 157,
+          "quote": "public string Member2 { get; set; }|}"
+        }
+      ],
+      "hunkIds": [
+        "H5",
+        "H6",
+        "H7",
+        "H9"
+      ]
+    }
+  ],
   "notChecked": [
     {
       "what": "pattern-groups",
@@ -1732,12 +2339,16 @@
       "reason": "the requirement contains no code blocks"
     },
     {
-      "what": "citation-validation",
-      "reason": "no valid reviewer output"
+      "what": "Do the added execution tests build and pass, and does the suppressed type actually round-trip through the runtime resolver in the intended test environment?",
+      "reason": "the AI reviewer could not decide: Both ExecutionTests checks are not_run because the project fails to build in the supplied container even at base. The available passing analyzer-test run cannot answer these runtime questions."
     },
     {
-      "what": "requirements, claims, model-raised decisions and findings",
-      "reason": "AI reviewer did not run"
+      "what": "Does the change restore the exact analyzer behavior of version 3.1.0, and were these dictionary operations the regression introduced in 3.1.1?",
+      "reason": "the AI reviewer could not decide: The material supplies only the selected base and head commits. It contains no 3.1.0 or 3.1.1 source comparison or test run, so the historical statement in the requirement cannot be checked against those releases."
+    },
+    {
+      "what": "Are the added duplicate-key and mixed-key snippets the exact contract that triggered the original issue report?",
+      "reason": "the AI reviewer could not decide: The requirement contains only prose and no reproduction code; the issue-reproduction check reports no code blocks. The base-source runs demonstrate matching analyzer exceptions for the new scenarios, but cannot establish that they are the reporter's original scenario."
     },
     {
       "what": "absence of new vulnerabilities",
@@ -1750,10 +2361,69 @@
     "effectiveRoute": "blocked",
     "reasons": [
       {
-        "code": "reviewer-missing",
-        "detail": "the AI reviewer output is missing or invalid"
+        "code": "requirement-without-claim",
+        "detail": "R2 has no claim"
+      },
+      {
+        "code": "interpretation-unconfirmed",
+        "detail": "R3 is an interpretation no human has confirmed"
+      },
+      {
+        "code": "interpretation-unconfirmed",
+        "detail": "R4 is an interpretation no human has confirmed"
       }
     ],
+    "ifUnblocked": {
+      "route": "targeted",
+      "reasons": [
+        {
+          "code": "claim-argued",
+          "detail": "C4 is argued"
+        },
+        {
+          "code": "claim-argued",
+          "detail": "C5 is argued"
+        },
+        {
+          "code": "claim-argued",
+          "detail": "C6 is argued"
+        },
+        {
+          "code": "claim-argued",
+          "detail": "C7 is argued"
+        },
+        {
+          "code": "claim-argued",
+          "detail": "C8 is argued"
+        },
+        {
+          "code": "decision-open",
+          "detail": "D1 needs the owner"
+        },
+        {
+          "code": "decision-open",
+          "detail": "D2 needs the owner"
+        },
+        {
+          "code": "decision-open",
+          "detail": "D3 needs the owner"
+        },
+        {
+          "code": "finding",
+          "detail": "F1 is a suspected problem"
+        },
+        {
+          "code": "finding",
+          "detail": "F2 is a suspected problem"
+        },
+        {
+          "code": "finding",
+          "detail": "F3 is a suspected problem"
+        }
+      ],
+      "readRatio": 1,
+      "effectiveRoute": "full"
+    },
     "areas": [
       {
         "area": "docs",
@@ -1765,13 +2435,13 @@
         "area": "generator-analysis",
         "owner": "Huy Hoang Le",
         "floor": "full",
-        "reason": "Area `generator-analysis` has no track record: full read required"
+        "reason": "Area `generator-analysis` has not earned lighter review (0 of 3 clean spot-checks since the last reset): full read required"
       },
       {
         "area": "tests",
         "owner": "Huy Hoang Le",
         "floor": "full",
-        "reason": "Area `tests` has no track record: full read required"
+        "reason": "Area `tests` has not earned lighter review (0 of 3 clean spot-checks since the last reset): full read required"
       }
     ],
     "readingList": [
@@ -1780,7 +2450,8 @@
         "file": "README.md",
         "lines": 14,
         "why": [
-          "unexplained"
+          "decision D2",
+          "claim C6 is argued"
         ]
       },
       {
@@ -1788,7 +2459,7 @@
         "file": "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
         "lines": 1,
         "why": [
-          "unexplained"
+          "decision D1"
         ]
       },
       {
@@ -1796,7 +2467,8 @@
         "file": "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
         "lines": 5,
         "why": [
-          "unexplained"
+          "decision D1",
+          "decision D3"
         ]
       },
       {
@@ -1804,7 +2476,8 @@
         "file": "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
         "lines": 5,
         "why": [
-          "unexplained"
+          "decision D1",
+          "decision D3"
         ]
       },
       {
@@ -1812,7 +2485,10 @@
         "file": "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
         "lines": 1,
         "why": [
-          "unexplained"
+          "decision D1",
+          "claim C4 is argued",
+          "finding F1",
+          "finding F3"
         ]
       },
       {
@@ -1820,7 +2496,10 @@
         "file": "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
         "lines": 5,
         "why": [
-          "unexplained"
+          "decision D1",
+          "decision D3",
+          "claim C4 is argued",
+          "finding F3"
         ]
       },
       {
@@ -1828,7 +2507,11 @@
         "file": "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
         "lines": 5,
         "why": [
-          "unexplained"
+          "decision D1",
+          "decision D3",
+          "claim C4 is argued",
+          "finding F1",
+          "finding F3"
         ]
       },
       {
@@ -1836,7 +2519,9 @@
         "file": "tests/MessagePack.SourceGenerator.ExecutionTests/SuppressedSourceGenerationTests.cs",
         "lines": 37,
         "why": [
-          "unexplained"
+          "claim C7 is argued",
+          "claim C8 is argued",
+          "finding F2"
         ]
       },
       {
@@ -1844,7 +2529,12 @@
         "file": "tests/MessagePack.SourceGenerator.Tests/SuppressSourceGenerationAnalyzerTests.cs",
         "lines": 193,
         "why": [
-          "unexplained"
+          "decision D2",
+          "decision D3",
+          "claim C5 is argued",
+          "claim C6 is argued",
+          "finding F1",
+          "finding F3"
         ]
       }
     ],

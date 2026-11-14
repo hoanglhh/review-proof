@@ -6,7 +6,9 @@
 
 - `reviewer-missing` the AI reviewer output is missing or invalid
 
-Read ratio: not applicable until unblocked (226 changed lines). Generated 2026-11-14T06:53:01.132Z, base `32258fdb` → head `69d109a0`, policy 2026-11-14.1 (illustrative thresholds). Full sheet: sheet.html
+Once these are resolved, the evidence supports a targeted read of 100% of the changed lines: there are no claims; 8 hunk(s) map to no claim or decision. The areas' trust floors would still require a full read.
+
+Read ratio: not applicable until unblocked (226 changed lines). Generated 2026-11-14T07:17:40.370Z, base `32258fdb` → head `69d109a0`, policy 2026-11-14.1 (illustrative thresholds). Full sheet: sheet.html
 
 ### Requirement
 - none

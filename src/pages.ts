@@ -87,7 +87,7 @@ ${notice ? `<p class="notice" role="status">${esc(notice)}</p>` : ""}
 <section><h2>Real record</h2>
 ${real.length ? "" : "<p>No spot-checks recorded yet, so every area stays at full read. A blind spot-check from any sheet adds the first entry.</p>"}
 ${floorsTable(real, areas, perStep)}
-${real.length ? `<div class="scroll"><table><thead><tr><th>When</th><th>Area</th><th>Event</th><th>Case</th></tr></thead><tbody>${real.map((e) => `<tr><td class="muted nowrap">${esc(when(e.at))}</td><td><code>${esc(e.area)}</code></td><td>${esc(e.type.replaceAll("_", " "))}</td><td>${esc(e.caseId ?? "")}</td></tr>`).join("")}</tbody></table></div>` : ""}
+${real.length ? `<div class="scroll"><table><thead><tr><th>When</th><th>Area</th><th>Event</th><th>Case</th></tr></thead><tbody>${real.map((e) => `<tr><td class="muted nowrap">${esc(when(e.at))}</td><td><code>${esc(e.area)}</code></td><td>${esc(e.type.replaceAll("_", " "))}${(e as any).synthetic ? ` <span class="muted">(from a synthetic planted bug)</span>` : ""}</td><td>${esc(e.caseId ?? "")}</td></tr>`).join("")}</tbody></table></div>` : ""}
 </section>
 ${simulated.length ? `<section class="sim" aria-labelledby="sim"><div class="sim-band"><b id="sim">SIMULATED</b><div>Synthetic events made up to show how the rule behaves. They are not part of the real record and change no route.</div></div><div class="sim-body">
 ${floorsTable(simulated, simAreas, perStep)}
@@ -109,9 +109,10 @@ export function renderMetrics(m: import("./metrics.ts").Metrics) {
   return page("How trust is measured", `
 <h1>How trust is measured</h1>
 <p>Every figure is computed from files under <code>data/</code> and shows its denominator. Four changes show how the method works; they are not statistical evidence of anything.</p>
-<section><h2>Per change</h2><div class="scroll"><table><thead><tr><th>Requirement</th><th>Files</th><th>Changed lines</th><th>Targeted reading list</th><th>Read ratio</th><th>Evidence route</th><th>Effective route</th></tr></thead><tbody>
+<section><h2>Per change</h2><div class="scroll"><table><thead><tr><th>Requirement</th><th>Files</th><th>Changed lines</th><th>Targeted reading list</th><th>Read ratio</th><th>Evidence route</th><th>Once unblocked</th><th>Effective route</th></tr></thead><tbody>
 ${m.cases.map((c) => `<tr><td><a href="/case/${encodeURIComponent(c.id)}">#${esc(c.id)}</a>${c.reviewer !== "ok" ? `<div class="detail">AI reviewer ${esc(c.reviewer)}</div>` : ""}</td><td>${c.files}</td><td>${c.lines}</td><td>${c.readingListLines} lines</td>
-<td>${c.readRatio === null ? `<span class="muted">n/a, blocked</span>` : `${Math.round(c.readRatio * 100)}%`}</td><td>${esc(VERDICT[c.evidenceRoute])}</td><td><span class="route-word r-${esc(c.effectiveRoute)}">${esc(VERDICT[c.effectiveRoute])}</span></td></tr>`).join("")}
+<td>${c.readRatio === null ? `<span class="muted">n/a, blocked</span>` : `${Math.round(c.readRatio * 100)}%`}</td><td>${esc(VERDICT[c.evidenceRoute])}</td>
+<td>${c.ifUnblocked ? `${esc(VERDICT[c.ifUnblocked.route])}${c.ifUnblocked.route === "targeted" && c.ifUnblocked.readRatio !== null ? `<div class="detail">${Math.round(c.ifUnblocked.readRatio * 100)}% of lines</div>` : ""}` : `<span class="muted">not blocked</span>`}</td><td><span class="route-word r-${esc(c.effectiveRoute)}">${esc(VERDICT[c.effectiveRoute])}</span></td></tr>`).join("")}
 </tbody></table></div>
 ${table(Object.entries(m.routeShare).map(([k, v], i) => row(`Changes routed ${VERDICT[k as keyof typeof VERDICT].toLowerCase()}`, of(v), i === 0 ? "The effective route on each change's current sheet." : "")).join(""))}</section>
 <section><h2>What the evidence supports</h2>${table(

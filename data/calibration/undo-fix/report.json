@@ -10,7 +10,7 @@
     "profile": "messagepack-csharp",
     "base": "32258fdbee4bcd653c79f51b4376b5103c6f4d27",
     "head": "69d109a0e9bde3d05cbb70bcb9a75225d35841f0",
-    "generatedAt": "2026-11-14T06:53:01.132Z",
+    "generatedAt": "2026-11-14T07:17:40.370Z",
     "pipelineVersion": "0.1.0",
     "policyVersion": "2026-11-14.1",
     "model": null,
@@ -1602,6 +1602,21 @@
         "detail": "the AI reviewer output is missing or invalid"
       }
     ],
+    "ifUnblocked": {
+      "route": "targeted",
+      "reasons": [
+        {
+          "code": "no-claims",
+          "detail": "there are no claims"
+        },
+        {
+          "code": "unexplained-hunks",
+          "detail": "8 hunk(s) map to no claim or decision"
+        }
+      ],
+      "readRatio": 1,
+      "effectiveRoute": "full"
+    },
     "areas": [
       {
         "area": "docs",

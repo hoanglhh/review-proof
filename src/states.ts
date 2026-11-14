@@ -39,13 +39,12 @@ export function claimState(claim: { evidenceIds: string[]; testNames: string[]; 
 
   const disc = tests.find(([, f]) => f.head === "passed" && f.discriminating === true);
   if (disc) return { state: "proven", reason: `test ${disc[0]} passes at head and fails without the change` };
-  const pre = tests.find(([, f]) => f.preExisting && f.base === "passed" && f.head === "passed");
-  if (pre) return { state: "proven", reason: `pre-existing test ${pre[0]} passes at base and at head (shows behaviour kept, not that the change adds any)` };
-  const suite = linked.find((e) => e.check === "existing-tests" && e.status === "passed");
-  if (suite) return { state: "proven", reason: `${suite.id}: ${suite.summary}` };
-  const repro = linked.find((e) => e.check === "issue-reproduction" && e.status === "passed");
-  if (repro) return { state: "proven", reason: `${repro.id}: ${repro.summary}` };
+  // whole records (the existing-test suite, the issue-reproduction check) can contradict a claim but never prove it:
+  // which claim they bear on is the model's word
 
+  // an old test passing before and after was never shown able to fail for this claim, and the model chose the link
+  const pre = tests.find(([, f]) => f.preExisting && f.base === "passed" && f.head === "passed");
+  if (pre) return { state: "argued", reason: `pre-existing test ${pre[0]} passes at base and at head; it was not shown able to fail for this claim` };
   const passing = tests.find(([, f]) => f.head === "passed");
   if (passing) return { state: "argued", reason: `test ${passing[0]} passes at head but was not shown to fail without the change` };
   if (claim.citations > 0) return { state: "argued", reason: `${claim.citations} resolved citation(s) and no run that supports it` };
@@ -108,11 +107,12 @@ export function computeRoute(r: RouteInput) {
     ...(r.unexplained.length ? [{ code: "unexplained-hunks", detail: `${r.unexplained.length} hunk(s) map to no claim or decision` }] : []),
     ...r.findings.map((f) => ({ code: "finding", detail: `${f.id} is a suspected problem` })),
   ];
-  let evidenceRoute: RouteName;
-  if (blockers.length) { evidenceRoute = "blocked"; reasons.push(...blockers); }
-  else if (fullers.length) { evidenceRoute = "full"; reasons.push(...fullers); }
-  else if (!lightBlockers.length) { evidenceRoute = "light"; reasons.push({ code: "all-proven", detail: "every claim is proven; no decisions, unexplained hunks or findings" }); }
-  else { evidenceRoute = "targeted"; reasons.push(...lightBlockers); }
+  // the route the evidence supports apart from blockers; it becomes the evidence route once they are resolved
+  const unblocked: { route: RouteName; reasons: typeof reasons } = fullers.length ? { route: "full", reasons: fullers }
+    : !lightBlockers.length ? { route: "light", reasons: [{ code: "all-proven", detail: "every claim is proven; no decisions, unexplained hunks or findings" }] }
+    : { route: "targeted", reasons: lightBlockers };
+  const evidenceRoute: RouteName = blockers.length ? "blocked" : unblocked.route;
+  reasons.push(...(blockers.length ? blockers : unblocked.reasons));
 
   const floor = r.areas.reduce<RouteName>((acc, a) => stricter(acc, a.floor), "light");
   const effectiveRoute = stricter(evidenceRoute, floor);
@@ -127,14 +127,24 @@ export function computeRoute(r: RouteInput) {
   for (const d of deviating) add(d.hunkIds, `deviates from a repeated pattern in ${d.file}`);
   for (const f of r.findings) add(f.hunkIds, `finding ${f.id}`);
   const lines = (h: Hunk) => h.added.length + h.removed.length;
-  const readingList = r.hunks.filter((h) => why.has(h.id)).map((h) => ({ hunkId: h.id, file: h.file, lines: lines(h), why: [...why.get(h.id)!] }));
+  // identical hunks of a repeated-pattern group are read once, through the group's first hunk
+  const groups = (r.evidence.find((e) => e.check === "pattern-groups")?.details as { groups?: { id: string; hunkIds: string[]; files: number }[] } | undefined)?.groups ?? [];
+  const exemplarOf = new Map(groups.flatMap((g) => g.hunkIds.map((id) => [id, g] as const)));
+  const readingList = r.hunks.filter((h) => why.has(h.id)).flatMap((h) => {
+    const g = exemplarOf.get(h.id);
+    if (g && g.hunkIds[0] !== h.id) return [];
+    const reasons = g ? [...new Set(g.hunkIds.flatMap((id) => [...(why.get(id) ?? [])]))] : [...why.get(h.id)!];
+    return [{ hunkId: h.id, file: h.file, lines: lines(h), why: g ? [...reasons, `stands for ${g.hunkIds.length} identical hunks in ${g.files} files (${g.id})`] : reasons }];
+  });
   const totalLines = r.hunks.reduce((n, h) => n + lines(h), 0);
   const readingListLines = readingList.reduce((n, x) => n + x.lines, 0);
-  const readRatio = effectiveRoute === "full" ? 1 : effectiveRoute === "light" ? 0 : effectiveRoute === "targeted" ? (totalLines ? readingListLines / totalLines : 0) : null;
+  const ratioFor = (route: RouteName) => (route === "full" ? 1 : route === "light" ? 0 : route === "targeted" ? (totalLines ? readingListLines / totalLines : 0) : null);
+  const readRatio = ratioFor(effectiveRoute);
+  const ifUnblocked = blockers.length ? { route: unblocked.route, reasons: unblocked.reasons, readRatio: ratioFor(unblocked.route), effectiveRoute: stricter(unblocked.route, floor) } : null;
 
   // a fixed share of non-full reports is drawn for a blind spot-check, seeded by the report ID
   const draw = parseInt(createHash("sha256").update(r.reportId).digest("hex").slice(0, 8), 16) / 2 ** 32;
   const spotCheck = { eligible: effectiveRoute === "light" || effectiveRoute === "targeted", selected: (effectiveRoute === "light" || effectiveRoute === "targeted") && draw < r.spotCheckShare, draw: Number(draw.toFixed(4)), share: r.spotCheckShare };
 
-  return { evidenceRoute, trustFloor: floor, effectiveRoute, reasons, areas: r.areas, readingList, readingListLines, totalLines, readRatio, spotCheck };
+  return { evidenceRoute, trustFloor: floor, effectiveRoute, reasons, ifUnblocked, areas: r.areas, readingList, readingListLines, totalLines, readRatio, spotCheck };
 }

@@ -6,7 +6,9 @@
 
 - `reviewer-missing` the AI reviewer output is missing or invalid
 
-Read ratio: not applicable until unblocked (230 changed lines). Generated 2026-11-14T06:53:02.043Z, base `32258fdb` → head `e3113731`, policy 2026-11-14.1 (illustrative thresholds). Full sheet: sheet.html
+Once these are resolved, the evidence supports a full read: public API or diagnostic IDs changed.
+
+Read ratio: not applicable until unblocked (230 changed lines). Generated 2026-11-14T07:17:41.426Z, base `32258fdb` → head `e3113731`, policy 2026-11-14.1 (illustrative thresholds). Full sheet: sheet.html
 
 ### Requirement
 - none

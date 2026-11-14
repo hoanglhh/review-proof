@@ -20,6 +20,7 @@ export function computeMetrics(reports: Report[], signoffs: Signoff[], calibrati
     cases: reports.map((r) => ({
       id: r.case.id, title: r.case.title, files: r.inventory.totals.files, lines: r.route.totalLines, readingListLines: r.route.readingListLines,
       readRatio: r.route.readRatio, evidenceRoute: r.route.evidenceRoute, effectiveRoute: r.route.effectiveRoute, reviewer: r.reviewer.status,
+      ifUnblocked: r.route.ifUnblocked ? { route: r.route.ifUnblocked.route, readRatio: r.route.ifUnblocked.readRatio } : null,
     })),
     routeShare: Object.fromEntries(routes.map((x) => [x, frac(reports.filter((r) => r.route.effectiveRoute === x).length, reports.length)])),
     claimsByState: Object.fromEntries((["proven", "argued", "not_checked", "broken"] as const).map((s) => [s, frac(claims.filter((c) => c.state === s).length, claims.length)])),

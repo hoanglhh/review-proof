@@ -1,13 +1,13 @@
 {
   "synthetic": true,
   "note": "Planted bugs are hand-written and synthetic; they are not real bugs.",
-  "generatedAt": "2026-11-14T06:53:03.951Z",
-  "reviewer": "not run (--skip-review): plants no run caught are model_not_run, not missed",
+  "generatedAt": "2026-11-14T07:17:44.684Z",
+  "reviewer": "run only for plants no run caught (it cannot change the others)",
   "total": 8,
   "caughtByRun": 7,
   "caughtByModelOnly": 0,
-  "missed": 0,
-  "modelNotRun": 1,
+  "missed": 1,
+  "modelNotRun": 0,
   "results": [
     {
       "plant": "undo-fix",
@@ -15,6 +15,9 @@
       "category": "undo part of the fix",
       "plantedHead": "69d109a0e9bde3d05cbb70bcb9a75225d35841f0",
       "outcome": "caught_by_run",
+      "files": [
+        "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs"
+      ],
       "plantedHunks": [],
       "undoneOriginalHunks": [
         "H5 src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:1077"
@@ -31,6 +34,9 @@
       "category": "change the tests do not exercise",
       "plantedHead": "818634daf2dcf0aac622e8cf40ae6e4709f5538b",
       "outcome": "caught_by_run",
+      "files": [
+        "src/MessagePack.SourceGenerator/CodeAnalysis/AnalyzerOptions.cs"
+      ],
       "plantedHunks": [
         "H3"
       ],
@@ -47,6 +53,9 @@
       "category": "scope drift: unrelated new public member",
       "plantedHead": "e31137310ce388df74e8a310bff835df19cecb66",
       "outcome": "caught_by_run",
+      "files": [
+        "src/MessagePack.Annotations/Attributes.cs"
+      ],
       "plantedHunks": [
         "H3"
       ],
@@ -63,6 +72,9 @@
       "category": "weaken a test so it no longer discriminates",
       "plantedHead": "59cef57d21d1bed9876bddf8427e200161ce7ae4",
       "outcome": "caught_by_run",
+      "files": [
+        "tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs"
+      ],
       "plantedHunks": [
         "H9"
       ],
@@ -81,6 +93,9 @@
       "category": "something the security surface scan should notice",
       "plantedHead": "43daf6ec1374b7d79687b895a5db5cfb08a88caf",
       "outcome": "caught_by_run",
+      "files": [
+        "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs"
+      ],
       "plantedHunks": [
         "H6"
       ],
@@ -101,6 +116,9 @@
       "category": "undo part of the fix",
       "plantedHead": "b542bc449cc1aec0860dd397d91c538c2584f22d",
       "outcome": "caught_by_run",
+      "files": [
+        "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs"
+      ],
       "plantedHunks": [
         "H6"
       ],
@@ -120,6 +138,10 @@
       "category": "break generated output in one template",
       "plantedHead": "b715699ce309930670e9dbcbe6f3276aff7fa287",
       "outcome": "caught_by_run",
+      "files": [
+        "src/MessagePack.SourceGenerator/Transforms/EnumTemplate.cs",
+        "src/MessagePack.SourceGenerator/Transforms/EnumTemplate.tt"
+      ],
       "plantedHunks": [],
       "undoneOriginalHunks": [
         "H6 src/MessagePack.SourceGenerator/Transforms/EnumTemplate.cs:27",
@@ -137,7 +159,10 @@
       "case": "2297",
       "category": "change the tests do not exercise",
       "plantedHead": "dc6b9f85ed64e6372fb277b7cc4d501cd51c9ac3",
-      "outcome": "model_not_run",
+      "outcome": "missed",
+      "files": [
+        "src/MessagePack.SourceGenerator/Transforms/UnionTemplate.tt"
+      ],
       "plantedHunks": [],
       "undoneOriginalHunks": [
         "H20 src/MessagePack.SourceGenerator/Transforms/UnionTemplate.tt:10"

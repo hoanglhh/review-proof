@@ -20,7 +20,7 @@ test("claim states: discriminating test proves; head-only pass argues; failing t
   assert.equal(s(["New"]), "proven");
   assert.equal(s(["Weak"]), "argued");
   assert.equal(s(["New", "Bad"]), "broken");
-  assert.equal(s(["Old"]), "proven"); // pre-existing test passing at base and head
+  assert.equal(s(["Old"]), "argued"); // pre-existing test passing at base and head: never shown able to fail for this claim
   assert.equal(s([], 2), "argued");
   assert.equal(s([]), "not_checked");
   assert.equal(s(["NoSuchTest"]), "not_checked");
@@ -117,4 +117,27 @@ test("citations: quote must be found in the stated lines at the stated commit", 
   assert.equal(c({ file: "missing.cs" }).ok, false);
   assert.equal(c({ endLine: 9 }).ok, false);
   assert.equal(c({ quote: "x = 1" }).ok, false); // too short to check
+});
+
+test("claim states: a passing suite or reproduction record proves nothing on its own", () => {
+  const e = [...runs({ existing: [["Old", "passed", "passed"]] }), ev("issue-reproduction", "issue-reproduction", "passed")];
+  assert.equal(claimState({ evidenceIds: ["existing-tests:p", "issue-reproduction"], testNames: [], citations: 0 }, e).state, "not_checked");
+  assert.equal(claimState({ evidenceIds: ["existing-tests:p", "issue-reproduction"], testNames: [], citations: 2 }, e).state, "argued");
+});
+
+test("route: a repeated-pattern group is read once through its exemplar", () => {
+  const hunks = ["H1", "H2", "H3", "H4"].map((id, i) => ({ id, file: `f${i}`, oldStart: 1, oldLines: 0, newStart: 1, newLines: 3, removed: [], added: ["a", "b", "c"] }));
+  const groups = ev("pattern-groups", "pattern-groups", "passed");
+  groups.details = { groups: [{ id: "G1", hunkIds: ["H1", "H2", "H3"], files: 3 }], deviating: [] };
+  const r = computeRoute(base({ hunks, evidence: [groups], decisions: [{ id: "D1", hunkIds: ["H1", "H2", "H3", "H4"] }], claims: [{ id: "C1", requirementIds: ["R1"], hunkIds: [], state: "proven" }] }));
+  assert.deepEqual(r.readingList.map((x) => x.hunkId), ["H1", "H4"]);
+  assert.match(r.readingList[0].why.join(" "), /stands for 3 identical hunks in 3 files \(G1\)/);
+  assert.deepEqual([r.readingListLines, r.totalLines], [6, 12]);
+});
+
+test("route: a blocked report also says what the evidence supports once unblocked", () => {
+  const r = computeRoute(base({ requirements: [{ id: "R1", kind: "interpretation", confirmedBy: null }], evidence: [ev("public-surface", "public-surface", "failed")] }));
+  assert.equal(r.effectiveRoute, "blocked");
+  assert.deepEqual([r.ifUnblocked?.route, r.ifUnblocked?.readRatio, r.ifUnblocked?.reasons[0].code], ["full", 1, "public-surface"]);
+  assert.equal(computeRoute(base()).ifUnblocked, null);
 });

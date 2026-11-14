@@ -10,7 +10,7 @@
     "profile": "messagepack-csharp",
     "base": "32258fdbee4bcd653c79f51b4376b5103c6f4d27",
     "head": "9df83c38409c8bfad0517aebffe48211eda4a5b4",
-    "generatedAt": "2026-11-14T06:42:14.181Z",
+    "generatedAt": "2026-11-14T07:18:05.754Z",
     "pipelineVersion": "0.1.0",
     "policyVersion": "2026-11-14.1",
     "model": "kimi-k3-1-pro",
@@ -2054,6 +2054,33 @@
         "detail": "R4 is an interpretation no human has confirmed"
       }
     ],
+    "ifUnblocked": {
+      "route": "targeted",
+      "reasons": [
+        {
+          "code": "decision-open",
+          "detail": "D1 needs the owner"
+        },
+        {
+          "code": "decision-open",
+          "detail": "D2 needs the owner"
+        },
+        {
+          "code": "finding",
+          "detail": "F1 is a suspected problem"
+        },
+        {
+          "code": "finding",
+          "detail": "F2 is a suspected problem"
+        },
+        {
+          "code": "finding",
+          "detail": "F3 is a suspected problem"
+        }
+      ],
+      "readRatio": 0.9912280701754386,
+      "effectiveRoute": "full"
+    },
     "areas": [
       {
         "area": "docs",
@@ -2065,13 +2092,13 @@
         "area": "generator-analysis",
         "owner": "Huy Hoang Le",
         "floor": "full",
-        "reason": "Area `generator-analysis` has no track record: full read required"
+        "reason": "Area `generator-analysis` has not earned lighter review (0 of 3 clean spot-checks since the last reset): full read required"
       },
       {
         "area": "tests",
         "owner": "Huy Hoang Le",
         "floor": "full",
-        "reason": "Area `tests` has no track record: full read required"
+        "reason": "Area `tests` has not earned lighter review (0 of 3 clean spot-checks since the last reset): full read required"
       }
     ],
     "readingList": [

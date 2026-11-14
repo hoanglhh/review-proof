@@ -66,6 +66,7 @@ export const Report = z.object({
   route: z.object({
     evidenceRoute: Route, trustFloor: Route, effectiveRoute: Route,
     reasons: z.array(z.object({ code: z.string(), detail: z.string() })),
+    ifUnblocked: z.object({ route: Route, reasons: z.array(z.object({ code: z.string(), detail: z.string() })), readRatio: z.number().nullable(), effectiveRoute: Route }).nullable(),
     areas: z.array(z.object({ area: z.string(), owner: z.string(), floor: Route, reason: z.string() })),
     readingList: z.array(z.object({ hunkId: z.string(), file: z.string(), lines: z.number().int(), why: ids })),
     readingListLines: z.number().int(), totalLines: z.number().int(), readRatio: z.number().nullable(),
