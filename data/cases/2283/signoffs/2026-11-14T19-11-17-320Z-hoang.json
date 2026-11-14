@@ -1,0 +1,25 @@
+{
+  "caseId": "2283",
+  "reportHash": "a6169b11c7b19d951e8b32fdd31faae8e6e1063919516fa51d3f5a56f53b1660",
+  "signedAt": "2026-11-14T19:11:17.320Z",
+  "owner": "Hoang",
+  "identity": "self-declared",
+  "action": "accept",
+  "reason": "Good",
+  "decisions": {
+    "D1": "accept",
+    "D2": "accept"
+  },
+  "findings": {
+    "F1": null,
+    "F2": null,
+    "F3": null
+  },
+  "route": {
+    "effective": "full",
+    "evidence": "targeted",
+    "trustFloor": "full"
+  },
+  "activeSeconds": 59,
+  "activeSecondsSource": "measured by the page while visible and focused"
+}

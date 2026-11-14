@@ -1,18 +1,20 @@
 ## ReviewProof sign-off sheet: \#2283 Generator and analyzer crash with IndexOutOfRangeException on a closed generic struct from a referenced assembly
 
-**Route: BLOCKED** (cannot be signed yet). Evidence supports: blocked. 
+**Route: FULL**. Evidence supports: targeted. Area docs has no track record: full read required. Area generator-analysis has not earned lighter review (0 of 3 clean spot-checks since the last reset): full read required. Area tests has not earned lighter review (0 of 3 clean spot-checks since the last reset): full read required.
 
-- `interpretation-unconfirmed` R4 is an interpretation no human has confirmed
+- `decision-open` D1 needs the owner
+- `decision-open` D2 needs the owner
+- `finding` F1 is a suspected problem
+- `finding` F2 is a suspected problem
+- `finding` F3 is a suspected problem
 
-Once these are resolved, the evidence supports a targeted read of 99% of the changed lines: D1 needs the owner; D2 needs the owner; F1 is a suspected problem; and 2 more. The areas' trust floors would still require a full read.
-
-Read ratio: not applicable until unblocked (228 changed lines). Generated 2026-11-14T15:48:48.017Z, base `32258fdb` → head `9df83c38`, policy 2026-11-14.1 (illustrative thresholds). Full sheet: sheet.html
+Read ratio: 100% of 228 changed lines. Generated 2026-11-14T19:09:19.423Z, base `32258fdb` → head `9df83c38`, policy 2026-11-14.1 (illustrative thresholds). Full sheet: sheet.html
 
 ### Requirement
 - **R1** (explicit) The generator and analyzer must not crash with IndexOutOfRangeException for the reported referenced-assembly generic struct scenario.
 - **R2** (explicit) The consuming app must build cleanly and contain a generated resolver.
 - **R3** (explicit) The scenario requiring coverage is the combination of a generic value type and a definition originating in a referenced assembly.
-- **R4** (interpretation, **unconfirmed**) Collection and diagnostic handling should tolerate metadata symbols that have no source declaration syntax.
+- **R4** (interpretation, confirmed by Hoang) Collection and diagnostic handling should tolerate metadata symbols that have no source declaration syntax.
 
 ### What it touches
 4 files, +225/−3: 2 docs (10 lines), 1 source (29 lines), 1 test (189 lines). Unexplained hunks: none.

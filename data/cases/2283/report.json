@@ -10,7 +10,7 @@
     "profile": "messagepack-csharp",
     "base": "32258fdbee4bcd653c79f51b4376b5103c6f4d27",
     "head": "9df83c38409c8bfad0517aebffe48211eda4a5b4",
-    "generatedAt": "2026-11-14T15:48:48.017Z",
+    "generatedAt": "2026-11-14T19:09:19.423Z",
     "pipelineVersion": "0.1.0",
     "policyVersion": "2026-11-14.1",
     "model": "kimi-k3-1-pro",
@@ -52,7 +52,7 @@
       "text": "Collection and diagnostic handling should tolerate metadata symbols that have no source declaration syntax.",
       "quote": "and that collection is empty for a metadata symbol.",
       "kind": "interpretation",
-      "confirmedBy": null
+      "confirmedBy": "Hoang"
     }
   ],
   "inventory": {
@@ -2045,42 +2045,32 @@
     }
   ],
   "route": {
-    "evidenceRoute": "blocked",
+    "evidenceRoute": "targeted",
     "trustFloor": "full",
-    "effectiveRoute": "blocked",
+    "effectiveRoute": "full",
     "reasons": [
       {
-        "code": "interpretation-unconfirmed",
-        "detail": "R4 is an interpretation no human has confirmed"
+        "code": "decision-open",
+        "detail": "D1 needs the owner"
+      },
+      {
+        "code": "decision-open",
+        "detail": "D2 needs the owner"
+      },
+      {
+        "code": "finding",
+        "detail": "F1 is a suspected problem"
+      },
+      {
+        "code": "finding",
+        "detail": "F2 is a suspected problem"
+      },
+      {
+        "code": "finding",
+        "detail": "F3 is a suspected problem"
       }
     ],
-    "ifUnblocked": {
-      "route": "targeted",
-      "reasons": [
-        {
-          "code": "decision-open",
-          "detail": "D1 needs the owner"
-        },
-        {
-          "code": "decision-open",
-          "detail": "D2 needs the owner"
-        },
-        {
-          "code": "finding",
-          "detail": "F1 is a suspected problem"
-        },
-        {
-          "code": "finding",
-          "detail": "F2 is a suspected problem"
-        },
-        {
-          "code": "finding",
-          "detail": "F3 is a suspected problem"
-        }
-      ],
-      "readRatio": 0.9912280701754386,
-      "effectiveRoute": "full"
-    },
+    "ifUnblocked": null,
     "areas": [
       {
         "area": "docs",
@@ -2174,7 +2164,7 @@
     ],
     "readingListLines": 226,
     "totalLines": 228,
-    "readRatio": null,
+    "readRatio": 1,
     "spotCheck": {
       "eligible": false,
       "selected": false,

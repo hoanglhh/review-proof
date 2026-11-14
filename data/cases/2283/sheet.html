@@ -78,20 +78,20 @@ button:disabled{background:var(--rule);border-color:var(--rule);color:var(--mute
 <h1>Sign-off sheet for #2283</h1>
 <p class="title">Generator and analyzer crash with IndexOutOfRangeException on a closed generic struct from a referenced assembly</p>
 <dl class="facts">
-<dt>Generated</dt><dd>2026-11-14T15:48:48.017Z, from test runs on this machine</dd>
+<dt>Generated</dt><dd>2026-11-14T19:09:19.423Z, from test runs on this machine</dd>
 <dt>Change</dt><dd>base <code>32258fdb</code> to head <code>9df83c38</code> in https://github.com/te-industry-tech-office/junction26-messagepack-csharp</dd>
 <dt>Policy</dt><dd>2026-11-14.1; its thresholds are illustrative and unvalidated</dd>
 <dt>AI reviewer</dt><dd>kimi-k3-1-pro, prompt sha256 <code>7e32fa48c768</code>, <a href="review/7e32fa48c76868add97e65b7292391f9a5fabf9a39d79c71fe53fa045d9f18c1.json">raw response</a></dd>
 <dt>Pipeline</dt><dd>ReviewProof 0.1.0</dd>
 </dl>
 
-<div class="verdict r-blocked" role="status">
-<div><span class="verdict-word">Blocked</span>
-<span class="verdict-sub">This change cannot be signed yet.</span>
+<div class="verdict r-full" role="status">
+<div><span class="verdict-word">Full read</span>
+<span class="verdict-sub">Read 100% of 228 changed lines.</span>
 </div>
-<div>Evidence supports: <b>blocked</b>.
-<ul><li>R4 is an interpretation no human has confirmed <span class="muted">(interpretation-unconfirmed)</span></li></ul>
-<p class="muted">Once these are resolved, the evidence supports a targeted read of 99% of the changed lines: D1 needs the owner; D2 needs the owner; F1 is a suspected problem; and 2 more. The areas' trust floors would still require a full read.</p></div>
+<div>Evidence supports: <b>targeted read</b>. Area docs has no track record: full read required. Area generator-analysis has not earned lighter review (0 of 3 clean spot-checks since the last reset): full read required. Area tests has not earned lighter review (0 of 3 clean spot-checks since the last reset): full read required.
+<ul><li>D1 needs the owner <span class="muted">(decision-open)</span></li><li>D2 needs the owner <span class="muted">(decision-open)</span></li><li>F1 is a suspected problem <span class="muted">(finding)</span></li><li>F2 is a suspected problem <span class="muted">(finding)</span></li><li>F3 is a suspected problem <span class="muted">(finding)</span></li></ul>
+</div>
 </div>
 
 
@@ -108,7 +108,7 @@ button:disabled{background:var(--rule);border-color:var(--rule);color:var(--mute
 
 </div><div class="req interp"><b>R4</b> Collection and diagnostic handling should tolerate metadata symbols that have no source declaration syntax. <span class="muted">(interpretation)</span>
 <blockquote class="quote"><pre>and that collection is empty for a metadata symbol.</pre></blockquote>
-<div class="detail"><span class="flag">The requirement does not say this.</span> A human must confirm this reading before the change can be signed.</div>
+<div class="detail">Confirmed by Hoang.</div>
 </div></section>
 
 <section aria-labelledby="s2"><h2 id="s2"><span class="n">2</span>What it touches</h2><div class="scroll"><table><thead><tr><th>Kind of file</th><th>Files</th><th>Changed lines</th></tr></thead><tbody>
@@ -191,7 +191,7 @@ docker run --rm --user 1000:1000 -e HOME=/home/huyhoangle/junction/review-proof/
 
 <li>That the change adds no vulnerability. No check here can prove that.</li></ul></section>
 
-<section aria-labelledby="s9"><h2 id="s9"><span class="n">9</span>What to read</h2><p>The effective route is <b>blocked</b>: the stricter of what the evidence supports (blocked) and the trust floor of the areas touched (full read).</p>
+<section aria-labelledby="s9"><h2 id="s9"><span class="n">9</span>What to read</h2><p>The effective route is <b>full read</b>: the stricter of what the evidence supports (targeted read) and the trust floor of the areas touched (full read).</p>
 <div class="scroll"><table><thead><tr><th>Area</th><th>Owner</th><th>Trust floor</th></tr></thead><tbody><tr><td><code>docs</code></td><td>Huy Hoang Le</td><td>Full read<div class="detail">Area docs has no track record: full read required.</div></td></tr><tr><td><code>generator-analysis</code></td><td>Huy Hoang Le</td><td>Full read<div class="detail">Area generator-analysis has not earned lighter review (0 of 3 clean spot-checks since the last reset): full read required.</div></td></tr><tr><td><code>tests</code></td><td>Huy Hoang Le</td><td>Full read<div class="detail">Area tests has not earned lighter review (0 of 3 clean spot-checks since the last reset): full read required.</div></td></tr></tbody></table></div>
 <p><a href="sheet-earned.html">See this sheet as it would read once these areas have earned trust</a> (simulated trust history, cannot be signed).</p>
 <p>A targeted read would cover 226 of 228 changed lines:</p>

@@ -1,0 +1,10 @@
+{
+  "caseId": "2283",
+  "requirementId": "R4",
+  "text": "Collection and diagnostic handling should tolerate metadata symbols that have no source declaration syntax.",
+  "quote": "and that collection is empty for a metadata symbol.",
+  "confirmedBy": "Hoang",
+  "identity": "self-declared",
+  "confirmedAt": "2026-11-14T19:09:19.384Z",
+  "reportHash": "9d4653262ad3716f5fd269275875769cfd49cf0964a006174720a99e6e6ca59d"
+}
