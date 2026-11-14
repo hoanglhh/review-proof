@@ -1,0 +1,399 @@
+{
+  "generatedAt": "2026-11-14T23:40:10.885Z",
+  "scope": {
+    "caseIds": [
+      "2129",
+      "2234",
+      "2283",
+      "2297",
+      "holdout"
+    ],
+    "cohorts": {
+      "2129": "sample",
+      "2234": "sample",
+      "2283": "sample",
+      "2297": "sample",
+      "holdout": "holdout"
+    },
+    "note": "All non-calibration aggregates include only these cases; owner measures include only their recorded sign-offs."
+  },
+  "calibrationScope": {
+    "plants": [
+      "undo-fix",
+      "untested-private-ctor",
+      "scope-public-member",
+      "weakened-test",
+      "security-file-write",
+      "inverted-filter",
+      "template-output-enum",
+      "template-source-drift"
+    ],
+    "sourceCases": [
+      "2283",
+      "2297"
+    ],
+    "note": "Separate planted-bug corpus; excluded from case aggregates."
+  },
+  "cases": [
+    {
+      "id": "2129",
+      "cohort": "sample",
+      "rawCounts": {
+        "findings": 6,
+        "modelDecisions": 5,
+        "unexplainedHunks": 0,
+        "brokenClaims": 0
+      },
+      "title": "Feature Request: Allow generation of Formatter for a type in a referenced assembly",
+      "files": 28,
+      "lines": 1043,
+      "readingListLines": 1043,
+      "readRatio": null,
+      "evidenceRoute": "blocked",
+      "effectiveRoute": "blocked",
+      "reviewer": "ok",
+      "ifUnblocked": {
+        "route": "full",
+        "readRatio": 1
+      }
+    },
+    {
+      "id": "2234",
+      "cohort": "sample",
+      "rawCounts": {
+        "findings": 3,
+        "modelDecisions": 3,
+        "unexplainedHunks": 0,
+        "brokenClaims": 0
+      },
+      "title": "The analyzer does not work if SuppressSourceGeneration = true",
+      "files": 4,
+      "lines": 266,
+      "readingListLines": 266,
+      "readRatio": null,
+      "evidenceRoute": "blocked",
+      "effectiveRoute": "blocked",
+      "reviewer": "ok",
+      "ifUnblocked": {
+        "route": "targeted",
+        "readRatio": 1
+      }
+    },
+    {
+      "id": "2283",
+      "cohort": "sample",
+      "rawCounts": {
+        "findings": 3,
+        "modelDecisions": 2,
+        "unexplainedHunks": 0,
+        "brokenClaims": 0
+      },
+      "title": "Generator and analyzer crash with IndexOutOfRangeException on a closed generic struct from a referenced assembly",
+      "files": 4,
+      "lines": 228,
+      "readingListLines": 226,
+      "readRatio": 1,
+      "evidenceRoute": "targeted",
+      "effectiveRoute": "full",
+      "reviewer": "ok",
+      "ifUnblocked": null
+    },
+    {
+      "id": "2297",
+      "cohort": "sample",
+      "rawCounts": {
+        "findings": 3,
+        "modelDecisions": 3,
+        "unexplainedHunks": 0,
+        "brokenClaims": 0
+      },
+      "title": "Add ExcludeFromCodeCoverage attribute to generated code.",
+      "files": 237,
+      "lines": 1392,
+      "readingListLines": 183,
+      "readRatio": null,
+      "evidenceRoute": "blocked",
+      "effectiveRoute": "blocked",
+      "reviewer": "ok",
+      "ifUnblocked": {
+        "route": "targeted",
+        "readRatio": 0.1314655172413793
+      }
+    },
+    {
+      "id": "holdout",
+      "cohort": "holdout",
+      "rawCounts": {
+        "findings": 3,
+        "modelDecisions": 2,
+        "unexplainedHunks": 0,
+        "brokenClaims": 0
+      },
+      "title": "dynamic type fails sourcegenerator CS8785 'MessagePackGenerator' failed to generate source.",
+      "files": 7,
+      "lines": 336,
+      "readingListLines": 336,
+      "readRatio": null,
+      "evidenceRoute": "blocked",
+      "effectiveRoute": "blocked",
+      "reviewer": "ok",
+      "ifUnblocked": {
+        "route": "targeted",
+        "readRatio": 1
+      }
+    }
+  ],
+  "routeShare": {
+    "light": {
+      "n": 0,
+      "of": 5
+    },
+    "targeted": {
+      "n": 0,
+      "of": 5
+    },
+    "full": {
+      "n": 1,
+      "of": 5
+    },
+    "blocked": {
+      "n": 4,
+      "of": 5
+    }
+  },
+  "claimsByState": {
+    "proven": {
+      "n": 20,
+      "of": 33
+    },
+    "argued": {
+      "n": 13,
+      "of": 33
+    },
+    "not_checked": {
+      "n": 0,
+      "of": 33
+    },
+    "broken": {
+      "n": 0,
+      "of": 33
+    }
+  },
+  "discriminatingTests": {
+    "n": 106,
+    "of": 110
+  },
+  "citationValidity": {
+    "n": 224,
+    "of": 224
+  },
+  "citationCasesWithReviewer": {
+    "n": 5,
+    "of": 5
+  },
+  "calibration": {
+    "synthetic": true,
+    "note": "Planted bugs are hand-written and synthetic; they are not real bugs.",
+    "generatedAt": "2026-11-14T15:48:12.950Z",
+    "reviewer": "run only for plants no run caught (it cannot change the others)",
+    "total": 8,
+    "caughtByRun": 7,
+    "caughtByModelOnly": 0,
+    "missed": 1,
+    "modelNotRun": 0,
+    "results": [
+      {
+        "plant": "undo-fix",
+        "case": "2283",
+        "category": "undo part of the fix",
+        "plantedHead": "69d109a0e9bde3d05cbb70bcb9a75225d35841f0",
+        "outcome": "caught_by_run",
+        "files": [
+          "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs"
+        ],
+        "plantedHunks": [],
+        "undoneOriginalHunks": [
+          "H5 src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:1077"
+        ],
+        "runSignals": [
+          "tests-at-head:MessagePack.SourceGenerator.Tests failed: 0 of 3 changed tests pass at head."
+        ],
+        "modelSignals": [],
+        "route": "blocked"
+      },
+      {
+        "plant": "untested-private-ctor",
+        "case": "2283",
+        "category": "change the tests do not exercise",
+        "plantedHead": "818634daf2dcf0aac622e8cf40ae6e4709f5538b",
+        "outcome": "caught_by_run",
+        "files": [
+          "src/MessagePack.SourceGenerator/CodeAnalysis/AnalyzerOptions.cs"
+        ],
+        "plantedHunks": [
+          "H3"
+        ],
+        "undoneOriginalHunks": [],
+        "runSignals": [
+          "existing-tests:MessagePack.SourceGenerator.Tests failed: 167 pre-existing tests: 163 pass at both, 4 regressed, 0 newly pass, 0 fail at both; 0 removed at head."
+        ],
+        "modelSignals": [],
+        "route": "blocked"
+      },
+      {
+        "plant": "scope-public-member",
+        "case": "2283",
+        "category": "scope drift: unrelated new public member",
+        "plantedHead": "e31137310ce388df74e8a310bff835df19cecb66",
+        "outcome": "caught_by_run",
+        "files": [
+          "src/MessagePack.Annotations/Attributes.cs"
+        ],
+        "plantedHunks": [
+          "H3"
+        ],
+        "undoneOriginalHunks": [],
+        "runSignals": [
+          "public-surface failed: 1 public-surface line(s) changed in 1 file(s)."
+        ],
+        "modelSignals": [],
+        "route": "blocked"
+      },
+      {
+        "plant": "weakened-test",
+        "case": "2283",
+        "category": "weaken a test so it no longer discriminates",
+        "plantedHead": "59cef57d21d1bed9876bddf8427e200161ce7ae4",
+        "outcome": "caught_by_run",
+        "files": [
+          "tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs"
+        ],
+        "plantedHunks": [
+          "H9"
+        ],
+        "undoneOriginalHunks": [
+          "H9 tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs:499"
+        ],
+        "runSignals": [
+          "tests-without-change:MessagePack.SourceGenerator.Tests failed: 2 of 3 changed tests that pass at head fail without the change (discriminating). Non-discriminating (prove nothing about this change): GenericsFormatterTests.ClosedGenericStruct_FromMetadataReference."
+        ],
+        "modelSignals": [],
+        "route": "blocked"
+      },
+      {
+        "plant": "security-file-write",
+        "case": "2283",
+        "category": "something the security surface scan should notice",
+        "plantedHead": "43daf6ec1374b7d79687b895a5db5cfb08a88caf",
+        "outcome": "caught_by_run",
+        "files": [
+          "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs"
+        ],
+        "plantedHunks": [
+          "H6"
+        ],
+        "undoneOriginalHunks": [
+          "H6 src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:1429"
+        ],
+        "runSignals": [
+          "security-surface failed: 0 build/dependency file(s) changed; 1 added line(s) match security-sensitive patterns."
+        ],
+        "modelSignals": [],
+        "route": "blocked"
+      },
+      {
+        "plant": "inverted-filter",
+        "case": "2283",
+        "category": "undo part of the fix",
+        "plantedHead": "b542bc449cc1aec0860dd397d91c538c2584f22d",
+        "outcome": "caught_by_run",
+        "files": [
+          "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs"
+        ],
+        "plantedHunks": [
+          "H6"
+        ],
+        "undoneOriginalHunks": [
+          "H6 src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:1429"
+        ],
+        "runSignals": [
+          "tests-at-head:MessagePack.SourceGenerator.Tests failed: 2 of 3 changed tests pass at head.",
+          "existing-tests:MessagePack.SourceGenerator.Tests failed: 167 pre-existing tests: 127 pass at both, 40 regressed, 0 newly pass, 0 fail at both; 0 removed at head."
+        ],
+        "modelSignals": [],
+        "route": "blocked"
+      },
+      {
+        "plant": "template-output-enum",
+        "case": "2297",
+        "category": "break generated output in one template",
+        "plantedHead": "b715699ce309930670e9dbcbe6f3276aff7fa287",
+        "outcome": "caught_by_run",
+        "files": [
+          "src/MessagePack.SourceGenerator/Transforms/EnumTemplate.cs",
+          "src/MessagePack.SourceGenerator/Transforms/EnumTemplate.tt"
+        ],
+        "plantedHunks": [],
+        "undoneOriginalHunks": [
+          "H6 src/MessagePack.SourceGenerator/Transforms/EnumTemplate.cs:27",
+          "H7 src/MessagePack.SourceGenerator/Transforms/EnumTemplate.tt:8"
+        ],
+        "runSignals": [
+          "tests-at-head:MessagePack.SourceGenerator.Tests failed: 82 of 91 changed tests pass at head.",
+          "existing-tests:MessagePack.SourceGenerator.Tests failed: 167 pre-existing tests: 158 pass at both, 9 regressed, 0 newly pass, 0 fail at both; 0 removed at head."
+        ],
+        "modelSignals": [],
+        "route": "blocked"
+      },
+      {
+        "plant": "template-source-drift",
+        "case": "2297",
+        "category": "change the tests do not exercise",
+        "plantedHead": "dc6b9f85ed64e6372fb277b7cc4d501cd51c9ac3",
+        "outcome": "missed",
+        "files": [
+          "src/MessagePack.SourceGenerator/Transforms/UnionTemplate.tt"
+        ],
+        "plantedHunks": [],
+        "undoneOriginalHunks": [
+          "H20 src/MessagePack.SourceGenerator/Transforms/UnionTemplate.tt:10"
+        ],
+        "runSignals": [],
+        "modelSignals": [],
+        "route": "blocked"
+      }
+    ]
+  },
+  "signoffs": 1,
+  "activeSeconds": [
+    {
+      "caseId": "2283",
+      "seconds": 59
+    }
+  ],
+  "findingsMarked": {
+    "real": {
+      "n": 0,
+      "of": 0
+    },
+    "notReal": {
+      "n": 0,
+      "of": 0
+    }
+  },
+  "noDataYet": [
+    {
+      "metric": "Decision recall against the scoring key",
+      "definition": "Share of key items the sheet raised as a decision or finding. Needs the user to confirm the AI-drafted key and to match key items to sheet items."
+    },
+    {
+      "metric": "Reverts and incidents per area and route",
+      "definition": "Changes reverted or tied to an incident after merge, per area and per route, set against the review time spent on them."
+    },
+    {
+      "metric": "Time to merge",
+      "definition": "Time from the agent's change to a signed, merged change, per route."
+    }
+  ],
+  "guardRule": "An area keeps a lighter route only while escapes stay flat as review time falls."
+}

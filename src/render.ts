@@ -1,3 +1,4 @@
+import { cohortLabel } from "./cohorts.ts";
 // Renders a report as a one-page sign-off sheet: HTML for the browser, Markdown as the pull-request comment.
 // Every value from the report is escaped: requirement text, code and model output are untrusted.
 import type { Report } from "./report.ts";
@@ -134,6 +135,7 @@ ${r.case.synthetic ? `<div class="sim-band" role="note"><b>${esc(r.case.syntheti
 <h1>Sign-off sheet for ${esc(r.case.requirementId)}</h1>
 <p class="title">${esc(r.case.title)}</p>
 <dl class="facts">
+<dt>Evaluation cohort</dt><dd>${esc(cohortLabel(r.case.id))}</dd>
 <dt>Generated</dt><dd>${esc(r.case.generatedAt)}, from test runs on this machine</dd>
 <dt>Change</dt><dd>base <code>${short(r.case.base)}</code> to head <code>${short(r.case.head)}</code> in ${esc(r.case.repository)}</dd>
 <dt>Policy</dt><dd>${esc(r.case.policyVersion)}; its thresholds are illustrative and unvalidated</dd>
@@ -237,7 +239,9 @@ export function renderMarkdown(r: Report, sheetHref: string, maxFindings: number
   const md = (s: unknown) => String(s).replace(/[\\`*_{}[\]<>|#]/g, (c) => `\\${c}`).replace(/\s*\n\s*/g, " ");
   const route = r.route;
   const lines = [
-    `## ReviewProof sign-off sheet: ${md(r.case.requirementId)} ${md(r.case.title)}`,
+    `Evaluation cohort: ${cohortLabel(r.case.id)}
+
+## ReviewProof sign-off sheet: ${md(r.case.requirementId)} ${md(r.case.title)}`,
     ``,
     ...(r.case.synthetic ? [`> **${md(r.case.synthetic.split(": ")[0])}:** ${md(r.case.synthetic.split(": ").slice(1).join(": "))}.`, ``] : []),
     `**Route: ${route.effectiveRoute.toUpperCase()}**${route.effectiveRoute === "blocked" ? " (cannot be signed yet)" : ""}. Evidence supports: ${route.evidenceRoute}. ` +

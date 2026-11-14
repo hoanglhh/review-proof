@@ -1,0 +1,44 @@
+{
+  "caseId": "holdout",
+  "cohort": "holdout",
+  "recordedAt": "2026-11-14T23:40:10.695177+00:00",
+  "reviewerStatus": "ok",
+  "pipelineInvocations": 1,
+  "freshReviewRequested": false,
+  "rawResponses": 1,
+  "citationValidation": {
+    "id": "citation-validation",
+    "check": "citation-validation",
+    "domain": "general",
+    "asserts": "every model citation's quote is found at the stated file, lines and commit",
+    "performedBy": "reviewproof 0.1.0 (in-process)",
+    "commands": [
+      "node src/cli.ts assemble holdout"
+    ],
+    "commits": [
+      "32258fdbee4bcd653c79f51b4376b5103c6f4d27",
+      "5dd36d196371f394879ee9f215255ef5cc53d1ad"
+    ],
+    "status": "passed",
+    "summary": "42 of 42 citations resolved; 0 dropped as unresolvable; 0 reference(s) to unknown requirements, evidence, tests or hunks dropped.",
+    "durationMs": 0,
+    "logs": [
+      "data/cases/holdout/review/e1ca0f843b95dc1fcce6f6f5de288a8238b5f42929cab6c46c77704c4b61f53c.json"
+    ],
+    "details": {
+      "citations": 42,
+      "resolved": 42,
+      "dropped": [],
+      "invalidRefs": []
+    }
+  },
+  "incompleteChecks": [],
+  "rawCounts": {
+    "findings": 3,
+    "modelDecisions": 2,
+    "unexplainedHunks": 0,
+    "brokenClaims": 0
+  },
+  "route": "blocked",
+  "humanAssessment": "pending; no finding truth judgments or blind-review notes supplied by the agent"
+}

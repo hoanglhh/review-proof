@@ -1,0 +1,21 @@
+{
+  "recordedAt": "2026-11-14T23:28:15.163864+00:00",
+  "commit": "bc5a6780641c103ca304fad353d47860848a74f4",
+  "freeze": {
+    "src/review.ts": "17218174425051a96a5d6e1a7cc3cd878a3e569a1a712861be5bf3aecbee7dff",
+    "src/states.ts": "e1f27d38fee3d1fc573124097cc52cec6740d3ec5cabd9f0f21ab349a0c4fc9e",
+    "src/assemble.ts": "28e372db7cf87869e60b828c5288c567fe2413c5a975c4752e589633165932b9",
+    "src/checks.ts": "4f2a2dab8a5d9c1c2d8a7468aba1674021feea2ff19081f9e2074a74a369804f",
+    "src/cli.ts": "e8000cdea58dff30476bfe94ac09805c31453e3b6ff7cf26cc31e8367b42c771",
+    "src/runner.ts": "887c3b1d227812037eb2f1b6f6b0082b29349b11775369f3fbfc9b1113b42939",
+    "src/git.ts": "4178e92ad308957eb13f7fd14e1351303b6d950ed01126f40d34554b8c0b9a1c",
+    "src/diff.ts": "084b214f52e57cbec4b783d7e5fc014bb6ae56c72db3b47997b589d3109b2ac2",
+    "src/report.ts": "d3a6d068a011907dbafa30dcb58c3b6a7ebb34d80222bebd41aecbbe28e460da",
+    "policy.json": "f70a0a0ea5a679c6549ee7ac97e42ab0f01ff702a24d3a29fb060b453c30b518",
+    "profiles/messagepack-csharp.json": "6ba475bbe8085aab942467b8ae755bd5182ca24b440ae9a7f93f01cfb1a29a38"
+  },
+  "holdoutRule": "Among open upstream issues about source generation or analyzers, with reproduction code, excluding the four samples, choose updated_at descending (number descending breaks ties). Fetch open issues in updated-descending order; examine until the first eligible issue. If the attempt produces no diff, select the next eligible issue. One fresh-context author attempt per selected issue, maximum 40 minutes.",
+  "eligibility": "Generator/analyzer topic must be stated in title/body; reproduction code must be present in the issue body (not merely a linked project or error log).",
+  "controlRule": "Merged upstream PRs ordered by merged_at descending (number descending breaks ties), merged_by.type User, closing an issue, touching src/MessagePack.SourceGenerator/ and tests/MessagePack.SourceGenerator.Tests/. Use the original PR comparison. Exclude known reverts; clean is only an assumption. If it cannot build in the pinned container, record and try next, at most three.",
+  "humanRecords": "No signoffs, confirmations, spotchecks, finding marks or escape records will be created by the agent."
+}

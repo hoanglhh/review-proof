@@ -4,7 +4,7 @@
 
 ReviewProof is a reference implementation for Tieto's Junction 2026 challenge "Earned Trust in AI Code". For each agent-written change it produces a one-page sign-off sheet: what the change is for, what it touches, which of its claims were proven by a run, which choices it made that no test can settle, what was not checked and why, and how much of it a person still has to read. The AI reviewer never approves anything. A named person signs, and only through the sign-off page.
 
-It runs on the four agent-written changes Tieto supplied to [MessagePack-CSharp](https://github.com/te-industry-tech-office/junction26-messagepack-csharp) (requirements: upstream issues #2283, #2234, #2129, #2297).
+Its original evaluation corpus is the four agent-written changes Tieto supplied to [MessagePack-CSharp](https://github.com/te-industry-tech-office/junction26-messagepack-csharp) (requirements: upstream issues #2283, #2234, #2129, #2297).
 
 ## Look at it without running anything
 
@@ -58,6 +58,20 @@ The scoring key in `labels/` was drafted by an AI model from reading the diffs a
 
 - `src/`: the pipeline. Nothing repository-specific is in it (a test enforces this).
 - `profiles/messagepack-csharp.json`: everything specific to this repository: container, test command, file classes, public- and security-surface patterns, areas and owners.
-- `cases.json`: the four changes. `policy.json`: thresholds (illustrative, unvalidated).
+- `cases.json`: pinned comparisons and their evaluation cohort (`sample`, `holdout`, or `control`). `policy.json`: thresholds (illustrative, unvalidated).
 - `data/`: reports, the evidence they cite, sign-offs, the trust record. `.work/`: clone, worktrees, caches (git-ignored).
 - `docs/`: concept card, lessons log, decision log, failure modes, demo script.
+
+## Evaluation cohorts
+
+The four Tieto samples are **supplied samples**; the independently authored **holdout** and the upstream merged **control** are separate populations, never planted bugs. Selection rules and frozen-file hashes are in `data/evaluation/protocol.json`; selection snapshots and run records live alongside it. Cohorts do not enter the model prompt or routing rules.
+
+The index, sheets and blind pages identify each cohort. `/metrics` lists exactly which case IDs every non-calibration aggregate includes; use `?cohort=sample`, `?cohort=holdout`, or `?cohort=control` for separate views. Calibration names its own planted cases and never shares their denominator with these comparisons. Counts of findings, model-raised decisions, unexplained hunks and broken claims do not establish false positives: the owner marks findings when signing.
+
+Do not rerun the holdout review with `--fresh` or tune the prompt/rules after observing it. For a blind read, go straight to its `/case/<id>/blind` address before opening its sheet, metrics or evaluation artifacts. Human sign-offs, confirmations, spot-checks and finding marks remain the owner's actions.
+
+### Reproduce the local holdout input
+
+The holdout head exists only on branch `submission-holdout` in `.work/repos/te-industry-tech-office__junction26-messagepack-csharp`; it was never pushed. `data/evaluation/holdout-author.json` records its base/head and patch hash. On another checkout, create a branch at the recorded base, apply `data/evaluation/holdout.patch` with `git apply --index`, and commit locally. The recreated commit may have a different SHA; update the case head if reproducing inputs. Do not rerun the submitted model review: use its saved report for the fixed evaluation.
+
+The submitted blind-review entry point is `/case/holdout/blind`. Run the local server before opening it; avoid the ordinary sheet and metrics until after the blind read.

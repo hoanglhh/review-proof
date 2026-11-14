@@ -1,3 +1,5 @@
+Evaluation cohort: Supplied sample
+
 ## ReviewProof sign-off sheet: \#2283 Generator and analyzer crash with IndexOutOfRangeException on a closed generic struct from a referenced assembly
 
 **Route: FULL**. Evidence supports: targeted. Area docs has no track record: full read required. Area generator-analysis has not earned lighter review (0 of 3 clean spot-checks since the last reset): full read required. Area tests has not earned lighter review (0 of 3 clean spot-checks since the last reset): full read required.

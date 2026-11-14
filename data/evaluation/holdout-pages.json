@@ -1,0 +1,25 @@
+{
+  "method": "GET only; no human forms submitted",
+  "checks": [
+    {
+      "path": "/case/holdout",
+      "status": 200,
+      "cohortPresent": true
+    },
+    {
+      "path": "/case/holdout/blind",
+      "status": 200,
+      "cohortPresent": true
+    },
+    {
+      "path": "/case/holdout/earned",
+      "status": 200,
+      "cohortPresent": true
+    },
+    {
+      "path": "/metrics?cohort=holdout",
+      "status": 200,
+      "cohortPresent": true
+    }
+  ]
+}

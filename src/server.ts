@@ -9,6 +9,7 @@ import { assembleCase, readJsonl, signoffsOf, TRUST_LOG, type Policy } from "./a
 import { esc, renderHtml } from "./render.ts";
 import { renderBlind, renderIndex, renderMessage, renderMetrics, renderReveal, renderTrust } from "./pages.ts";
 import { loadMetrics } from "./metrics.ts";
+import { COHORT_LABELS, type Cohort } from "./cohorts.ts";
 import type { Report } from "./report.ts";
 
 export const SIMULATED_LOG = join(DATA, "trust", "simulated-events.jsonl");
@@ -109,7 +110,11 @@ export function startServer(port: number) {
           url.searchParams.get("notice") ?? undefined, cases.filter((c) => report(c.id)).map((c) => ({ id: c.id, requirementId: c.requirement.id }))));
       }
 
-      if (req.method === "GET" && parts[0] === "metrics") return send(res, 200, renderMetrics(loadMetrics()));
+      if (req.method === "GET" && parts[0] === "metrics") {
+        const cohort = url.searchParams.get("cohort");
+        if (cohort && !Object.hasOwn(COHORT_LABELS, cohort)) return send(res, 400, "Unknown cohort", "", "text/plain");
+        return send(res, 200, renderMetrics(loadMetrics((cohort || undefined) as Cohort | undefined)));
+      }
 
       if (req.method === "GET" && parts[0] === "data") { // evidence files; agent output is served as plain text, never as a page
         const file = resolve(ROOT, ...parts);

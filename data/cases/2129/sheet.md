@@ -1,3 +1,5 @@
+Evaluation cohort: Supplied sample
+
 ## ReviewProof sign-off sheet: \#2129 Feature Request: Allow generation of Formatter for a type in a referenced assembly
 
 **Route: BLOCKED** (cannot be signed yet). Evidence supports: blocked. 

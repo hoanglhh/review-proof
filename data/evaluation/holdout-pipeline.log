@@ -1,0 +1,25 @@
+case holdout: 7 files, +336/-0, 7 hunks
+  source              2 files     11 lines
+  test                1 files     29 lines
+  test-snapshot       4 files    296 lines
+running head.MessagePack.SourceGenerator.Tests ...
+  completed, 169 tests, 35s
+running base.MessagePack.SourceGenerator.Tests ...
+  completed, 167 tests, 37s
+running without-change.MessagePack.SourceGenerator.Tests ...
+  completed, 169 tests, 36s
+passed       inventory: 7 files, +336/-0: 2 source (11 lines), 1 test (29 lines), 4 test-snapshot (296 lines).
+passed       pattern-groups: No change recurs in 3 or more of the 4 repetitive files; nothing to group.
+passed       public-surface: No public declaration, API file entry or diagnostic ID changed.
+passed       tests-at-head:MessagePack.SourceGenerator.Tests: 2 of 2 changed tests pass at head.
+passed       tests-without-change:MessagePack.SourceGenerator.Tests: 2 of 2 changed tests that pass at head fail without the change (discriminating).
+passed       existing-tests:MessagePack.SourceGenerator.Tests: 167 pre-existing tests: 167 pass at both, 0 regressed, 0 newly pass, 0 fail at both; 0 removed at head.
+failed       issue-reproduction: 0 of 2 code blocks in the requirement appear (ignoring whitespace) in added test lines.
+passed       security-surface: Pattern scan found nothing; this is not proof that no vulnerability exists.
+reviewer prompt: 47162 chars; files in full: src/MessagePack.SourceGenerator/CodeAnalysis/MemberSerializationInfo.cs, src/MessagePack.SourceGenerator/CodeAnalysis/QualifiedTypeName.cs
+reviewer ok (raw response data/cases/holdout/review/e1ca0f843b95dc1fcce6f6f5de288a8238b5f42929cab6c46c77704c4b61f53c.json)
+  4 requirements, 5 claims, 2 decisions, 3 findings, 3 cannot-decide
+wrote data/cases/holdout/report.json, sheet.html, sheet.md
+  route: blocked (evidence blocked, trust floor full); claims: 4 proven, 1 argued; 2 decisions; 0 unexplained hunks
+  - requirement-without-claim: R3 has no claim
+  - requirement-without-claim: R4 has no claim

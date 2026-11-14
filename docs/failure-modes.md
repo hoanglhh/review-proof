@@ -51,3 +51,7 @@ Only failures actually observed while building and running ReviewProof, each wit
 - **Why it matters:** two lessons. The scorer undercounts catches that point at a missing change rather than a present one. And the reviewer only sees changed files, so a bug made of a change *not* made is visible to it only by inference.
 - **What we do:** the official count stays missed (1 of 8); the rule was not changed after seeing the result. The miss is written to the trust record (`planted_missed` for `generator-templates`). A check that compares each changed generated file with its template, which would catch this by a run, is not built.
 - **Evidence:** `data/calibration/summary.json`; `data/calibration/template-source-drift/report.json` (F1 and "Not checked"); raw response in `data/calibration/template-source-drift/review/`.
+
+## Additional evaluation coverage (2026-11-15)
+
+The independently authored holdout ran once with the frozen pipeline. No pipeline crash or dropped citation/reference was observed in that run (`data/evaluation/holdout-run.json`). This is not a finding-accuracy result: the owner's blind read and finding judgments are pending, so no new reviewer miss or false alarm is claimed here. Read that artifact only after the blind exercise.

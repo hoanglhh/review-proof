@@ -58,6 +58,12 @@ test("server: refuses posts from other origins and wrong hosts; a blocked sheet 
     if (blocked) assert.equal((await post("/case/2283/signoff", { origin: url })).status, 400);
     const page = await fetch(`${url}/case/2283`);
     assert.equal(page.status, 200);
+    assert.match(await page.text(), /Evaluation cohort<\/dt><dd>Supplied sample/);
+    const metrics = await fetch(`${url}/metrics?cohort=sample`);
+    assert.equal(metrics.status, 200);
+    assert.match(await metrics.text(), /Scope of every non-calibration aggregate/);
+    const invalid = await fetch(`${url}/metrics?cohort=unknown-group`);
+    assert.equal(invalid.status, 400);
     assert.match(page.headers.get("content-security-policy")!, /frame-ancestors 'none'/);
     assert.equal((await fetch(`${url}/data/..%2Fpackage.json`)).status, 404); // decodes to data/../package.json
     assert.equal((await fetch(`${url}/data/cases/2283/requirement.json`)).status, 200);

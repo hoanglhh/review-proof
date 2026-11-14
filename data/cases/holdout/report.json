@@ -1,0 +1,2298 @@
+{
+  "schemaVersion": 1,
+  "case": {
+    "id": "holdout",
+    "requirementId": "#2318",
+    "requirementUrl": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/issues/2318",
+    "requirementRetrievedAt": "2026-11-14T23:34:23.309040+00:00",
+    "title": "dynamic type fails sourcegenerator CS8785 'MessagePackGenerator' failed to generate source.",
+    "repository": "https://github.com/te-industry-tech-office/junction26-messagepack-csharp",
+    "profile": "messagepack-csharp",
+    "base": "32258fdbee4bcd653c79f51b4376b5103c6f4d27",
+    "head": "5dd36d196371f394879ee9f215255ef5cc53d1ad",
+    "generatedAt": "2026-11-14T23:39:15.145Z",
+    "pipelineVersion": "0.1.0",
+    "policyVersion": "2026-11-14.1",
+    "model": "kimi-k3-1-pro",
+    "promptHash": "e1ca0f843b95dc1fcce6f6f5de288a8238b5f42929cab6c46c77704c4b61f53c",
+    "synthetic": null
+  },
+  "reviewer": {
+    "status": "ok",
+    "rawResponse": "data/cases/holdout/review/e1ca0f843b95dc1fcce6f6f5de288a8238b5f42929cab6c46c77704c4b61f53c.json",
+    "fullFilesShown": [
+      "src/MessagePack.SourceGenerator/CodeAnalysis/MemberSerializationInfo.cs",
+      "src/MessagePack.SourceGenerator/CodeAnalysis/QualifiedTypeName.cs"
+    ],
+    "represented": []
+  },
+  "requirements": [
+    {
+      "id": "R1",
+      "text": "A MessagePackObject containing a dynamic member must not cause MessagePackGenerator to fail source generation with CS8785/NotSupportedException.",
+      "quote": "dynamic type fails sourcegenerator CS8785 'MessagePackGenerator' failed to generate source.",
+      "kind": "explicit",
+      "confirmedBy": null
+    },
+    {
+      "id": "R2",
+      "text": "The reported reproduction should produce no messages, encompassing the shown generator CS8785 and analyzer AD0001 failures.",
+      "quote": "No messages",
+      "kind": "explicit",
+      "confirmedBy": null
+    },
+    {
+      "id": "R3",
+      "text": "Nice-to-have: if such a failure still occurs, its error should identify which method is unsupported.",
+      "quote": "When this happens it would be nice to have the error include which method is not supported",
+      "kind": "explicit",
+      "confirmedBy": null
+    },
+    {
+      "id": "R4",
+      "text": "Optional suggestion: provide an IgnoreSourceGenerationIfUnknownAndIfAlreadyReportedUpstream attribute.",
+      "quote": "maybe also have an attribute that `IgnoreSourceGenerationIfUnknownAndIfAlreadyReportedUpstream`",
+      "kind": "explicit",
+      "confirmedBy": null
+    }
+  ],
+  "inventory": {
+    "files": [
+      {
+        "path": "src/MessagePack.SourceGenerator/CodeAnalysis/MemberSerializationInfo.cs",
+        "status": "modified",
+        "class": "source",
+        "binary": false,
+        "added": 5,
+        "removed": 0,
+        "hunkIds": [
+          "H1"
+        ]
+      },
+      {
+        "path": "src/MessagePack.SourceGenerator/CodeAnalysis/QualifiedTypeName.cs",
+        "status": "modified",
+        "class": "source",
+        "binary": false,
+        "added": 6,
+        "removed": 0,
+        "hunkIds": [
+          "H2"
+        ]
+      },
+      {
+        "path": "tests/MessagePack.SourceGenerator.Tests/GenerationTests.cs",
+        "status": "modified",
+        "class": "test",
+        "binary": false,
+        "added": 29,
+        "removed": 0,
+        "hunkIds": [
+          "H3"
+        ]
+      },
+      {
+        "path": "tests/MessagePack.SourceGenerator.Tests/Resources/DynamicMembers(False)/Formatters.MessagePack.GeneratedMessagePackResolver.AnObjectFormatter.g.cs",
+        "status": "added",
+        "class": "test-snapshot",
+        "binary": false,
+        "added": 70,
+        "removed": 0,
+        "hunkIds": [
+          "H4"
+        ]
+      },
+      {
+        "path": "tests/MessagePack.SourceGenerator.Tests/Resources/DynamicMembers(False)/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "status": "added",
+        "class": "test-snapshot",
+        "binary": false,
+        "added": 67,
+        "removed": 0,
+        "hunkIds": [
+          "H5"
+        ]
+      },
+      {
+        "path": "tests/MessagePack.SourceGenerator.Tests/Resources/DynamicMembers(True)/Formatters.MessagePack.GeneratedMessagePackResolver.AnObjectFormatter.g.cs",
+        "status": "added",
+        "class": "test-snapshot",
+        "binary": false,
+        "added": 92,
+        "removed": 0,
+        "hunkIds": [
+          "H6"
+        ]
+      },
+      {
+        "path": "tests/MessagePack.SourceGenerator.Tests/Resources/DynamicMembers(True)/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "status": "added",
+        "class": "test-snapshot",
+        "binary": false,
+        "added": 67,
+        "removed": 0,
+        "hunkIds": [
+          "H7"
+        ]
+      }
+    ],
+    "totals": {
+      "files": 7,
+      "added": 336,
+      "removed": 0,
+      "byClass": {
+        "source": {
+          "files": 2,
+          "lines": 11
+        },
+        "test": {
+          "files": 1,
+          "lines": 29
+        },
+        "test-snapshot": {
+          "files": 4,
+          "lines": 296
+        }
+      }
+    }
+  },
+  "hunks": [
+    {
+      "id": "H1",
+      "file": "src/MessagePack.SourceGenerator/CodeAnalysis/MemberSerializationInfo.cs",
+      "oldStart": 34,
+      "oldLines": 0,
+      "newStart": 35,
+      "newLines": 5,
+      "removed": [],
+      "added": [
+        "        if (this.Type is \"dynamic\" or \"dynamic?\")",
+        "        {",
+        "            // Dynamic dispatch cannot pass the ref struct writer to the formatter.",
+        "            memberRead = $\"(object){memberRead}\";",
+        "        }"
+      ]
+    },
+    {
+      "id": "H2",
+      "file": "src/MessagePack.SourceGenerator/CodeAnalysis/QualifiedTypeName.cs",
+      "oldStart": 25,
+      "oldLines": 0,
+      "newStart": 26,
+      "newLines": 6,
+      "removed": [],
+      "added": [
+        "            IDynamicTypeSymbol => new QualifiedNamedTypeName(TypeKind.Class)",
+        "            {",
+        "                Name = \"Object\",",
+        "                Container = new NamespaceTypeContainer(\"System\"),",
+        "                ReferenceTypeNullableAnnotation = symbol.NullableAnnotation,",
+        "            },"
+      ]
+    },
+    {
+      "id": "H3",
+      "file": "tests/MessagePack.SourceGenerator.Tests/GenerationTests.cs",
+      "oldStart": 22,
+      "oldLines": 0,
+      "newStart": 23,
+      "newLines": 29,
+      "removed": [],
+      "added": [
+        "    [Theory]",
+        "    [InlineData(true)]",
+        "    [InlineData(false)]",
+        "    public async Task DynamicMembers(bool keyAsPropertyName)",
+        "    {",
+        "        string testSource = $$\"\"\"",
+        "            using System.Collections.Generic;",
+        "            using MessagePack;",
+        "",
+        "            [MessagePackObject(keyAsPropertyName: {{(keyAsPropertyName ? \"true\" : \"false\")}})]",
+        "            public class AnObject",
+        "            {",
+        "                [Key(0)]",
+        "                public dynamic value;",
+        "",
+        "                [Key(1)]",
+        "                public dynamic Property { get; set; }",
+        "",
+        "                [Key(2)]",
+        "                public dynamic[] Array { get; set; }",
+        "",
+        "                [Key(3)]",
+        "                public List<dynamic> List { get; set; }",
+        "            }",
+        "            \"\"\";",
+        "",
+        "        await VerifyCS.Test.RunDefaultAsync(this.testOutputHelper, testSource, testMethod: $\"{nameof(DynamicMembers)}({keyAsPropertyName})\");",
+        "    }",
+        ""
+      ]
+    },
+    {
+      "id": "H4",
+      "file": "tests/MessagePack.SourceGenerator.Tests/Resources/DynamicMembers(False)/Formatters.MessagePack.GeneratedMessagePackResolver.AnObjectFormatter.g.cs",
+      "oldStart": 0,
+      "oldLines": 0,
+      "newStart": 1,
+      "newLines": 70,
+      "removed": [],
+      "added": [
+        "﻿// <auto-generated />",
+        "",
+        "#pragma warning disable 618, 612, 414, 168, CS1591, SA1129, SA1309, SA1312, SA1403, SA1649",
+        "",
+        "#pragma warning disable CS8669 // We may leak nullable annotations into generated code.",
+        "",
+        "using MsgPack = global::MessagePack;",
+        "",
+        "namespace MessagePack {",
+        "partial class GeneratedMessagePackResolver {",
+        "",
+        "\tinternal sealed class AnObjectFormatter : MsgPack::Formatters.IMessagePackFormatter<global::AnObject>",
+        "\t{",
+        "",
+        "\t\tpublic void Serialize(ref MsgPack::MessagePackWriter writer, global::AnObject value, MsgPack::MessagePackSerializerOptions options)",
+        "\t\t{",
+        "\t\t\tif (value == null)",
+        "\t\t\t{",
+        "\t\t\t\twriter.WriteNil();",
+        "\t\t\t\treturn;",
+        "\t\t\t}",
+        "",
+        "\t\t\tMsgPack::IFormatterResolver formatterResolver = options.Resolver;",
+        "\t\t\twriter.WriteArrayHeader(4);",
+        "\t\t\tMsgPack::FormatterResolverExtensions.GetFormatterWithVerify<dynamic>(formatterResolver).Serialize(ref writer, (object)value.value, options);",
+        "\t\t\tMsgPack::FormatterResolverExtensions.GetFormatterWithVerify<dynamic>(formatterResolver).Serialize(ref writer, (object)value.Property, options);",
+        "\t\t\tMsgPack::FormatterResolverExtensions.GetFormatterWithVerify<dynamic[]>(formatterResolver).Serialize(ref writer, value.Array, options);",
+        "\t\t\tMsgPack::FormatterResolverExtensions.GetFormatterWithVerify<global::System.Collections.Generic.List<dynamic>>(formatterResolver).Serialize(ref writer, value.List, options);",
+        "\t\t}",
+        "",
+        "\t\tpublic global::AnObject Deserialize(ref MsgPack::MessagePackReader reader, MsgPack::MessagePackSerializerOptions options)",
+        "\t\t{",
+        "\t\t\tif (reader.TryReadNil())",
+        "\t\t\t{",
+        "\t\t\t\treturn null;",
+        "\t\t\t}",
+        "",
+        "\t\t\toptions.Security.DepthStep(ref reader);",
+        "\t\t\tMsgPack::IFormatterResolver formatterResolver = options.Resolver;",
+        "\t\t\tvar length = reader.ReadArrayHeader();",
+        "\t\t\tvar ____result = new global::AnObject();",
+        "",
+        "\t\t\tfor (int i = 0; i < length; i++)",
+        "\t\t\t{",
+        "\t\t\t\tswitch (i)",
+        "\t\t\t\t{",
+        "\t\t\t\t\tcase 0:",
+        "\t\t\t\t\t\t____result.value = MsgPack::FormatterResolverExtensions.GetFormatterWithVerify<dynamic>(formatterResolver).Deserialize(ref reader, options);",
+        "\t\t\t\t\t\tbreak;",
+        "\t\t\t\t\tcase 1:",
+        "\t\t\t\t\t\t____result.Property = MsgPack::FormatterResolverExtensions.GetFormatterWithVerify<dynamic>(formatterResolver).Deserialize(ref reader, options);",
+        "\t\t\t\t\t\tbreak;",
+        "\t\t\t\t\tcase 2:",
+        "\t\t\t\t\t\t____result.Array = MsgPack::FormatterResolverExtensions.GetFormatterWithVerify<dynamic[]>(formatterResolver).Deserialize(ref reader, options);",
+        "\t\t\t\t\t\tbreak;",
+        "\t\t\t\t\tcase 3:",
+        "\t\t\t\t\t\t____result.List = MsgPack::FormatterResolverExtensions.GetFormatterWithVerify<global::System.Collections.Generic.List<dynamic>>(formatterResolver).Deserialize(ref reader, options);",
+        "\t\t\t\t\t\tbreak;",
+        "\t\t\t\t\tdefault:",
+        "\t\t\t\t\t\treader.Skip();",
+        "\t\t\t\t\t\tbreak;",
+        "\t\t\t\t}",
+        "\t\t\t}",
+        "",
+        "\t\t\treader.Depth--;",
+        "\t\t\treturn ____result;",
+        "\t\t}",
+        "\t}",
+        "}",
+        "}"
+      ]
+    },
+    {
+      "id": "H5",
+      "file": "tests/MessagePack.SourceGenerator.Tests/Resources/DynamicMembers(False)/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "oldStart": 0,
+      "oldLines": 0,
+      "newStart": 1,
+      "newLines": 67,
+      "removed": [],
+      "added": [
+        "﻿// <auto-generated />",
+        "",
+        "#pragma warning disable 618, 612, 414, 168, CS1591, SA1129, SA1309, SA1312, SA1403, SA1649",
+        "",
+        "using MsgPack = global::MessagePack;",
+        "",
+        "[assembly: MsgPack::Internal.GeneratedAssemblyMessagePackResolverAttribute(typeof(MessagePack.GeneratedMessagePackResolver), 3, 0)]",
+        "",
+        "namespace MessagePack {",
+        "",
+        "/// <summary>A MessagePack resolver that uses generated formatters for types in this assembly.</summary>",
+        "partial class GeneratedMessagePackResolver : MsgPack::IFormatterResolver",
+        "{",
+        "\t/// <summary>An instance of this resolver that only returns formatters specifically generated for types in this assembly.</summary>",
+        "\tpublic static readonly MsgPack::IFormatterResolver Instance = new GeneratedMessagePackResolver();",
+        "",
+        "\tprivate GeneratedMessagePackResolver()",
+        "\t{",
+        "\t}",
+        "",
+        "\tpublic MsgPack::Formatters.IMessagePackFormatter<T> GetFormatter<T>()",
+        "\t{",
+        "\t\treturn FormatterCache<T>.Formatter;",
+        "\t}",
+        "",
+        "\tprivate static class FormatterCache<T>",
+        "\t{",
+        "\t\tinternal static readonly MsgPack::Formatters.IMessagePackFormatter<T> Formatter;",
+        "",
+        "\t\tstatic FormatterCache()",
+        "\t\t{",
+        "\t\t\tvar f = GeneratedMessagePackResolverGetFormatterHelper.GetFormatter(typeof(T));",
+        "\t\t\tif (f != null)",
+        "\t\t\t{",
+        "\t\t\t\tFormatter = (MsgPack::Formatters.IMessagePackFormatter<T>)f;",
+        "\t\t\t}",
+        "\t\t}",
+        "\t}",
+        "",
+        "\tprivate static class GeneratedMessagePackResolverGetFormatterHelper",
+        "\t{",
+        "\t\tprivate static readonly global::System.Collections.Generic.Dictionary<global::System.Type, int> closedTypeLookup = new global::System.Collections.Generic.Dictionary<global::System.Type, int>(3)",
+        "\t\t{",
+        "\t\t\t{ typeof(object[]), 0 },",
+        "\t\t\t{ typeof(global::System.Collections.Generic.List<object>), 1 },",
+        "\t\t\t{ typeof(global::AnObject), 2 },",
+        "\t\t};",
+        "",
+        "\t\tinternal static object GetFormatter(global::System.Type t)",
+        "\t\t{",
+        "\t\t\tif (closedTypeLookup.TryGetValue(t, out int closedKey))",
+        "\t\t\t{",
+        "\t\t\t\tswitch (closedKey)",
+        "\t\t\t\t{",
+        "\t\t\t\t\tcase 0: return new MsgPack::Formatters.ArrayFormatter<object>();",
+        "\t\t\t\t\tcase 1: return new MsgPack::Formatters.ListFormatter<object>();",
+        "\t\t\t\t\tcase 2: return new global::MessagePack.GeneratedMessagePackResolver.AnObjectFormatter();",
+        "\t\t\t\t\tdefault: return null; // unreachable",
+        "\t\t\t\t};",
+        "\t\t\t}",
+        "",
+        "\t\t\treturn null;",
+        "\t\t}",
+        "\t}",
+        "}",
+        "",
+        "}"
+      ]
+    },
+    {
+      "id": "H6",
+      "file": "tests/MessagePack.SourceGenerator.Tests/Resources/DynamicMembers(True)/Formatters.MessagePack.GeneratedMessagePackResolver.AnObjectFormatter.g.cs",
+      "oldStart": 0,
+      "oldLines": 0,
+      "newStart": 1,
+      "newLines": 92,
+      "removed": [],
+      "added": [
+        "﻿// <auto-generated />",
+        "",
+        "#pragma warning disable 618, 612, 414, 168, CS1591, SA1129, SA1309, SA1312, SA1403, SA1649",
+        "",
+        "using MsgPack = global::MessagePack;",
+        "",
+        "namespace MessagePack {",
+        "partial class GeneratedMessagePackResolver {",
+        "\tinternal sealed class AnObjectFormatter : global::MessagePack.Formatters.IMessagePackFormatter<global::AnObject>",
+        "\t{",
+        "\t\t// value",
+        "\t\tprivate static global::System.ReadOnlySpan<byte> GetSpan_value() => new byte[1 + 5] { 165, 118, 97, 108, 117, 101 };",
+        "\t\t// Property",
+        "\t\tprivate static global::System.ReadOnlySpan<byte> GetSpan_Property() => new byte[1 + 8] { 168, 80, 114, 111, 112, 101, 114, 116, 121 };",
+        "\t\t// Array",
+        "\t\tprivate static global::System.ReadOnlySpan<byte> GetSpan_Array() => new byte[1 + 5] { 165, 65, 114, 114, 97, 121 };",
+        "\t\t// List",
+        "\t\tprivate static global::System.ReadOnlySpan<byte> GetSpan_List() => new byte[1 + 4] { 164, 76, 105, 115, 116 };",
+        "",
+        "\t\tpublic void Serialize(ref global::MessagePack.MessagePackWriter writer, global::AnObject value, global::MessagePack.MessagePackSerializerOptions options)",
+        "\t\t{",
+        "\t\t\tif (value is null)",
+        "\t\t\t{",
+        "\t\t\t\twriter.WriteNil();",
+        "\t\t\t\treturn;",
+        "\t\t\t}",
+        "",
+        "\t\t\tvar formatterResolver = options.Resolver;",
+        "\t\t\twriter.WriteMapHeader(4);",
+        "\t\t\twriter.WriteRaw(GetSpan_value());",
+        "\t\t\tMsgPack::FormatterResolverExtensions.GetFormatterWithVerify<dynamic>(formatterResolver).Serialize(ref writer, (object)value.value, options);",
+        "\t\t\twriter.WriteRaw(GetSpan_Property());",
+        "\t\t\tMsgPack::FormatterResolverExtensions.GetFormatterWithVerify<dynamic>(formatterResolver).Serialize(ref writer, (object)value.Property, options);",
+        "\t\t\twriter.WriteRaw(GetSpan_Array());",
+        "\t\t\tMsgPack::FormatterResolverExtensions.GetFormatterWithVerify<dynamic[]>(formatterResolver).Serialize(ref writer, value.Array, options);",
+        "\t\t\twriter.WriteRaw(GetSpan_List());",
+        "\t\t\tMsgPack::FormatterResolverExtensions.GetFormatterWithVerify<global::System.Collections.Generic.List<dynamic>>(formatterResolver).Serialize(ref writer, value.List, options);",
+        "\t\t}",
+        "",
+        "\t\tpublic global::AnObject Deserialize(ref global::MessagePack.MessagePackReader reader, global::MessagePack.MessagePackSerializerOptions options)",
+        "\t\t{",
+        "\t\t\tif (reader.TryReadNil())",
+        "\t\t\t{",
+        "\t\t\t\treturn null;",
+        "\t\t\t}",
+        "",
+        "\t\t\toptions.Security.DepthStep(ref reader);",
+        "\t\t\tvar formatterResolver = options.Resolver;",
+        "\t\t\tvar length = reader.ReadMapHeader();",
+        "\t\t\tvar ____result = new global::AnObject();",
+        "",
+        "\t\t\tfor (int i = 0; i < length; i++)",
+        "\t\t\t{",
+        "\t\t\t\tvar stringKey = global::MessagePack.Internal.CodeGenHelpers.ReadStringSpan(ref reader);",
+        "\t\t\t\tswitch (stringKey.Length)",
+        "\t\t\t\t{",
+        "\t\t\t\t\tdefault:",
+        "\t\t\t\t\tFAIL:",
+        "\t\t\t\t\t  reader.Skip();",
+        "\t\t\t\t\t  continue;",
+        "\t\t\t\t\tcase 5:",
+        "\t\t\t\t\t    switch (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey))",
+        "\t\t\t\t\t    {",
+        "    \t\t\t\t\t    default: goto FAIL;",
+        "    \t\t\t\t\t    case 435761734006UL:",
+        "        \t\t\t\t\t    ____result.value = MsgPack::FormatterResolverExtensions.GetFormatterWithVerify<dynamic>(formatterResolver).Deserialize(ref reader, options);",
+        "        \t\t\t\t\t    continue;",
+        "    \t\t\t\t\t    case 521325933121UL:",
+        "        \t\t\t\t\t    ____result.Array = MsgPack::FormatterResolverExtensions.GetFormatterWithVerify<dynamic[]>(formatterResolver).Deserialize(ref reader, options);",
+        "        \t\t\t\t\t    continue;",
+        "\t\t\t\t\t    }",
+        "\t\t\t\t\tcase 8:",
+        "\t\t\t\t\t    if (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey) != 8751745755891331664UL) { goto FAIL; }",
+        "",
+        "\t\t\t\t\t    ____result.Property = MsgPack::FormatterResolverExtensions.GetFormatterWithVerify<dynamic>(formatterResolver).Deserialize(ref reader, options);",
+        "\t\t\t\t\t    continue;",
+        "\t\t\t\t\tcase 4:",
+        "\t\t\t\t\t    if (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey) != 1953720652UL) { goto FAIL; }",
+        "",
+        "\t\t\t\t\t    ____result.List = MsgPack::FormatterResolverExtensions.GetFormatterWithVerify<global::System.Collections.Generic.List<dynamic>>(formatterResolver).Deserialize(ref reader, options);",
+        "\t\t\t\t\t    continue;",
+        "",
+        "\t\t\t\t}",
+        "\t\t\t}",
+        "",
+        "\t\t\treader.Depth--;",
+        "\t\t\treturn ____result;",
+        "\t\t}",
+        "\t}",
+        "",
+        "}",
+        "}"
+      ]
+    },
+    {
+      "id": "H7",
+      "file": "tests/MessagePack.SourceGenerator.Tests/Resources/DynamicMembers(True)/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "oldStart": 0,
+      "oldLines": 0,
+      "newStart": 1,
+      "newLines": 67,
+      "removed": [],
+      "added": [
+        "﻿// <auto-generated />",
+        "",
+        "#pragma warning disable 618, 612, 414, 168, CS1591, SA1129, SA1309, SA1312, SA1403, SA1649",
+        "",
+        "using MsgPack = global::MessagePack;",
+        "",
+        "[assembly: MsgPack::Internal.GeneratedAssemblyMessagePackResolverAttribute(typeof(MessagePack.GeneratedMessagePackResolver), 3, 0)]",
+        "",
+        "namespace MessagePack {",
+        "",
+        "/// <summary>A MessagePack resolver that uses generated formatters for types in this assembly.</summary>",
+        "partial class GeneratedMessagePackResolver : MsgPack::IFormatterResolver",
+        "{",
+        "\t/// <summary>An instance of this resolver that only returns formatters specifically generated for types in this assembly.</summary>",
+        "\tpublic static readonly MsgPack::IFormatterResolver Instance = new GeneratedMessagePackResolver();",
+        "",
+        "\tprivate GeneratedMessagePackResolver()",
+        "\t{",
+        "\t}",
+        "",
+        "\tpublic MsgPack::Formatters.IMessagePackFormatter<T> GetFormatter<T>()",
+        "\t{",
+        "\t\treturn FormatterCache<T>.Formatter;",
+        "\t}",
+        "",
+        "\tprivate static class FormatterCache<T>",
+        "\t{",
+        "\t\tinternal static readonly MsgPack::Formatters.IMessagePackFormatter<T> Formatter;",
+        "",
+        "\t\tstatic FormatterCache()",
+        "\t\t{",
+        "\t\t\tvar f = GeneratedMessagePackResolverGetFormatterHelper.GetFormatter(typeof(T));",
+        "\t\t\tif (f != null)",
+        "\t\t\t{",
+        "\t\t\t\tFormatter = (MsgPack::Formatters.IMessagePackFormatter<T>)f;",
+        "\t\t\t}",
+        "\t\t}",
+        "\t}",
+        "",
+        "\tprivate static class GeneratedMessagePackResolverGetFormatterHelper",
+        "\t{",
+        "\t\tprivate static readonly global::System.Collections.Generic.Dictionary<global::System.Type, int> closedTypeLookup = new global::System.Collections.Generic.Dictionary<global::System.Type, int>(3)",
+        "\t\t{",
+        "\t\t\t{ typeof(object[]), 0 },",
+        "\t\t\t{ typeof(global::System.Collections.Generic.List<object>), 1 },",
+        "\t\t\t{ typeof(global::AnObject), 2 },",
+        "\t\t};",
+        "",
+        "\t\tinternal static object GetFormatter(global::System.Type t)",
+        "\t\t{",
+        "\t\t\tif (closedTypeLookup.TryGetValue(t, out int closedKey))",
+        "\t\t\t{",
+        "\t\t\t\tswitch (closedKey)",
+        "\t\t\t\t{",
+        "\t\t\t\t\tcase 0: return new MsgPack::Formatters.ArrayFormatter<object>();",
+        "\t\t\t\t\tcase 1: return new MsgPack::Formatters.ListFormatter<object>();",
+        "\t\t\t\t\tcase 2: return new global::MessagePack.GeneratedMessagePackResolver.AnObjectFormatter();",
+        "\t\t\t\t\tdefault: return null; // unreachable",
+        "\t\t\t\t};",
+        "\t\t\t}",
+        "",
+        "\t\t\treturn null;",
+        "\t\t}",
+        "\t}",
+        "}",
+        "",
+        "}"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "inventory",
+      "check": "inventory",
+      "domain": "general",
+      "asserts": "every changed file is classified",
+      "performedBy": "reviewproof 0.1.0 (static check, in-process)",
+      "commands": [
+        "node src/cli.ts check holdout"
+      ],
+      "commits": [
+        "32258fdbee4bcd653c79f51b4376b5103c6f4d27",
+        "5dd36d196371f394879ee9f215255ef5cc53d1ad"
+      ],
+      "status": "passed",
+      "summary": "7 files, +336/-0: 2 source (11 lines), 1 test (29 lines), 4 test-snapshot (296 lines).",
+      "durationMs": 0,
+      "logs": [],
+      "details": {
+        "totals": {
+          "files": 7,
+          "added": 336,
+          "removed": 0,
+          "byClass": {
+            "source": {
+              "files": 2,
+              "lines": 11
+            },
+            "test": {
+              "files": 1,
+              "lines": 29
+            },
+            "test-snapshot": {
+              "files": 4,
+              "lines": 296
+            }
+          }
+        },
+        "unclassified": [],
+        "binary": []
+      }
+    },
+    {
+      "id": "pattern-groups",
+      "check": "pattern-groups",
+      "domain": "general",
+      "asserts": "every repetitive file changed in the same way as its group",
+      "performedBy": "reviewproof 0.1.0 (static check, in-process)",
+      "commands": [
+        "node src/cli.ts check holdout"
+      ],
+      "commits": [
+        "32258fdbee4bcd653c79f51b4376b5103c6f4d27",
+        "5dd36d196371f394879ee9f215255ef5cc53d1ad"
+      ],
+      "status": "passed",
+      "summary": "No change recurs in 3 or more of the 4 repetitive files; nothing to group.",
+      "durationMs": 0,
+      "logs": [],
+      "details": {
+        "eligibleFiles": 4,
+        "groups": [],
+        "deviating": []
+      }
+    },
+    {
+      "id": "public-surface",
+      "check": "public-surface",
+      "domain": "backend",
+      "asserts": "no public declaration, public API entry or diagnostic ID was added, removed or changed",
+      "performedBy": "reviewproof 0.1.0 (static check, in-process)",
+      "commands": [
+        "node src/cli.ts check holdout"
+      ],
+      "commits": [
+        "32258fdbee4bcd653c79f51b4376b5103c6f4d27",
+        "5dd36d196371f394879ee9f215255ef5cc53d1ad"
+      ],
+      "status": "passed",
+      "summary": "No public declaration, API file entry or diagnostic ID changed.",
+      "durationMs": 0,
+      "logs": [],
+      "details": {
+        "hits": []
+      }
+    },
+    {
+      "id": "tests-at-head:MessagePack.SourceGenerator.Tests",
+      "check": "tests-at-head",
+      "domain": "backend",
+      "asserts": "every test the change added or modified passes at head",
+      "performedBy": "dotnet test in container mcr.microsoft.com/dotnet/sdk:8.0.402-jammy",
+      "commands": [
+        "docker run --rm --user 1000:1000 -e HOME=/home/huyhoangle/junction/review-proof/.work/home -e DOTNET_CLI_HOME=/home/huyhoangle/junction/review-proof/.work/home -e NUGET_PACKAGES=/home/huyhoangle/junction/review-proof/.work/nuget -e DOTNET_CLI_TELEMETRY_OPTOUT=1 -e DOTNET_NOLOGO=1 -v /home/huyhoangle/junction/review-proof/.work:/home/huyhoangle/junction/review-proof/.work -v /home/huyhoangle/junction/review-proof/.work/repos:/home/huyhoangle/junction/review-proof/.work/repos:ro -w /home/huyhoangle/junction/review-proof/.work/wt/5dd36d196371f394879ee9f215255ef5cc53d1ad mcr.microsoft.com/dotnet/sdk:8.0.402-jammy dotnet test tests/MessagePack.SourceGenerator.Tests/MessagePack.SourceGenerator.Tests.csproj --logger 'trx;LogFileName=head.MessagePack.SourceGenerator.Tests.trx' --results-directory /home/huyhoangle/junction/review-proof/.work/results/data_cases_holdout_runs/head.MessagePack.SourceGenerator.Tests"
+      ],
+      "commits": [
+        "5dd36d196371f394879ee9f215255ef5cc53d1ad"
+      ],
+      "status": "passed",
+      "summary": "2 of 2 changed tests pass at head.",
+      "tests": [
+        {
+          "name": "GenerationTests.DynamicMembers(keyAsPropertyName: False)",
+          "outcome": "passed",
+          "new": true
+        },
+        {
+          "name": "GenerationTests.DynamicMembers(keyAsPropertyName: True)",
+          "outcome": "passed",
+          "new": true
+        }
+      ],
+      "durationMs": 34629,
+      "logs": [
+        "data/cases/holdout/runs/head.MessagePack.SourceGenerator.Tests.log",
+        "data/cases/holdout/runs/head.MessagePack.SourceGenerator.Tests.trx"
+      ]
+    },
+    {
+      "id": "tests-without-change:MessagePack.SourceGenerator.Tests",
+      "check": "tests-without-change",
+      "domain": "backend",
+      "asserts": "every changed test that passes at head fails with the base source",
+      "performedBy": "dotnet test in container mcr.microsoft.com/dotnet/sdk:8.0.402-jammy",
+      "commands": [
+        "docker run --rm --user 1000:1000 -e HOME=/home/huyhoangle/junction/review-proof/.work/home -e DOTNET_CLI_HOME=/home/huyhoangle/junction/review-proof/.work/home -e NUGET_PACKAGES=/home/huyhoangle/junction/review-proof/.work/nuget -e DOTNET_CLI_TELEMETRY_OPTOUT=1 -e DOTNET_NOLOGO=1 -v /home/huyhoangle/junction/review-proof/.work:/home/huyhoangle/junction/review-proof/.work -v /home/huyhoangle/junction/review-proof/.work/repos:/home/huyhoangle/junction/review-proof/.work/repos:ro -w /home/huyhoangle/junction/review-proof/.work/wt/overlay-holdout mcr.microsoft.com/dotnet/sdk:8.0.402-jammy dotnet test tests/MessagePack.SourceGenerator.Tests/MessagePack.SourceGenerator.Tests.csproj --logger 'trx;LogFileName=without-change.MessagePack.SourceGenerator.Tests.trx' --results-directory /home/huyhoangle/junction/review-proof/.work/results/data_cases_holdout_runs/without-change.MessagePack.SourceGenerator.Tests"
+      ],
+      "commits": [
+        "32258fdbee4bcd653c79f51b4376b5103c6f4d27",
+        "5dd36d196371f394879ee9f215255ef5cc53d1ad"
+      ],
+      "status": "passed",
+      "summary": "2 of 2 changed tests that pass at head fail without the change (discriminating).",
+      "tests": [
+        {
+          "name": "GenerationTests.DynamicMembers(keyAsPropertyName: False)",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.AnObjectFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n+\n+\n"
+        },
+        {
+          "name": "GenerationTests.DynamicMembers(keyAsPropertyName: True)",
+          "head": "passed",
+          "withoutChange": "failed",
+          "discriminating": true,
+          "messageWithoutChange": "System.InvalidOperationException : Context: Source generator application\nContext: Verifying source generated files\nExpected source file list to match\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.AnObjectFormatter.g.cs\n-MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs\n+\n+\n"
+        }
+      ],
+      "durationMs": 35776,
+      "logs": [
+        "data/cases/holdout/runs/without-change.MessagePack.SourceGenerator.Tests.log",
+        "data/cases/holdout/runs/without-change.MessagePack.SourceGenerator.Tests.trx"
+      ]
+    },
+    {
+      "id": "existing-tests:MessagePack.SourceGenerator.Tests",
+      "check": "existing-tests",
+      "domain": "backend",
+      "asserts": "no pre-existing test that passed at base fails at head",
+      "performedBy": "dotnet test in container mcr.microsoft.com/dotnet/sdk:8.0.402-jammy",
+      "commands": [
+        "docker run --rm --user 1000:1000 -e HOME=/home/huyhoangle/junction/review-proof/.work/home -e DOTNET_CLI_HOME=/home/huyhoangle/junction/review-proof/.work/home -e NUGET_PACKAGES=/home/huyhoangle/junction/review-proof/.work/nuget -e DOTNET_CLI_TELEMETRY_OPTOUT=1 -e DOTNET_NOLOGO=1 -v /home/huyhoangle/junction/review-proof/.work:/home/huyhoangle/junction/review-proof/.work -v /home/huyhoangle/junction/review-proof/.work/repos:/home/huyhoangle/junction/review-proof/.work/repos:ro -w /home/huyhoangle/junction/review-proof/.work/wt/5dd36d196371f394879ee9f215255ef5cc53d1ad mcr.microsoft.com/dotnet/sdk:8.0.402-jammy dotnet test tests/MessagePack.SourceGenerator.Tests/MessagePack.SourceGenerator.Tests.csproj --logger 'trx;LogFileName=head.MessagePack.SourceGenerator.Tests.trx' --results-directory /home/huyhoangle/junction/review-proof/.work/results/data_cases_holdout_runs/head.MessagePack.SourceGenerator.Tests",
+        "docker run --rm --user 1000:1000 -e HOME=/home/huyhoangle/junction/review-proof/.work/home -e DOTNET_CLI_HOME=/home/huyhoangle/junction/review-proof/.work/home -e NUGET_PACKAGES=/home/huyhoangle/junction/review-proof/.work/nuget -e DOTNET_CLI_TELEMETRY_OPTOUT=1 -e DOTNET_NOLOGO=1 -v /home/huyhoangle/junction/review-proof/.work:/home/huyhoangle/junction/review-proof/.work -v /home/huyhoangle/junction/review-proof/.work/repos:/home/huyhoangle/junction/review-proof/.work/repos:ro -w /home/huyhoangle/junction/review-proof/.work/wt/32258fdbee4bcd653c79f51b4376b5103c6f4d27 mcr.microsoft.com/dotnet/sdk:8.0.402-jammy dotnet test tests/MessagePack.SourceGenerator.Tests/MessagePack.SourceGenerator.Tests.csproj --logger 'trx;LogFileName=base.MessagePack.SourceGenerator.Tests.trx' --results-directory /home/huyhoangle/junction/review-proof/.work/results/data_cases_holdout_runs/base.MessagePack.SourceGenerator.Tests"
+      ],
+      "commits": [
+        "5dd36d196371f394879ee9f215255ef5cc53d1ad",
+        "32258fdbee4bcd653c79f51b4376b5103c6f4d27"
+      ],
+      "status": "passed",
+      "summary": "167 pre-existing tests: 167 pass at both, 0 regressed, 0 newly pass, 0 fail at both; 0 removed at head.",
+      "tests": [
+        {
+          "name": "MsgPack014NullableRefTypeFormatterTests.RefTypeWithoutNullableAnnotationsEnabled",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterOnlyDefaultValue",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.GenericTypeArg",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack001SpecifyOptionsAnalyzerTests.InvocationWithOptions_LocalVariable",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "PrivateMemberAccessTests.FormatterForClassWithPrivateMembers(type: \"struct\", version: CSharp7_3)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.AddAttributesToMembers_MixedVisibility",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterSetter",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.AddAttributeToGenericType",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "FormatterCodeFixProviderTests.InaccessibleCustomFormatterConstructor(initialModifiers: \"private protected \", expectedModifiers: \"internal \")",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.CustomFormatterViaAttributeOnProperty(usesMapMode: True)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.MessageFormatterAttribute",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "PrivateMemberAccessTests.FormatterForClassWithPrivateMembers_NonPartialTypes(type: \"class\", languageVersion: CSharp7_3)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "CustomStringKeyFormatterTests.RecordWithPrimaryConstructor",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.EnumFormatter_CollidingTypeNames",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenericsFormatterTests.NestedGenericTypes",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "FullModelTests.Equals_ByValue",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.SimplifiedNameForKeywordsAndSyntaxSugar",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.CustomFormatterWithSingletonPattern",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "FullModelTests.Equals_Null",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.EnumFormatter(container: None, usesMapMode: False)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MultipleTypesTests.TwoTypes(usesMapMode: True)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "ImplicitResolverForCustomFormattersTests.MultipleFunctionalCustomFormattersForType_OnlyOneNonExcluded",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.InterfaceUnionUsedWithNullableRefAnnotation",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterOnlyWithParameterizedConstructorDefaultValue",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.InitPropertyInitializer",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "FormatterCodeFixProviderTests.InaccessibleCustomFormatterConstructor(initialModifiers: \"protected \", expectedModifiers: \"protected internal \")",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterOnlyWithParameterizedConstructor",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "CompositeResolverGeneratorTests.CompositeResolver_MixedResolverTypes",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterSetterWithParameterizedConstructorDoNotUseSetter",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.SystemMemoryTypes",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.CustomFormatterForGenericWithConstraints",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "PrivateMemberAccessTests.FormatterForClassWithPrivateMembers_MapMode",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack011PartialTypeRequiredTests.CodeFixOffered",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenericsFormatterTests.Generics_Constraints_Struct",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.NoFieldWithCustomFormatterCollected",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack011PartialTypeRequiredTests.NestedPartialTypeRequiresPartialDeclaringType",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.GenericType_CollidingTypeNames",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack002UseConstantOptionsAnalyzerTests.Properties",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.SystemCollectionsObjectModelCollection",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.Array2DJaggedProperty",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "PrivateMemberAccessTests.FormatterForClassWithPrivateMembers_NonPartialTypes(type: \"struct\", languageVersion: CSharp7_3)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.EnumFormatter(container: Namespace, usesMapMode: False)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterSetterWithDefaultValueInputPartially",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack015AllowPrivateRequiredTests.AddWhenNonPublicPropertyIsAnnotated",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack014NullableRefTypeFormatterTests.RefTypeWithoutNullableGetsFixed",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.AddAttributeToType_Fields",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.AddAttributesToMembers_AllowPrivateAttribute",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterOnlyWithParameterizedConstructorPartially",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.AdditionalFormatterTypes_RedundantAttribute",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "FormatterCodeFixProviderTests.InaccessibleCustomFormatterConstructor(initialModifiers: \"\", expectedModifiers: \"internal \")",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "CompositeResolverGeneratorTests.CompositeResolver_Nested",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "ImplicitResolverForCustomFormattersTests.CustomFormatterWithoutDefaultConstructor",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.NameCollisionsInForceMapMode",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.CustomFormatterViaAttributeOnField(usesMapMode: False)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack015AllowPrivateRequiredTests.AddForPublicTypeNestedUnderNonPublicType",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.PrivateMembersInBaseClassNeedNoAttribution",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.UnionFormatter(container: None)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterSetterWithParameterizedConstructorPartially",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterOnlyMixed",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.EnumFormatter(container: None, usesMapMode: True)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "PrivateMemberAccessTests.FormatterForClassWithPrivateMembers_WithNamespace",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenericsFormatterTests.Generics_Constraints_NullableReferenceType",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack015AllowPrivateRequiredTests.AddForNonPublicType",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "FormatterCodeFixProviderTests.InaccessibleCustomFormatterType(initialModifiers: \"protected \", expectedModifiers: \"protected internal \")",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MemberSerializationInfoTests.Equals_ByValue",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.MixType_CollidingTypeNames",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack011PartialTypeRequiredTests.NestedPartialTypeRequiresPartialSelfAndDeclaringType",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack001SpecifyOptionsAnalyzerTests.Invocation_ExplicitlyNull",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.DerivedAttributes_SourceGenerationDisabled",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenericsFormatterTests.Generics_Constraints_ReferenceType_Nullable",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.AddAttributesToMembers_PublicOnly",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.GenericDataTypeWithPrivateMember",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack014NullableRefTypeFormatterTests.ValueTypeWithoutNullableAnnotation",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "PrivateMemberAccessTests.FormatterForClassWithPrivateMembers_Nested_NonPartialTypes(type: \"class\", languageVersion: CSharp7_3)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.DeserializingConstructorParameterMemberTypeAssignability_MemberAssignsToParamType",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenericsFormatterTests.Generics_Constraints_Type",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.NestedMessagePackObjects",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "FormatterCodeFixProviderTests.InaccessibleCustomFormatterType(initialModifiers: \"\", expectedModifiers: \"internal \")",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "FormatterCodeFixProviderTests.InaccessibleCustomFormatterType(initialModifiers: \"private protected \", expectedModifiers: \"internal \")",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.AddAttributesToMembersOfRecordStruct",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.UnionFormatter(container: NestingClass)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "FormatterCodeFixProviderTests.InaccessibleCustomFormatterType(initialModifiers: \"private \", expectedModifiers: \"internal \")",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.EnumFormatter(container: NestingClass, usesMapMode: True)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.AddAttributesToMembersOfRecordWithPrimaryCtor",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.InvalidMessageFormatterType",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.AddAttributesToMembersOfRecord",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.CodeFixAppliesAcrossFiles",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenericsFormatterTests.RecursiveGenerics_Direct",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.AdditionalFormatterTypes",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.AddIgnoreAttributesToMembers",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.AddAttributeToType_Nullable",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.EmbeddedTypes",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "CustomStringKeyFormatterTests.RecordWithWithInitOnlyProps",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.DerivedAttributes",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.UnionFormatter(container: Namespace)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "PrivateMemberAccessTests.FormatterForClassWithPrivateMembers(type: \"record\", version: CSharp9)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.GenericCustomFormatter",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "ImplicitResolverForCustomFormattersTests.MultipleFunctionalCustomFormattersForType_MultiFormatter",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.DeserializingConstructorParameterMemberTypeAssignability_Incompatible",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack015AllowPrivateRequiredTests.AddForNonPublicDeserializingConstructor",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.AdditionalAllowTypes",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.DoNotAddAttributesToClassWithPrimaryCtor",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack014NullableRefTypeFormatterTests.RefTypeWithNullableAnnotation",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack002UseConstantOptionsAnalyzerTests.Invocation_WithImmutableStaticOptions",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "PrivateMemberAccessTests.FormatterForClassWithPrivateMembers_NonPartialTypes(type: \"record\", languageVersion: CSharp9)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.ExcludeFormatterFromSourceGeneratedResolver",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack002UseConstantOptionsAnalyzerTests.Invocation_WithImmutableStaticOptions_VB",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.NullStringKey",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "ImplicitResolverForCustomFormattersTests.MultipleFunctionalCustomFormattersForType",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.NonGenericType_CollidingTypeNames",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "PrivateMemberAccessTests.FormatterForClassWithPrivateMembers(type: \"class\", version: CSharp7_3)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack001SpecifyOptionsAnalyzerTests.Invocation_OmittedOptionalParameter_VB",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.NoGenerationForAnnotationOnly",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MultipleTypesTests.TwoTypes(usesMapMode: False)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.AddAttributeToType_Properties",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.AddAttributeToType_Generic",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenericsFormatterTests.Generics_Defined_In_ReferencedProject",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenericsFormatterTests.Generics_Constraints_Multiple",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack001SpecifyOptionsAnalyzerTests.Invocation_OmittedOptionalParameter",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenericsFormatterTests.GenericsUnionFormatter_Nested",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterSetterWithParameterizedConstructor",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenericsFormatterTests.GenericsOfTFormatter_WithKnownTypes",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack002UseConstantOptionsAnalyzerTests.Invocation_WithMutableStaticOptions",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.AbstractFormatterDoesNotAttractAttention",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.GenericWithConstraintsThatReferenceTypeParameter",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenericsFormatterTests.NullableFormatter",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack002UseConstantOptionsAnalyzerTests.Fields",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.AddAttributeToTypeForRecordPrimaryConstructor",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "PrivateMemberAccessTests.FormatterForClassWithPrivateMembers(type: \"record struct\", version: CSharp10)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.AddAttributeToField_WithComment",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.GenericType",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "UnionSerializationInfoTests.Equals_ByValue",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.CustomFormatterViaAttributeOnProperty(usesMapMode: False)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterSetterWithDefaultValue",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.NoMessagePackReference",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenericsFormatterTests.GenericsOfT1T2Formatter",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenericsFormatterTests.GenericsUnionFormatter",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.NoPrivateAccessNeeded",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.NonDefaultDeserializingConstructor_Private",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "ImplicitResolverForCustomFormattersTests.CustomFormatterWithoutDefaultConstructor_Excluded",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterOnlyIgnore",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenericsFormatterTests.GenericsOfTFormatter",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.CustomFormatterViaAttributeOnField(usesMapMode: True)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.AddAttributesToMembersOfRecordStructWithPrimaryCtor",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack002UseConstantOptionsAnalyzerTests.Members_BasedOnStaticOptions",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "PrivateMemberAccessTests.FormatterForClassWithPrivateMembers_Nested_NonPartialTypes(type: \"record\", languageVersion: CSharp9)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.EnumFormatter(container: NestingClass, usesMapMode: False)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.EnumFormatter(container: Namespace, usesMapMode: True)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.SpecifyFormatterFromStockSet",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.NestedMessagePackObjects_Array",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MessagePackFormatterAttributeTests.CanGenerateMessagePackFormatterAttr",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "FormatterCodeFixProviderTests.InaccessibleCustomFormatterConstructor(initialModifiers: \"private \", expectedModifiers: \"internal \")",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.NoPrivateMemberCollected",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.AddAttributeToTypeForRecord2",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack012InaccessibleDataTypeTests.InaccessibleNestedDataType_OuterNesting",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenericsFormatterTests.WellKnownGenericsFormatter",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.ImplicitFormatterTypes",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MultipleTypesTests.ZeroTypes",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "ImplicitResolverForCustomFormattersTests.OpenGenericFormatter",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "PrivateMemberAccessTests.FormatterForClassWithPrivateMembers_Nested_NonPartialTypes(type: \"struct\", languageVersion: CSharp7_3)",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.AddAttributesToMembers",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenerationTests.ArrayTypedProperty",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "GenericsFormatterTests.GenericsOfTFormatter_FormatterOnly",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack00xAnalyzerTests.AddAttributeToTypeForRecord1",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack012InaccessibleDataTypeTests.InaccessibleNestedDataType",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "StringKeyedFormatterTests.PropertiesGetterSetterWithParameterizedConstructorAndDefaultValue",
+          "base": "passed",
+          "head": "passed"
+        },
+        {
+          "name": "MsgPack015AllowPrivateRequiredTests.SetWhenNonPublicPropertyIsAnnotated",
+          "base": "passed",
+          "head": "passed"
+        }
+      ],
+      "durationMs": 71371,
+      "logs": [
+        "data/cases/holdout/runs/head.MessagePack.SourceGenerator.Tests.log",
+        "data/cases/holdout/runs/head.MessagePack.SourceGenerator.Tests.trx",
+        "data/cases/holdout/runs/base.MessagePack.SourceGenerator.Tests.log",
+        "data/cases/holdout/runs/base.MessagePack.SourceGenerator.Tests.trx"
+      ],
+      "details": {
+        "preExisting": 167,
+        "removedAtHead": []
+      }
+    },
+    {
+      "id": "issue-reproduction",
+      "check": "issue-reproduction",
+      "domain": "general",
+      "asserts": "a test the change added contains a code block from the requirement",
+      "performedBy": "reviewproof 0.1.0 (static check, in-process)",
+      "commands": [
+        "node src/cli.ts check holdout"
+      ],
+      "commits": [
+        "32258fdbee4bcd653c79f51b4376b5103c6f4d27",
+        "5dd36d196371f394879ee9f215255ef5cc53d1ad"
+      ],
+      "status": "failed",
+      "summary": "0 of 2 code blocks in the requirement appear (ignoring whitespace) in added test lines.",
+      "durationMs": 0,
+      "logs": [],
+      "details": {
+        "blocks": [
+          {
+            "block": 1,
+            "chars": 83,
+            "firstLine": "[MessagePackObject(keyAsPropertyName: true)]",
+            "foundIn": []
+          },
+          {
+            "block": 2,
+            "chars": 412,
+            "firstLine": "CSC : error CS8785: Generator 'MessagePackGenerator' failed to generate source. It will not contribu",
+            "foundIn": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "security-surface",
+      "check": "security-surface",
+      "domain": "security",
+      "asserts": "no build or dependency file changed and no added line matches a security-sensitive pattern",
+      "performedBy": "reviewproof 0.1.0 (static check, in-process)",
+      "commands": [
+        "node src/cli.ts check holdout"
+      ],
+      "commits": [
+        "32258fdbee4bcd653c79f51b4376b5103c6f4d27",
+        "5dd36d196371f394879ee9f215255ef5cc53d1ad"
+      ],
+      "status": "passed",
+      "summary": "Pattern scan found nothing; this is not proof that no vulnerability exists.",
+      "durationMs": 0,
+      "logs": [],
+      "details": {
+        "buildConfigFiles": [],
+        "hits": []
+      }
+    },
+    {
+      "id": "citation-validation",
+      "check": "citation-validation",
+      "domain": "general",
+      "asserts": "every model citation's quote is found at the stated file, lines and commit",
+      "performedBy": "reviewproof 0.1.0 (in-process)",
+      "commands": [
+        "node src/cli.ts assemble holdout"
+      ],
+      "commits": [
+        "32258fdbee4bcd653c79f51b4376b5103c6f4d27",
+        "5dd36d196371f394879ee9f215255ef5cc53d1ad"
+      ],
+      "status": "passed",
+      "summary": "42 of 42 citations resolved; 0 dropped as unresolvable; 0 reference(s) to unknown requirements, evidence, tests or hunks dropped.",
+      "durationMs": 0,
+      "logs": [
+        "data/cases/holdout/review/e1ca0f843b95dc1fcce6f6f5de288a8238b5f42929cab6c46c77704c4b61f53c.json"
+      ],
+      "details": {
+        "citations": 42,
+        "resolved": 42,
+        "dropped": [],
+        "invalidRefs": []
+      }
+    }
+  ],
+  "claims": [
+    {
+      "id": "C1",
+      "statement": "QualifiedTypeName.Create now maps an IDynamicTypeSymbol to a QualifiedNamedTypeName representing System.Object instead of allowing that symbol to reach the default NotSupportedException arm.",
+      "requirementIds": [
+        "R1",
+        "R2"
+      ],
+      "evidenceIds": [
+        "tests-at-head:MessagePack.SourceGenerator.Tests",
+        "tests-without-change:MessagePack.SourceGenerator.Tests"
+      ],
+      "testNames": [
+        "GenerationTests.DynamicMembers(keyAsPropertyName: False)",
+        "GenerationTests.DynamicMembers(keyAsPropertyName: True)"
+      ],
+      "hunkIds": [
+        "H2"
+      ],
+      "citations": [
+        {
+          "path": "src/MessagePack.SourceGenerator/CodeAnalysis/QualifiedTypeName.cs",
+          "commit": "5dd36d196371f394879ee9f215255ef5cc53d1ad",
+          "startLine": 26,
+          "endLine": 26,
+          "quote": "IDynamicTypeSymbol => new QualifiedNamedTypeName(TypeKind.Class)"
+        },
+        {
+          "path": "src/MessagePack.SourceGenerator/CodeAnalysis/QualifiedTypeName.cs",
+          "commit": "5dd36d196371f394879ee9f215255ef5cc53d1ad",
+          "startLine": 28,
+          "endLine": 28,
+          "quote": "Name = \"Object\","
+        },
+        {
+          "path": "src/MessagePack.SourceGenerator/CodeAnalysis/QualifiedTypeName.cs",
+          "commit": "5dd36d196371f394879ee9f215255ef5cc53d1ad",
+          "startLine": 29,
+          "endLine": 29,
+          "quote": "Container = new NamespaceTypeContainer(\"System\"),"
+        },
+        {
+          "path": "src/MessagePack.SourceGenerator/CodeAnalysis/QualifiedTypeName.cs",
+          "commit": "5dd36d196371f394879ee9f215255ef5cc53d1ad",
+          "startLine": 32,
+          "endLine": 32,
+          "quote": "_ => throw new NotSupportedException(),"
+        }
+      ],
+      "state": "proven",
+      "stateReason": "test GenerationTests.DynamicMembers(keyAsPropertyName: False) passes at head and fails without the change"
+    },
+    {
+      "id": "C2",
+      "statement": "When a member's recorded type is exactly dynamic or dynamic?, serialization wraps the member access in an object cast before emitting the custom or resolved formatter call, preventing the member value from making that invocation dynamically dispatched.",
+      "requirementIds": [
+        "R1",
+        "R2"
+      ],
+      "evidenceIds": [
+        "tests-at-head:MessagePack.SourceGenerator.Tests",
+        "tests-without-change:MessagePack.SourceGenerator.Tests"
+      ],
+      "testNames": [
+        "GenerationTests.DynamicMembers(keyAsPropertyName: False)",
+        "GenerationTests.DynamicMembers(keyAsPropertyName: True)"
+      ],
+      "hunkIds": [
+        "H1"
+      ],
+      "citations": [
+        {
+          "path": "src/MessagePack.SourceGenerator/CodeAnalysis/MemberSerializationInfo.cs",
+          "commit": "5dd36d196371f394879ee9f215255ef5cc53d1ad",
+          "startLine": 35,
+          "endLine": 35,
+          "quote": "if (this.Type is \"dynamic\" or \"dynamic?\")"
+        },
+        {
+          "path": "src/MessagePack.SourceGenerator/CodeAnalysis/MemberSerializationInfo.cs",
+          "commit": "5dd36d196371f394879ee9f215255ef5cc53d1ad",
+          "startLine": 37,
+          "endLine": 37,
+          "quote": "// Dynamic dispatch cannot pass the ref struct writer to the formatter."
+        },
+        {
+          "path": "src/MessagePack.SourceGenerator/CodeAnalysis/MemberSerializationInfo.cs",
+          "commit": "5dd36d196371f394879ee9f215255ef5cc53d1ad",
+          "startLine": 38,
+          "endLine": 38,
+          "quote": "memberRead = $\"(object){memberRead}\";"
+        },
+        {
+          "path": "src/MessagePack.SourceGenerator/CodeAnalysis/MemberSerializationInfo.cs",
+          "commit": "5dd36d196371f394879ee9f215255ef5cc53d1ad",
+          "startLine": 51,
+          "endLine": 51,
+          "quote": "return $\"MsgPack::FormatterResolverExtensions.GetFormatterWithVerify<{this.Type}>(formatterResolver).Serialize(ref writer, {memberRead}, options)\";"
+        }
+      ],
+      "state": "proven",
+      "stateReason": "test GenerationTests.DynamicMembers(keyAsPropertyName: False) passes at head and fails without the change"
+    },
+    {
+      "id": "C3",
+      "statement": "The new DynamicMembers theory runs source-generation verification for both keyAsPropertyName values over a dynamic field, dynamic property, dynamic array, and List<dynamic>.",
+      "requirementIds": [
+        "R1",
+        "R2"
+      ],
+      "evidenceIds": [
+        "tests-at-head:MessagePack.SourceGenerator.Tests",
+        "tests-without-change:MessagePack.SourceGenerator.Tests"
+      ],
+      "testNames": [
+        "GenerationTests.DynamicMembers(keyAsPropertyName: False)",
+        "GenerationTests.DynamicMembers(keyAsPropertyName: True)"
+      ],
+      "hunkIds": [
+        "H3"
+      ],
+      "citations": [
+        {
+          "path": "tests/MessagePack.SourceGenerator.Tests/GenerationTests.cs",
+          "commit": "5dd36d196371f394879ee9f215255ef5cc53d1ad",
+          "startLine": 26,
+          "endLine": 26,
+          "quote": "public async Task DynamicMembers(bool keyAsPropertyName)"
+        },
+        {
+          "path": "tests/MessagePack.SourceGenerator.Tests/GenerationTests.cs",
+          "commit": "5dd36d196371f394879ee9f215255ef5cc53d1ad",
+          "startLine": 36,
+          "endLine": 36,
+          "quote": "public dynamic value;"
+        },
+        {
+          "path": "tests/MessagePack.SourceGenerator.Tests/GenerationTests.cs",
+          "commit": "5dd36d196371f394879ee9f215255ef5cc53d1ad",
+          "startLine": 39,
+          "endLine": 39,
+          "quote": "public dynamic Property { get; set; }"
+        },
+        {
+          "path": "tests/MessagePack.SourceGenerator.Tests/GenerationTests.cs",
+          "commit": "5dd36d196371f394879ee9f215255ef5cc53d1ad",
+          "startLine": 42,
+          "endLine": 42,
+          "quote": "public dynamic[] Array { get; set; }"
+        },
+        {
+          "path": "tests/MessagePack.SourceGenerator.Tests/GenerationTests.cs",
+          "commit": "5dd36d196371f394879ee9f215255ef5cc53d1ad",
+          "startLine": 45,
+          "endLine": 45,
+          "quote": "public List<dynamic> List { get; set; }"
+        },
+        {
+          "path": "tests/MessagePack.SourceGenerator.Tests/GenerationTests.cs",
+          "commit": "5dd36d196371f394879ee9f215255ef5cc53d1ad",
+          "startLine": 49,
+          "endLine": 49,
+          "quote": "await VerifyCS.Test.RunDefaultAsync(this.testOutputHelper, testSource, testMethod: $\"{nameof(DynamicMembers)}({keyAsPropertyName})\");"
+        }
+      ],
+      "state": "proven",
+      "stateReason": "test GenerationTests.DynamicMembers(keyAsPropertyName: False) passes at head and fails without the change"
+    },
+    {
+      "id": "C4",
+      "statement": "The committed outputs require object-cast arguments for direct dynamic member serialization in both array- and map-keyed formatters, while the generated resolver registrations erase dynamic within object[] and List<object>.",
+      "requirementIds": [
+        "R1",
+        "R2"
+      ],
+      "evidenceIds": [
+        "tests-at-head:MessagePack.SourceGenerator.Tests",
+        "tests-without-change:MessagePack.SourceGenerator.Tests"
+      ],
+      "testNames": [
+        "GenerationTests.DynamicMembers(keyAsPropertyName: False)",
+        "GenerationTests.DynamicMembers(keyAsPropertyName: True)"
+      ],
+      "hunkIds": [
+        "H4",
+        "H5",
+        "H6",
+        "H7"
+      ],
+      "citations": [
+        {
+          "path": "tests/MessagePack.SourceGenerator.Tests/Resources/DynamicMembers(False)/Formatters.MessagePack.GeneratedMessagePackResolver.AnObjectFormatter.g.cs",
+          "commit": "5dd36d196371f394879ee9f215255ef5cc53d1ad",
+          "startLine": 25,
+          "endLine": 25,
+          "quote": "MsgPack::FormatterResolverExtensions.GetFormatterWithVerify<dynamic>(formatterResolver).Serialize(ref writer, (object)value.value, options);"
+        },
+        {
+          "path": "tests/MessagePack.SourceGenerator.Tests/Resources/DynamicMembers(True)/Formatters.MessagePack.GeneratedMessagePackResolver.AnObjectFormatter.g.cs",
+          "commit": "5dd36d196371f394879ee9f215255ef5cc53d1ad",
+          "startLine": 31,
+          "endLine": 31,
+          "quote": "MsgPack::FormatterResolverExtensions.GetFormatterWithVerify<dynamic>(formatterResolver).Serialize(ref writer, (object)value.value, options);"
+        },
+        {
+          "path": "tests/MessagePack.SourceGenerator.Tests/Resources/DynamicMembers(False)/MessagePack.GeneratedMessagePackResolver.g.cs",
+          "commit": "5dd36d196371f394879ee9f215255ef5cc53d1ad",
+          "startLine": 44,
+          "endLine": 44,
+          "quote": "{ typeof(object[]), 0 },"
+        },
+        {
+          "path": "tests/MessagePack.SourceGenerator.Tests/Resources/DynamicMembers(False)/MessagePack.GeneratedMessagePackResolver.g.cs",
+          "commit": "5dd36d196371f394879ee9f215255ef5cc53d1ad",
+          "startLine": 45,
+          "endLine": 45,
+          "quote": "{ typeof(global::System.Collections.Generic.List<object>), 1 },"
+        },
+        {
+          "path": "tests/MessagePack.SourceGenerator.Tests/Resources/DynamicMembers(True)/MessagePack.GeneratedMessagePackResolver.g.cs",
+          "commit": "5dd36d196371f394879ee9f215255ef5cc53d1ad",
+          "startLine": 44,
+          "endLine": 44,
+          "quote": "{ typeof(object[]), 0 },"
+        },
+        {
+          "path": "tests/MessagePack.SourceGenerator.Tests/Resources/DynamicMembers(True)/MessagePack.GeneratedMessagePackResolver.g.cs",
+          "commit": "5dd36d196371f394879ee9f215255ef5cc53d1ad",
+          "startLine": 45,
+          "endLine": 45,
+          "quote": "{ typeof(global::System.Collections.Generic.List<object>), 1 },"
+        }
+      ],
+      "state": "proven",
+      "stateReason": "test GenerationTests.DynamicMembers(keyAsPropertyName: False) passes at head and fails without the change"
+    },
+    {
+      "id": "C5",
+      "statement": "The source changes leave all 167 pre-existing MessagePack.SourceGenerator.Tests cases that passed at base passing at head.",
+      "requirementIds": [],
+      "evidenceIds": [
+        "existing-tests:MessagePack.SourceGenerator.Tests"
+      ],
+      "testNames": [],
+      "hunkIds": [
+        "H1",
+        "H2"
+      ],
+      "citations": [
+        {
+          "path": "src/MessagePack.SourceGenerator/CodeAnalysis/MemberSerializationInfo.cs",
+          "commit": "5dd36d196371f394879ee9f215255ef5cc53d1ad",
+          "startLine": 32,
+          "endLine": 32,
+          "quote": "public string GetSerializeMethodString()"
+        },
+        {
+          "path": "src/MessagePack.SourceGenerator/CodeAnalysis/QualifiedTypeName.cs",
+          "commit": "5dd36d196371f394879ee9f215255ef5cc53d1ad",
+          "startLine": 19,
+          "endLine": 19,
+          "quote": "public static QualifiedTypeName Create(ITypeSymbol symbol, ImmutableStack<GenericTypeParameterInfo>? recursionGuard = null)"
+        }
+      ],
+      "state": "argued",
+      "stateReason": "2 resolved citation(s) and no run that supports it"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "D1",
+      "statement": "The change represents dynamic as System.Object in the qualified-type model and generated resolver registrations, while retaining dynamic in emitted formatter type arguments and adding an object cast only at direct dynamic member access.",
+      "whyHuman": "The requirement asks for successful, silent generation but does not prescribe the semantic representation of dynamic. Tests and snapshots can lock down a selected representation; they cannot establish which representation best preserves the intended model equality, resolver registration, and generated-code conventions.",
+      "options": [
+        "Map dynamic to System.Object in the model and resolver registrations, retain dynamic in formatter source, and cast direct member values to object (the approach in this change).",
+        "Introduce or retain a dynamic-specific QualifiedTypeName representation and defer erasure to object until particular emission or registration operations.",
+        "Normalize dynamic to object consistently in both the model and emitted formatter source, rather than retaining dynamic type arguments."
+      ],
+      "hunkIds": [
+        "H1",
+        "H2",
+        "H4",
+        "H5",
+        "H6",
+        "H7"
+      ],
+      "citations": [
+        {
+          "path": "src/MessagePack.SourceGenerator/CodeAnalysis/QualifiedTypeName.cs",
+          "commit": "5dd36d196371f394879ee9f215255ef5cc53d1ad",
+          "startLine": 26,
+          "endLine": 26,
+          "quote": "IDynamicTypeSymbol => new QualifiedNamedTypeName(TypeKind.Class)"
+        },
+        {
+          "path": "src/MessagePack.SourceGenerator/CodeAnalysis/MemberSerializationInfo.cs",
+          "commit": "5dd36d196371f394879ee9f215255ef5cc53d1ad",
+          "startLine": 38,
+          "endLine": 38,
+          "quote": "memberRead = $\"(object){memberRead}\";"
+        },
+        {
+          "path": "tests/MessagePack.SourceGenerator.Tests/Resources/DynamicMembers(True)/MessagePack.GeneratedMessagePackResolver.g.cs",
+          "commit": "5dd36d196371f394879ee9f215255ef5cc53d1ad",
+          "startLine": 44,
+          "endLine": 44,
+          "quote": "{ typeof(object[]), 0 },"
+        }
+      ],
+      "raisedBy": {
+        "kind": "model",
+        "name": "kimi-k3-1-pro"
+      }
+    },
+    {
+      "id": "D2",
+      "statement": "The change is scoped to dynamic support: the generic unsupported-symbol exception remains without method context, and no IgnoreSourceGenerationIfUnknownAndIfAlreadyReportedUpstream attribute is added.",
+      "whyHuman": "The requirement phrases the enhanced error and attribute as nice-to-have or perhaps suggestions, not unambiguous acceptance criteria. Whether to expand this fix's diagnostic and public-API scope is a maintainer decision that generation tests cannot settle.",
+      "options": [
+        "Implement only the dynamic crash fix and leave both optional suggestions for separate work, as this change does.",
+        "Also add contextual information identifying the unsupported method or symbol to residual generation failures.",
+        "Also design and add the suggested opt-out attribute for unknown types already reported upstream.",
+        "Implement both optional suggestions together with the dynamic fix."
+      ],
+      "hunkIds": [
+        "H2"
+      ],
+      "citations": [
+        {
+          "path": "src/MessagePack.SourceGenerator/CodeAnalysis/QualifiedTypeName.cs",
+          "commit": "5dd36d196371f394879ee9f215255ef5cc53d1ad",
+          "startLine": 32,
+          "endLine": 32,
+          "quote": "_ => throw new NotSupportedException(),"
+        }
+      ],
+      "raisedBy": {
+        "kind": "model",
+        "name": "kimi-k3-1-pro"
+      }
+    }
+  ],
+  "unexplained": [],
+  "findings": [
+    {
+      "id": "F1",
+      "statement": "The added regression theory is not the requirement's minimal reproduction: it parameterizes keyAsPropertyName, adds Key attributes, and adds three members beyond the reported field. The issue-reproduction check consequently reports 0 of 2 requirement code blocks in added test lines, so the supplied evidence does not include an execution of the reporter's exact source.",
+      "status": "suspected",
+      "citations": [
+        {
+          "path": "tests/MessagePack.SourceGenerator.Tests/GenerationTests.cs",
+          "commit": "5dd36d196371f394879ee9f215255ef5cc53d1ad",
+          "startLine": 32,
+          "endLine": 32,
+          "quote": "[MessagePackObject(keyAsPropertyName: {{(keyAsPropertyName ? \"true\" : \"false\")}})]"
+        },
+        {
+          "path": "tests/MessagePack.SourceGenerator.Tests/GenerationTests.cs",
+          "commit": "5dd36d196371f394879ee9f215255ef5cc53d1ad",
+          "startLine": 35,
+          "endLine": 35,
+          "quote": "[Key(0)]"
+        },
+        {
+          "path": "tests/MessagePack.SourceGenerator.Tests/GenerationTests.cs",
+          "commit": "5dd36d196371f394879ee9f215255ef5cc53d1ad",
+          "startLine": 42,
+          "endLine": 42,
+          "quote": "public dynamic[] Array { get; set; }"
+        },
+        {
+          "path": "tests/MessagePack.SourceGenerator.Tests/GenerationTests.cs",
+          "commit": "5dd36d196371f394879ee9f215255ef5cc53d1ad",
+          "startLine": 45,
+          "endLine": 45,
+          "quote": "public List<dynamic> List { get; set; }"
+        }
+      ],
+      "hunkIds": [
+        "H3"
+      ]
+    },
+    {
+      "id": "F2",
+      "statement": "The added coverage shown performs source-generation verification and snapshot comparison, but no added test invokes the generated formatter's Serialize or Deserialize methods. Runtime behavior for actual values stored in dynamic members is therefore not exercised by this change's tests.",
+      "status": "suspected",
+      "citations": [
+        {
+          "path": "tests/MessagePack.SourceGenerator.Tests/GenerationTests.cs",
+          "commit": "5dd36d196371f394879ee9f215255ef5cc53d1ad",
+          "startLine": 49,
+          "endLine": 49,
+          "quote": "await VerifyCS.Test.RunDefaultAsync(this.testOutputHelper, testSource, testMethod: $\"{nameof(DynamicMembers)}({keyAsPropertyName})\");"
+        },
+        {
+          "path": "tests/MessagePack.SourceGenerator.Tests/Resources/DynamicMembers(False)/Formatters.MessagePack.GeneratedMessagePackResolver.AnObjectFormatter.g.cs",
+          "commit": "5dd36d196371f394879ee9f215255ef5cc53d1ad",
+          "startLine": 15,
+          "endLine": 15,
+          "quote": "public void Serialize(ref MsgPack::MessagePackWriter writer, global::AnObject value, MsgPack::MessagePackSerializerOptions options)"
+        },
+        {
+          "path": "tests/MessagePack.SourceGenerator.Tests/Resources/DynamicMembers(True)/Formatters.MessagePack.GeneratedMessagePackResolver.AnObjectFormatter.g.cs",
+          "commit": "5dd36d196371f394879ee9f215255ef5cc53d1ad",
+          "startLine": 40,
+          "endLine": 40,
+          "quote": "public global::AnObject Deserialize(ref global::MessagePack.MessagePackReader reader, global::MessagePack.MessagePackSerializerOptions options)"
+        }
+      ],
+      "hunkIds": [
+        "H3",
+        "H4",
+        "H6"
+      ]
+    },
+    {
+      "id": "F3",
+      "statement": "The implementation explicitly adds a dynamic? serialization branch, but every dynamic declaration in the new test source is unannotated. The supplied test evidence does not independently exercise that additional nullable spelling.",
+      "status": "suspected",
+      "citations": [
+        {
+          "path": "src/MessagePack.SourceGenerator/CodeAnalysis/MemberSerializationInfo.cs",
+          "commit": "5dd36d196371f394879ee9f215255ef5cc53d1ad",
+          "startLine": 35,
+          "endLine": 35,
+          "quote": "if (this.Type is \"dynamic\" or \"dynamic?\")"
+        },
+        {
+          "path": "tests/MessagePack.SourceGenerator.Tests/GenerationTests.cs",
+          "commit": "5dd36d196371f394879ee9f215255ef5cc53d1ad",
+          "startLine": 36,
+          "endLine": 36,
+          "quote": "public dynamic value;"
+        },
+        {
+          "path": "tests/MessagePack.SourceGenerator.Tests/GenerationTests.cs",
+          "commit": "5dd36d196371f394879ee9f215255ef5cc53d1ad",
+          "startLine": 39,
+          "endLine": 39,
+          "quote": "public dynamic Property { get; set; }"
+        },
+        {
+          "path": "tests/MessagePack.SourceGenerator.Tests/GenerationTests.cs",
+          "commit": "5dd36d196371f394879ee9f215255ef5cc53d1ad",
+          "startLine": 42,
+          "endLine": 42,
+          "quote": "public dynamic[] Array { get; set; }"
+        },
+        {
+          "path": "tests/MessagePack.SourceGenerator.Tests/GenerationTests.cs",
+          "commit": "5dd36d196371f394879ee9f215255ef5cc53d1ad",
+          "startLine": 45,
+          "endLine": 45,
+          "quote": "public List<dynamic> List { get; set; }"
+        }
+      ],
+      "hunkIds": [
+        "H1",
+        "H3"
+      ]
+    }
+  ],
+  "notChecked": [
+    {
+      "what": "Whether the exact reported program, using keyAsPropertyName: true without additional Key attributes or members, now produces neither CS8785 nor AD0001 under WarningsAsErrors.",
+      "reason": "the AI reviewer could not decide: The added test is an expanded, modified reproduction and the issue-reproduction check found none of the requirement's code blocks. The trimmed without-change output reports only a source-file-list mismatch, not the original generator and analyzer exceptions, and the RunDefaultAsync implementation is not included to establish its analyzer and warning-as-error configuration."
+    },
+    {
+      "what": "Whether the fix has been demonstrated in the reporter's stated environment and release context.",
+      "reason": "the AI reviewer could not decide: The requirement names version 3.1.12 and a netstandard2.0 target, but the evidence does not identify a test run using that package version, target framework, or the reporter's build configuration."
+    },
+    {
+      "what": "Whether generated dynamic-member formatters correctly round-trip arbitrary runtime values, including null, primitives, and custom MessagePack objects.",
+      "reason": "the AI reviewer could not decide: The evidence runs generation tests and compares generated source, but supplies no runtime serialization or deserialization invocation or assertion."
+    },
+    {
+      "what": "absence of new vulnerabilities",
+      "reason": "cannot be proven by any check here; the security surface scan only finds patterns. Always a human judgement."
+    }
+  ],
+  "route": {
+    "evidenceRoute": "blocked",
+    "trustFloor": "full",
+    "effectiveRoute": "blocked",
+    "reasons": [
+      {
+        "code": "requirement-without-claim",
+        "detail": "R3 has no claim"
+      },
+      {
+        "code": "requirement-without-claim",
+        "detail": "R4 has no claim"
+      }
+    ],
+    "ifUnblocked": {
+      "route": "targeted",
+      "reasons": [
+        {
+          "code": "claim-argued",
+          "detail": "C5 is argued"
+        },
+        {
+          "code": "decision-open",
+          "detail": "D1 needs the owner"
+        },
+        {
+          "code": "decision-open",
+          "detail": "D2 needs the owner"
+        },
+        {
+          "code": "finding",
+          "detail": "F1 is a suspected problem"
+        },
+        {
+          "code": "finding",
+          "detail": "F2 is a suspected problem"
+        },
+        {
+          "code": "finding",
+          "detail": "F3 is a suspected problem"
+        }
+      ],
+      "readRatio": 1,
+      "effectiveRoute": "full"
+    },
+    "areas": [
+      {
+        "area": "generator-analysis",
+        "owner": "Huy Hoang Le",
+        "floor": "full",
+        "reason": "Area `generator-analysis` has not earned lighter review (0 of 3 clean spot-checks since the last reset): full read required"
+      },
+      {
+        "area": "tests",
+        "owner": "Huy Hoang Le",
+        "floor": "full",
+        "reason": "Area `tests` has not earned lighter review (0 of 3 clean spot-checks since the last reset): full read required"
+      },
+      {
+        "area": "test-snapshots",
+        "owner": "Huy Hoang Le",
+        "floor": "full",
+        "reason": "Area `test-snapshots` has no track record: full read required"
+      }
+    ],
+    "readingList": [
+      {
+        "hunkId": "H1",
+        "file": "src/MessagePack.SourceGenerator/CodeAnalysis/MemberSerializationInfo.cs",
+        "lines": 5,
+        "why": [
+          "decision D1",
+          "claim C5 is argued",
+          "finding F3"
+        ]
+      },
+      {
+        "hunkId": "H2",
+        "file": "src/MessagePack.SourceGenerator/CodeAnalysis/QualifiedTypeName.cs",
+        "lines": 6,
+        "why": [
+          "decision D1",
+          "decision D2",
+          "claim C5 is argued"
+        ]
+      },
+      {
+        "hunkId": "H3",
+        "file": "tests/MessagePack.SourceGenerator.Tests/GenerationTests.cs",
+        "lines": 29,
+        "why": [
+          "finding F1",
+          "finding F2",
+          "finding F3"
+        ]
+      },
+      {
+        "hunkId": "H4",
+        "file": "tests/MessagePack.SourceGenerator.Tests/Resources/DynamicMembers(False)/Formatters.MessagePack.GeneratedMessagePackResolver.AnObjectFormatter.g.cs",
+        "lines": 70,
+        "why": [
+          "decision D1",
+          "finding F2"
+        ]
+      },
+      {
+        "hunkId": "H5",
+        "file": "tests/MessagePack.SourceGenerator.Tests/Resources/DynamicMembers(False)/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "lines": 67,
+        "why": [
+          "decision D1"
+        ]
+      },
+      {
+        "hunkId": "H6",
+        "file": "tests/MessagePack.SourceGenerator.Tests/Resources/DynamicMembers(True)/Formatters.MessagePack.GeneratedMessagePackResolver.AnObjectFormatter.g.cs",
+        "lines": 92,
+        "why": [
+          "decision D1",
+          "finding F2"
+        ]
+      },
+      {
+        "hunkId": "H7",
+        "file": "tests/MessagePack.SourceGenerator.Tests/Resources/DynamicMembers(True)/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "lines": 67,
+        "why": [
+          "decision D1"
+        ]
+      }
+    ],
+    "readingListLines": 336,
+    "totalLines": 336,
+    "readRatio": null,
+    "spotCheck": {
+      "eligible": false,
+      "selected": false,
+      "draw": 0.1382,
+      "share": 0.25
+    }
+  }
+}

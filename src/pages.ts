@@ -1,4 +1,5 @@
 // Pages of the sign-off server other than the sheet itself. Same design system as the sheet.
+import { cohortLabel, COHORT_LABELS } from "./cohorts.ts";
 import type { Report } from "./report.ts";
 import { ACTIVE_TIME_SCRIPT, CSS, esc, VERDICT } from "./render.ts";
 import { trustFloor, type TrustEvent } from "./states.ts";
@@ -29,9 +30,9 @@ ${nonce ? `<script nonce="${esc(nonce)}">${ACTIVE_TIME_SCRIPT}</script>` : ""}</
 export function renderIndex(rows: { id: string; requirementId: string; title: string; route: string | null; generatedAt: string | null; signoffs: number }[]) {
   return page("ReviewProof: changes waiting for an owner", `<div class="desk">
 <h1>Changes waiting for an owner</h1>
-<p>Each agent-written change has a sign-off sheet. The AI reviewer never approves; a named person signs.</p>
+<p>Each change has a sign-off sheet; supplied samples, the holdout and the merged control are labelled separately. The AI reviewer never approves; a named person signs.</p>
 <div class="scroll"><table><thead><tr><th>Requirement</th><th>Route</th><th>Sheet generated</th><th>Signatures</th><th></th></tr></thead><tbody>
-${rows.map((r) => `<tr><td><b>${esc(r.requirementId)}</b> ${esc(r.title)}</td>
+${rows.map((r) => `<tr><td><span class="muted">${esc(cohortLabel(r.id))}</span><br><b>${esc(r.requirementId)}</b> ${esc(r.title)}</td>
 <td>${r.route ? `<span class="route-word r-${esc(r.route)}">${esc(VERDICT[r.route as keyof typeof VERDICT])}</span>` : `<span class="muted">No report yet</span>`}</td>
 <td class="muted nowrap">${esc(when(r.generatedAt))}</td><td>${r.signoffs}</td>
 <td class="nowrap">${r.route ? `<a href="/case/${encodeURIComponent(r.id)}">Open sheet</a><br><a href="/case/${encodeURIComponent(r.id)}/blind">Blind spot-check</a>` : `<span class="muted">Generate with</span><br><code>node src/cli.ts all ${esc(r.id)}</code>`}</td></tr>`).join("")}
@@ -42,7 +43,7 @@ ${rows.map((r) => `<tr><td><b>${esc(r.requirementId)}</b> ${esc(r.title)}</td>
 export function renderBlind(r: Report, requirement: { title: string; body: string }, nonce: string) {
   const base = `/case/${encodeURIComponent(r.case.id)}`;
   return page(`Blind spot-check ${r.case.requirementId}`, `
-<h1>Blind spot-check for ${esc(r.case.requirementId)}</h1>
+<h1>Blind spot-check for ${esc(r.case.requirementId)}</h1><p>${esc(cohortLabel(r.case.id))}</p>
 <div class="blind-banner" role="note"><b>The reviewer's sheet is hidden.</b>Read the change as if no reviewer had looked at it. Write down every problem or open question you find. Afterwards the sheet is shown and you mark which of your notes it already had.</div>
 <section><h2>What the change is for</h2><p><a href="${esc(r.case.requirementUrl ?? "#")}">${esc(r.case.requirementId)}</a>: ${esc(requirement.title)}</p>
 <div class="req-body"><pre>${esc(requirement.body)}</pre></div></section>
@@ -86,14 +87,15 @@ ${notice ? `<p class="notice" role="status">${esc(notice)}</p>` : ""}
 <p>Every area starts at full read. It earns one step lighter after ${perStep} clean blind spot-checks in a row, and drops back to full read on any miss or escape. These thresholds come from policy ${esc(policyVersion)} and are illustrative and unvalidated.</p>
 <section><h2>Real record</h2>
 ${real.length ? "" : "<p>No spot-checks recorded yet, so every area stays at full read. A blind spot-check from any sheet adds the first entry.</p>"}
+<p>Event counts include all recorded cases and planted-bug events listed below; simulated history is separate. Recorded case IDs: ${esc([...new Set(real.map((e) => e.caseId).filter(Boolean))].join(", ") || "none")}.</p>
 ${floorsTable(real, areas, perStep)}
-${real.length ? `<div class="scroll"><table><thead><tr><th>When</th><th>Area</th><th>Event</th><th>Case</th></tr></thead><tbody>${real.map((e) => `<tr><td class="muted nowrap">${esc(when(e.at))}</td><td><code>${esc(e.area)}</code></td><td>${esc(e.type.replaceAll("_", " "))}${(e as any).synthetic ? ` <span class="muted">(from a synthetic planted bug)</span>` : ""}${e.description ? `<div class="detail">${esc(e.description)}</div>` : ""}</td><td>${esc(e.caseId ?? "")}</td></tr>`).join("")}</tbody></table></div>` : ""}
+${real.length ? `<div class="scroll"><table><thead><tr><th>When</th><th>Area</th><th>Event</th><th>Case</th></tr></thead><tbody>${real.map((e) => `<tr><td class="muted nowrap">${esc(when(e.at))}</td><td><code>${esc(e.area)}</code></td><td>${esc(e.type.replaceAll("_", " "))}${(e as any).synthetic ? ` <span class="muted">(from a synthetic planted bug)</span>` : ""}${e.description ? `<div class="detail">${esc(e.description)}</div>` : ""}</td><td>${esc(e.caseId ?? "")} ${e.caseId ? `(${esc(cohortLabel(e.caseId))})` : ""}</td></tr>`).join("")}</tbody></table></div>` : ""}
 </section>
 ${cases.length ? `<section><h2>Record an escape</h2>
 <p>An escape is a problem found after a change was accepted: a revert, an incident, a bug report. Recording one sends the area back to full read, whatever its record.</p>
 <form method="post" action="/trust/escape">
 <div class="field"><label for="area">Area</label><select id="area" name="area" required>${areas.map((a) => `<option>${esc(a.name)}</option>`).join("")}</select></div>
-<div class="field"><label for="caseId">Change</label><select id="caseId" name="caseId" required>${cases.map((c) => `<option value="${esc(c.id)}">${esc(c.requirementId)}</option>`).join("")}</select></div>
+<div class="field"><label for="caseId">Change</label><select id="caseId" name="caseId" required>${cases.map((c) => `<option value="${esc(c.id)}">${esc(cohortLabel(c.id))}: ${esc(c.requirementId)}</option>`).join("")}</select></div>
 <div class="field"><label for="description">What escaped</label><textarea id="description" name="description" rows="3" required></textarea></div>
 <div class="field"><label for="name">Your name</label><input type="text" id="name" name="name" required autocomplete="name"></div>
 <button type="submit">Record the escape</button></form></section>` : ""}
@@ -116,18 +118,25 @@ export function renderMetrics(m: import("./metrics.ts").Metrics) {
   const cal = m.calibration;
   return page("How trust is measured", `
 <h1>How trust is measured</h1>
-<p>Every figure is computed from files under <code>data/</code> and shows its denominator. Four changes show how the method works; they are not statistical evidence of anything.</p>
+<p>Every figure is computed from files under <code>data/</code> and shows its denominator. These small evaluation cohorts are not statistical evidence of safety.</p>
+<p>Scope of every non-calibration aggregate below: ${esc(m.scope.caseIds.map((id) => `${id} (${COHORT_LABELS[m.scope.cohorts[id]]})`).join(", ") || "no cases")}. Owner measures include only recorded sign-offs for these cases.</p>
+<p>Filter: <a href="/metrics">All cases</a> · <a href="/metrics?cohort=sample">Supplied samples</a> · <a href="/metrics?cohort=holdout">Holdout</a> · <a href="/metrics?cohort=control">Merged control</a></p>
 <section><h2>Per change</h2><div class="scroll"><table><thead><tr><th>Requirement</th><th>Files</th><th>Changed lines</th><th>Targeted reading list</th><th>Read ratio</th><th>Evidence route</th><th>Once unblocked</th><th>Effective route</th></tr></thead><tbody>
-${m.cases.map((c) => `<tr><td><a href="/case/${encodeURIComponent(c.id)}">#${esc(c.id)}</a>${c.reviewer !== "ok" ? `<div class="detail">AI reviewer ${esc(c.reviewer)}</div>` : ""}</td><td>${c.files}</td><td>${c.lines}</td><td>${c.readingListLines} lines</td>
+${m.cases.map((c) => `<tr><td><a href="/case/${encodeURIComponent(c.id)}">${esc(c.id)}</a><div class="detail">${esc(COHORT_LABELS[c.cohort])}</div>${c.reviewer !== "ok" ? `<div class="detail">AI reviewer ${esc(c.reviewer)}</div>` : ""}</td><td>${c.files}</td><td>${c.lines}</td><td>${c.readingListLines} lines</td>
 <td>${c.readRatio === null ? `<span class="muted">n/a, blocked</span>` : `${Math.round(c.readRatio * 100)}%`}</td><td>${esc(VERDICT[c.evidenceRoute])}</td>
 <td>${c.ifUnblocked ? `${esc(VERDICT[c.ifUnblocked.route])}${c.ifUnblocked.route === "targeted" && c.ifUnblocked.readRatio !== null ? `<div class="detail">${Math.round(c.ifUnblocked.readRatio * 100)}% of lines</div>` : ""}` : `<span class="muted">not blocked</span>`}</td><td><span class="route-word r-${esc(c.effectiveRoute)}">${esc(VERDICT[c.effectiveRoute])}</span></td></tr>`).join("")}
 </tbody></table></div>
 ${table(Object.entries(m.routeShare).map(([k, v], i) => row(`Changes routed ${VERDICT[k as keyof typeof VERDICT].toLowerCase()}`, of(v), i === 0 ? "The effective route on each change's current sheet." : "")).join(""))}</section>
+<section><h2>Raw review counts</h2><p>Counts are not false-alarm judgments. A merged, not-reverted control is assumed clean, not proven clean; the human marks findings when signing.</p>
+<div class="scroll"><table><thead><tr><th>Case / cohort</th><th>Findings</th><th>Model decisions</th><th>Unexplained hunks</th><th>Broken claims</th><th>Route</th></tr></thead><tbody>
+${m.cases.map((c) => `<tr><td>${esc(c.id)} (${esc(COHORT_LABELS[c.cohort])})</td><td>${c.rawCounts.findings}</td><td>${c.rawCounts.modelDecisions}</td><td>${c.rawCounts.unexplainedHunks}</td><td>${c.rawCounts.brokenClaims}</td><td>${esc(VERDICT[c.effectiveRoute])}</td></tr>`).join("")}
+</tbody></table></div></section>
 <section><h2>What the evidence supports</h2>${table(
   Object.entries(m.claimsByState).map(([k, v], i) => row(`Claims ${k.replace("_", " ")}`, of(v), i === 0 ? `Claims on the ${m.citationCasesWithReviewer.n} of ${m.citationCasesWithReviewer.of} sheets the AI reviewer has seen. States are computed by code from evidence, never by the model.` : "")).join("") +
   row("Changed tests that discriminate", of(m.discriminatingTests), "Pass at head and fail with the base source. The rest pass either way and prove nothing about the change.") +
   row("Citations that resolved", of(m.citationValidity), `Quote found at the stated file, lines and commit. Over the ${m.citationCasesWithReviewer.n} of ${m.citationCasesWithReviewer.of} changes the AI reviewer has seen.`))}</section>
 <section class="sim" aria-labelledby="cal"><div class="sim-band"><b id="cal">SYNTHETIC</b><div>Calibration with hand-written planted bugs. Planted bugs are not real bugs.</div></div><div class="sim-body">
+<p>Calibration scope only: ${esc(m.calibrationScope.plants.join(", ") || "no plant IDs recorded")}; source cases: ${esc(m.calibrationScope.sourceCases.join(", ") || "none")}.</p>
 ${cal ? table(row("Caught by a run", of({ n: cal.caughtByRun, of: cal.total }), "A check that passed on the original change fails with the plant.") +
   row("Caught by the AI reviewer only", of({ n: cal.caughtByModelOnly, of: cal.total }), "A finding or decision points at the planted lines and no run caught it.") +
   row("Missed", of({ n: cal.missed, of: cal.total }), "Nothing on the sheet points at the plant.") +

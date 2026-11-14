@@ -6,7 +6,11 @@
       "repository": "https://github.com/te-industry-tech-office/junction26-messagepack-csharp",
       "base": "32258fdbee4bcd653c79f51b4376b5103c6f4d27",
       "head": "9df83c38409c8bfad0517aebffe48211eda4a5b4",
-      "requirement": { "id": "#2283", "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/issues/2283" }
+      "requirement": {
+        "id": "#2283",
+        "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/issues/2283"
+      },
+      "cohort": "sample"
     },
     {
       "id": "2234",
@@ -14,7 +18,11 @@
       "repository": "https://github.com/te-industry-tech-office/junction26-messagepack-csharp",
       "base": "32258fdbee4bcd653c79f51b4376b5103c6f4d27",
       "head": "9007cee1163c4a274fd60c3cc20c21ae63622786",
-      "requirement": { "id": "#2234", "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/issues/2234" }
+      "requirement": {
+        "id": "#2234",
+        "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/issues/2234"
+      },
+      "cohort": "sample"
     },
     {
       "id": "2129",
@@ -22,7 +30,11 @@
       "repository": "https://github.com/te-industry-tech-office/junction26-messagepack-csharp",
       "base": "32258fdbee4bcd653c79f51b4376b5103c6f4d27",
       "head": "083afd994c1c9a994cb2cd5aa0b6ad805a621457",
-      "requirement": { "id": "#2129", "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/issues/2129" }
+      "requirement": {
+        "id": "#2129",
+        "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/issues/2129"
+      },
+      "cohort": "sample"
     },
     {
       "id": "2297",
@@ -30,7 +42,23 @@
       "repository": "https://github.com/te-industry-tech-office/junction26-messagepack-csharp",
       "base": "32258fdbee4bcd653c79f51b4376b5103c6f4d27",
       "head": "a0aa5ab2de7f5a669d97e37184a89034c1de82b6",
-      "requirement": { "id": "#2297", "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/issues/2297" }
+      "requirement": {
+        "id": "#2297",
+        "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/issues/2297"
+      },
+      "cohort": "sample"
+    },
+    {
+      "id": "holdout",
+      "cohort": "holdout",
+      "profile": "messagepack-csharp",
+      "repository": "https://github.com/te-industry-tech-office/junction26-messagepack-csharp",
+      "base": "32258fdbee4bcd653c79f51b4376b5103c6f4d27",
+      "head": "5dd36d196371f394879ee9f215255ef5cc53d1ad",
+      "requirement": {
+        "id": "#2318",
+        "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/issues/2318"
+      }
     }
   ]
 }

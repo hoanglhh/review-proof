@@ -1,0 +1,493 @@
+{
+  "model": "kimi-k3-1-pro",
+  "promptHash": "e1ca0f843b95dc1fcce6f6f5de288a8238b5f42929cab6c46c77704c4b61f53c",
+  "rawResponse": "data/cases/holdout/review/e1ca0f843b95dc1fcce6f6f5de288a8238b5f42929cab6c46c77704c4b61f53c.json",
+  "fullFiles": [
+    "src/MessagePack.SourceGenerator/CodeAnalysis/MemberSerializationInfo.cs",
+    "src/MessagePack.SourceGenerator/CodeAnalysis/QualifiedTypeName.cs"
+  ],
+  "represented": [],
+  "status": "ok",
+  "output": {
+    "requirements": [
+      {
+        "id": "R1",
+        "text": "A MessagePackObject containing a dynamic member must not cause MessagePackGenerator to fail source generation with CS8785/NotSupportedException.",
+        "quote": "dynamic type fails sourcegenerator CS8785 'MessagePackGenerator' failed to generate source.",
+        "kind": "explicit"
+      },
+      {
+        "id": "R2",
+        "text": "The reported reproduction should produce no messages, encompassing the shown generator CS8785 and analyzer AD0001 failures.",
+        "quote": "No messages",
+        "kind": "explicit"
+      },
+      {
+        "id": "R3",
+        "text": "Nice-to-have: if such a failure still occurs, its error should identify which method is unsupported.",
+        "quote": "When this happens it would be nice to have the error include which method is not supported",
+        "kind": "explicit"
+      },
+      {
+        "id": "R4",
+        "text": "Optional suggestion: provide an IgnoreSourceGenerationIfUnknownAndIfAlreadyReportedUpstream attribute.",
+        "quote": "maybe also have an attribute that `IgnoreSourceGenerationIfUnknownAndIfAlreadyReportedUpstream`",
+        "kind": "explicit"
+      }
+    ],
+    "claims": [
+      {
+        "id": "C1",
+        "statement": "QualifiedTypeName.Create now maps an IDynamicTypeSymbol to a QualifiedNamedTypeName representing System.Object instead of allowing that symbol to reach the default NotSupportedException arm.",
+        "requirementIds": [
+          "R1",
+          "R2"
+        ],
+        "evidenceIds": [
+          "tests-at-head:MessagePack.SourceGenerator.Tests",
+          "tests-without-change:MessagePack.SourceGenerator.Tests"
+        ],
+        "testNames": [
+          "GenerationTests.DynamicMembers(keyAsPropertyName: False)",
+          "GenerationTests.DynamicMembers(keyAsPropertyName: True)"
+        ],
+        "hunkIds": [
+          "H2"
+        ],
+        "citations": [
+          {
+            "file": "src/MessagePack.SourceGenerator/CodeAnalysis/QualifiedTypeName.cs",
+            "at": "head",
+            "startLine": 26,
+            "endLine": 26,
+            "quote": "IDynamicTypeSymbol => new QualifiedNamedTypeName(TypeKind.Class)"
+          },
+          {
+            "file": "src/MessagePack.SourceGenerator/CodeAnalysis/QualifiedTypeName.cs",
+            "at": "head",
+            "startLine": 28,
+            "endLine": 28,
+            "quote": "Name = \"Object\","
+          },
+          {
+            "file": "src/MessagePack.SourceGenerator/CodeAnalysis/QualifiedTypeName.cs",
+            "at": "head",
+            "startLine": 29,
+            "endLine": 29,
+            "quote": "Container = new NamespaceTypeContainer(\"System\"),"
+          },
+          {
+            "file": "src/MessagePack.SourceGenerator/CodeAnalysis/QualifiedTypeName.cs",
+            "at": "head",
+            "startLine": 32,
+            "endLine": 32,
+            "quote": "_ => throw new NotSupportedException(),"
+          }
+        ]
+      },
+      {
+        "id": "C2",
+        "statement": "When a member's recorded type is exactly dynamic or dynamic?, serialization wraps the member access in an object cast before emitting the custom or resolved formatter call, preventing the member value from making that invocation dynamically dispatched.",
+        "requirementIds": [
+          "R1",
+          "R2"
+        ],
+        "evidenceIds": [
+          "tests-at-head:MessagePack.SourceGenerator.Tests",
+          "tests-without-change:MessagePack.SourceGenerator.Tests"
+        ],
+        "testNames": [
+          "GenerationTests.DynamicMembers(keyAsPropertyName: False)",
+          "GenerationTests.DynamicMembers(keyAsPropertyName: True)"
+        ],
+        "hunkIds": [
+          "H1"
+        ],
+        "citations": [
+          {
+            "file": "src/MessagePack.SourceGenerator/CodeAnalysis/MemberSerializationInfo.cs",
+            "at": "head",
+            "startLine": 35,
+            "endLine": 35,
+            "quote": "if (this.Type is \"dynamic\" or \"dynamic?\")"
+          },
+          {
+            "file": "src/MessagePack.SourceGenerator/CodeAnalysis/MemberSerializationInfo.cs",
+            "at": "head",
+            "startLine": 37,
+            "endLine": 37,
+            "quote": "// Dynamic dispatch cannot pass the ref struct writer to the formatter."
+          },
+          {
+            "file": "src/MessagePack.SourceGenerator/CodeAnalysis/MemberSerializationInfo.cs",
+            "at": "head",
+            "startLine": 38,
+            "endLine": 38,
+            "quote": "memberRead = $\"(object){memberRead}\";"
+          },
+          {
+            "file": "src/MessagePack.SourceGenerator/CodeAnalysis/MemberSerializationInfo.cs",
+            "at": "head",
+            "startLine": 51,
+            "endLine": 51,
+            "quote": "return $\"MsgPack::FormatterResolverExtensions.GetFormatterWithVerify<{this.Type}>(formatterResolver).Serialize(ref writer, {memberRead}, options)\";"
+          }
+        ]
+      },
+      {
+        "id": "C3",
+        "statement": "The new DynamicMembers theory runs source-generation verification for both keyAsPropertyName values over a dynamic field, dynamic property, dynamic array, and List<dynamic>.",
+        "requirementIds": [
+          "R1",
+          "R2"
+        ],
+        "evidenceIds": [
+          "tests-at-head:MessagePack.SourceGenerator.Tests",
+          "tests-without-change:MessagePack.SourceGenerator.Tests"
+        ],
+        "testNames": [
+          "GenerationTests.DynamicMembers(keyAsPropertyName: False)",
+          "GenerationTests.DynamicMembers(keyAsPropertyName: True)"
+        ],
+        "hunkIds": [
+          "H3"
+        ],
+        "citations": [
+          {
+            "file": "tests/MessagePack.SourceGenerator.Tests/GenerationTests.cs",
+            "at": "head",
+            "startLine": 26,
+            "endLine": 26,
+            "quote": "public async Task DynamicMembers(bool keyAsPropertyName)"
+          },
+          {
+            "file": "tests/MessagePack.SourceGenerator.Tests/GenerationTests.cs",
+            "at": "head",
+            "startLine": 36,
+            "endLine": 36,
+            "quote": "public dynamic value;"
+          },
+          {
+            "file": "tests/MessagePack.SourceGenerator.Tests/GenerationTests.cs",
+            "at": "head",
+            "startLine": 39,
+            "endLine": 39,
+            "quote": "public dynamic Property { get; set; }"
+          },
+          {
+            "file": "tests/MessagePack.SourceGenerator.Tests/GenerationTests.cs",
+            "at": "head",
+            "startLine": 42,
+            "endLine": 42,
+            "quote": "public dynamic[] Array { get; set; }"
+          },
+          {
+            "file": "tests/MessagePack.SourceGenerator.Tests/GenerationTests.cs",
+            "at": "head",
+            "startLine": 45,
+            "endLine": 45,
+            "quote": "public List<dynamic> List { get; set; }"
+          },
+          {
+            "file": "tests/MessagePack.SourceGenerator.Tests/GenerationTests.cs",
+            "at": "head",
+            "startLine": 49,
+            "endLine": 49,
+            "quote": "await VerifyCS.Test.RunDefaultAsync(this.testOutputHelper, testSource, testMethod: $\"{nameof(DynamicMembers)}({keyAsPropertyName})\");"
+          }
+        ]
+      },
+      {
+        "id": "C4",
+        "statement": "The committed outputs require object-cast arguments for direct dynamic member serialization in both array- and map-keyed formatters, while the generated resolver registrations erase dynamic within object[] and List<object>.",
+        "requirementIds": [
+          "R1",
+          "R2"
+        ],
+        "evidenceIds": [
+          "tests-at-head:MessagePack.SourceGenerator.Tests",
+          "tests-without-change:MessagePack.SourceGenerator.Tests"
+        ],
+        "testNames": [
+          "GenerationTests.DynamicMembers(keyAsPropertyName: False)",
+          "GenerationTests.DynamicMembers(keyAsPropertyName: True)"
+        ],
+        "hunkIds": [
+          "H4",
+          "H5",
+          "H6",
+          "H7"
+        ],
+        "citations": [
+          {
+            "file": "tests/MessagePack.SourceGenerator.Tests/Resources/DynamicMembers(False)/Formatters.MessagePack.GeneratedMessagePackResolver.AnObjectFormatter.g.cs",
+            "at": "head",
+            "startLine": 25,
+            "endLine": 25,
+            "quote": "MsgPack::FormatterResolverExtensions.GetFormatterWithVerify<dynamic>(formatterResolver).Serialize(ref writer, (object)value.value, options);"
+          },
+          {
+            "file": "tests/MessagePack.SourceGenerator.Tests/Resources/DynamicMembers(True)/Formatters.MessagePack.GeneratedMessagePackResolver.AnObjectFormatter.g.cs",
+            "at": "head",
+            "startLine": 31,
+            "endLine": 31,
+            "quote": "MsgPack::FormatterResolverExtensions.GetFormatterWithVerify<dynamic>(formatterResolver).Serialize(ref writer, (object)value.value, options);"
+          },
+          {
+            "file": "tests/MessagePack.SourceGenerator.Tests/Resources/DynamicMembers(False)/MessagePack.GeneratedMessagePackResolver.g.cs",
+            "at": "head",
+            "startLine": 44,
+            "endLine": 44,
+            "quote": "{ typeof(object[]), 0 },"
+          },
+          {
+            "file": "tests/MessagePack.SourceGenerator.Tests/Resources/DynamicMembers(False)/MessagePack.GeneratedMessagePackResolver.g.cs",
+            "at": "head",
+            "startLine": 45,
+            "endLine": 45,
+            "quote": "{ typeof(global::System.Collections.Generic.List<object>), 1 },"
+          },
+          {
+            "file": "tests/MessagePack.SourceGenerator.Tests/Resources/DynamicMembers(True)/MessagePack.GeneratedMessagePackResolver.g.cs",
+            "at": "head",
+            "startLine": 44,
+            "endLine": 44,
+            "quote": "{ typeof(object[]), 0 },"
+          },
+          {
+            "file": "tests/MessagePack.SourceGenerator.Tests/Resources/DynamicMembers(True)/MessagePack.GeneratedMessagePackResolver.g.cs",
+            "at": "head",
+            "startLine": 45,
+            "endLine": 45,
+            "quote": "{ typeof(global::System.Collections.Generic.List<object>), 1 },"
+          }
+        ]
+      },
+      {
+        "id": "C5",
+        "statement": "The source changes leave all 167 pre-existing MessagePack.SourceGenerator.Tests cases that passed at base passing at head.",
+        "requirementIds": [],
+        "evidenceIds": [
+          "existing-tests:MessagePack.SourceGenerator.Tests"
+        ],
+        "testNames": [],
+        "hunkIds": [
+          "H1",
+          "H2"
+        ],
+        "citations": [
+          {
+            "file": "src/MessagePack.SourceGenerator/CodeAnalysis/MemberSerializationInfo.cs",
+            "at": "head",
+            "startLine": 32,
+            "endLine": 32,
+            "quote": "public string GetSerializeMethodString()"
+          },
+          {
+            "file": "src/MessagePack.SourceGenerator/CodeAnalysis/QualifiedTypeName.cs",
+            "at": "head",
+            "startLine": 19,
+            "endLine": 19,
+            "quote": "public static QualifiedTypeName Create(ITypeSymbol symbol, ImmutableStack<GenericTypeParameterInfo>? recursionGuard = null)"
+          }
+        ]
+      }
+    ],
+    "decisions": [
+      {
+        "id": "D1",
+        "statement": "The change represents dynamic as System.Object in the qualified-type model and generated resolver registrations, while retaining dynamic in emitted formatter type arguments and adding an object cast only at direct dynamic member access.",
+        "whyHuman": "The requirement asks for successful, silent generation but does not prescribe the semantic representation of dynamic. Tests and snapshots can lock down a selected representation; they cannot establish which representation best preserves the intended model equality, resolver registration, and generated-code conventions.",
+        "options": [
+          "Map dynamic to System.Object in the model and resolver registrations, retain dynamic in formatter source, and cast direct member values to object (the approach in this change).",
+          "Introduce or retain a dynamic-specific QualifiedTypeName representation and defer erasure to object until particular emission or registration operations.",
+          "Normalize dynamic to object consistently in both the model and emitted formatter source, rather than retaining dynamic type arguments."
+        ],
+        "hunkIds": [
+          "H1",
+          "H2",
+          "H4",
+          "H5",
+          "H6",
+          "H7"
+        ],
+        "citations": [
+          {
+            "file": "src/MessagePack.SourceGenerator/CodeAnalysis/QualifiedTypeName.cs",
+            "at": "head",
+            "startLine": 26,
+            "endLine": 26,
+            "quote": "IDynamicTypeSymbol => new QualifiedNamedTypeName(TypeKind.Class)"
+          },
+          {
+            "file": "src/MessagePack.SourceGenerator/CodeAnalysis/MemberSerializationInfo.cs",
+            "at": "head",
+            "startLine": 38,
+            "endLine": 38,
+            "quote": "memberRead = $\"(object){memberRead}\";"
+          },
+          {
+            "file": "tests/MessagePack.SourceGenerator.Tests/Resources/DynamicMembers(True)/MessagePack.GeneratedMessagePackResolver.g.cs",
+            "at": "head",
+            "startLine": 44,
+            "endLine": 44,
+            "quote": "{ typeof(object[]), 0 },"
+          }
+        ]
+      },
+      {
+        "id": "D2",
+        "statement": "The change is scoped to dynamic support: the generic unsupported-symbol exception remains without method context, and no IgnoreSourceGenerationIfUnknownAndIfAlreadyReportedUpstream attribute is added.",
+        "whyHuman": "The requirement phrases the enhanced error and attribute as nice-to-have or perhaps suggestions, not unambiguous acceptance criteria. Whether to expand this fix's diagnostic and public-API scope is a maintainer decision that generation tests cannot settle.",
+        "options": [
+          "Implement only the dynamic crash fix and leave both optional suggestions for separate work, as this change does.",
+          "Also add contextual information identifying the unsupported method or symbol to residual generation failures.",
+          "Also design and add the suggested opt-out attribute for unknown types already reported upstream.",
+          "Implement both optional suggestions together with the dynamic fix."
+        ],
+        "hunkIds": [
+          "H2"
+        ],
+        "citations": [
+          {
+            "file": "src/MessagePack.SourceGenerator/CodeAnalysis/QualifiedTypeName.cs",
+            "at": "head",
+            "startLine": 32,
+            "endLine": 32,
+            "quote": "_ => throw new NotSupportedException(),"
+          }
+        ]
+      }
+    ],
+    "findings": [
+      {
+        "id": "F1",
+        "statement": "The added regression theory is not the requirement's minimal reproduction: it parameterizes keyAsPropertyName, adds Key attributes, and adds three members beyond the reported field. The issue-reproduction check consequently reports 0 of 2 requirement code blocks in added test lines, so the supplied evidence does not include an execution of the reporter's exact source.",
+        "hunkIds": [
+          "H3"
+        ],
+        "citations": [
+          {
+            "file": "tests/MessagePack.SourceGenerator.Tests/GenerationTests.cs",
+            "at": "head",
+            "startLine": 32,
+            "endLine": 32,
+            "quote": "[MessagePackObject(keyAsPropertyName: {{(keyAsPropertyName ? \"true\" : \"false\")}})]"
+          },
+          {
+            "file": "tests/MessagePack.SourceGenerator.Tests/GenerationTests.cs",
+            "at": "head",
+            "startLine": 35,
+            "endLine": 35,
+            "quote": "[Key(0)]"
+          },
+          {
+            "file": "tests/MessagePack.SourceGenerator.Tests/GenerationTests.cs",
+            "at": "head",
+            "startLine": 42,
+            "endLine": 42,
+            "quote": "public dynamic[] Array { get; set; }"
+          },
+          {
+            "file": "tests/MessagePack.SourceGenerator.Tests/GenerationTests.cs",
+            "at": "head",
+            "startLine": 45,
+            "endLine": 45,
+            "quote": "public List<dynamic> List { get; set; }"
+          }
+        ]
+      },
+      {
+        "id": "F2",
+        "statement": "The added coverage shown performs source-generation verification and snapshot comparison, but no added test invokes the generated formatter's Serialize or Deserialize methods. Runtime behavior for actual values stored in dynamic members is therefore not exercised by this change's tests.",
+        "hunkIds": [
+          "H3",
+          "H4",
+          "H6"
+        ],
+        "citations": [
+          {
+            "file": "tests/MessagePack.SourceGenerator.Tests/GenerationTests.cs",
+            "at": "head",
+            "startLine": 49,
+            "endLine": 49,
+            "quote": "await VerifyCS.Test.RunDefaultAsync(this.testOutputHelper, testSource, testMethod: $\"{nameof(DynamicMembers)}({keyAsPropertyName})\");"
+          },
+          {
+            "file": "tests/MessagePack.SourceGenerator.Tests/Resources/DynamicMembers(False)/Formatters.MessagePack.GeneratedMessagePackResolver.AnObjectFormatter.g.cs",
+            "at": "head",
+            "startLine": 15,
+            "endLine": 15,
+            "quote": "public void Serialize(ref MsgPack::MessagePackWriter writer, global::AnObject value, MsgPack::MessagePackSerializerOptions options)"
+          },
+          {
+            "file": "tests/MessagePack.SourceGenerator.Tests/Resources/DynamicMembers(True)/Formatters.MessagePack.GeneratedMessagePackResolver.AnObjectFormatter.g.cs",
+            "at": "head",
+            "startLine": 40,
+            "endLine": 40,
+            "quote": "public global::AnObject Deserialize(ref global::MessagePack.MessagePackReader reader, global::MessagePack.MessagePackSerializerOptions options)"
+          }
+        ]
+      },
+      {
+        "id": "F3",
+        "statement": "The implementation explicitly adds a dynamic? serialization branch, but every dynamic declaration in the new test source is unannotated. The supplied test evidence does not independently exercise that additional nullable spelling.",
+        "hunkIds": [
+          "H1",
+          "H3"
+        ],
+        "citations": [
+          {
+            "file": "src/MessagePack.SourceGenerator/CodeAnalysis/MemberSerializationInfo.cs",
+            "at": "head",
+            "startLine": 35,
+            "endLine": 35,
+            "quote": "if (this.Type is \"dynamic\" or \"dynamic?\")"
+          },
+          {
+            "file": "tests/MessagePack.SourceGenerator.Tests/GenerationTests.cs",
+            "at": "head",
+            "startLine": 36,
+            "endLine": 36,
+            "quote": "public dynamic value;"
+          },
+          {
+            "file": "tests/MessagePack.SourceGenerator.Tests/GenerationTests.cs",
+            "at": "head",
+            "startLine": 39,
+            "endLine": 39,
+            "quote": "public dynamic Property { get; set; }"
+          },
+          {
+            "file": "tests/MessagePack.SourceGenerator.Tests/GenerationTests.cs",
+            "at": "head",
+            "startLine": 42,
+            "endLine": 42,
+            "quote": "public dynamic[] Array { get; set; }"
+          },
+          {
+            "file": "tests/MessagePack.SourceGenerator.Tests/GenerationTests.cs",
+            "at": "head",
+            "startLine": 45,
+            "endLine": 45,
+            "quote": "public List<dynamic> List { get; set; }"
+          }
+        ]
+      }
+    ],
+    "cannotDecide": [
+      {
+        "item": "Whether the exact reported program, using keyAsPropertyName: true without additional Key attributes or members, now produces neither CS8785 nor AD0001 under WarningsAsErrors.",
+        "reason": "The added test is an expanded, modified reproduction and the issue-reproduction check found none of the requirement's code blocks. The trimmed without-change output reports only a source-file-list mismatch, not the original generator and analyzer exceptions, and the RunDefaultAsync implementation is not included to establish its analyzer and warning-as-error configuration."
+      },
+      {
+        "item": "Whether the fix has been demonstrated in the reporter's stated environment and release context.",
+        "reason": "The requirement names version 3.1.12 and a netstandard2.0 target, but the evidence does not identify a test run using that package version, target framework, or the reporter's build configuration."
+      },
+      {
+        "item": "Whether generated dynamic-member formatters correctly round-trip arbitrary runtime values, including null, primitives, and custom MessagePack objects.",
+        "reason": "The evidence runs generation tests and compares generated source, but supplies no runtime serialization or deserialization invocation or assertion."
+      }
+    ]
+  }
+}

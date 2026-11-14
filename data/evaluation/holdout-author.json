@@ -1,0 +1,29 @@
+{
+  "context": "fresh, no parent conversation",
+  "inputs": [
+    "issue title/body",
+    "shared base worktree",
+    "container test instructions"
+  ],
+  "attempts": 1,
+  "timeLimitMinutes": 40,
+  "authorCompletedAt": "2026-11-14T23:33:00Z",
+  "completionTimePrecision": "minute, reported by author",
+  "deadline": "2026-11-15T00:09:00Z",
+  "branch": "submission-holdout",
+  "base": "32258fdbee4bcd653c79f51b4376b5103c6f4d27",
+  "head": "5dd36d196371f394879ee9f215255ef5cc53d1ad",
+  "patch": "data/evaluation/holdout.patch",
+  "patchSha256": "8479dddb207a172623f8dc2a5817b1ff162b895371d0b6107e23e7abd40f9b0f",
+  "preservedUnchanged": true,
+  "authorReportedTests": {
+    "passed": 169,
+    "failed": 0
+  },
+  "authorLogs": ".work/holdout-author/.author-results",
+  "reviewFeedbackProvided": false,
+  "pipelineCommand": "node src/cli.ts all holdout",
+  "pipelineLog": "data/evaluation/holdout-pipeline.log",
+  "freshReviewRequested": false,
+  "issueSelectionSnapshot": "data/evaluation/holdout-selection.json"
+}

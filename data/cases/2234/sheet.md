@@ -1,3 +1,5 @@
+Evaluation cohort: Supplied sample
+
 ## ReviewProof sign-off sheet: \#2234 The analyzer does not work if SuppressSourceGeneration = true
 
 **Route: BLOCKED** (cannot be signed yet). Evidence supports: blocked. 

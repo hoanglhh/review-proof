@@ -1,3 +1,5 @@
+Evaluation cohort: Supplied sample
+
 ## ReviewProof sign-off sheet: \#2297 Add ExcludeFromCodeCoverage attribute to generated code.
 
 **Route: BLOCKED** (cannot be signed yet). Evidence supports: blocked. 
