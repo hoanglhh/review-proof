@@ -7,7 +7,7 @@ import { dirname, extname, join, resolve, sep } from "node:path";
 import { caseDir, DATA, loadCase, loadProfile, readJson, ROOT, type Case } from "./config.ts";
 import { assembleCase, readJsonl, signoffsOf, TRUST_LOG, type Policy } from "./assemble.ts";
 import { esc, renderHtml } from "./render.ts";
-import { renderBlind, renderIndex, renderMessage, renderMetrics, renderReveal, renderTrust } from "./pages.ts";
+import { renderControlEvaluation, renderBlind, renderIndex, renderMessage, renderMetrics, renderReveal, renderTrust } from "./pages.ts";
 import { loadMetrics } from "./metrics.ts";
 import { COHORT_LABELS, type Cohort } from "./cohorts.ts";
 import type { Report } from "./report.ts";
@@ -108,6 +108,12 @@ export function startServer(port: number) {
         }
         return send(res, 200, renderTrust(readJsonl(TRUST_LOG), readJsonl(SIMULATED_LOG), areas, policy.trust.cleanSpotChecksPerStep, policy.version,
           url.searchParams.get("notice") ?? undefined, cases.filter((c) => report(c.id)).map((c) => ({ id: c.id, requirementId: c.requirement.id }))));
+      }
+
+      if (req.method === "GET" && parts.join("/") === "evaluation/control") {
+        const file = join(DATA, "evaluation", "control-run.json");
+        if (!existsSync(file)) return send(res, 404, renderMessage("No control evaluation", "No control evaluation has been recorded.", "/"));
+        return send(res, 200, renderControlEvaluation(readJson(file)));
       }
 
       if (req.method === "GET" && parts[0] === "metrics") {

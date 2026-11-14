@@ -1,0 +1,92 @@
+{
+  "cohort": "control",
+  "status": "not_run",
+  "recordedAt": "2026-11-14T23:46:21.027969+00:00",
+  "caseIds": [],
+  "reason": "All three eligible candidates failed SDK resolution in the frozen container; no fourth attempt or environment change.",
+  "attempts": [
+    {
+      "pr": 2279,
+      "status": "inconclusive",
+      "exitCode": 145,
+      "tests": 0,
+      "reason": "no trx result file was produced (exit code 145); see log",
+      "record": "data/evaluation/control-attempts/2279/head.MessagePack.SourceGenerator.Tests.json",
+      "requiredSdks": [
+        "10.0.300"
+      ],
+      "installedSdk": "8.0.402",
+      "buildable": false
+    },
+    {
+      "pr": 1818,
+      "runs": [
+        {
+          "project": "tests/MessagePack.SourceGenerator.ExecutionTests/MessagePack.SourceGenerator.ExecutionTests.csproj",
+          "status": "inconclusive",
+          "exitCode": 145,
+          "tests": 0,
+          "reason": "no trx result file was produced (exit code 145); see log",
+          "record": "data/evaluation/control-attempts/1818/head.MessagePack.SourceGenerator.ExecutionTests.json"
+        },
+        {
+          "project": "tests/MessagePack.SourceGenerator.Tests/MessagePack.SourceGenerator.Tests.csproj",
+          "status": "inconclusive",
+          "exitCode": 145,
+          "tests": 0,
+          "reason": "no trx result file was produced (exit code 145); see log",
+          "record": "data/evaluation/control-attempts/1818/head.MessagePack.SourceGenerator.Tests.json"
+        }
+      ],
+      "buildable": false,
+      "requiredSdks": [
+        "8.0.201"
+      ],
+      "installedSdk": "8.0.402"
+    },
+    {
+      "pr": 1802,
+      "runs": [
+        {
+          "project": "tests/MessagePack.SourceGenerator.ExecutionTests/MessagePack.SourceGenerator.ExecutionTests.csproj",
+          "status": "inconclusive",
+          "exitCode": 145,
+          "tests": 0,
+          "reason": "no trx result file was produced (exit code 145); see log",
+          "record": "data/evaluation/control-attempts/1802/head.MessagePack.SourceGenerator.ExecutionTests.json"
+        },
+        {
+          "project": "tests/MessagePack.SourceGenerator.MapModeExecutionTests/MessagePack.SourceGenerator.MapModeExecutionTests.csproj",
+          "status": "inconclusive",
+          "exitCode": 145,
+          "tests": 0,
+          "reason": "no trx result file was produced (exit code 145); see log",
+          "record": "data/evaluation/control-attempts/1802/head.MessagePack.SourceGenerator.MapModeExecutionTests.json"
+        },
+        {
+          "project": "tests/MessagePack.SourceGenerator.Tests/MessagePack.SourceGenerator.Tests.csproj",
+          "status": "inconclusive",
+          "exitCode": 145,
+          "tests": 0,
+          "reason": "no trx result file was produced (exit code 145); see log",
+          "record": "data/evaluation/control-attempts/1802/head.MessagePack.SourceGenerator.Tests.json"
+        }
+      ],
+      "buildable": false,
+      "requiredSdks": [
+        "8.0.201"
+      ],
+      "installedSdk": "8.0.402"
+    }
+  ],
+  "rawCounts": {
+    "findings": null,
+    "modelDecisions": null,
+    "unexplainedHunks": null,
+    "brokenClaims": null
+  },
+  "route": null,
+  "countMeaning": "Unavailable, not zero: no eligible buildable control reached AI review. Attempts are excluded from all reviewed-case aggregates.",
+  "cleanAssumption": "Clean would mean merged and not known reverted; this is an assumption, not a human correctness judgment, and the planned control is one case.",
+  "humanJudgments": "No false-alarm labels or human finding marks were created."
+}

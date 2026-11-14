@@ -64,7 +64,7 @@ The scoring key in `labels/` was drafted by an AI model from reading the diffs a
 
 ## Evaluation cohorts
 
-The four Tieto samples are **supplied samples**; the independently authored **holdout** and the upstream merged **control** are separate populations, never planted bugs. Selection rules and frozen-file hashes are in `data/evaluation/protocol.json`; selection snapshots and run records live alongside it. Cohorts do not enter the model prompt or routing rules.
+The four Tieto samples are **supplied samples**; the independently authored **holdout** is separate, and the planned upstream merged **control** has its own availability record. Neither is a planted bug. Selection rules and frozen-file hashes are in `data/evaluation/protocol.json`; selection snapshots and run records live alongside it. Cohorts do not enter the model prompt or routing rules.
 
 The index, sheets and blind pages identify each cohort. `/metrics` lists exactly which case IDs every non-calibration aggregate includes; use `?cohort=sample`, `?cohort=holdout`, or `?cohort=control` for separate views. Calibration names its own planted cases and never shares their denominator with these comparisons. Counts of findings, model-raised decisions, unexplained hunks and broken claims do not establish false positives: the owner marks findings when signing.
 
@@ -75,3 +75,9 @@ Do not rerun the holdout review with `--fresh` or tune the prompt/rules after ob
 The holdout head exists only on branch `submission-holdout` in `.work/repos/te-industry-tech-office__junction26-messagepack-csharp`; it was never pushed. `data/evaluation/holdout-author.json` records its base/head and patch hash. On another checkout, create a branch at the recorded base, apply `data/evaluation/holdout.patch` with `git apply --index`, and commit locally. The recreated commit may have a different SHA; update the case head if reproducing inputs. Do not rerun the submitted model review: use its saved report for the fixed evaluation.
 
 The submitted blind-review entry point is `/case/holdout/blind`. Run the local server before opening it; avoid the ordinary sheet and metrics until after the blind read.
+
+### Control availability
+
+The three permitted candidates (#2279, #1818, #1802) failed SDK resolution in the frozen .NET 8.0.402 image: they require 10.0.300, 8.0.201 and 8.0.201 respectively. No fourth candidate, SDK substitution or control AI review was attempted. **All requested control counts and its route are unavailable, not zero.** No control report enters the reviewed-case aggregates; the manifest currently holds four samples and one holdout.
+
+Open `/evaluation/control` for the six head-project run records/logs and the stop reason. `data/evaluation/control-selection.json` records merge ordering, closure evidence and candidates; `control-path-screening.json` records path exclusions. A future completed control would still be only one case assumed clean because it was merged and not known reverted; only the owner may mark findings false. The selected source inputs were not modified to make a build pass.

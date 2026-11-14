@@ -55,3 +55,10 @@ Only failures actually observed while building and running ReviewProof, each wit
 ## Additional evaluation coverage (2026-11-15)
 
 The independently authored holdout ran once with the frozen pipeline. No pipeline crash or dropped citation/reference was observed in that run (`data/evaluation/holdout-run.json`). This is not a finding-accuracy result: the owner's blind read and finding judgments are pending, so no new reviewer miss or false alarm is claimed here. Read that artifact only after the blind exercise.
+
+## 8. All three control candidates require SDKs absent from the frozen container (2026-11-15)
+
+- **Observed:** the fixed selection rule reached PRs #2279, #1818 and #1802 in that order. The first requests SDK 10.0.300; the other two request 8.0.201. The frozen image contains 8.0.402. Each affected test-project command exited 145 during SDK resolution, before building or producing a TRX file.
+- **Consequence:** no eligible buildable control reached AI review. Findings, model-raised decisions, unexplained hunks, broken claims and route are **unavailable, not zero**. There is no false-alarm rate or completed control case in the aggregate denominator.
+- **Action:** stopped after the three permitted candidates. Did not change `global.json`, the container profile, SDK roll-forward behavior, rules or prompts. `/evaluation/control` displays the attempts and links their logs; no fourth candidate was tried.
+- **Evidence:** `data/evaluation/control-selection.json`, `control-run.json`, and `control-attempts/{2279,1818,1802}/` (six head-project run records and logs). `control-path-screening.json` records intervening PRs excluded by the path criterion. This is an environment failure, not evidence that the merged changes are wrong.

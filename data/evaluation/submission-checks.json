@@ -1,0 +1,93 @@
+{
+  "checkedAt": "2026-11-14T23:49:27.651289+00:00",
+  "pages": [
+    {
+      "path": "/",
+      "status": 200,
+      "expectedTextPresent": true
+    },
+    {
+      "path": "/case/holdout",
+      "status": 200,
+      "expectedTextPresent": true
+    },
+    {
+      "path": "/case/holdout/blind",
+      "status": 200,
+      "expectedTextPresent": true
+    },
+    {
+      "path": "/case/holdout/earned",
+      "status": 200,
+      "expectedTextPresent": true
+    },
+    {
+      "path": "/evaluation/control",
+      "status": 200,
+      "expectedTextPresent": true
+    },
+    {
+      "path": "/metrics",
+      "status": 200,
+      "expectedTextPresent": true
+    },
+    {
+      "path": "/metrics?cohort=sample",
+      "status": 200,
+      "expectedTextPresent": true
+    },
+    {
+      "path": "/metrics?cohort=holdout",
+      "status": 200,
+      "expectedTextPresent": true
+    },
+    {
+      "path": "/metrics?cohort=control",
+      "status": 200,
+      "expectedTextPresent": true
+    },
+    {
+      "path": "/trust",
+      "status": 200,
+      "expectedTextPresent": true
+    }
+  ],
+  "methods": "GET only; no forms submitted",
+  "unitTests": {
+    "command": "npm test",
+    "passed": 52,
+    "failed": 0
+  },
+  "frozenFilesUnchanged": true,
+  "humanRecordsUnchanged": true,
+  "humanRecords": {
+    "data/trust/simulated-events.jsonl": "7df60f64df460a28b02ae19d3d2962970a2180fab5e002333353fda2ab63727d",
+    "data/trust/events.jsonl": "c5b62eebfc5e79bbda329ec0102f66c9ef87bd26f1ef6d1135901c57e3952268",
+    "data/cases/2283/confirmations/2026-11-14T19-09-19-383Z-R4.json": "3e8368677afe9ac3f554643cb442d01ef065eff2c6b6ba3847b82803b60d6155",
+    "data/cases/2283/signoffs/2026-11-14T19-11-17-320Z-hoang.json": "c31006657955370e907d176eaf9353885102014af615267c5351d8717094c1eb"
+  },
+  "conceptCardLayout": {
+    "pages": 1,
+    "pageSize": "A4",
+    "bodyPoints": 10,
+    "marginsMm": 12,
+    "renderer": "Chromium",
+    "visuallyInspected": true
+  },
+  "controlCounts": "unavailable, not zero; three incompatible candidates; no model review",
+  "freshContextCodeReview": {
+    "result": "No important issues found",
+    "reviewed": "submission diff, frozen-file hashes, human-record preservation, author patch, cohort filtering and control evidence",
+    "notPerformedByReviewer": [
+      "fresh upstream queries",
+      "browser rendering",
+      "full suite",
+      "model calls",
+      "human form submissions"
+    ]
+  },
+  "browserChecks": [
+    "holdout blind page",
+    "control availability page"
+  ]
+}

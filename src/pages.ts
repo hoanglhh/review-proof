@@ -37,7 +37,7 @@ ${rows.map((r) => `<tr><td><span class="muted">${esc(cohortLabel(r.id))}</span><
 <td class="muted nowrap">${esc(when(r.generatedAt))}</td><td>${r.signoffs}</td>
 <td class="nowrap">${r.route ? `<a href="/case/${encodeURIComponent(r.id)}">Open sheet</a><br><a href="/case/${encodeURIComponent(r.id)}/blind">Blind spot-check</a>` : `<span class="muted">Generate with</span><br><code>node src/cli.ts all ${esc(r.id)}</code>`}</td></tr>`).join("")}
 </tbody></table></div>
-<p><a href="/trust">Trust record by area</a><br><a href="/metrics">How trust is measured</a></p></div>`);
+<p><a href="/trust">Trust record by area</a><br><a href="/metrics">How trust is measured</a><br><a href="/evaluation/control">Merged control: availability and build attempts</a></p></div>`);
 }
 
 export function renderBlind(r: Report, requirement: { title: string; body: string }, nonce: string) {
@@ -118,6 +118,7 @@ export function renderMetrics(m: import("./metrics.ts").Metrics) {
   const cal = m.calibration;
   return page("How trust is measured", `
 <h1>How trust is measured</h1>
+<p><a href="/evaluation/control">Control availability and build attempts</a>. An unavailable control contributes no reviewed case or false-alarm count.</p>
 <p>Every figure is computed from files under <code>data/</code> and shows its denominator. These small evaluation cohorts are not statistical evidence of safety.</p>
 <p>Scope of every non-calibration aggregate below: ${esc(m.scope.caseIds.map((id) => `${id} (${COHORT_LABELS[m.scope.cohorts[id]]})`).join(", ") || "no cases")}. Owner measures include only recorded sign-offs for these cases.</p>
 <p>Filter: <a href="/metrics">All cases</a> · <a href="/metrics?cohort=sample">Supplied samples</a> · <a href="/metrics?cohort=holdout">Holdout</a> · <a href="/metrics?cohort=control">Merged control</a></p>
@@ -150,4 +151,23 @@ ${cal ? table(row("Caught by a run", of({ n: cal.caughtByRun, of: cal.total }), 
 ${m.noDataYet.map((x) => `<tr><td>${esc(x.metric)}</td><td>${esc(x.definition)}</td></tr>`).join("")}</tbody></table></div>
 <p><b>Guard rule:</b> ${esc(m.guardRule)}</p></section>
 <p><a href="/">All changes</a></p>`);
+}
+
+export function renderControlEvaluation(record: {
+  status: string; reason: string; countMeaning: string; cleanAssumption: string;
+  rawCounts: Record<string, number | null>; route: string | null;
+  attempts: { pr: number; requiredSdks: string[]; installedSdk: string; record?: string; runs?: { record: string }[] }[];
+}) {
+  return page("Merged control evaluation", `<h1>Merged control evaluation</h1>
+<p><b>Status: ${esc(record.status.replaceAll("_", " "))}</b>. ${esc(record.reason)}</p>
+<p>${esc(record.countMeaning)}</p><p>${esc(record.cleanAssumption)}</p>
+<h2>Raw counts — control cohort only</h2>
+<table><thead><tr><th>Measure</th><th>Value</th></tr></thead><tbody>
+${Object.entries(record.rawCounts).map(([name, count]) => `<tr><td>${esc(name)}</td><td>${count === null ? "Unavailable, not zero" : count}</td></tr>`).join("")}
+<tr><td>Route</td><td>${record.route === null ? "Unavailable, not zero" : esc(record.route)}</td></tr></tbody></table>
+<h2>Build attempts (${record.attempts.length}; not reviewed cases)</h2>
+<table><thead><tr><th>Upstream PR</th><th>Required SDK</th><th>Container SDK</th><th>Run records</th></tr></thead><tbody>
+${record.attempts.map((a) => `<tr><td>${a.pr}</td><td>${esc(a.requiredSdks.join(", "))}</td><td>${esc(a.installedSdk)}</td><td>${(a.runs?.map((r) => r.record) ?? (a.record ? [a.record] : [])).map((path) => `<a href="/${esc(path)}">Run JSON</a> <a href="/${esc(path.replace(/\.json$/, ".log"))}">Log</a>`).join("<br>")}</td></tr>`).join("")}
+</tbody></table><p>No agent finding judgments or human review actions were recorded.</p>
+<p><a href="/metrics?cohort=control">Control metric scope</a> · <a href="/">All changes</a></p>`);
 }

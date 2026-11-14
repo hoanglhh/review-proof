@@ -43,6 +43,6 @@ Open **How trust is measured** (`/metrics?cohort=sample`). In the SYNTHETIC pane
 
 Before showing the holdout sheet, metrics, notes or results, send the owner directly to `/case/holdout/blind`. Let the owner read and record their own notes; no assistant fills the form. Reveal and compare only after that human submission. Selection and freeze records are under `data/evaluation/`; the author received no reviewer instructions, scoring key or feedback.
 
-The merged control is one assumed-clean case, not ground truth. Use its cohort-filtered metrics to show raw findings, model-raised decisions, unexplained hunks, broken claims and route. Do not call any finding false before the owner marks it. Build-incompatible candidates and exclusions remain in the selection record.
+Open `/evaluation/control`: all three permitted candidates failed SDK resolution in the pinned image. Raw findings, model-raised decisions, unexplained hunks, broken claims and route are unavailable, not zero. Show the candidate logs and the empty control metric scope; do not present this as a completed noise measurement. A future merged control would be one assumed-clean case, not ground truth, and only the owner may judge findings.
 
 Never combine the four samples, holdout, control and eight planted defects into an unlabeled success rate. The concept card explains the cost to shared code knowledge, the current human-signature boundary, the absence of real escape data and the missing undo assessment.

@@ -81,3 +81,18 @@ test("escape report: area, change, description and name are all required", async
   assert.equal(validateEscape(new URLSearchParams({ ...Object.fromEntries(ok), area: "zz" }), ["a"], ["1"]).length, 1);
   assert.equal(validateEscape(new URLSearchParams({ ...Object.fromEntries(ok), description: " " }), ["a"], ["1"]).length, 1);
 });
+
+test("control evaluation presents unavailable counts rather than zero after build failures", async () => {
+  const port = 45000 + Math.floor(Math.random() * 10000);
+  const server = startServer(port);
+  await new Promise((r) => server.once("listening", r));
+  try {
+    const response = await fetch(`http://127.0.0.1:${port}/evaluation/control`);
+    assert.equal(response.status, 200);
+    const html = await response.text();
+    assert.match(html, /Unavailable, not zero/);
+    assert.match(html, /10\.0\.300/);
+    assert.match(html, /8\.0\.201/);
+    assert.doesNotMatch(html, /<form/);
+  } finally { server.close(); }
+});

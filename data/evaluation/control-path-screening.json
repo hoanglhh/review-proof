@@ -1,0 +1,210 @@
+[
+  {
+    "pr": 2314,
+    "mergedAt": "2026-10-26T16:24:40Z",
+    "mergedByType": "User",
+    "files": [
+      "src/MessagePack.UnityClient/Assets/Scripts/MessagePack/Internal/DynamicAssemblyFactory.cs.meta"
+    ],
+    "eligiblePaths": false
+  },
+  {
+    "pr": 2310,
+    "mergedAt": "2026-10-21T13:08:38Z",
+    "mergedByType": "User",
+    "files": [
+      "src/Directory.Build.props",
+      "tests/MessagePack.Tests/AssemblyVersionTests.cs"
+    ],
+    "eligiblePaths": false
+  },
+  {
+    "pr": 2287,
+    "mergedAt": "2026-08-04T16:18:57Z",
+    "mergedByType": "User",
+    "files": [
+      "src/MessagePack/MessagePackWriter.cs",
+      "tests/MessagePack.Tests/MessagePackWriterTests.cs",
+      "tests/MessagePack.Tests/OldSpecBinaryFormatterTest.cs"
+    ],
+    "eligiblePaths": false
+  },
+  {
+    "pr": 2278,
+    "mergedAt": "2026-07-08T01:50:19Z",
+    "mergedByType": "User",
+    "files": [
+      "README.md"
+    ],
+    "eligiblePaths": false
+  },
+  {
+    "pr": 2226,
+    "mergedAt": "2025-08-31T19:39:19Z",
+    "mergedByType": "User",
+    "files": [
+      "src/MessagePack.SourceGenerator/CodeAnalysis/GenericTypeParameterInfo.cs"
+    ],
+    "eligiblePaths": false
+  },
+  {
+    "pr": 2172,
+    "mergedAt": "2025-03-04T12:45:10Z",
+    "mergedByType": "User",
+    "files": [
+      "src/MessagePack/Utilities.cs"
+    ],
+    "eligiblePaths": false
+  },
+  {
+    "pr": 2153,
+    "mergedAt": "2025-02-09T13:02:27Z",
+    "mergedByType": "User",
+    "files": [
+      "src/MessagePack/Resolvers/SkipClrVisibilityChecks.cs",
+      "tests/MessagePack.Tests/DynamicObjectResolverTests.cs"
+    ],
+    "eligiblePaths": false
+  },
+  {
+    "pr": 2150,
+    "mergedAt": "2025-02-04T00:50:52Z",
+    "mergedByType": "User",
+    "files": [
+      "sandbox/Sandbox/Program.cs",
+      "src/MessagePack.SourceGenerator/Analyzers/MsgPack00xMessagePackAnalyzer.cs",
+      "src/MessagePack.SourceGenerator/CodeAnalysis/QualifiedNamedTypeName.cs",
+      "src/MessagePack.SourceGenerator/Utils/AnalyzerUtilities.cs"
+    ],
+    "eligiblePaths": false
+  },
+  {
+    "pr": 2138,
+    "mergedAt": "2025-01-24T00:03:03Z",
+    "mergedByType": "User",
+    "files": [
+      ".github/workflows/unity.yml"
+    ],
+    "eligiblePaths": false
+  },
+  {
+    "pr": 2123,
+    "mergedAt": "2025-01-09T15:57:31Z",
+    "mergedByType": "User",
+    "files": [
+      "src/MessagePack.SourceGenerator/CodeAnalysis/CodeAnalysisUtilities.cs"
+    ],
+    "eligiblePaths": false
+  },
+  {
+    "pr": 2103,
+    "mergedAt": "2024-12-25T01:08:24Z",
+    "mergedByType": "User",
+    "files": [
+      "sandbox/Sandbox/Program.cs",
+      "sandbox/Sandbox/Sandbox.csproj",
+      "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
+      "tests/MessagePack.Tests/NewCollectionTypesTest.cs",
+      "tests/MessagePack.Tests/NewStandardClassTypesTest.cs"
+    ],
+    "eligiblePaths": false
+  },
+  {
+    "pr": 2104,
+    "mergedAt": "2024-12-25T01:08:16Z",
+    "mergedByType": "User",
+    "files": [
+      "Directory.Packages.props",
+      "src/MessagePack/MessagePack.csproj",
+      "src/MessagePack/net472/PublicAPI.Shipped.txt",
+      "src/MessagePack/net472/PublicAPI.Unshipped.txt",
+      "src/MessagePack/net8.0/PublicAPI.Shipped.txt",
+      "src/MessagePack/net8.0/PublicAPI.Unshipped.txt",
+      "src/MessagePack/net9.0/PublicAPI.Shipped.txt",
+      "src/MessagePack/net9.0/PublicAPI.Unshipped.txt",
+      "src/MessagePack/netstandard2.0/PublicAPI.Shipped.txt",
+      "src/MessagePack/netstandard2.0/PublicAPI.Unshipped.txt",
+      "src/MessagePack/netstandard2.1/PublicAPI.Shipped.txt",
+      "src/MessagePack/netstandard2.1/PublicAPI.Unshipped.txt"
+    ],
+    "eligiblePaths": false
+  },
+  {
+    "pr": 2043,
+    "mergedAt": "2024-10-25T17:18:16Z",
+    "mergedByType": "User",
+    "files": [
+      "src/MessagePack/SequencePool.cs",
+      "src/MessagePack/net472/PublicAPI.Unshipped.txt",
+      "src/MessagePack/net8.0/PublicAPI.Unshipped.txt",
+      "src/MessagePack/netstandard2.0/PublicAPI.Unshipped.txt",
+      "src/MessagePack/netstandard2.1/PublicAPI.Unshipped.txt"
+    ],
+    "eligiblePaths": false
+  },
+  {
+    "pr": 2093,
+    "mergedAt": "2024-12-12T07:25:27Z",
+    "mergedByType": "User",
+    "files": [
+      "src/MessagePack.SourceGenerator/Analyzers/MsgPack00xMessagePackAnalyzer.cs",
+      "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
+      "src/MessagePack.SourceGenerator/MessagePack.SourceGenerator.csproj"
+    ],
+    "eligiblePaths": false
+  },
+  {
+    "pr": 2087,
+    "mergedAt": "2024-12-09T09:30:05Z",
+    "mergedByType": "User",
+    "files": [
+      "Directory.Packages.props"
+    ],
+    "eligiblePaths": false
+  },
+  {
+    "pr": 1932,
+    "mergedAt": "2024-08-19T01:41:06Z",
+    "mergedByType": "User",
+    "files": [
+      "src/MessagePackAnalyzer/MessagePackAnalyzer.cs",
+      "src/MessagePackAnalyzer/MessagePackCodeFixProvider.cs",
+      "tests/MessagePackAnalyzer.Tests/Helpers/CSharpCodeFixVerifier`2.cs",
+      "tests/MessagePackAnalyzer.Tests/MessagePackAnalyzerTests.cs"
+    ],
+    "eligiblePaths": false
+  },
+  {
+    "pr": 1879,
+    "mergedAt": "2024-07-05T22:52:08Z",
+    "mergedByType": "User",
+    "files": [
+      "src/MessagePack.UnityClient/Assets/Scripts/MessagePack/Resolvers/DynamicObjectResolver.cs"
+    ],
+    "eligiblePaths": false
+  },
+  {
+    "pr": 1832,
+    "mergedAt": "2024-06-07T00:32:14Z",
+    "mergedByType": "User",
+    "files": [
+      ".devcontainer/Dockerfile",
+      "Directory.Packages.props",
+      "global.json",
+      "sandbox/Sandbox/codegen.ps1",
+      "sandbox/TestData2/codegen.ps1",
+      "src/MessagePack.Generator/MessagePack.Generator.csproj"
+    ],
+    "eligiblePaths": false
+  },
+  {
+    "pr": 1822,
+    "mergedAt": "2024-05-22T17:57:48Z",
+    "mergedByType": "User",
+    "files": [
+      "src/MessagePack.Analyzers/MessagePack.Analyzers.csproj",
+      "src/MessagePack/MessagePack.csproj"
+    ],
+    "eligiblePaths": false
+  }
+]

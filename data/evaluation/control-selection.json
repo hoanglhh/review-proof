@@ -1,0 +1,2376 @@
+{
+  "selectedAt": "2026-11-14T23:42:33.501Z",
+  "rule": "See protocol.json: most recent human-merged upstream PR closing an issue and touching source generator plus its test project; at most three build attempts.",
+  "search": {
+    "allMerged": {
+      "url": "https://api.github.com/search/issues?q=repo%3AMessagePack-CSharp%2FMessagePack-CSharp%20is%3Apr%20is%3Amerged&sort=updated&order=desc&per_page=100",
+      "total": 732,
+      "items": [
+        {
+          "number": 2314,
+          "title": "Add missing .meta file for DynamicAssemblyFactory.cs in the Unity package",
+          "updatedAt": "2026-10-26T16:24:52Z",
+          "mergedAt": "2026-10-26T16:24:40Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2314"
+        },
+        {
+          "number": 2313,
+          "title": "Update README.md",
+          "updatedAt": "2026-10-24T13:07:07Z",
+          "mergedAt": "2026-10-24T13:07:05Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2313"
+        },
+        {
+          "number": 2310,
+          "title": "Keep assembly versions stable across v3 servicing releases",
+          "updatedAt": "2026-10-21T13:08:42Z",
+          "mergedAt": "2026-10-21T13:08:38Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2310"
+        },
+        {
+          "number": 2308,
+          "title": "Add opt-in non-reflective object comparer for NativeAOT",
+          "updatedAt": "2026-10-12T18:37:07Z",
+          "mergedAt": "2026-10-12T18:37:07Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2308"
+        },
+        {
+          "number": 2302,
+          "title": "Merge develop back into master",
+          "updatedAt": "2026-09-18T12:41:27Z",
+          "mergedAt": "2026-09-18T12:41:22Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2302"
+        },
+        {
+          "number": 2304,
+          "title": "Test before versioned release build",
+          "updatedAt": "2026-09-17T18:15:32Z",
+          "mergedAt": "2026-09-17T18:15:30Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2304"
+        },
+        {
+          "number": 2303,
+          "title": "Fix source generator snapshot ordering",
+          "updatedAt": "2026-09-17T17:44:27Z",
+          "mergedAt": "2026-09-17T17:44:25Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2303"
+        },
+        {
+          "number": 2301,
+          "title": "Merge master to develop",
+          "updatedAt": "2026-09-17T16:22:16Z",
+          "mergedAt": "2026-09-17T16:22:14Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2301"
+        },
+        {
+          "number": 2300,
+          "title": "Fix build warning and Windows build break",
+          "updatedAt": "2026-09-17T16:12:20Z",
+          "mergedAt": "2026-09-17T16:12:18Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2300"
+        },
+        {
+          "number": 2295,
+          "title": "v2 to master",
+          "updatedAt": "2026-09-03T03:09:33Z",
+          "mergedAt": "2026-09-03T03:09:32Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2295"
+        },
+        {
+          "number": 2287,
+          "title": "Fix OldSpec byte[] encoding emitting unsupported str8 headers",
+          "updatedAt": "2026-08-04T16:18:59Z",
+          "mergedAt": "2026-08-04T16:18:57Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2287"
+        },
+        {
+          "number": 2282,
+          "title": "Revise end-of-life date for version 2.x",
+          "updatedAt": "2026-07-21T20:24:14Z",
+          "mergedAt": "2026-07-21T20:24:13Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2282"
+        },
+        {
+          "number": 2279,
+          "title": "Fix CS8669 warning in generated MessagePack.GeneratedMessagePackResolver.g.cs",
+          "updatedAt": "2026-07-08T21:15:14Z",
+          "mergedAt": "2026-07-08T21:15:12Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2279"
+        },
+        {
+          "number": 2258,
+          "title": "perf: drop redundant char* fixed in MessagePackWriter.Write(string)",
+          "updatedAt": "2026-07-08T20:55:40Z",
+          "mergedAt": "2026-07-08T20:55:40Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2258"
+        },
+        {
+          "number": 2278,
+          "title": "Update README built-in supported types list with missing types",
+          "updatedAt": "2026-07-08T01:50:20Z",
+          "mergedAt": "2026-07-08T01:50:19Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2278"
+        },
+        {
+          "number": 2275,
+          "title": "Fix security issues in develop",
+          "updatedAt": "2026-06-09T17:04:14Z",
+          "mergedAt": "2026-06-09T17:04:09Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2275"
+        },
+        {
+          "number": 2274,
+          "title": "Fix security issues in master",
+          "updatedAt": "2026-06-09T17:04:14Z",
+          "mergedAt": "2026-06-09T17:04:12Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2274"
+        },
+        {
+          "number": 2273,
+          "title": "Merge master into develop",
+          "updatedAt": "2026-06-09T13:40:53Z",
+          "mergedAt": "2026-06-09T13:40:53Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2273"
+        },
+        {
+          "number": 2271,
+          "title": "Add `scoped` to `MessagePackWriter.Write(ReadOnlySpan<T>)` methods",
+          "updatedAt": "2026-06-01T18:09:14Z",
+          "mergedAt": "2026-06-01T18:09:11Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2271"
+        },
+        {
+          "number": 2269,
+          "title": "Add several known unsafe 'gadgets' to the disallow list",
+          "updatedAt": "2026-05-21T20:36:43Z",
+          "mergedAt": "2026-05-21T20:36:42Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2269"
+        },
+        {
+          "number": 2270,
+          "title": "Add several known unsafe 'gadgets' to the disallow list",
+          "updatedAt": "2026-05-21T20:33:14Z",
+          "mergedAt": "2026-05-21T20:33:12Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2270"
+        },
+        {
+          "number": 2268,
+          "title": "Fix release workflow",
+          "updatedAt": "2026-05-21T00:15:04Z",
+          "mergedAt": "2026-05-21T00:15:02Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2268"
+        },
+        {
+          "number": 2267,
+          "title": "Merge master to develop",
+          "updatedAt": "2026-05-20T22:39:10Z",
+          "mergedAt": "2026-05-20T22:39:08Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2267"
+        },
+        {
+          "number": 2262,
+          "title": "Revert DateTimeOffset encoding change",
+          "updatedAt": "2026-05-15T01:58:31Z",
+          "mergedAt": "2026-05-15T01:58:29Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2262"
+        },
+        {
+          "number": 2263,
+          "title": "Add more types to the default disallow list of named types to be deserialized",
+          "updatedAt": "2026-05-15T01:51:15Z",
+          "mergedAt": "2026-05-15T01:51:12Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2263"
+        },
+        {
+          "number": 2264,
+          "title": "Update v2.x to build again",
+          "updatedAt": "2026-05-15T01:24:32Z",
+          "mergedAt": "2026-05-15T01:24:29Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2264"
+        },
+        {
+          "number": 2256,
+          "title": "Add more types to the default disallow list of named types to be deserialized",
+          "updatedAt": "2026-05-14T23:55:05Z",
+          "mergedAt": "2026-05-14T23:55:03Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2256"
+        },
+        {
+          "number": 2225,
+          "title": "Fix Incorrect DateTimeOffset Serializer",
+          "updatedAt": "2026-05-14T18:23:30Z",
+          "mergedAt": "2025-08-22T12:43:59Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2225"
+        },
+        {
+          "number": 2261,
+          "title": "Build with .NET SDK 10.0.300",
+          "updatedAt": "2026-05-13T22:46:25Z",
+          "mergedAt": "2026-05-13T22:46:23Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2261"
+        },
+        {
+          "number": 2260,
+          "title": "Fix typo and ignore .lscache files",
+          "updatedAt": "2026-05-13T22:46:18Z",
+          "mergedAt": "2026-05-13T22:46:16Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2260"
+        },
+        {
+          "number": 2235,
+          "title": "Fix LICENSE notices for BufferWriter.cs",
+          "updatedAt": "2026-02-27T17:27:18Z",
+          "mergedAt": "2026-02-27T17:27:14Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2235"
+        },
+        {
+          "number": 1977,
+          "title": "Merge latest Library.Template",
+          "updatedAt": "2025-09-15T13:02:37Z",
+          "mergedAt": "2024-10-01T13:27:29Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/1977"
+        },
+        {
+          "number": 2226,
+          "title": "fix: prevent StackOverflow in Equals with recursive generic constraints",
+          "updatedAt": "2025-08-31T19:39:20Z",
+          "mergedAt": "2025-08-31T19:39:19Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2226"
+        },
+        {
+          "number": 2224,
+          "title": "Fix various disposable issues",
+          "updatedAt": "2025-08-22T12:52:20Z",
+          "mergedAt": "2025-08-22T12:52:20Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2224"
+        },
+        {
+          "number": 2212,
+          "title": "Use 'Write' instead of 'WriteInt32' for union type keys",
+          "updatedAt": "2025-08-17T18:49:05Z",
+          "mergedAt": "2025-08-17T18:49:04Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2212"
+        },
+        {
+          "number": 2206,
+          "title": "Remove unneeded GetTypeInfo() calls",
+          "updatedAt": "2025-08-17T18:45:09Z",
+          "mergedAt": "2025-08-17T18:45:09Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2206"
+        },
+        {
+          "number": 2185,
+          "title": "AccessModifier was added to generated code.",
+          "updatedAt": "2025-06-12T12:03:57Z",
+          "mergedAt": "2025-06-06T13:17:01Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2185"
+        },
+        {
+          "number": 2183,
+          "title": "Update DynamicAssembly usage to honor different AssemblyLoadContext's",
+          "updatedAt": "2025-04-10T14:09:58Z",
+          "mergedAt": "2025-04-10T14:09:58Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2183"
+        },
+        {
+          "number": 2172,
+          "title": "Add memory size check to `GetMemoryCheckResult`",
+          "updatedAt": "2025-03-04T12:45:11Z",
+          "mergedAt": "2025-03-04T12:45:10Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2172"
+        },
+        {
+          "number": 2169,
+          "title": "Promote analyzers to AnalyzerReleases.Shipped.md",
+          "updatedAt": "2025-03-01T15:23:40Z",
+          "mergedAt": "2025-03-01T15:21:07Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2169"
+        },
+        {
+          "number": 2153,
+          "title": "Fix SkipClrVisibilityChecks to notice private fields in base classes",
+          "updatedAt": "2025-02-09T13:02:29Z",
+          "mergedAt": "2025-02-09T13:02:27Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2153"
+        },
+        {
+          "number": 2150,
+          "title": "Fix stackoverflow on analyzer",
+          "updatedAt": "2025-02-04T00:50:54Z",
+          "mergedAt": "2025-02-04T00:50:52Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2150"
+        },
+        {
+          "number": 2139,
+          "title": "Change ByteListFormatter behaviour to keep binary compatibility for List<byte>",
+          "updatedAt": "2025-01-27T07:48:56Z",
+          "mergedAt": "2025-01-27T07:48:55Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2139"
+        },
+        {
+          "number": 2136,
+          "title": "Add PreserveAttribute to generic formatters for Unity IL2CPP",
+          "updatedAt": "2025-01-27T07:47:25Z",
+          "mergedAt": "2025-01-27T07:47:23Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2136"
+        },
+        {
+          "number": 2134,
+          "title": "Protects the generated resolver type metadata from trimmer",
+          "updatedAt": "2025-01-27T07:47:13Z",
+          "mergedAt": "2025-01-27T07:47:13Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2134"
+        },
+        {
+          "number": 2119,
+          "title": "Consolidation of AssemblyBuilderAccess when generating dynamic assemblies",
+          "updatedAt": "2025-01-27T07:46:51Z",
+          "mergedAt": "2025-01-27T07:46:51Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2119"
+        },
+        {
+          "number": 2138,
+          "title": "GitHubActions, prevent run build-unity on external contributor",
+          "updatedAt": "2025-01-24T00:03:04Z",
+          "mergedAt": "2025-01-24T00:03:03Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2138"
+        },
+        {
+          "number": 2135,
+          "title": "Fix issues about Double.MaxValue",
+          "updatedAt": "2025-01-23T13:58:46Z",
+          "mergedAt": "2025-01-23T13:58:46Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2135"
+        },
+        {
+          "number": 2124,
+          "title": "Remove FluentAssertions, Use Shouldly",
+          "updatedAt": "2025-01-16T07:35:38Z",
+          "mergedAt": "2025-01-16T07:35:36Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2124"
+        },
+        {
+          "number": 2123,
+          "title": "Add missing recursion guard to `CodeAnalysisUtilities.GetTypeParameters`",
+          "updatedAt": "2025-01-09T15:58:05Z",
+          "mergedAt": "2025-01-09T15:57:31Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2123"
+        },
+        {
+          "number": 2114,
+          "title": "Bump FluentAssertions from 6.12.0 to 7.0.0",
+          "updatedAt": "2025-01-08T03:18:18Z",
+          "mergedAt": "2025-01-06T16:35:30Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2114"
+        },
+        {
+          "number": 2115,
+          "title": "Bump MicrosoftCodeAnalysisVersion from 4.8.0 to 4.12.0",
+          "updatedAt": "2025-01-05T20:17:58Z",
+          "mergedAt": "2025-01-05T20:17:56Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2115"
+        },
+        {
+          "number": 2118,
+          "title": "Bump Newtonsoft.Json and Newtonsoft.Json.Bson",
+          "updatedAt": "2025-01-05T15:07:09Z",
+          "mergedAt": "2025-01-05T15:07:07Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2118"
+        },
+        {
+          "number": 2117,
+          "title": "Bump nunit from 4.2.2 to 4.3.2",
+          "updatedAt": "2025-01-05T15:06:44Z",
+          "mergedAt": "2025-01-05T15:06:42Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2117"
+        },
+        {
+          "number": 2116,
+          "title": "Bump Microsoft.NET.Test.Sdk from 17.11.1 to 17.12.0",
+          "updatedAt": "2025-01-05T15:06:32Z",
+          "mergedAt": "2025-01-05T15:06:31Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2116"
+        },
+        {
+          "number": 2106,
+          "title": "enable analyze union / stop collect field when object marked SuppressSourceGeneration",
+          "updatedAt": "2024-12-26T09:02:50Z",
+          "mergedAt": "2024-12-26T09:02:48Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2106"
+        },
+        {
+          "number": 2103,
+          "title": "Fix source generator, don't generate when abstract/interface is not union",
+          "updatedAt": "2024-12-25T01:08:27Z",
+          "mergedAt": "2024-12-25T01:08:24Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2103"
+        },
+        {
+          "number": 2104,
+          "title": "Remove PublicApiAnalyzers",
+          "updatedAt": "2024-12-25T01:08:17Z",
+          "mergedAt": "2024-12-25T01:08:16Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2104"
+        },
+        {
+          "number": 2105,
+          "title": "allow DynamicGenericResolver to StandardResolver in DynamicAssembly.AvoidDynamicCode",
+          "updatedAt": "2024-12-25T01:08:08Z",
+          "mergedAt": "2024-12-25T01:08:07Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2105"
+        },
+        {
+          "number": 2043,
+          "title": "Allow SequencePool to Clear self",
+          "updatedAt": "2024-12-24T09:04:44Z",
+          "mergedAt": "2024-10-25T17:18:16Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2043"
+        },
+        {
+          "number": 2098,
+          "title": "README.md: \u00ccntKey -> IntKey",
+          "updatedAt": "2024-12-18T08:20:02Z",
+          "mergedAt": "2024-12-18T08:18:50Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2098"
+        },
+        {
+          "number": 2095,
+          "title": "Current all apis to shipped.txt",
+          "updatedAt": "2024-12-12T07:30:56Z",
+          "mergedAt": "2024-12-12T07:30:54Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2095"
+        },
+        {
+          "number": 2094,
+          "title": "Remove NerdBank.GitVersioning",
+          "updatedAt": "2024-12-12T07:30:46Z",
+          "mergedAt": "2024-12-12T07:30:44Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2094"
+        },
+        {
+          "number": 2090,
+          "title": "Add .NET 9",
+          "updatedAt": "2024-12-12T07:30:15Z",
+          "mergedAt": "2024-12-11T00:50:27Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2090"
+        },
+        {
+          "number": 2093,
+          "title": "Check IsGenericType before call ConstructUnboundGenericType()",
+          "updatedAt": "2024-12-12T07:25:28Z",
+          "mergedAt": "2024-12-12T07:25:27Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2093"
+        },
+        {
+          "number": 2088,
+          "title": "Relaxed the conditions in editor.config",
+          "updatedAt": "2024-12-10T03:46:41Z",
+          "mergedAt": "2024-12-10T01:54:06Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2088"
+        },
+        {
+          "number": 2084,
+          "title": "Touch-ups to master",
+          "updatedAt": "2024-12-09T10:07:12Z",
+          "mergedAt": "2024-12-09T03:07:11Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2084"
+        },
+        {
+          "number": 2087,
+          "title": "Fix Source Generator doesnt work in Unity",
+          "updatedAt": "2024-12-09T09:51:43Z",
+          "mergedAt": "2024-12-09T09:30:05Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2087"
+        },
+        {
+          "number": 2074,
+          "title": "CI moves to GitHub Actions",
+          "updatedAt": "2024-12-06T13:39:01Z",
+          "mergedAt": "2024-12-06T06:46:36Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2074"
+        },
+        {
+          "number": 2073,
+          "title": "Set MaximumObjectGraphDepth to TrustedData",
+          "updatedAt": "2024-12-03T22:33:51Z",
+          "mergedAt": "2024-12-03T22:33:49Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2073"
+        },
+        {
+          "number": 2081,
+          "title": "ci: put set of GitHub Actions workflows to run build and release",
+          "updatedAt": "2024-12-03T15:47:56Z",
+          "mergedAt": "2024-12-03T11:09:44Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2081"
+        },
+        {
+          "number": 2078,
+          "title": "Bump Xunit.SkippableFact from 1.4.13 to 1.5.23",
+          "updatedAt": "2024-12-02T13:54:51Z",
+          "mergedAt": "2024-12-02T13:54:49Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2078"
+        },
+        {
+          "number": 2070,
+          "title": "Fix bugs for Hardware Intrinsics",
+          "updatedAt": "2024-11-19T14:47:57Z",
+          "mergedAt": "2024-11-19T14:06:21Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2070"
+        },
+        {
+          "number": 2055,
+          "title": "Fix bugs in serializing long numbers",
+          "updatedAt": "2024-11-14T12:58:11Z",
+          "mergedAt": "2024-11-02T23:04:33Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2055"
+        },
+        {
+          "number": 2065,
+          "title": "Fix repo url",
+          "updatedAt": "2024-11-14T12:57:09Z",
+          "mergedAt": "2024-11-14T12:57:09Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2065"
+        },
+        {
+          "number": 2061,
+          "title": "Fix serializing BigInteger and Decimal",
+          "updatedAt": "2024-11-12T13:48:41Z",
+          "mergedAt": "2024-11-11T14:02:32Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2061"
+        },
+        {
+          "number": 2059,
+          "title": "Fix issues about Memory/ReadOnlyMemory/ReadOnlySequence in Source Generator",
+          "updatedAt": "2024-11-12T13:48:10Z",
+          "mergedAt": "2024-11-12T13:48:10Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2059"
+        },
+        {
+          "number": 2063,
+          "title": "SequencePool support MemoryPool.",
+          "updatedAt": "2024-11-12T05:37:47Z",
+          "mergedAt": "2024-11-12T05:36:38Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2063"
+        },
+        {
+          "number": 2064,
+          "title": "Merge master to develop",
+          "updatedAt": "2024-11-11T18:04:58Z",
+          "mergedAt": "2024-11-11T18:04:57Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2064"
+        },
+        {
+          "number": 2062,
+          "title": "Reconcile T4 templates and source code",
+          "updatedAt": "2024-11-11T04:17:20Z",
+          "mergedAt": "2024-11-11T04:17:19Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2062"
+        },
+        {
+          "number": 2056,
+          "title": "Fix an issue about comparing generic type parameter constraints",
+          "updatedAt": "2024-11-09T21:12:24Z",
+          "mergedAt": "2024-11-09T19:54:01Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2056"
+        },
+        {
+          "number": 2057,
+          "title": "Fix issues about code analysis and code fix of MsgPack003",
+          "updatedAt": "2024-11-09T20:24:38Z",
+          "mergedAt": "2024-11-09T20:24:38Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2057"
+        },
+        {
+          "number": 1986,
+          "title": "Add `MessagePackPrimitives` class",
+          "updatedAt": "2024-11-07T16:01:34Z",
+          "mergedAt": "2024-11-07T16:01:31Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/1986"
+        },
+        {
+          "number": 2052,
+          "title": "Bump xunit.runner.console from 2.9.0 to 2.9.2",
+          "updatedAt": "2024-11-02T16:45:19Z",
+          "mergedAt": "2024-11-02T16:45:18Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2052"
+        },
+        {
+          "number": 2053,
+          "title": "Bump ReactiveProperty from 9.5.0 to 9.6.0",
+          "updatedAt": "2024-11-02T16:45:03Z",
+          "mergedAt": "2024-11-02T16:45:02Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2053"
+        },
+        {
+          "number": 2051,
+          "title": "Bump SpanJson from 4.2.0 to 4.2.1",
+          "updatedAt": "2024-11-02T16:43:58Z",
+          "mergedAt": "2024-11-02T16:43:57Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2051"
+        },
+        {
+          "number": 2045,
+          "title": "Revert untrusted data default",
+          "updatedAt": "2024-10-29T15:29:34Z",
+          "mergedAt": "2024-10-29T14:46:37Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2045"
+        },
+        {
+          "number": 2044,
+          "title": "Avoid allocating an `ImmutableArray<T>.Builder` during deserialization",
+          "updatedAt": "2024-10-25T16:54:55Z",
+          "mergedAt": "2024-10-25T16:54:54Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2044"
+        },
+        {
+          "number": 2026,
+          "title": "Refactor reading fixint, fixmap, fixarray, fixstr",
+          "updatedAt": "2024-10-25T13:50:27Z",
+          "mergedAt": "2024-10-25T13:49:59Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2026"
+        },
+        {
+          "number": 2037,
+          "title": "Fix mis-fire of `MsgPack003` on use of `Collection<T>`",
+          "updatedAt": "2024-10-25T02:40:20Z",
+          "mergedAt": "2024-10-25T02:40:19Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2037"
+        },
+        {
+          "number": 2041,
+          "title": "Bump dependency versions for .NET 8.0 era",
+          "updatedAt": "2024-10-25T02:33:39Z",
+          "mergedAt": "2024-10-25T02:33:38Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2041"
+        },
+        {
+          "number": 1963,
+          "title": "MPC String Value From Key Attribute Fix",
+          "updatedAt": "2024-10-24T15:57:14Z",
+          "mergedAt": "2024-09-25T16:56:52Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/1963"
+        },
+        {
+          "number": 2036,
+          "title": "Avoid crashing with stack overflow on recursive generic type parameter constraints",
+          "updatedAt": "2024-10-23T13:54:42Z",
+          "mergedAt": "2024-10-23T13:54:41Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2036"
+        },
+        {
+          "number": 2033,
+          "title": "Fix simplified name for ValueTuple<T>",
+          "updatedAt": "2024-10-23T03:52:48Z",
+          "mergedAt": "2024-10-23T03:52:48Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2033"
+        },
+        {
+          "number": 2032,
+          "title": "Use simpler C# syntax for nullable value types",
+          "updatedAt": "2024-10-22T16:39:16Z",
+          "mergedAt": "2024-10-22T16:39:15Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2032"
+        },
+        {
+          "number": 2031,
+          "title": "Use generic type argument used for custom formatters",
+          "updatedAt": "2024-10-22T15:11:40Z",
+          "mergedAt": "2024-10-22T15:11:39Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2031"
+        },
+        {
+          "number": 1805,
+          "title": "Feature/1804 locate formatters only if has elements inside",
+          "updatedAt": "2024-10-22T14:13:06Z",
+          "mergedAt": "2024-04-24T12:32:26Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/1805"
+        },
+        {
+          "number": 2029,
+          "title": "Apply scoped in more places",
+          "updatedAt": "2024-10-22T13:32:23Z",
+          "mergedAt": "2024-10-22T01:59:02Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2029"
+        },
+        {
+          "number": 2030,
+          "title": "Support nesting formatters within generic data types",
+          "updatedAt": "2024-10-22T00:43:46Z",
+          "mergedAt": "2024-10-22T00:43:45Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2030"
+        },
+        {
+          "number": 2028,
+          "title": "Avoid collecting fields with custom formatter recusively",
+          "updatedAt": "2024-10-21T16:40:22Z",
+          "mergedAt": "2024-10-21T16:40:22Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2028"
+        }
+      ]
+    },
+    "linkedIssues": {
+      "url": "https://api.github.com/search/issues?q=repo%3AMessagePack-CSharp%2FMessagePack-CSharp%20is%3Apr%20is%3Amerged%20linked%3Aissue&sort=updated&order=desc&per_page=100",
+      "total": 130,
+      "items": [
+        {
+          "number": 2310,
+          "title": "Keep assembly versions stable across v3 servicing releases",
+          "updatedAt": "2026-10-21T13:08:42Z",
+          "mergedAt": "2026-10-21T13:08:38Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2310"
+        },
+        {
+          "number": 2287,
+          "title": "Fix OldSpec byte[] encoding emitting unsupported str8 headers",
+          "updatedAt": "2026-08-04T16:18:59Z",
+          "mergedAt": "2026-08-04T16:18:57Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2287"
+        },
+        {
+          "number": 2279,
+          "title": "Fix CS8669 warning in generated MessagePack.GeneratedMessagePackResolver.g.cs",
+          "updatedAt": "2026-07-08T21:15:14Z",
+          "mergedAt": "2026-07-08T21:15:12Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2279"
+        },
+        {
+          "number": 2278,
+          "title": "Update README built-in supported types list with missing types",
+          "updatedAt": "2026-07-08T01:50:20Z",
+          "mergedAt": "2026-07-08T01:50:19Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2278"
+        },
+        {
+          "number": 2226,
+          "title": "fix: prevent StackOverflow in Equals with recursive generic constraints",
+          "updatedAt": "2025-08-31T19:39:20Z",
+          "mergedAt": "2025-08-31T19:39:19Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2226"
+        },
+        {
+          "number": 2172,
+          "title": "Add memory size check to `GetMemoryCheckResult`",
+          "updatedAt": "2025-03-04T12:45:11Z",
+          "mergedAt": "2025-03-04T12:45:10Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2172"
+        },
+        {
+          "number": 2153,
+          "title": "Fix SkipClrVisibilityChecks to notice private fields in base classes",
+          "updatedAt": "2025-02-09T13:02:29Z",
+          "mergedAt": "2025-02-09T13:02:27Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2153"
+        },
+        {
+          "number": 2150,
+          "title": "Fix stackoverflow on analyzer",
+          "updatedAt": "2025-02-04T00:50:54Z",
+          "mergedAt": "2025-02-04T00:50:52Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2150"
+        },
+        {
+          "number": 2138,
+          "title": "GitHubActions, prevent run build-unity on external contributor",
+          "updatedAt": "2025-01-24T00:03:04Z",
+          "mergedAt": "2025-01-24T00:03:03Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2138"
+        },
+        {
+          "number": 2123,
+          "title": "Add missing recursion guard to `CodeAnalysisUtilities.GetTypeParameters`",
+          "updatedAt": "2025-01-09T15:58:05Z",
+          "mergedAt": "2025-01-09T15:57:31Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2123"
+        },
+        {
+          "number": 2103,
+          "title": "Fix source generator, don't generate when abstract/interface is not union",
+          "updatedAt": "2024-12-25T01:08:27Z",
+          "mergedAt": "2024-12-25T01:08:24Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2103"
+        },
+        {
+          "number": 2104,
+          "title": "Remove PublicApiAnalyzers",
+          "updatedAt": "2024-12-25T01:08:17Z",
+          "mergedAt": "2024-12-25T01:08:16Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2104"
+        },
+        {
+          "number": 2043,
+          "title": "Allow SequencePool to Clear self",
+          "updatedAt": "2024-12-24T09:04:44Z",
+          "mergedAt": "2024-10-25T17:18:16Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2043"
+        },
+        {
+          "number": 2093,
+          "title": "Check IsGenericType before call ConstructUnboundGenericType()",
+          "updatedAt": "2024-12-12T07:25:28Z",
+          "mergedAt": "2024-12-12T07:25:27Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2093"
+        },
+        {
+          "number": 2087,
+          "title": "Fix Source Generator doesnt work in Unity",
+          "updatedAt": "2024-12-09T09:51:43Z",
+          "mergedAt": "2024-12-09T09:30:05Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2087"
+        },
+        {
+          "number": 1932,
+          "title": "Adjusted MsgPack004 to support records",
+          "updatedAt": "2024-08-30T19:36:55Z",
+          "mergedAt": "2024-08-19T01:41:06Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/1932"
+        },
+        {
+          "number": 1879,
+          "title": "Allow writing to init property setters of generic classes on .NET 6+",
+          "updatedAt": "2024-07-05T22:52:10Z",
+          "mergedAt": "2024-07-05T22:52:08Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/1879"
+        },
+        {
+          "number": 1832,
+          "title": "Add .NET 8 target to mpc",
+          "updatedAt": "2024-06-07T00:32:15Z",
+          "mergedAt": "2024-06-07T00:32:14Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/1832"
+        },
+        {
+          "number": 1822,
+          "title": "Activate analyzers and source generator by default",
+          "updatedAt": "2024-05-22T17:57:49Z",
+          "mergedAt": "2024-05-22T17:57:48Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/1822"
+        },
+        {
+          "number": 1818,
+          "title": "Fix source generator handling of inaccessible custom formatters",
+          "updatedAt": "2024-05-16T21:01:38Z",
+          "mergedAt": "2024-05-16T21:01:37Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/1818"
+        },
+        {
+          "number": 1812,
+          "title": "Reduce nuget dependencies",
+          "updatedAt": "2024-05-13T22:08:52Z",
+          "mergedAt": "2024-05-13T21:09:08Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/1812"
+        },
+        {
+          "number": 1802,
+          "title": "Source generated formatters that support private members",
+          "updatedAt": "2024-05-07T12:41:24Z",
+          "mergedAt": "2024-05-07T12:41:23Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/1802"
+        },
+        {
+          "number": 1796,
+          "title": "Include all hand-written formatters in the source generated resolver",
+          "updatedAt": "2024-04-12T03:57:17Z",
+          "mergedAt": "2024-04-11T15:14:39Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/1796"
+        },
+        {
+          "number": 1696,
+          "title": "Workaround mono runtime bug",
+          "updatedAt": "2023-10-27T17:35:26Z",
+          "mergedAt": "2023-10-27T17:35:25Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/1696"
+        },
+        {
+          "number": 1687,
+          "title": "Better constrain dictionary detection",
+          "updatedAt": "2023-10-06T13:02:13Z",
+          "mergedAt": "2023-10-06T13:02:12Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/1687"
+        },
+        {
+          "number": 1685,
+          "title": "Remove `long` to `int` truncation of stream position",
+          "updatedAt": "2023-09-28T15:30:26Z",
+          "mergedAt": "2023-09-28T15:30:24Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/1685"
+        },
+        {
+          "number": 1667,
+          "title": "Switch from MSBuild properties to an AdditionalFiles json file",
+          "updatedAt": "2023-08-15T13:08:10Z",
+          "mergedAt": "2023-08-15T13:08:09Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/1667"
+        },
+        {
+          "number": 1641,
+          "title": "Rollback package dependency versions for analyzers",
+          "updatedAt": "2023-06-12T01:36:03Z",
+          "mergedAt": "2023-06-12T01:35:57Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/1641"
+        },
+        {
+          "number": 1623,
+          "title": "Fix `ILookup<TKey, TElement>` deserialized behavior",
+          "updatedAt": "2023-05-20T14:26:36Z",
+          "mergedAt": "2023-05-20T14:26:26Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/1623"
+        },
+        {
+          "number": 1497,
+          "title": "Remove a few dependencies from unity package",
+          "updatedAt": "2023-04-26T16:01:37Z",
+          "mergedAt": "2022-11-19T15:13:10Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/1497"
+        },
+        {
+          "number": 1575,
+          "title": "Fix PrimitiveObjectResolver's ability to read strings",
+          "updatedAt": "2023-03-14T00:25:57Z",
+          "mergedAt": "2023-03-14T00:25:53Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/1575"
+        },
+        {
+          "number": 1551,
+          "title": "Fix wrong data length written in `UnsafeBlitFormatter`",
+          "updatedAt": "2023-03-12T22:34:03Z",
+          "mergedAt": "2023-03-12T22:34:03Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/1551"
+        },
+        {
+          "number": 1549,
+          "title": "Hide Microsoft.NET.StringTools from compilation of downstream projects",
+          "updatedAt": "2023-01-11T01:34:22Z",
+          "mergedAt": "2023-01-11T01:34:19Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/1549"
+        },
+        {
+          "number": 1548,
+          "title": "Fix unity+android code for reading an Int64 from memory",
+          "updatedAt": "2023-01-06T20:50:40Z",
+          "mergedAt": "2023-01-06T20:50:37Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/1548"
+        },
+        {
+          "number": 1528,
+          "title": "Add incremental build support to MessagePack.MSBuild.Tasks",
+          "updatedAt": "2022-11-19T22:54:33Z",
+          "mergedAt": "2022-11-19T15:52:07Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/1528"
+        },
+        {
+          "number": 1527,
+          "title": "Fix null param check in `StaticCompositeResolver`",
+          "updatedAt": "2022-11-19T15:08:54Z",
+          "mergedAt": "2022-11-19T15:08:51Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/1527"
+        },
+        {
+          "number": 1487,
+          "title": "Support string interning when deserializing string as object.",
+          "updatedAt": "2022-09-06T20:53:47Z",
+          "mergedAt": "2022-09-06T20:53:47Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/1487"
+        },
+        {
+          "number": 1490,
+          "title": "removing extra double quotation mark",
+          "updatedAt": "2022-08-25T12:49:40Z",
+          "mergedAt": "2022-08-25T12:49:40Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/1490"
+        },
+        {
+          "number": 1461,
+          "title": "Fix for \"System.NotImplementedException: byref delegate\"",
+          "updatedAt": "2022-08-03T16:26:28Z",
+          "mergedAt": "2022-08-02T14:37:39Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/1461"
+        },
+        {
+          "number": 1455,
+          "title": "Add StringInterningFormatter.cs.meta for Unity",
+          "updatedAt": "2022-06-23T18:33:58Z",
+          "mergedAt": "2022-06-23T18:33:54Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/1455"
+        },
+        {
+          "number": 1440,
+          "title": "Suppress CS1591 warnings in generated code",
+          "updatedAt": "2022-06-07T19:59:16Z",
+          "mergedAt": "2022-06-07T19:59:10Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/1440"
+        },
+        {
+          "number": 1330,
+          "title": "Fix MessagePackFormatterAttribute for many built-in formatter types",
+          "updatedAt": "2021-11-05T17:50:04Z",
+          "mergedAt": "2021-11-05T17:50:00Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/1330"
+        },
+        {
+          "number": 1267,
+          "title": "Fix handling of readonly private fields",
+          "updatedAt": "2021-09-20T14:35:08Z",
+          "mergedAt": "2021-06-21T03:19:13Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/1267"
+        },
+        {
+          "number": 1314,
+          "title": "Skip setting fields when the ctor already took the value",
+          "updatedAt": "2021-09-02T01:18:13Z",
+          "mergedAt": "2021-09-02T01:18:09Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/1314"
+        },
+        {
+          "number": 1300,
+          "title": "Fix code generation for string-keyed objects with getter-only props and parameterized ctor.",
+          "updatedAt": "2021-08-21T18:32:51Z",
+          "mergedAt": "2021-08-21T18:32:50Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/1300"
+        },
+        {
+          "number": 1202,
+          "title": "Make cctor defer Reflection that fails in AOT",
+          "updatedAt": "2021-07-17T23:21:42Z",
+          "mergedAt": "2021-03-18T23:29:02Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/1202"
+        },
+        {
+          "number": 1288,
+          "title": "Add support for C# 9 record types in mpc",
+          "updatedAt": "2021-07-17T23:17:50Z",
+          "mergedAt": "2021-07-17T23:17:47Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/1288"
+        },
+        {
+          "number": 1286,
+          "title": "Fix C# record serialization when using `StandardResolverAllowPrivate`",
+          "updatedAt": "2021-07-15T20:36:04Z",
+          "mergedAt": "2021-07-15T20:36:01Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/1286"
+        },
+        {
+          "number": 1263,
+          "title": "Use AssemblyBuilderAccess.RunAndCollect instead of AssemblyBuilderAccess.Run",
+          "updatedAt": "2021-06-14T02:54:28Z",
+          "mergedAt": "2021-06-13T21:46:47Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/1263"
+        },
+        {
+          "number": 1252,
+          "title": "Allow deserializing `byte[]` from a msgpack array",
+          "updatedAt": "2021-06-06T04:51:18Z",
+          "mergedAt": "2021-06-06T04:51:10Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/1252"
+        },
+        {
+          "number": 1254,
+          "title": "Update from Library.Template",
+          "updatedAt": "2021-05-30T12:19:45Z",
+          "mergedAt": "2021-05-30T12:19:36Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/1254"
+        },
+        {
+          "number": 1012,
+          "title": "fix(1011): Override references to load *.dll without autoReference:true",
+          "updatedAt": "2021-05-01T16:55:21Z",
+          "mergedAt": "2020-08-17T20:40:41Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/1012"
+        },
+        {
+          "number": 1215,
+          "title": "Add `prepare_release.ps1` script",
+          "updatedAt": "2021-03-20T03:48:20Z",
+          "mergedAt": "2021-03-20T03:48:18Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/1215"
+        },
+        {
+          "number": 1203,
+          "title": "Remove assembly version info from generic type arguments",
+          "updatedAt": "2021-03-19T14:38:24Z",
+          "mergedAt": "2021-03-19T14:38:20Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/1203"
+        },
+        {
+          "number": 1123,
+          "title": "MPC: Unify Formatter Name between int-key and string-key",
+          "updatedAt": "2020-11-19T00:18:46Z",
+          "mergedAt": "2020-11-19T00:10:35Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/1123"
+        },
+        {
+          "number": 1095,
+          "title": "Stop initializing members to their default values when deserializing where no data was provided for that member",
+          "updatedAt": "2020-11-11T22:53:00Z",
+          "mergedAt": "2020-11-11T15:39:08Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/1095"
+        },
+        {
+          "number": 1099,
+          "title": "Fix mpc arg documentation",
+          "updatedAt": "2020-11-11T15:34:58Z",
+          "mergedAt": "2020-11-11T15:34:52Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/1099"
+        },
+        {
+          "number": 1106,
+          "title": "UriFormatter should use Uri.OriginalString when serializing",
+          "updatedAt": "2020-11-09T19:47:26Z",
+          "mergedAt": "2020-11-09T19:47:26Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/1106"
+        },
+        {
+          "number": 1100,
+          "title": "Fix `[MessagePackFormatter(TypelessFormatter)]`",
+          "updatedAt": "2020-10-31T15:03:48Z",
+          "mergedAt": "2020-10-31T15:03:44Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/1100"
+        },
+        {
+          "number": 1078,
+          "title": "Typeless supports interface and abstract",
+          "updatedAt": "2020-10-26T01:51:10Z",
+          "mergedAt": "2020-10-26T01:51:06Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/1078"
+        },
+        {
+          "number": 1083,
+          "title": "Fix handling of `[DataMember]` that appears on virtual and override properties",
+          "updatedAt": "2020-10-24T16:11:28Z",
+          "mergedAt": "2020-10-24T16:11:24Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/1083"
+        },
+        {
+          "number": 1054,
+          "title": "Enable deserialization constructors to use parameter names that match their property names",
+          "updatedAt": "2020-09-25T14:05:59Z",
+          "mergedAt": "2020-09-25T14:05:59Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/1054"
+        },
+        {
+          "number": 1031,
+          "title": "Fix handling of non-public enums when using AllowPrivate resolvers",
+          "updatedAt": "2020-09-14T02:53:44Z",
+          "mergedAt": "2020-09-12T13:17:58Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/1031"
+        },
+        {
+          "number": 1037,
+          "title": "Fix formatting of default `ImmutableArray<T>` values",
+          "updatedAt": "2020-09-14T02:50:28Z",
+          "mergedAt": "2020-09-14T02:50:24Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/1037"
+        },
+        {
+          "number": 1020,
+          "title": "Box value types if passed to ctor args as type object",
+          "updatedAt": "2020-09-10T14:48:59Z",
+          "mergedAt": "2020-09-10T14:48:58Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/1020"
+        },
+        {
+          "number": 1004,
+          "title": "mpc fixes and Generated.cs refresh",
+          "updatedAt": "2020-08-19T02:34:26Z",
+          "mergedAt": "2020-08-16T20:44:34Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/1004"
+        },
+        {
+          "number": 932,
+          "title": "Avoid using MemoryMarshal.Cast<byte, _> on Android",
+          "updatedAt": "2020-08-03T14:46:05Z",
+          "mergedAt": "2020-06-06T13:27:15Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/932"
+        },
+        {
+          "number": 982,
+          "title": "Fixed deserialization on static constructor",
+          "updatedAt": "2020-07-19T13:21:28Z",
+          "mergedAt": "2020-07-19T13:21:27Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/982"
+        },
+        {
+          "number": 956,
+          "title": "Fix msgpack003-005 analyzer and add tests",
+          "updatedAt": "2020-07-01T12:57:17Z",
+          "mergedAt": "2020-07-01T12:57:12Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/956"
+        },
+        {
+          "number": 957,
+          "title": "Fix can not compile on Unity Android build",
+          "updatedAt": "2020-06-21T21:33:40Z",
+          "mergedAt": "2020-06-21T21:33:36Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/957"
+        },
+        {
+          "number": 946,
+          "title": "Fix MessagePackStreamReader reading when string or binary headers are incomplete",
+          "updatedAt": "2020-06-12T13:03:46Z",
+          "mergedAt": "2020-06-12T13:03:43Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/946"
+        },
+        {
+          "number": 947,
+          "title": "Add built-in Memory<T> formatters",
+          "updatedAt": "2020-06-12T13:03:20Z",
+          "mergedAt": "2020-06-12T03:30:39Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/947"
+        },
+        {
+          "number": 881,
+          "title": "Fix invalid bge-emit on string-key dynamic code gen",
+          "updatedAt": "2020-04-13T02:31:53Z",
+          "mergedAt": "2020-04-13T02:31:49Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/881"
+        },
+        {
+          "number": 520,
+          "title": "Do not convert Unspecified DateTime",
+          "updatedAt": "2020-03-05T23:27:22Z",
+          "mergedAt": "2019-07-25T12:03:46Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/520"
+        },
+        {
+          "number": 829,
+          "title": "Fix serialization of private properties on base classes",
+          "updatedAt": "2020-02-27T02:38:19Z",
+          "mergedAt": "2020-02-27T02:38:13Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/829"
+        },
+        {
+          "number": 821,
+          "title": "Fix serialization of private fields in base classes",
+          "updatedAt": "2020-02-25T13:49:33Z",
+          "mergedAt": "2020-02-25T13:49:27Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/821"
+        },
+        {
+          "number": 811,
+          "title": "Fix `MessagePackSecurity.GetEqualityComparer<object>` to not return null",
+          "updatedAt": "2020-02-10T14:47:09Z",
+          "mergedAt": "2020-02-10T13:46:21Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/811"
+        },
+        {
+          "number": 809,
+          "title": "Add secure hashing for enums with backing integers of 32-bit or less",
+          "updatedAt": "2020-02-10T13:47:34Z",
+          "mergedAt": "2020-02-10T13:47:29Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/809"
+        },
+        {
+          "number": 768,
+          "title": "Bring back serialization of members with explicit attributes ",
+          "updatedAt": "2020-01-28T17:03:07Z",
+          "mergedAt": "2020-01-17T13:55:35Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/768"
+        },
+        {
+          "number": 789,
+          "title": "Respect EnumMemberAttribute when serializing enum values as strings",
+          "updatedAt": "2020-01-27T16:22:16Z",
+          "mergedAt": "2020-01-27T16:22:16Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/789"
+        },
+        {
+          "number": 786,
+          "title": "Fix WriteString issue on mono",
+          "updatedAt": "2020-01-20T23:15:12Z",
+          "mergedAt": "2020-01-20T23:15:00Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/786"
+        },
+        {
+          "number": 778,
+          "title": "Deserialize mutable collection interfaces with mutable concrete types",
+          "updatedAt": "2020-01-17T05:20:58Z",
+          "mergedAt": "2020-01-17T05:20:54Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/778"
+        },
+        {
+          "number": 769,
+          "title": "Add analyzers to call out use of static options",
+          "updatedAt": "2020-01-15T15:48:33Z",
+          "mergedAt": "2020-01-15T15:48:29Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/769"
+        },
+        {
+          "number": 771,
+          "title": "Add WriteBinHeader and WriteStringHeader methods to MessagePackWriter",
+          "updatedAt": "2020-01-14T08:54:27Z",
+          "mergedAt": "2020-01-14T08:54:24Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/771"
+        },
+        {
+          "number": 767,
+          "title": "Add `MessagePackReader.TryRead*Header` methods",
+          "updatedAt": "2020-01-14T08:43:32Z",
+          "mergedAt": "2020-01-14T08:43:29Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/767"
+        },
+        {
+          "number": 747,
+          "title": "Fix sample code snippets use of new overload",
+          "updatedAt": "2019-12-29T19:25:40Z",
+          "mergedAt": "2019-12-29T19:25:37Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/747"
+        },
+        {
+          "number": 734,
+          "title": "Document `TypelessFormatter.BindToType` change",
+          "updatedAt": "2019-12-17T05:21:30Z",
+          "mergedAt": "2019-12-17T05:21:26Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/734"
+        },
+        {
+          "number": 735,
+          "title": "Make MessagePackReader.ReadDateTime(ExtensionHeader) public",
+          "updatedAt": "2019-12-17T05:21:22Z",
+          "mergedAt": "2019-12-17T05:21:18Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/735"
+        },
+        {
+          "number": 663,
+          "title": "Stream deserialization fixes",
+          "updatedAt": "2019-11-23T18:34:40Z",
+          "mergedAt": "2019-11-23T18:34:37Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/663"
+        },
+        {
+          "number": 658,
+          "title": "Downgrade to System.Collections.Immutable 1.5.0",
+          "updatedAt": "2019-11-21T15:24:19Z",
+          "mergedAt": "2019-11-21T15:24:15Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/658"
+        },
+        {
+          "number": 649,
+          "title": "Add v1->v2 migration doc",
+          "updatedAt": "2019-11-21T12:44:39Z",
+          "mergedAt": "2019-11-20T19:20:50Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/649"
+        },
+        {
+          "number": 650,
+          "title": "Pack MPC tool as build artifact",
+          "updatedAt": "2019-11-20T15:42:10Z",
+          "mergedAt": "2019-11-20T15:41:59Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/650"
+        },
+        {
+          "number": 577,
+          "title": "Add non-generic serialize methods that take MessagePackReader/Writer",
+          "updatedAt": "2019-11-12T13:43:45Z",
+          "mergedAt": "2019-09-17T13:01:51Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/577"
+        },
+        {
+          "number": 535,
+          "title": "Choose most matched constructor",
+          "updatedAt": "2019-11-12T13:43:28Z",
+          "mergedAt": "2019-08-06T03:28:23Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/535"
+        },
+        {
+          "number": 635,
+          "title": "Fix duplicate relative path syntax trees",
+          "updatedAt": "2019-11-12T13:32:43Z",
+          "mergedAt": "2019-11-12T12:39:47Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/635"
+        },
+        {
+          "number": 620,
+          "title": "\"Fix\" build.sh script to return failure exit codes when Unity build fails",
+          "updatedAt": "2019-11-07T13:55:10Z",
+          "mergedAt": "2019-11-07T13:55:05Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/620"
+        },
+        {
+          "number": 621,
+          "title": "Get builds and tests running on non-Windows OS",
+          "updatedAt": "2019-11-07T13:23:31Z",
+          "mergedAt": "2019-11-07T13:23:25Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/621"
+        },
+        {
+          "number": 609,
+          "title": "Add fast path for reading consecutive strings/byte arrays",
+          "updatedAt": "2019-11-05T16:36:22Z",
+          "mergedAt": "2019-11-05T16:36:16Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/609"
+        },
+        {
+          "number": 591,
+          "title": "Unity IL2CPP and New CodeGenerator",
+          "updatedAt": "2019-10-29T06:06:23Z",
+          "mergedAt": "2019-10-29T06:06:20Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/591"
+        },
+        {
+          "number": 603,
+          "title": "Add CancellationToken to reader/writer structs",
+          "updatedAt": "2019-10-28T14:02:41Z",
+          "mergedAt": "2019-10-28T14:02:39Z",
+          "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/603"
+        }
+      ]
+    }
+  },
+  "examined": [
+    {
+      "pr": 2314,
+      "reason": "No source generator or its test project changed."
+    },
+    {
+      "pr": 2310,
+      "reason": "No source generator or its test project changed."
+    },
+    {
+      "pr": 2287,
+      "reason": "Runtime writer and runtime tests only."
+    }
+  ],
+  "candidate": {
+    "pr": 2279,
+    "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2279",
+    "mergedAt": "2026-07-08T21:15:12Z",
+    "mergedBy": {
+      "login": "AArnott",
+      "type": "User"
+    },
+    "closesIssue": 2180,
+    "closedAt": "2026-07-08T21:15:13Z",
+    "connectionEvent": "2026-07-08T01:39:55Z",
+    "base": "781513b17086e9ac548428dfc83737793f094d30",
+    "head": "3df413b305e38afa4039f357f69cc07275df31c1",
+    "comparison": "Accepted squash-merge result versus its first parent; these are the actual merged changes.",
+    "files": [
+      "src/MessagePack.SourceGenerator/MessagePackGenerator.Emit.cs",
+      "src/MessagePack.SourceGenerator/Transforms/CompositeResolverTemplate.cs",
+      "src/MessagePack.SourceGenerator/Transforms/EnumTemplate.cs",
+      "src/MessagePack.SourceGenerator/Transforms/FormatterTemplate.cs",
+      "src/MessagePack.SourceGenerator/Transforms/FormatterTemplate.tt",
+      "src/MessagePack.SourceGenerator/Transforms/ResolverTemplate.cs",
+      "src/MessagePack.SourceGenerator/Transforms/StringKey/StringKeyFormatterTemplate.cs",
+      "src/MessagePack.SourceGenerator/Transforms/UnionTemplate.cs",
+      "tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/AdditionalAllowTypes/Formatters.MessagePack.GeneratedMessagePackResolver.TypeWithAutoGeneratedFormatterFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/AdditionalAllowTypes/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/AdditionalFormatterTypes/DefiningProject.MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/AdditionalFormatterTypes/TestProject.Formatters.MessagePack.GeneratedMessagePackResolver.TypeWithAutoGeneratedFormatterFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/AdditionalFormatterTypes/TestProject.MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/AdditionalFormatterTypes_RedundantAttribute/Formatters.MessagePack.GeneratedMessagePackResolver.TypeWithAutoGeneratedFormatterFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/AdditionalFormatterTypes_RedundantAttribute/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/Array2DJaggedProperty/Formatters.MessagePack.GeneratedMessagePackResolver.ContainerObjectFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/Array2DJaggedProperty/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/ArrayTypedProperty/Formatters.MessagePack.GeneratedMessagePackResolver.ContainerObjectFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/ArrayTypedProperty/Formatters.MessagePack.GeneratedMessagePackResolver.SubObjectFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/ArrayTypedProperty/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/CanGenerateMessagePackFormatterAttr/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.BarFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/CanGenerateMessagePackFormatterAttr/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/CustomFormatterForGenericWithConstraints/Formatters.MessagePack.GeneratedMessagePackResolver.SampleObjectFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/CustomFormatterForGenericWithConstraints/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/CustomFormatterViaAttributeOnField(False)/Formatters.MessagePack.GeneratedMessagePackResolver.HasFieldWithCustomFormatterAttributeFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/CustomFormatterViaAttributeOnField(False)/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/CustomFormatterViaAttributeOnField(True)/Formatters.MessagePack.GeneratedMessagePackResolver.HasFieldWithCustomFormatterAttributeFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/CustomFormatterViaAttributeOnField(True)/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/CustomFormatterViaAttributeOnProperty(False)/Formatters.MessagePack.GeneratedMessagePackResolver.HasPropertyWithCustomFormatterAttributeFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/CustomFormatterViaAttributeOnProperty(False)/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/CustomFormatterViaAttributeOnProperty(True)/Formatters.MessagePack.GeneratedMessagePackResolver.HasPropertyWithCustomFormatterAttributeFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/CustomFormatterViaAttributeOnProperty(True)/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/CustomFormatterWithSingletonPattern/Formatters.MessagePack.GeneratedMessagePackResolver.GFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/CustomFormatterWithSingletonPattern/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/DeserializingConstructorParameterMemberTypeAssignability_Incompatible/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/DeserializingConstructorParameterMemberTypeAssignability_MemberAssignsToParamType/Formatters.MessagePack.GeneratedMessagePackResolver.AFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/DeserializingConstructorParameterMemberTypeAssignability_MemberAssignsToParamType/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/EmbeddedTypes/Formatters.MessagePack.GeneratedMessagePackResolver.AFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/EmbeddedTypes/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(Namespace, False)/Formatters.MessagePack.GeneratedMessagePackResolver.MyTestNamespace.MyEnumFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(Namespace, False)/Formatters.MessagePack.GeneratedMessagePackResolver.MyTestNamespace.MyMessagePackObjectFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(Namespace, False)/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(Namespace, True)/Formatters.MessagePack.GeneratedMessagePackResolver.MyTestNamespace.MyEnumFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(Namespace, True)/Formatters.MessagePack.GeneratedMessagePackResolver.MyTestNamespace.MyMessagePackObjectFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(Namespace, True)/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(NestingClass, False)/Formatters.MessagePack.GeneratedMessagePackResolver.ContainingClass.MyEnumFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(NestingClass, False)/Formatters.MessagePack.GeneratedMessagePackResolver.ContainingClass.MyMessagePackObjectFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(NestingClass, False)/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(NestingClass, True)/Formatters.MessagePack.GeneratedMessagePackResolver.ContainingClass.MyEnumFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(NestingClass, True)/Formatters.MessagePack.GeneratedMessagePackResolver.ContainingClass.MyMessagePackObjectFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(NestingClass, True)/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(None, False)/Formatters.MessagePack.GeneratedMessagePackResolver.MyEnumFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(None, False)/Formatters.MessagePack.GeneratedMessagePackResolver.MyMessagePackObjectFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(None, False)/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(None, True)/Formatters.MessagePack.GeneratedMessagePackResolver.MyEnumFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(None, True)/Formatters.MessagePack.GeneratedMessagePackResolver.MyMessagePackObjectFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(None, True)/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter_CollidingTypeNames/Formatters.MessagePack.GeneratedMessagePackResolver.MyMessagePackObjectFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter_CollidingTypeNames/Formatters.MessagePack.GeneratedMessagePackResolver.NS1.MyEnumFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter_CollidingTypeNames/Formatters.MessagePack.GeneratedMessagePackResolver.NS2.MyEnumFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter_CollidingTypeNames/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/FormatterForClassWithPrivateMembers(class)/Formatters.MyObject.MyObjectFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/FormatterForClassWithPrivateMembers(class)/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/FormatterForClassWithPrivateMembers(record struct)/Formatters.MyObject.MyObjectFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/FormatterForClassWithPrivateMembers(record struct)/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/FormatterForClassWithPrivateMembers(record)/Formatters.MyObject.MyObjectFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/FormatterForClassWithPrivateMembers(record)/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/FormatterForClassWithPrivateMembers(struct)/Formatters.MyObject.MyObjectFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/FormatterForClassWithPrivateMembers(struct)/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/FormatterForClassWithPrivateMembers_MapMode/Formatters.MyObject.MyObjectFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/FormatterForClassWithPrivateMembers_MapMode/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/FormatterForClassWithPrivateMembers_WithNamespace/Formatters.A.MyObject.MyObjectFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/FormatterForClassWithPrivateMembers_WithNamespace/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/GenericCustomFormatter/Formatters.SampleObject.SampleObjectFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/GenericCustomFormatter/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/GenericDataTypeWithPrivateMember/Formatters.HasPrivateSerializedMemberAndIsGenericNamed`1.HasPrivateSerializedMemberAndIsGenericNamedFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/GenericDataTypeWithPrivateMember/Formatters.HasPrivateSerializedMemberAndIsGenericOrdinal`1.HasPrivateSerializedMemberAndIsGenericOrdinalFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/GenericDataTypeWithPrivateMember/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/GenericType/Formatters.MessagePack.GeneratedMessagePackResolver.ContainerObjectFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/GenericType/Formatters.MessagePack.GeneratedMessagePackResolver.MyGenericTypeFormatter`1.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/GenericType/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/GenericTypeArg/Formatters.MessagePack.GeneratedMessagePackResolver.GenericClassFormatter`2.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/GenericTypeArg/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/GenericType_CollidingTypeNames/Formatters.MessagePack.GeneratedMessagePackResolver.MyMessagePackObjectFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/GenericType_CollidingTypeNames/Formatters.MessagePack.GeneratedMessagePackResolver.NS1.MyTypeFormatter`1.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/GenericType_CollidingTypeNames/Formatters.MessagePack.GeneratedMessagePackResolver.NS2.MyTypeFormatter`1.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/GenericType_CollidingTypeNames/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/GenericWithConstraintsThatReferenceTypeParameter/Formatters.MessagePack.GeneratedMessagePackResolver.GenericConstrainedClassIntKeyFormatter`2.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/GenericWithConstraintsThatReferenceTypeParameter/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfT1T2Formatter/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`2.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfT1T2Formatter/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObjectFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfT1T2Formatter/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObjectNestedFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfT1T2Formatter/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfTFormatter/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`1.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfTFormatter/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObjectFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfTFormatter/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObjectNestedFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfTFormatter/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfTFormatter_FormatterOnly/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`1.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfTFormatter_FormatterOnly/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfTFormatter_WithKnownTypes/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`1.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfTFormatter_WithKnownTypes/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObject2Formatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfTFormatter_WithKnownTypes/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObjectFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfTFormatter_WithKnownTypes/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsUnionFormatter/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.WrapperFormatter`1.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsUnionFormatter/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsUnionFormatter_Nested/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`1.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsUnionFormatter_Nested/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyInnerGenericObjectFormatter`1.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsUnionFormatter_Nested/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.WrapperFormatter`1.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsUnionFormatter_Nested/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Constraints_Multiple/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`4.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Constraints_Multiple/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Constraints_NullableReferenceType/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`4.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Constraints_NullableReferenceType/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Constraints_ReferenceType_Nullable/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`2.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Constraints_ReferenceType_Nullable/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Constraints_Struct/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`1.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Constraints_Struct/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Constraints_Type/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`1.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Constraints_Type/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Defined_In_ReferencedProject/DefiningProject.Formatters.TempProject.MyResolver.TempProject.MyGenericObjectFormatter`1.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Defined_In_ReferencedProject/DefiningProject.TempProject.MyResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Defined_In_ReferencedProject/TestProject.Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`1.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Defined_In_ReferencedProject/TestProject.Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObjectFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Defined_In_ReferencedProject/TestProject.Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObjectNestedFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Defined_In_ReferencedProject/TestProject.MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/ImplicitFormatterTypes/Formatters.MessagePack.GeneratedMessagePackResolver.TypeWithAutoGeneratedFormatterFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/ImplicitFormatterTypes/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/InterfaceUnion/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/InterfaceUnionUsedWithNullableRefAnnotation/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/MixType_CollidingTypeNames/Formatters.MessagePack.GeneratedMessagePackResolver.MyMessagePackObjectFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/MixType_CollidingTypeNames/Formatters.MessagePack.GeneratedMessagePackResolver.NS1.MyTypeFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/MixType_CollidingTypeNames/Formatters.MessagePack.GeneratedMessagePackResolver.NS2.MyTypeFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/MixType_CollidingTypeNames/Formatters.MessagePack.GeneratedMessagePackResolver.NS3.MyTypeFormatter`1.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/MixType_CollidingTypeNames/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/MultipleFunctionalCustomFormattersForType_MultiFormatter/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/MultipleFunctionalCustomFormattersForType_OnlyOneNonExcluded/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/NestedGenericTypes/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`1.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/NestedGenericTypes/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyInnerGenericObjectFormatter`1.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/NestedGenericTypes/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObject2Formatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/NestedGenericTypes/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObjectFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/NestedGenericTypes/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.WrapperFormatter`1.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/NestedGenericTypes/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/NestedMessagePackObjects/Formatters.MessagePack.GeneratedMessagePackResolver.A.B.CFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/NestedMessagePackObjects/Formatters.MessagePack.GeneratedMessagePackResolver.A.BFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/NestedMessagePackObjects/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/NestedMessagePackObjects_Array/Formatters.MessagePack.GeneratedMessagePackResolver.A.B.CFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/NestedMessagePackObjects_Array/Formatters.MessagePack.GeneratedMessagePackResolver.A.BFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/NestedMessagePackObjects_Array/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/NoFieldWithCustomFormatterCollected/Formatters.MessagePack.GeneratedMessagePackResolver.TestFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/NoFieldWithCustomFormatterCollected/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/NoPrivateAccessNeeded/Formatters.MessagePack.GeneratedMessagePackResolver.Test3Formatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/NoPrivateAccessNeeded/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/NoPrivateMemberCollected/Formatters.MessagePack.GeneratedMessagePackResolver.TestFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/NoPrivateMemberCollected/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/NonDefaultDeserializingConstructor_Private/Formatters.A.AFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/NonDefaultDeserializingConstructor_Private/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/NonGenericType_CollidingTypeNames/Formatters.MessagePack.GeneratedMessagePackResolver.MyMessagePackObjectFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/NonGenericType_CollidingTypeNames/Formatters.MessagePack.GeneratedMessagePackResolver.NS1.MyTypeFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/NonGenericType_CollidingTypeNames/Formatters.MessagePack.GeneratedMessagePackResolver.NS2.MyTypeFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/NonGenericType_CollidingTypeNames/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/NullableFormatter/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyEnumFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/NullableFormatter/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObjectFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/NullableFormatter/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/NullableReferenceTypeInListFormatter/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.SomeClassFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/NullableReferenceTypeInListFormatter/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/OpenGenericFormatter/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterOnlyDefaultValue/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterOnlyDefaultValue/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterOnlyIgnore/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterOnlyIgnore/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterOnlyMixed/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterOnlyMixed/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterOnlyWithParameterizedConstructor/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterOnlyWithParameterizedConstructor/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterOnlyWithParameterizedConstructorDefaultValue/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterOnlyWithParameterizedConstructorDefaultValue/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterOnlyWithParameterizedConstructorPartially/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterOnlyWithParameterizedConstructorPartially/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetter/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetter/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetterWithDefaultValue/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetterWithDefaultValue/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetterWithDefaultValueInputPartially/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetterWithDefaultValueInputPartially/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetterWithParameterizedConstructor/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetterWithParameterizedConstructor/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetterWithParameterizedConstructorAndDefaultValue/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetterWithParameterizedConstructorAndDefaultValue/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetterWithParameterizedConstructorDoNotUseSetter/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetterWithParameterizedConstructorDoNotUseSetter/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetterWithParameterizedConstructorPartially/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetterWithParameterizedConstructorPartially/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/RecordWithPrimaryConstructor/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/RecordWithPrimaryConstructor/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/RecordWithWithInitOnlyProps/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/RecordWithWithInitOnlyProps/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/RecursiveGenerics_Direct/Formatters.MessagePack.GeneratedMessagePackResolver.AFormatter`1.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/RecursiveGenerics_Direct/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/SimplifiedNameForKeywordsAndSyntaxSugar/Formatters.MessagePack.GeneratedMessagePackResolver.SampleObjectFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/SimplifiedNameForKeywordsAndSyntaxSugar/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/SpecifyFormatterFromStockSet/Formatters.MessagePack.GeneratedMessagePackResolver.GFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/SpecifyFormatterFromStockSet/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/SystemCollectionsObjectModelCollection/Formatters.MessagePack.GeneratedMessagePackResolver.AFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/SystemCollectionsObjectModelCollection/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/SystemMemoryTypes/Formatters.MessagePack.GeneratedMessagePackResolver.AFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/SystemMemoryTypes/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/TwoTypes(False)/Formatters.MessagePack.GeneratedMessagePackResolver.Object1Formatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/TwoTypes(False)/Formatters.MessagePack.GeneratedMessagePackResolver.Object2Formatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/TwoTypes(False)/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/TwoTypes(True)/Formatters.MessagePack.GeneratedMessagePackResolver.Object1Formatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/TwoTypes(True)/Formatters.MessagePack.GeneratedMessagePackResolver.Object2Formatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/TwoTypes(True)/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(Namespace)/Formatters.MessagePack.GeneratedMessagePackResolver.MyTestNamespace.Derived1Formatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(Namespace)/Formatters.MessagePack.GeneratedMessagePackResolver.MyTestNamespace.Derived2Formatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(Namespace)/Formatters.MessagePack.GeneratedMessagePackResolver.MyTestNamespace.IMyTypeFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(Namespace)/Formatters.MessagePack.GeneratedMessagePackResolver.MyTestNamespace.MyMessagePackObjectFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(Namespace)/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(NestingClass)/Formatters.MessagePack.GeneratedMessagePackResolver.ContainingClass.Derived1Formatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(NestingClass)/Formatters.MessagePack.GeneratedMessagePackResolver.ContainingClass.Derived2Formatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(NestingClass)/Formatters.MessagePack.GeneratedMessagePackResolver.ContainingClass.IMyTypeFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(NestingClass)/Formatters.MessagePack.GeneratedMessagePackResolver.ContainingClass.MyMessagePackObjectFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(NestingClass)/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(None)/Formatters.MessagePack.GeneratedMessagePackResolver.Derived1Formatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(None)/Formatters.MessagePack.GeneratedMessagePackResolver.Derived2Formatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(None)/Formatters.MessagePack.GeneratedMessagePackResolver.IMyTypeFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(None)/Formatters.MessagePack.GeneratedMessagePackResolver.MyMessagePackObjectFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(None)/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/WellKnownGenericsFormatter/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObjectFormatter.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Resources/WellKnownGenericsFormatter/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "tests/MessagePack.SourceGenerator.Tests/Verifiers/CSharpSourceGeneratorVerifier`1+Test.cs"
+    ]
+  },
+  "cleanAssumption": "Merged and not known reverted; clean is an assumption, not a correctness label. One case. Human finding marks pending.",
+  "buildAttempts": [
+    {
+      "pr": 2279,
+      "status": "inconclusive",
+      "exitCode": 145,
+      "tests": 0,
+      "reason": "no trx result file was produced (exit code 145); see log",
+      "record": "data/evaluation/control-attempts/2279/head.MessagePack.SourceGenerator.Tests.json",
+      "requiredSdks": [
+        "10.0.300"
+      ],
+      "installedSdk": "8.0.402",
+      "buildable": false
+    },
+    {
+      "pr": 1818,
+      "runs": [
+        {
+          "project": "tests/MessagePack.SourceGenerator.ExecutionTests/MessagePack.SourceGenerator.ExecutionTests.csproj",
+          "status": "inconclusive",
+          "exitCode": 145,
+          "tests": 0,
+          "reason": "no trx result file was produced (exit code 145); see log",
+          "record": "data/evaluation/control-attempts/1818/head.MessagePack.SourceGenerator.ExecutionTests.json"
+        },
+        {
+          "project": "tests/MessagePack.SourceGenerator.Tests/MessagePack.SourceGenerator.Tests.csproj",
+          "status": "inconclusive",
+          "exitCode": 145,
+          "tests": 0,
+          "reason": "no trx result file was produced (exit code 145); see log",
+          "record": "data/evaluation/control-attempts/1818/head.MessagePack.SourceGenerator.Tests.json"
+        }
+      ],
+      "buildable": false,
+      "requiredSdks": [
+        "8.0.201"
+      ],
+      "installedSdk": "8.0.402"
+    },
+    {
+      "pr": 1802,
+      "runs": [
+        {
+          "project": "tests/MessagePack.SourceGenerator.ExecutionTests/MessagePack.SourceGenerator.ExecutionTests.csproj",
+          "status": "inconclusive",
+          "exitCode": 145,
+          "tests": 0,
+          "reason": "no trx result file was produced (exit code 145); see log",
+          "record": "data/evaluation/control-attempts/1802/head.MessagePack.SourceGenerator.ExecutionTests.json"
+        },
+        {
+          "project": "tests/MessagePack.SourceGenerator.MapModeExecutionTests/MessagePack.SourceGenerator.MapModeExecutionTests.csproj",
+          "status": "inconclusive",
+          "exitCode": 145,
+          "tests": 0,
+          "reason": "no trx result file was produced (exit code 145); see log",
+          "record": "data/evaluation/control-attempts/1802/head.MessagePack.SourceGenerator.MapModeExecutionTests.json"
+        },
+        {
+          "project": "tests/MessagePack.SourceGenerator.Tests/MessagePack.SourceGenerator.Tests.csproj",
+          "status": "inconclusive",
+          "exitCode": 145,
+          "tests": 0,
+          "reason": "no trx result file was produced (exit code 145); see log",
+          "record": "data/evaluation/control-attempts/1802/head.MessagePack.SourceGenerator.Tests.json"
+        }
+      ],
+      "buildable": false,
+      "requiredSdks": [
+        "8.0.201"
+      ],
+      "installedSdk": "8.0.402"
+    }
+  ],
+  "revertCheck": {
+    "checkedAt": "2026-11-14T23:43:03.932Z",
+    "exactRevertCommitMatches": [],
+    "githubSearch": {
+      "query": "repo:MessagePack-CSharp/MessagePack-CSharp revert 2279",
+      "results": 0
+    },
+    "limit": "No known explicit revert found; semantic/manual reverts are not ruled out."
+  },
+  "candidates": [
+    {
+      "pr": 2279,
+      "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/2279",
+      "mergedAt": "2026-07-08T21:15:12Z",
+      "mergedBy": {
+        "login": "AArnott",
+        "type": "User"
+      },
+      "closesIssue": 2180,
+      "closedAt": "2026-07-08T21:15:13Z",
+      "connectionEvent": "2026-07-08T01:39:55Z",
+      "base": "781513b17086e9ac548428dfc83737793f094d30",
+      "head": "3df413b305e38afa4039f357f69cc07275df31c1",
+      "comparison": "Accepted squash-merge result versus its first parent; these are the actual merged changes.",
+      "files": [
+        "src/MessagePack.SourceGenerator/MessagePackGenerator.Emit.cs",
+        "src/MessagePack.SourceGenerator/Transforms/CompositeResolverTemplate.cs",
+        "src/MessagePack.SourceGenerator/Transforms/EnumTemplate.cs",
+        "src/MessagePack.SourceGenerator/Transforms/FormatterTemplate.cs",
+        "src/MessagePack.SourceGenerator/Transforms/FormatterTemplate.tt",
+        "src/MessagePack.SourceGenerator/Transforms/ResolverTemplate.cs",
+        "src/MessagePack.SourceGenerator/Transforms/StringKey/StringKeyFormatterTemplate.cs",
+        "src/MessagePack.SourceGenerator/Transforms/UnionTemplate.cs",
+        "tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/AdditionalAllowTypes/Formatters.MessagePack.GeneratedMessagePackResolver.TypeWithAutoGeneratedFormatterFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/AdditionalAllowTypes/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/AdditionalFormatterTypes/DefiningProject.MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/AdditionalFormatterTypes/TestProject.Formatters.MessagePack.GeneratedMessagePackResolver.TypeWithAutoGeneratedFormatterFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/AdditionalFormatterTypes/TestProject.MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/AdditionalFormatterTypes_RedundantAttribute/Formatters.MessagePack.GeneratedMessagePackResolver.TypeWithAutoGeneratedFormatterFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/AdditionalFormatterTypes_RedundantAttribute/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/Array2DJaggedProperty/Formatters.MessagePack.GeneratedMessagePackResolver.ContainerObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/Array2DJaggedProperty/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/ArrayTypedProperty/Formatters.MessagePack.GeneratedMessagePackResolver.ContainerObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/ArrayTypedProperty/Formatters.MessagePack.GeneratedMessagePackResolver.SubObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/ArrayTypedProperty/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/CanGenerateMessagePackFormatterAttr/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.BarFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/CanGenerateMessagePackFormatterAttr/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/CustomFormatterForGenericWithConstraints/Formatters.MessagePack.GeneratedMessagePackResolver.SampleObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/CustomFormatterForGenericWithConstraints/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/CustomFormatterViaAttributeOnField(False)/Formatters.MessagePack.GeneratedMessagePackResolver.HasFieldWithCustomFormatterAttributeFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/CustomFormatterViaAttributeOnField(False)/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/CustomFormatterViaAttributeOnField(True)/Formatters.MessagePack.GeneratedMessagePackResolver.HasFieldWithCustomFormatterAttributeFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/CustomFormatterViaAttributeOnField(True)/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/CustomFormatterViaAttributeOnProperty(False)/Formatters.MessagePack.GeneratedMessagePackResolver.HasPropertyWithCustomFormatterAttributeFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/CustomFormatterViaAttributeOnProperty(False)/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/CustomFormatterViaAttributeOnProperty(True)/Formatters.MessagePack.GeneratedMessagePackResolver.HasPropertyWithCustomFormatterAttributeFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/CustomFormatterViaAttributeOnProperty(True)/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/CustomFormatterWithSingletonPattern/Formatters.MessagePack.GeneratedMessagePackResolver.GFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/CustomFormatterWithSingletonPattern/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/DeserializingConstructorParameterMemberTypeAssignability_Incompatible/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/DeserializingConstructorParameterMemberTypeAssignability_MemberAssignsToParamType/Formatters.MessagePack.GeneratedMessagePackResolver.AFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/DeserializingConstructorParameterMemberTypeAssignability_MemberAssignsToParamType/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EmbeddedTypes/Formatters.MessagePack.GeneratedMessagePackResolver.AFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EmbeddedTypes/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(Namespace, False)/Formatters.MessagePack.GeneratedMessagePackResolver.MyTestNamespace.MyEnumFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(Namespace, False)/Formatters.MessagePack.GeneratedMessagePackResolver.MyTestNamespace.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(Namespace, False)/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(Namespace, True)/Formatters.MessagePack.GeneratedMessagePackResolver.MyTestNamespace.MyEnumFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(Namespace, True)/Formatters.MessagePack.GeneratedMessagePackResolver.MyTestNamespace.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(Namespace, True)/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(NestingClass, False)/Formatters.MessagePack.GeneratedMessagePackResolver.ContainingClass.MyEnumFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(NestingClass, False)/Formatters.MessagePack.GeneratedMessagePackResolver.ContainingClass.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(NestingClass, False)/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(NestingClass, True)/Formatters.MessagePack.GeneratedMessagePackResolver.ContainingClass.MyEnumFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(NestingClass, True)/Formatters.MessagePack.GeneratedMessagePackResolver.ContainingClass.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(NestingClass, True)/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(None, False)/Formatters.MessagePack.GeneratedMessagePackResolver.MyEnumFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(None, False)/Formatters.MessagePack.GeneratedMessagePackResolver.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(None, False)/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(None, True)/Formatters.MessagePack.GeneratedMessagePackResolver.MyEnumFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(None, True)/Formatters.MessagePack.GeneratedMessagePackResolver.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(None, True)/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter_CollidingTypeNames/Formatters.MessagePack.GeneratedMessagePackResolver.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter_CollidingTypeNames/Formatters.MessagePack.GeneratedMessagePackResolver.NS1.MyEnumFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter_CollidingTypeNames/Formatters.MessagePack.GeneratedMessagePackResolver.NS2.MyEnumFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter_CollidingTypeNames/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/FormatterForClassWithPrivateMembers(class)/Formatters.MyObject.MyObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/FormatterForClassWithPrivateMembers(class)/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/FormatterForClassWithPrivateMembers(record struct)/Formatters.MyObject.MyObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/FormatterForClassWithPrivateMembers(record struct)/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/FormatterForClassWithPrivateMembers(record)/Formatters.MyObject.MyObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/FormatterForClassWithPrivateMembers(record)/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/FormatterForClassWithPrivateMembers(struct)/Formatters.MyObject.MyObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/FormatterForClassWithPrivateMembers(struct)/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/FormatterForClassWithPrivateMembers_MapMode/Formatters.MyObject.MyObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/FormatterForClassWithPrivateMembers_MapMode/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/FormatterForClassWithPrivateMembers_WithNamespace/Formatters.A.MyObject.MyObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/FormatterForClassWithPrivateMembers_WithNamespace/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericCustomFormatter/Formatters.SampleObject.SampleObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericCustomFormatter/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericDataTypeWithPrivateMember/Formatters.HasPrivateSerializedMemberAndIsGenericNamed`1.HasPrivateSerializedMemberAndIsGenericNamedFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericDataTypeWithPrivateMember/Formatters.HasPrivateSerializedMemberAndIsGenericOrdinal`1.HasPrivateSerializedMemberAndIsGenericOrdinalFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericDataTypeWithPrivateMember/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericType/Formatters.MessagePack.GeneratedMessagePackResolver.ContainerObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericType/Formatters.MessagePack.GeneratedMessagePackResolver.MyGenericTypeFormatter`1.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericType/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericTypeArg/Formatters.MessagePack.GeneratedMessagePackResolver.GenericClassFormatter`2.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericTypeArg/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericType_CollidingTypeNames/Formatters.MessagePack.GeneratedMessagePackResolver.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericType_CollidingTypeNames/Formatters.MessagePack.GeneratedMessagePackResolver.NS1.MyTypeFormatter`1.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericType_CollidingTypeNames/Formatters.MessagePack.GeneratedMessagePackResolver.NS2.MyTypeFormatter`1.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericType_CollidingTypeNames/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericWithConstraintsThatReferenceTypeParameter/Formatters.MessagePack.GeneratedMessagePackResolver.GenericConstrainedClassIntKeyFormatter`2.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericWithConstraintsThatReferenceTypeParameter/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfT1T2Formatter/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`2.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfT1T2Formatter/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfT1T2Formatter/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObjectNestedFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfT1T2Formatter/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfTFormatter/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`1.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfTFormatter/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfTFormatter/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObjectNestedFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfTFormatter/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfTFormatter_FormatterOnly/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`1.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfTFormatter_FormatterOnly/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfTFormatter_WithKnownTypes/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`1.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfTFormatter_WithKnownTypes/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObject2Formatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfTFormatter_WithKnownTypes/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfTFormatter_WithKnownTypes/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsUnionFormatter/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.WrapperFormatter`1.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsUnionFormatter/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsUnionFormatter_Nested/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`1.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsUnionFormatter_Nested/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyInnerGenericObjectFormatter`1.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsUnionFormatter_Nested/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.WrapperFormatter`1.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsUnionFormatter_Nested/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Constraints_Multiple/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`4.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Constraints_Multiple/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Constraints_NullableReferenceType/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`4.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Constraints_NullableReferenceType/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Constraints_ReferenceType_Nullable/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`2.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Constraints_ReferenceType_Nullable/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Constraints_Struct/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`1.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Constraints_Struct/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Constraints_Type/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`1.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Constraints_Type/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Defined_In_ReferencedProject/DefiningProject.Formatters.TempProject.MyResolver.TempProject.MyGenericObjectFormatter`1.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Defined_In_ReferencedProject/DefiningProject.TempProject.MyResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Defined_In_ReferencedProject/TestProject.Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`1.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Defined_In_ReferencedProject/TestProject.Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Defined_In_ReferencedProject/TestProject.Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObjectNestedFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Defined_In_ReferencedProject/TestProject.MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/ImplicitFormatterTypes/Formatters.MessagePack.GeneratedMessagePackResolver.TypeWithAutoGeneratedFormatterFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/ImplicitFormatterTypes/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/InterfaceUnion/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/InterfaceUnionUsedWithNullableRefAnnotation/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/MixType_CollidingTypeNames/Formatters.MessagePack.GeneratedMessagePackResolver.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/MixType_CollidingTypeNames/Formatters.MessagePack.GeneratedMessagePackResolver.NS1.MyTypeFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/MixType_CollidingTypeNames/Formatters.MessagePack.GeneratedMessagePackResolver.NS2.MyTypeFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/MixType_CollidingTypeNames/Formatters.MessagePack.GeneratedMessagePackResolver.NS3.MyTypeFormatter`1.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/MixType_CollidingTypeNames/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/MultipleFunctionalCustomFormattersForType_MultiFormatter/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/MultipleFunctionalCustomFormattersForType_OnlyOneNonExcluded/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/NestedGenericTypes/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`1.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/NestedGenericTypes/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyInnerGenericObjectFormatter`1.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/NestedGenericTypes/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObject2Formatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/NestedGenericTypes/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/NestedGenericTypes/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.WrapperFormatter`1.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/NestedGenericTypes/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/NestedMessagePackObjects/Formatters.MessagePack.GeneratedMessagePackResolver.A.B.CFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/NestedMessagePackObjects/Formatters.MessagePack.GeneratedMessagePackResolver.A.BFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/NestedMessagePackObjects/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/NestedMessagePackObjects_Array/Formatters.MessagePack.GeneratedMessagePackResolver.A.B.CFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/NestedMessagePackObjects_Array/Formatters.MessagePack.GeneratedMessagePackResolver.A.BFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/NestedMessagePackObjects_Array/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/NoFieldWithCustomFormatterCollected/Formatters.MessagePack.GeneratedMessagePackResolver.TestFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/NoFieldWithCustomFormatterCollected/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/NoPrivateAccessNeeded/Formatters.MessagePack.GeneratedMessagePackResolver.Test3Formatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/NoPrivateAccessNeeded/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/NoPrivateMemberCollected/Formatters.MessagePack.GeneratedMessagePackResolver.TestFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/NoPrivateMemberCollected/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/NonDefaultDeserializingConstructor_Private/Formatters.A.AFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/NonDefaultDeserializingConstructor_Private/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/NonGenericType_CollidingTypeNames/Formatters.MessagePack.GeneratedMessagePackResolver.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/NonGenericType_CollidingTypeNames/Formatters.MessagePack.GeneratedMessagePackResolver.NS1.MyTypeFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/NonGenericType_CollidingTypeNames/Formatters.MessagePack.GeneratedMessagePackResolver.NS2.MyTypeFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/NonGenericType_CollidingTypeNames/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/NullableFormatter/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyEnumFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/NullableFormatter/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/NullableFormatter/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/NullableReferenceTypeInListFormatter/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.SomeClassFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/NullableReferenceTypeInListFormatter/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/OpenGenericFormatter/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterOnlyDefaultValue/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterOnlyDefaultValue/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterOnlyIgnore/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterOnlyIgnore/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterOnlyMixed/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterOnlyMixed/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterOnlyWithParameterizedConstructor/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterOnlyWithParameterizedConstructor/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterOnlyWithParameterizedConstructorDefaultValue/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterOnlyWithParameterizedConstructorDefaultValue/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterOnlyWithParameterizedConstructorPartially/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterOnlyWithParameterizedConstructorPartially/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetter/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetter/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetterWithDefaultValue/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetterWithDefaultValue/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetterWithDefaultValueInputPartially/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetterWithDefaultValueInputPartially/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetterWithParameterizedConstructor/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetterWithParameterizedConstructor/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetterWithParameterizedConstructorAndDefaultValue/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetterWithParameterizedConstructorAndDefaultValue/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetterWithParameterizedConstructorDoNotUseSetter/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetterWithParameterizedConstructorDoNotUseSetter/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetterWithParameterizedConstructorPartially/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetterWithParameterizedConstructorPartially/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/RecordWithPrimaryConstructor/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/RecordWithPrimaryConstructor/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/RecordWithWithInitOnlyProps/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/RecordWithWithInitOnlyProps/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/RecursiveGenerics_Direct/Formatters.MessagePack.GeneratedMessagePackResolver.AFormatter`1.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/RecursiveGenerics_Direct/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/SimplifiedNameForKeywordsAndSyntaxSugar/Formatters.MessagePack.GeneratedMessagePackResolver.SampleObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/SimplifiedNameForKeywordsAndSyntaxSugar/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/SpecifyFormatterFromStockSet/Formatters.MessagePack.GeneratedMessagePackResolver.GFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/SpecifyFormatterFromStockSet/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/SystemCollectionsObjectModelCollection/Formatters.MessagePack.GeneratedMessagePackResolver.AFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/SystemCollectionsObjectModelCollection/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/SystemMemoryTypes/Formatters.MessagePack.GeneratedMessagePackResolver.AFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/SystemMemoryTypes/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/TwoTypes(False)/Formatters.MessagePack.GeneratedMessagePackResolver.Object1Formatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/TwoTypes(False)/Formatters.MessagePack.GeneratedMessagePackResolver.Object2Formatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/TwoTypes(False)/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/TwoTypes(True)/Formatters.MessagePack.GeneratedMessagePackResolver.Object1Formatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/TwoTypes(True)/Formatters.MessagePack.GeneratedMessagePackResolver.Object2Formatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/TwoTypes(True)/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(Namespace)/Formatters.MessagePack.GeneratedMessagePackResolver.MyTestNamespace.Derived1Formatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(Namespace)/Formatters.MessagePack.GeneratedMessagePackResolver.MyTestNamespace.Derived2Formatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(Namespace)/Formatters.MessagePack.GeneratedMessagePackResolver.MyTestNamespace.IMyTypeFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(Namespace)/Formatters.MessagePack.GeneratedMessagePackResolver.MyTestNamespace.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(Namespace)/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(NestingClass)/Formatters.MessagePack.GeneratedMessagePackResolver.ContainingClass.Derived1Formatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(NestingClass)/Formatters.MessagePack.GeneratedMessagePackResolver.ContainingClass.Derived2Formatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(NestingClass)/Formatters.MessagePack.GeneratedMessagePackResolver.ContainingClass.IMyTypeFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(NestingClass)/Formatters.MessagePack.GeneratedMessagePackResolver.ContainingClass.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(NestingClass)/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(None)/Formatters.MessagePack.GeneratedMessagePackResolver.Derived1Formatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(None)/Formatters.MessagePack.GeneratedMessagePackResolver.Derived2Formatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(None)/Formatters.MessagePack.GeneratedMessagePackResolver.IMyTypeFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(None)/Formatters.MessagePack.GeneratedMessagePackResolver.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(None)/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/WellKnownGenericsFormatter/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/WellKnownGenericsFormatter/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Verifiers/CSharpSourceGeneratorVerifier`1+Test.cs"
+      ]
+    },
+    {
+      "pr": 1818,
+      "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/1818",
+      "mergedAt": "2024-05-16T21:01:37Z",
+      "mergedBy": {
+        "login": "AArnott",
+        "type": "User"
+      },
+      "closesIssue": 1816,
+      "closedAt": "2024-05-16T21:01:48Z",
+      "base": "caed65bc31d5d83190bf30a6a62beaf29b1abf05",
+      "head": "301b06f629f051763bc94d08a4ad11db0da5a1c9",
+      "files": [
+        "src/MessagePack.SourceGenerator/Analyzers/MsgPack00xMessagePackAnalyzer.cs",
+        "src/MessagePack.SourceGenerator/CodeAnalysis/AnalyzerOptions.cs",
+        "src/MessagePack.SourceGenerator/CodeAnalysis/CodeAnalysisUtilities.cs",
+        "src/MessagePack.SourceGenerator/CodeAnalysis/CustomFormatterRegisterInfo.cs",
+        "src/MessagePack.SourceGenerator/CodeAnalysis/ResolverRegisterInfo.cs",
+        "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
+        "src/MessagePack.SourceGenerator/MessagePackGenerator.cs",
+        "src/MessagePack.SourceGenerator/Transforms/ResolverTemplate.cs",
+        "src/MessagePack.SourceGenerator/Transforms/ResolverTemplate.tt",
+        "tests/MessagePack.SourceGenerator.ExecutionTests/CustomFormatterRecordFormatter.cs",
+        "tests/MessagePack.SourceGenerator.ExecutionTests/InaccessibleFormatter.cs",
+        "tests/MessagePack.SourceGenerator.Tests/GenerationTests.cs",
+        "tests/MessagePack.SourceGenerator.Tests/ImplicitResolverForCustomFormattersTests.cs",
+        "tests/MessagePack.SourceGenerator.Tests/MsgPack010InaccessibleFormatterTests.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/CustomFormatterWithSingletonPattern/MessagePack.GeneratedMessagePackResolver.g.cs"
+      ],
+      "comparison": "Accepted merge versus first parent"
+    },
+    {
+      "pr": 1802,
+      "url": "https://github.com/MessagePack-CSharp/MessagePack-CSharp/pull/1802",
+      "mergedAt": "2024-05-07T12:41:23Z",
+      "mergedBy": {
+        "login": "AArnott",
+        "type": "User"
+      },
+      "closesIssue": 1745,
+      "closedAt": "2024-05-07T12:41:37Z",
+      "base": "dff76a1fa39b19dfbd0259add20c1e37f41c6df4",
+      "head": "3d80df1975baf0fc6571e4344f25ef51adca091f",
+      "files": [
+        "doc/analyzers/MsgPack006.md",
+        "doc/analyzers/MsgPack007.md",
+        "doc/analyzers/MsgPack008.md",
+        "doc/analyzers/MsgPack009.md",
+        "doc/analyzers/MsgPack010.md",
+        "doc/analyzers/MsgPack011.md",
+        "doc/analyzers/MsgPack012.md",
+        "src/MessagePack.SourceGenerator/AnalyzerReleases.Unshipped.md",
+        "src/MessagePack.SourceGenerator/Analyzers/MsgPack00xMessagePackAnalyzer.cs",
+        "src/MessagePack.SourceGenerator/CodeAnalysis/CustomFormatterRegisterInfo.cs",
+        "src/MessagePack.SourceGenerator/CodeAnalysis/EnumSerializationInfo.cs",
+        "src/MessagePack.SourceGenerator/CodeAnalysis/GenericSerializationInfo.cs",
+        "src/MessagePack.SourceGenerator/CodeAnalysis/ObjectSerializationInfo.cs",
+        "src/MessagePack.SourceGenerator/CodeAnalysis/QualifiedTypeName.cs",
+        "src/MessagePack.SourceGenerator/CodeAnalysis/ResolverRegisterInfo.cs",
+        "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
+        "src/MessagePack.SourceGenerator/CodeAnalysis/UnionSerializationInfo.cs",
+        "src/MessagePack.SourceGenerator/MessagePackGenerator.cs",
+        "src/MessagePack.SourceGenerator/Transforms/EnumTemplate.cs",
+        "src/MessagePack.SourceGenerator/Transforms/EnumTemplate.tt",
+        "src/MessagePack.SourceGenerator/Transforms/FormatterTemplate.cs",
+        "src/MessagePack.SourceGenerator/Transforms/FormatterTemplate.tt",
+        "src/MessagePack.SourceGenerator/Transforms/StringKey/StringKeyFormatterTemplate.cs",
+        "src/MessagePack.SourceGenerator/Transforms/StringKey/StringKeyFormatterTemplate.tt",
+        "src/MessagePack.SourceGenerator/Transforms/TransformUtilities.cs",
+        "src/MessagePack.SourceGenerator/Transforms/UnionTemplate.cs",
+        "src/MessagePack.SourceGenerator/Transforms/UnionTemplate.tt",
+        "src/MessagePack.UnityClient/Assets/Scripts/MessagePack/Annotations/Attributes.cs",
+        "src/MessagePack.UnityClient/Assets/Scripts/Tests/Class1.cs",
+        "tests/MessagePack.SourceGenerator.ExecutionTests/ExecutionTests.cs",
+        "tests/MessagePack.SourceGenerator.ExecutionTests/HasPrivateSerializedMembers.cs",
+        "tests/MessagePack.SourceGenerator.MapModeExecutionTests/MessagePack.SourceGenerator.MapModeExecutionTests.csproj",
+        "tests/MessagePack.SourceGenerator.Tests/CodeAnalysis/FullModelTests.cs",
+        "tests/MessagePack.SourceGenerator.Tests/CodeAnalysis/UnionSerializationInfoTests.cs",
+        "tests/MessagePack.SourceGenerator.Tests/GenerationTests.cs",
+        "tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs",
+        "tests/MessagePack.SourceGenerator.Tests/MessagePackAnalyzerTests.cs",
+        "tests/MessagePack.SourceGenerator.Tests/MsgPack012InaccessibleDataTypeTests.cs",
+        "tests/MessagePack.SourceGenerator.Tests/PrivateMemberAccessTests.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/.gitattributes",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/AdditionalAllowTypes/Formatters.MessagePack.GeneratedMessagePackResolver.TypeWithAutoGeneratedFormatterFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/AdditionalAllowTypes/Formatters.TypeWithAutoGeneratedFormatterFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/AdditionalAllowTypes/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/AdditionalFormatterTypes/TestProject.Formatters.MessagePack.GeneratedMessagePackResolver.TypeWithAutoGeneratedFormatterFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/AdditionalFormatterTypes/TestProject.Formatters.TypeWithAutoGeneratedFormatterFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/AdditionalFormatterTypes/TestProject.MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/AdditionalFormatterTypes_RedundantAttibute/Formatters.MessagePack.GeneratedMessagePackResolver.TypeWithAutoGeneratedFormatterFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/AdditionalFormatterTypes_RedundantAttibute/Formatters.TypeWithAutoGeneratedFormatterFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/AdditionalFormatterTypes_RedundantAttibute/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/ArrayTypedProperty/Formatters.ContainerObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/ArrayTypedProperty/Formatters.MessagePack.GeneratedMessagePackResolver.ContainerObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/ArrayTypedProperty/Formatters.MessagePack.GeneratedMessagePackResolver.SubObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/ArrayTypedProperty/Formatters.SubObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/ArrayTypedProperty/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/CanGenerateMessagePackFormatterAttr/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.BarFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/CanGenerateMessagePackFormatterAttr/Formatters.TempProject.BarFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/CanGenerateMessagePackFormatterAttr/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/CustomFormatterViaAttributeOnProperty(False)/Formatters.HasPropertyWithCustomFormatterAttributeFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/CustomFormatterViaAttributeOnProperty(False)/Formatters.MessagePack.GeneratedMessagePackResolver.HasPropertyWithCustomFormatterAttributeFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/CustomFormatterViaAttributeOnProperty(False)/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/CustomFormatterViaAttributeOnProperty(True)/Formatters.HasPropertyWithCustomFormatterAttributeFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/CustomFormatterViaAttributeOnProperty(True)/Formatters.MessagePack.GeneratedMessagePackResolver.HasPropertyWithCustomFormatterAttributeFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/CustomFormatterViaAttributeOnProperty(True)/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(Namespace, False)/Formatters.MessagePack.GeneratedMessagePackResolver.MyTestNamespace.MyEnumFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(Namespace, False)/Formatters.MessagePack.GeneratedMessagePackResolver.MyTestNamespace.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(Namespace, False)/Formatters.MyTestNamespace.MyEnumFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(Namespace, False)/Formatters.MyTestNamespace.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(Namespace, False)/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(Namespace, True)/Formatters.MessagePack.GeneratedMessagePackResolver.MyTestNamespace.MyEnumFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(Namespace, True)/Formatters.MessagePack.GeneratedMessagePackResolver.MyTestNamespace.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(Namespace, True)/Formatters.MyTestNamespace.MyEnumFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(Namespace, True)/Formatters.MyTestNamespace.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(Namespace, True)/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(NestingClass, False)/Formatters.ContainingClass_MyEnumFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(NestingClass, False)/Formatters.ContainingClass_MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(NestingClass, False)/Formatters.MessagePack.GeneratedMessagePackResolver.ContainingClass.MyEnumFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(NestingClass, False)/Formatters.MessagePack.GeneratedMessagePackResolver.ContainingClass.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(NestingClass, False)/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(NestingClass, True)/Formatters.ContainingClass_MyEnumFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(NestingClass, True)/Formatters.ContainingClass_MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(NestingClass, True)/Formatters.MessagePack.GeneratedMessagePackResolver.ContainingClass.MyEnumFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(NestingClass, True)/Formatters.MessagePack.GeneratedMessagePackResolver.ContainingClass.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(NestingClass, True)/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(None, False)/Formatters.MessagePack.GeneratedMessagePackResolver.MyEnumFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(None, False)/Formatters.MessagePack.GeneratedMessagePackResolver.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(None, False)/Formatters.MyEnumFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(None, False)/Formatters.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(None, False)/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(None, True)/Formatters.MessagePack.GeneratedMessagePackResolver.MyEnumFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(None, True)/Formatters.MessagePack.GeneratedMessagePackResolver.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(None, True)/Formatters.MyEnumFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(None, True)/Formatters.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(None, True)/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter_CollidingTypeNames/Formatters.MessagePack.GeneratedMessagePackResolver.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter_CollidingTypeNames/Formatters.MessagePack.GeneratedMessagePackResolver.NS1.MyEnumFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter_CollidingTypeNames/Formatters.MessagePack.GeneratedMessagePackResolver.NS2.MyEnumFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter_CollidingTypeNames/Formatters.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter_CollidingTypeNames/Formatters.NS1.MyEnumFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter_CollidingTypeNames/Formatters.NS2.MyEnumFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter_CollidingTypeNames/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/FormatterForClassWithPrivateMembers(class)/Formatters.MyObject.MyObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/FormatterForClassWithPrivateMembers(class)/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/FormatterForClassWithPrivateMembers(record struct)/Formatters.MyObject.MyObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/FormatterForClassWithPrivateMembers(record struct)/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/FormatterForClassWithPrivateMembers(record)/Formatters.MyObject.MyObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/FormatterForClassWithPrivateMembers(record)/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/FormatterForClassWithPrivateMembers(struct)/Formatters.MyObject.MyObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/FormatterForClassWithPrivateMembers(struct)/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/FormatterForClassWithPrivateMembers_WithNamespace/Formatters.A.MyObject.MyObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/FormatterForClassWithPrivateMembers_WithNamespace/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericType/Formatters.ContainerObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericType/Formatters.MessagePack.GeneratedMessagePackResolver.ContainerObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericType/Formatters.MessagePack.GeneratedMessagePackResolver.MyGenericTypeFormatter`1.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericType/Formatters.MyGenericTypeFormatter`1.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericType/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericTypeArg/Formatters.GenericClassFormatter`2.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericTypeArg/Formatters.MessagePack.GeneratedMessagePackResolver.GenericClassFormatter`2.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericTypeArg/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericType_CollidingTypeNames/Formatters.MessagePack.GeneratedMessagePackResolver.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericType_CollidingTypeNames/Formatters.MessagePack.GeneratedMessagePackResolver.NS1.MyTypeFormatter`1.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericType_CollidingTypeNames/Formatters.MessagePack.GeneratedMessagePackResolver.NS2.MyTypeFormatter`1.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericType_CollidingTypeNames/Formatters.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericType_CollidingTypeNames/Formatters.NS1.MyTypeFormatter`1.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericType_CollidingTypeNames/Formatters.NS2.MyTypeFormatter`1.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericType_CollidingTypeNames/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfT1T2Formatter/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`2.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfT1T2Formatter/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfT1T2Formatter/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObjectNestedFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfT1T2Formatter/Formatters.TempProject.MyGenericObjectFormatter`2.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfT1T2Formatter/Formatters.TempProject.MyObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfT1T2Formatter/Formatters.TempProject.MyObjectNestedFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfT1T2Formatter/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfTFormatter/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`1.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfTFormatter/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfTFormatter/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObjectNestedFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfTFormatter/Formatters.TempProject.MyGenericObjectFormatter`1.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfTFormatter/Formatters.TempProject.MyObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfTFormatter/Formatters.TempProject.MyObjectNestedFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfTFormatter/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfTFormatter_FormatterOnly/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`1.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfTFormatter_FormatterOnly/Formatters.TempProject.MyGenericObjectFormatter`1.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfTFormatter_FormatterOnly/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfTFormatter_WithKnownTypes/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`1.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfTFormatter_WithKnownTypes/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObject2Formatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfTFormatter_WithKnownTypes/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfTFormatter_WithKnownTypes/Formatters.TempProject.MyGenericObjectFormatter`1.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfTFormatter_WithKnownTypes/Formatters.TempProject.MyObject2Formatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfTFormatter_WithKnownTypes/Formatters.TempProject.MyObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfTFormatter_WithKnownTypes/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsUnionFormatter/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.WrapperFormatter`1.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsUnionFormatter/Formatters.TempProject.WrapperFormatter`1.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsUnionFormatter/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsUnionFormatter_Nested/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`1.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsUnionFormatter_Nested/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyInnerGenericObjectFormatter`1.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsUnionFormatter_Nested/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.WrapperFormatter`1.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsUnionFormatter_Nested/Formatters.TempProject.MyGenericObjectFormatter`1.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsUnionFormatter_Nested/Formatters.TempProject.MyInnerGenericObjectFormatter`1.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsUnionFormatter_Nested/Formatters.TempProject.WrapperFormatter`1.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsUnionFormatter_Nested/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Constraints_Multiple/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`4.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Constraints_Multiple/Formatters.TempProject.MyGenericObjectFormatter`4.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Constraints_Multiple/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Constraints_NullableReferenceType/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`4.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Constraints_NullableReferenceType/Formatters.TempProject.MyGenericObjectFormatter`4.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Constraints_NullableReferenceType/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Constraints_ReferenceType_Nullable/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`2.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Constraints_ReferenceType_Nullable/Formatters.TempProject.MyGenericObjectFormatter`2.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Constraints_ReferenceType_Nullable/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Constraints_Struct/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`1.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Constraints_Struct/Formatters.TempProject.MyGenericObjectFormatter`1.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Constraints_Struct/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Constraints_Type/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`1.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Constraints_Type/Formatters.TempProject.MyGenericObjectFormatter`1.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Constraints_Type/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Defined_In_ReferencedProject/DefiningProject.Formatters.TempProject.MyGenericObjectFormatter`1.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Defined_In_ReferencedProject/DefiningProject.Formatters.TempProject.MyResolver.TempProject.MyGenericObjectFormatter`1.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Defined_In_ReferencedProject/DefiningProject.TempProject.MyResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Defined_In_ReferencedProject/TestProject.Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`1.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Defined_In_ReferencedProject/TestProject.Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Defined_In_ReferencedProject/TestProject.Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObjectNestedFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Defined_In_ReferencedProject/TestProject.Formatters.TempProject.MyGenericObjectFormatter`1.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Defined_In_ReferencedProject/TestProject.Formatters.TempProject.MyObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Defined_In_ReferencedProject/TestProject.Formatters.TempProject.MyObjectNestedFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Defined_In_ReferencedProject/TestProject.MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/ImplicitFormatterTypes/Formatters.MessagePack.GeneratedMessagePackResolver.TypeWithAutoGeneratedFormatterFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/ImplicitFormatterTypes/Formatters.TypeWithAutoGeneratedFormatterFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/ImplicitFormatterTypes/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/MixType_CollidingTypeNames/Formatters.MessagePack.GeneratedMessagePackResolver.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/MixType_CollidingTypeNames/Formatters.MessagePack.GeneratedMessagePackResolver.NS1.MyTypeFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/MixType_CollidingTypeNames/Formatters.MessagePack.GeneratedMessagePackResolver.NS2.MyTypeFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/MixType_CollidingTypeNames/Formatters.MessagePack.GeneratedMessagePackResolver.NS3.MyTypeFormatter`1.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/MixType_CollidingTypeNames/Formatters.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/MixType_CollidingTypeNames/Formatters.NS1.MyTypeFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/MixType_CollidingTypeNames/Formatters.NS2.MyTypeFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/MixType_CollidingTypeNames/Formatters.NS3.MyTypeFormatter`1.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/MixType_CollidingTypeNames/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/NestedGenericTypes/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`1.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/NestedGenericTypes/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyInnerGenericObjectFormatter`1.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/NestedGenericTypes/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObject2Formatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/NestedGenericTypes/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/NestedGenericTypes/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.WrapperFormatter`1.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/NestedGenericTypes/Formatters.TempProject.MyGenericObjectFormatter`1.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/NestedGenericTypes/Formatters.TempProject.MyInnerGenericObjectFormatter`1.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/NestedGenericTypes/Formatters.TempProject.MyObject2Formatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/NestedGenericTypes/Formatters.TempProject.MyObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/NestedGenericTypes/Formatters.TempProject.WrapperFormatter`1.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/NestedGenericTypes/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/NestedMessagePackObjects/Formatters.MessagePack.GeneratedMessagePackResolver.A.B.CFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/NestedMessagePackObjects/Formatters.MessagePack.GeneratedMessagePackResolver.A.BFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/NestedMessagePackObjects/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/NestedMessagePackObjects_Array/Formatters.MessagePack.GeneratedMessagePackResolver.A.B.CFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/NestedMessagePackObjects_Array/Formatters.MessagePack.GeneratedMessagePackResolver.A.BFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/NestedMessagePackObjects_Array/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/NonGenericType_CollidingTypeNames/Formatters.MessagePack.GeneratedMessagePackResolver.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/NonGenericType_CollidingTypeNames/Formatters.MessagePack.GeneratedMessagePackResolver.NS1.MyTypeFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/NonGenericType_CollidingTypeNames/Formatters.MessagePack.GeneratedMessagePackResolver.NS2.MyTypeFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/NonGenericType_CollidingTypeNames/Formatters.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/NonGenericType_CollidingTypeNames/Formatters.NS1.MyTypeFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/NonGenericType_CollidingTypeNames/Formatters.NS2.MyTypeFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/NonGenericType_CollidingTypeNames/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/NullableFormatter/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyEnumFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/NullableFormatter/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/NullableFormatter/Formatters.TempProject.MyEnumFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/NullableFormatter/Formatters.TempProject.MyObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/NullableFormatter/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterOnlyDefaultValue/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterOnlyDefaultValue/Formatters.TempProject.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterOnlyDefaultValue/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterOnlyIgnore/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterOnlyIgnore/Formatters.TempProject.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterOnlyIgnore/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterOnlyMixed/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterOnlyMixed/Formatters.TempProject.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterOnlyMixed/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterOnlyWithParameterizedConstructor/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterOnlyWithParameterizedConstructor/Formatters.TempProject.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterOnlyWithParameterizedConstructor/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterOnlyWithParameterizedConstructorDefaultValue/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterOnlyWithParameterizedConstructorDefaultValue/Formatters.TempProject.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterOnlyWithParameterizedConstructorDefaultValue/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterOnlyWithParameterizedConstructorPartially/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterOnlyWithParameterizedConstructorPartially/Formatters.TempProject.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterOnlyWithParameterizedConstructorPartially/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetter/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetter/Formatters.TempProject.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetter/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetterWithDefaultValue/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetterWithDefaultValue/Formatters.TempProject.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetterWithDefaultValue/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetterWithDefaultValueInputPartially/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetterWithDefaultValueInputPartially/Formatters.TempProject.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetterWithDefaultValueInputPartially/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetterWithParameterizedConstructor/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetterWithParameterizedConstructor/Formatters.TempProject.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetterWithParameterizedConstructor/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetterWithParameterizedConstructorAndDefaultValue/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetterWithParameterizedConstructorAndDefaultValue/Formatters.TempProject.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetterWithParameterizedConstructorAndDefaultValue/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetterWithParameterizedConstructorDoNotUseSetter/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetterWithParameterizedConstructorDoNotUseSetter/Formatters.TempProject.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetterWithParameterizedConstructorDoNotUseSetter/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetterWithParameterizedConstructorPartially/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetterWithParameterizedConstructorPartially/Formatters.TempProject.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetterWithParameterizedConstructorPartially/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/RecordWithPrimaryConstructor/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/RecordWithPrimaryConstructor/Formatters.TempProject.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/RecordWithPrimaryConstructor/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/RecordWithWithInitOnlyProps/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/RecordWithWithInitOnlyProps/Formatters.TempProject.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/RecordWithWithInitOnlyProps/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/TwoTypes(False)/Formatters.MessagePack.GeneratedMessagePackResolver.Object1Formatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/TwoTypes(False)/Formatters.MessagePack.GeneratedMessagePackResolver.Object2Formatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/TwoTypes(False)/Formatters.Object1Formatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/TwoTypes(False)/Formatters.Object2Formatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/TwoTypes(False)/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/TwoTypes(True)/Formatters.MessagePack.GeneratedMessagePackResolver.Object1Formatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/TwoTypes(True)/Formatters.MessagePack.GeneratedMessagePackResolver.Object2Formatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/TwoTypes(True)/Formatters.Object1Formatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/TwoTypes(True)/Formatters.Object2Formatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/TwoTypes(True)/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(Namespace)/Formatters.MessagePack.GeneratedMessagePackResolver.MyTestNamespace.Derived1Formatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(Namespace)/Formatters.MessagePack.GeneratedMessagePackResolver.MyTestNamespace.Derived2Formatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(Namespace)/Formatters.MessagePack.GeneratedMessagePackResolver.MyTestNamespace.IMyTypeFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(Namespace)/Formatters.MessagePack.GeneratedMessagePackResolver.MyTestNamespace.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(Namespace)/Formatters.MyTestNamespace.Derived1Formatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(Namespace)/Formatters.MyTestNamespace.Derived2Formatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(Namespace)/Formatters.MyTestNamespace.IMyTypeFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(Namespace)/Formatters.MyTestNamespace.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(Namespace)/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(NestingClass)/Formatters.ContainingClass_Derived1Formatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(NestingClass)/Formatters.ContainingClass_Derived2Formatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(NestingClass)/Formatters.ContainingClass_IMyTypeFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(NestingClass)/Formatters.ContainingClass_MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(NestingClass)/Formatters.MessagePack.GeneratedMessagePackResolver.ContainingClass.Derived1Formatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(NestingClass)/Formatters.MessagePack.GeneratedMessagePackResolver.ContainingClass.Derived2Formatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(NestingClass)/Formatters.MessagePack.GeneratedMessagePackResolver.ContainingClass.IMyTypeFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(NestingClass)/Formatters.MessagePack.GeneratedMessagePackResolver.ContainingClass.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(NestingClass)/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(None)/Formatters.Derived1Formatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(None)/Formatters.Derived2Formatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(None)/Formatters.IMyTypeFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(None)/Formatters.MessagePack.GeneratedMessagePackResolver.Derived1Formatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(None)/Formatters.MessagePack.GeneratedMessagePackResolver.Derived2Formatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(None)/Formatters.MessagePack.GeneratedMessagePackResolver.IMyTypeFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(None)/Formatters.MessagePack.GeneratedMessagePackResolver.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(None)/Formatters.MyMessagePackObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(None)/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/WellKnownGenericsFormatter/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/WellKnownGenericsFormatter/Formatters.TempProject.MyObjectFormatter.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Resources/WellKnownGenericsFormatter/MessagePack.GeneratedMessagePackResolver.g.cs",
+        "tests/MessagePack.SourceGenerator.Tests/Verifiers/CSharpSourceGeneratorVerifier`1+Test.cs"
+      ],
+      "comparison": "Accepted merge versus first parent"
+    }
+  ],
+  "status": "unavailable",
+  "selectedControl": null,
+  "stopReason": "All three eligible candidates failed SDK resolution in the frozen container; no fourth attempt or environment change."
+}
