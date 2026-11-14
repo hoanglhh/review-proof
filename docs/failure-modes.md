@@ -8,3 +8,24 @@ Only failures actually observed while building and running ReviewProof, each wit
 - **Why it matters:** a runner that read the exit code or the log text would have recorded "build broken, nothing ran", and the three discriminating tests (the evidence that the fix works) would have been lost as `inconclusive`.
 - **What we do:** pass/fail is decided per test from the TRX file only; no result file means `inconclusive`.
 - **Evidence:** `data/cases/2283/runs/without-change.MessagePack.SourceGenerator.Tests.log` lines 305 and 307; `exitCode: 1` with 170 parsed results in `data/cases/2283/runs/without-change.MessagePack.SourceGenerator.Tests.json`.
+
+## 2. Test output reached the reviewer cut short (2026-11-14)
+
+- **What happened:** in the first prompt for #2283, failure output from the base-source run was trimmed so hard that the diagnostics after the crash were lost. Stored messages were capped at 4,000 characters (CS8785 sat at character 7,821), and the 12-line trim was used up by stack frames. The reviewer could not see from the evidence that base also reported `MsgPack004` for one test.
+- **Why it matters:** the reviewer can only raise what the evidence shows; silently trimmed evidence hides exactly the side effects a reviewer should notice.
+- **What we do:** cap raised to 20,000 characters, stack frames dropped, up to 30 lines kept (prompt v2). Found by reading the built prompt, not by comparing outputs.
+- **Evidence:** prompt v1 and its response in `data/cases/2283/review/5781b687….json`; v2 in `data/cases/2283/review/7e32fa48….json`; decision log entry "Evidence trimming fix".
+
+## 3. Wrong status: claims marked proven by a test they did not name (2026-11-14)
+
+- **What happened:** the first assembly of #2283 from prompt v2 marked all five claims `proven`, each "because" the same test, `ClosedGenericRecordStruct_FromMetadataReference`. The claims linked the whole `tests-without-change` record, and the state code credited any discriminating test in a linked record to the claim.
+- **Why it matters:** a claim could be `proven` by a run that never touched it. That is confidence without evidence, the thing the challenge rejects.
+- **What we do:** only tests a claim names count toward its state. Linking a whole record proves nothing (unit test "linking a whole test record proves nothing"). After the fix each claim cites its own discriminating test. In this case the five states stayed `proven`, because each claim also named a discriminating test of its own; the reasons were wrong, not the states. With other model output the states would have been wrong too.
+- **Evidence:** `data/cases/2283/review/7e32fa48….json` (claims list `evidenceIds` for the whole record); `src/states.ts` `claimState`.
+
+## 4. Limit: "proven" covers the named test, not the claim's wording (2026-11-14)
+
+- **What happened:** #2283 claim C5 says location-less diagnostics and diagnostics rooted in other trees are dropped. It is `proven` by a test that shows one diagnostic with an external location being dropped. No run here shows the location-less case.
+- **Why it matters:** the state is computed honestly from the link, but the model chooses the link and words the claim. A broadly worded claim can borrow a narrow test.
+- **What we do now:** nothing automatic. The sheet shows the named test next to every proven claim so the owner can see the scope. The behaviour itself is raised as a decision (D1) for the owner.
+- **Evidence:** `data/cases/2283/report.json`, claim C5.

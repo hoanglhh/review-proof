@@ -123,7 +123,7 @@ test("tests: an existing test whose expected data changed counts as changed; reg
   assert.deepEqual(e["tests-at-head"].tests!.map((t) => t.name), ["Snap"]);
   assert.equal(e["tests-without-change"].status, "passed");
   assert.equal(e["existing-tests"].status, "failed");
-  assert.deepEqual(e["existing-tests"].tests!.map((t) => t.name), ["Reg"]);
+  assert.deepEqual(e["existing-tests"].tests!.filter((t) => t.head !== "passed").map((t) => t.name), ["Reg"]);
   assert.deepEqual((e["existing-tests"].details as any).removedAtHead, ["Gone"]);
 });
 

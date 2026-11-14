@@ -28,7 +28,7 @@ export function parseTrx(xml: string): TestResult[] {
       name: attrs.testName,
       outcome: outcome(attrs.outcome ?? ""),
       rawOutcome: attrs.outcome ?? "",
-      ...(message ? { message: unescape(message).slice(0, 4000) } : {}),
+      ...(message ? { message: unescape(message).slice(0, 20000) } : {}), // diagnostics can sit far into a long message
     });
   }
   return results;

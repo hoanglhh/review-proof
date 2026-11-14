@@ -1,0 +1,447 @@
+{
+  "model": "kimi-k3-1-pro",
+  "promptHash": "7e32fa48c76868add97e65b7292391f9a5fabf9a39d79c71fe53fa045d9f18c1",
+  "rawResponse": "data/cases/2283/review/7e32fa48c76868add97e65b7292391f9a5fabf9a39d79c71fe53fa045d9f18c1.json",
+  "fullFiles": [
+    "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs"
+  ],
+  "status": "ok",
+  "output": {
+    "requirements": [
+      {
+        "id": "R1",
+        "text": "The generator and analyzer must not crash with IndexOutOfRangeException for the reported referenced-assembly generic struct scenario.",
+        "quote": "Generator and analyzer crash with IndexOutOfRangeException on a closed generic struct from a referenced assembly",
+        "kind": "explicit"
+      },
+      {
+        "id": "R2",
+        "text": "The consuming app must build cleanly and contain a generated resolver.",
+        "quote": "A clean build, with a generated resolver in `app`.",
+        "kind": "explicit"
+      },
+      {
+        "id": "R3",
+        "text": "The scenario requiring coverage is the combination of a generic value type and a definition originating in a referenced assembly.",
+        "quote": "So it needs all three of: **generic**, **value type**, **from a referenced assembly**.",
+        "kind": "explicit"
+      },
+      {
+        "id": "R4",
+        "text": "Collection and diagnostic handling should tolerate metadata symbols that have no source declaration syntax.",
+        "quote": "and that collection is empty for a metadata symbol.",
+        "kind": "interpretation"
+      }
+    ],
+    "claims": [
+      {
+        "id": "C1",
+        "statement": "With MyGenericStruct<T> emitted into a metadata-only defining assembly and MyGenericStruct<int> used by a consuming object, analyzer and generator execution completes without diagnostics and the consuming compilation produces the TempProject.MyResolver.g.cs hint.",
+        "requirementIds": [
+          "R1",
+          "R2",
+          "R3"
+        ],
+        "evidenceIds": [
+          "tests-at-head:MessagePack.SourceGenerator.Tests",
+          "tests-without-change:MessagePack.SourceGenerator.Tests"
+        ],
+        "testNames": [
+          "GenericsFormatterTests.ClosedGenericStruct_FromMetadataReference"
+        ],
+        "hunkIds": [
+          "H3",
+          "H4",
+          "H5",
+          "H6",
+          "H7",
+          "H8",
+          "H9"
+        ],
+        "citations": [
+          {
+            "file": "tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs",
+            "at": "head",
+            "startLine": 507,
+            "endLine": 507,
+            "quote": "public async Task ClosedGenericStruct_FromMetadataReference()"
+          },
+          {
+            "file": "tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs",
+            "at": "head",
+            "startLine": 540,
+            "endLine": 540,
+            "quote": "await RunWithMetadataReferenceAsync(defineSource, usageSource, \"TempProject.MyResolver.g.cs\");"
+          }
+        ]
+      },
+      {
+        "id": "C2",
+        "statement": "With the issue's Lib.Item<T> record struct emitted to metadata and App.Cmd.Member typed as Item<int>, analyzer and generator execution completes without diagnostics and the App.AppResolver.g.cs hint is generated.",
+        "requirementIds": [
+          "R1",
+          "R2",
+          "R3"
+        ],
+        "evidenceIds": [
+          "tests-at-head:MessagePack.SourceGenerator.Tests",
+          "tests-without-change:MessagePack.SourceGenerator.Tests",
+          "issue-reproduction"
+        ],
+        "testNames": [
+          "GenericsFormatterTests.ClosedGenericRecordStruct_FromMetadataReference"
+        ],
+        "hunkIds": [
+          "H3",
+          "H4",
+          "H5",
+          "H6",
+          "H7",
+          "H8",
+          "H9"
+        ],
+        "citations": [
+          {
+            "file": "tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs",
+            "at": "head",
+            "startLine": 559,
+            "endLine": 559,
+            "quote": "public partial record struct Item<T>([property: Key(0)] string Key);"
+          },
+          {
+            "file": "tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs",
+            "at": "head",
+            "startLine": 579,
+            "endLine": 579,
+            "quote": "await RunWithMetadataReferenceAsync(defineSource, usageSource, \"App.AppResolver.g.cs\", LanguageVersion.Latest);"
+          }
+        ]
+      },
+      {
+        "id": "C3",
+        "statement": "A metadata-defined generic struct with an additional public unkeyed property produces no diagnostics in the consuming test compilation, does not trigger AD0001 or CS8785, and still yields the requested resolver hint.",
+        "requirementIds": [
+          "R4"
+        ],
+        "evidenceIds": [
+          "tests-at-head:MessagePack.SourceGenerator.Tests",
+          "tests-without-change:MessagePack.SourceGenerator.Tests"
+        ],
+        "testNames": [
+          "GenericsFormatterTests.ClosedGenericStruct_FromMetadataReference_UnkeyedMember"
+        ],
+        "hunkIds": [
+          "H3",
+          "H4",
+          "H5",
+          "H6",
+          "H7",
+          "H8",
+          "H9"
+        ],
+        "citations": [
+          {
+            "file": "tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs",
+            "at": "head",
+            "startLine": 603,
+            "endLine": 603,
+            "quote": "public int Unkeyed { get; set; }"
+          },
+          {
+            "file": "tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs",
+            "at": "head",
+            "startLine": 637,
+            "endLine": 637,
+            "quote": "// Run the analyzers and the generator, failing on any diagnostic (the defect surfaced as AD0001 and CS8785)."
+          }
+        ]
+      },
+      {
+        "id": "C4",
+        "statement": "The modified MemberNeedsKey and BothStringAndIntKeyAreNull paths obtain locations through FirstOrDefault and safe casts rather than DeclaringSyntaxReferences[0], so an empty declaration collection yields a null location at those sites instead of an index failure.",
+        "requirementIds": [
+          "R1",
+          "R4"
+        ],
+        "evidenceIds": [
+          "tests-at-head:MessagePack.SourceGenerator.Tests",
+          "tests-without-change:MessagePack.SourceGenerator.Tests"
+        ],
+        "testNames": [
+          "GenericsFormatterTests.ClosedGenericStruct_FromMetadataReference",
+          "GenericsFormatterTests.ClosedGenericRecordStruct_FromMetadataReference",
+          "GenericsFormatterTests.ClosedGenericStruct_FromMetadataReference_UnkeyedMember"
+        ],
+        "hunkIds": [
+          "H4",
+          "H5",
+          "H6"
+        ],
+        "citations": [
+          {
+            "file": "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
+            "at": "head",
+            "startLine": 1077,
+            "endLine": 1077,
+            "quote": ": Diagnostic.Create(MsgPack00xMessagePackAnalyzer.MemberNeedsKey, item.DeclaringSyntaxReferences.FirstOrDefault()?.GetSyntax().GetLocation(), formattedType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat), item.Name);"
+          },
+          {
+            "file": "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
+            "at": "head",
+            "startLine": 1434,
+            "endLine": 1434,
+            "quote": "private static Location? GetPropertyIdentifierLocation(IPropertySymbol property) => (property.DeclaringSyntaxReferences.FirstOrDefault()?.GetSyntax() as PropertyDeclarationSyntax)?.Identifier.GetLocation();"
+          }
+        ]
+      },
+      {
+        "id": "C5",
+        "statement": "TypeCollector now forwards an analyzer diagnostic only when its primary location is in source and its syntax tree belongs to the current compilation; location-less diagnostics and diagnostics rooted in other trees are dropped.",
+        "requirementIds": [
+          "R4"
+        ],
+        "evidenceIds": [
+          "tests-at-head:MessagePack.SourceGenerator.Tests",
+          "tests-without-change:MessagePack.SourceGenerator.Tests",
+          "existing-tests:MessagePack.SourceGenerator.Tests"
+        ],
+        "testNames": [
+          "GenericsFormatterTests.ClosedGenericStruct_FromMetadataReference_UnkeyedMember",
+          "MsgPack00xAnalyzerTests.NullStringKey",
+          "MsgPack00xAnalyzerTests.AddAttributesToMembers"
+        ],
+        "hunkIds": [
+          "H3",
+          "H6"
+        ],
+        "citations": [
+          {
+            "file": "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
+            "at": "head",
+            "startLine": 239,
+            "endLine": 239,
+            "quote": "this.reportDiagnostic = reportAnalyzerDiagnostic is null ? null : diagnostic => ReportIfLocatedInCompilation(reportAnalyzerDiagnostic, diagnostic);"
+          },
+          {
+            "file": "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
+            "at": "head",
+            "startLine": 1446,
+            "endLine": 1446,
+            "quote": "if (diagnostic.Location.IsInSource && this.compilation.ContainsSyntaxTree(diagnostic.Location.SourceTree))"
+          }
+        ]
+      }
+    ],
+    "decisions": [
+      {
+        "id": "D1",
+        "statement": "The change assigns problems in metadata-defined members to their defining project and centrally suppresses the corresponding consuming-compilation diagnostics, including all diagnostics without an in-compilation primary location.",
+        "whyHuman": "A test can observe where a diagnostic appears, but it cannot determine the desired diagnostic ownership, acceptable analyzer noise, or compatibility policy for location-less diagnostics. The reported valid repro does not specify what should happen to invalid members in a referenced assembly.",
+        "options": [
+          "Drop diagnostics whose primary location is absent or outside the current compilation and rely on the defining project, as implemented and documented.",
+          "Report a consuming-project diagnostic at the source member that references the metadata type when such a location exists.",
+          "Preserve location-less or external-location diagnostics and handle analyzer host restrictions separately.",
+          "Restrict suppression to the known metadata-member diagnostic sites instead of applying it to every diagnostic passed through TypeCollector.reportDiagnostic."
+        ],
+        "hunkIds": [
+          "H1",
+          "H2",
+          "H3",
+          "H6",
+          "H9"
+        ],
+        "citations": [
+          {
+            "file": "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
+            "at": "head",
+            "startLine": 1441,
+            "endLine": 1441,
+            "quote": "/// Their problems are reported by the compilation that defines them, so they are dropped here rather than being reported"
+          },
+          {
+            "file": "doc/analyzers/MsgPack004.md",
+            "at": "head",
+            "startLine": 51,
+            "endLine": 51,
+            "quote": "This analyzer only reports on members declared in the project being compiled."
+          },
+          {
+            "file": "README.md",
+            "at": "head",
+            "startLine": 1642,
+            "endLine": 1642,
+            "quote": "Diagnostics about the members of such a type are reported by the assembly that defines it rather than by the consuming project, so any problem must be fixed there."
+          }
+        ]
+      },
+      {
+        "id": "D2",
+        "statement": "Regression verification uses in-memory compilations and metadata images, adds an explicit attributed resolver to each usage source, and checks generator hint names instead of running the original two-project command-line build.",
+        "whyHuman": "A test cannot settle which verification fidelity is proportionate for this defect or whether an in-memory Roslyn harness is an acceptable substitute for project-reference and command-line build integration; that is a test-design tradeoff.",
+        "options": [
+          "Use the in-memory metadata-reference harness with explicit resolver declarations, as implemented.",
+          "Reproduce the two project files with dotnet build and inspect the consuming assembly for its resolver.",
+          "Keep the focused in-memory tests and add a separate two-project build integration test.",
+          "Use an in-memory harness but also cover the scenario without an explicit GeneratedMessagePackResolver declaration."
+        ],
+        "hunkIds": [
+          "H7",
+          "H8",
+          "H9"
+        ],
+        "citations": [
+          {
+            "file": "tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs",
+            "at": "head",
+            "startLine": 633,
+            "endLine": 633,
+            "quote": "private static async Task RunWithMetadataReferenceAsync(string defineSource, string usageSource, string expectedResolverHintName, LanguageVersion languageVersion = LanguageVersion.CSharp7_3)"
+          },
+          {
+            "file": "tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs",
+            "at": "head",
+            "startLine": 653,
+            "endLine": 653,
+            "quote": "GeneratorDriverRunResult runResult = CSharpGeneratorDriver.Create(new MessagePack.SourceGenerator.MessagePackGenerator().AsSourceGenerator())"
+          },
+          {
+            "file": "tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs",
+            "at": "head",
+            "startLine": 673,
+            "endLine": 673,
+            "quote": "return MetadataReference.CreateFromImage(stream.ToArray());"
+          }
+        ]
+      }
+    ],
+    "findings": [
+      {
+        "id": "F1",
+        "statement": "BothStringAndIntKeyAreNull can be silently dropped for a current-compilation property whose declaration syntax is ParameterSyntax, such as a positional record property. The nearby member-key path explicitly handles ParameterSyntax, but GetPropertyIdentifierLocation recognizes only PropertyDeclarationSyntax; it therefore returns null for that case, and the new central wrapper does not forward a diagnostic with Location.None.",
+        "hunkIds": [
+          "H3",
+          "H4",
+          "H6"
+        ],
+        "citations": [
+          {
+            "file": "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
+            "at": "head",
+            "startLine": 985,
+            "endLine": 985,
+            "quote": "this.reportDiagnostic?.Invoke(Diagnostic.Create(MsgPack00xMessagePackAnalyzer.BothStringAndIntKeyAreNull, GetPropertyIdentifierLocation(item), formattedType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat), item.Name));"
+          },
+          {
+            "file": "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
+            "at": "head",
+            "startLine": 926,
+            "endLine": 926,
+            "quote": "var identifier = (syntax as PropertyDeclarationSyntax)?.Identifier ?? (syntax as ParameterSyntax)?.Identifier;"
+          },
+          {
+            "file": "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
+            "at": "head",
+            "startLine": 1434,
+            "endLine": 1434,
+            "quote": "private static Location? GetPropertyIdentifierLocation(IPropertySymbol property) => (property.DeclaringSyntaxReferences.FirstOrDefault()?.GetSyntax() as PropertyDeclarationSyntax)?.Identifier.GetLocation();"
+          },
+          {
+            "file": "src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs",
+            "at": "head",
+            "startLine": 1446,
+            "endLine": 1446,
+            "quote": "if (diagnostic.Location.IsInSource && this.compilation.ContainsSyntaxTree(diagnostic.Location.SourceTree))"
+          }
+        ]
+      },
+      {
+        "id": "F2",
+        "statement": "None of the three new metadata regression scenarios covers generation without an explicit resolver declaration. Every usage source adds [GeneratedMessagePackResolver] to a custom partial resolver, and the common assertion looks for that resolver's hint name, leaving the issue's no-explicit-resolver shape unrepresented in the added tests.",
+        "hunkIds": [
+          "H9"
+        ],
+        "citations": [
+          {
+            "file": "tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs",
+            "at": "head",
+            "startLine": 535,
+            "endLine": 535,
+            "quote": "[GeneratedMessagePackResolver]"
+          },
+          {
+            "file": "tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs",
+            "at": "head",
+            "startLine": 575,
+            "endLine": 575,
+            "quote": "[GeneratedMessagePackResolver]"
+          },
+          {
+            "file": "tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs",
+            "at": "head",
+            "startLine": 620,
+            "endLine": 620,
+            "quote": "[GeneratedMessagePackResolver]"
+          },
+          {
+            "file": "tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs",
+            "at": "head",
+            "startLine": 658,
+            "endLine": 658,
+            "quote": "Assert.Contains(expectedResolverHintName, hintNames);"
+          }
+        ]
+      },
+      {
+        "id": "F3",
+        "statement": "The added helper does not exercise a two-project dotnet build or inspect a built consuming assembly. It emits the defining source to an in-memory image, invokes CSharpGeneratorDriver on another in-memory compilation, and checks generated hint names, so command-line project-reference integration and physical app.dll contents remain outside this regression coverage.",
+        "hunkIds": [
+          "H9"
+        ],
+        "citations": [
+          {
+            "file": "tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs",
+            "at": "head",
+            "startLine": 667,
+            "endLine": 667,
+            "quote": "Microsoft.CodeAnalysis.Emit.EmitResult emitResult = compilation.Emit(stream);"
+          },
+          {
+            "file": "tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs",
+            "at": "head",
+            "startLine": 673,
+            "endLine": 673,
+            "quote": "return MetadataReference.CreateFromImage(stream.ToArray());"
+          },
+          {
+            "file": "tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs",
+            "at": "head",
+            "startLine": 654,
+            "endLine": 655,
+            "quote": ".RunGenerators(usageCompilation)"
+          },
+          {
+            "file": "tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs",
+            "at": "head",
+            "startLine": 657,
+            "endLine": 657,
+            "quote": "var hintNames = runResult.Results.SelectMany(r => r.GeneratedSources).Select(s => s.HintName).ToList();"
+          }
+        ]
+      }
+    ],
+    "cannotDecide": [
+      {
+        "item": "Whether the exact attached two-project repro now completes dotnet build and places GeneratedMessagePackResolver in app.dll.",
+        "reason": "The supplied evidence runs Roslyn-based tests on in-memory metadata references and checks generated hint names. It contains no command-line two-project build or inspection of a produced application assembly."
+      },
+      {
+        "item": "Whether trimmed and NativeAOT applications now succeed at runtime in the affected deployments.",
+        "reason": "No trimmed or NativeAOT build, deployment, serialization run, or runtime resolver lookup is included in the evidence."
+      },
+      {
+        "item": "Which individual declaration-syntax access caused each reproduced base failure.",
+        "reason": "The requirement explicitly says the firing site was not narrowed down, and the trimmed without-change outputs retain the exception type and message but not a source line mapping to H4, H5, or another access. The added tests exercise combined scenarios rather than isolating each modified diagnostic branch."
+      }
+    ]
+  }
+}

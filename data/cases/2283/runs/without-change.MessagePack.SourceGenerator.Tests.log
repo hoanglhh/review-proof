@@ -1,12 +1,12 @@
 
   Determining projects to restore...
 /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/tests/MessagePack.SourceGenerator.Tests/MessagePack.SourceGenerator.Tests.csproj : warning NU1901: Package 'NuGet.Protocol' 6.8.0 has a known low severity vulnerability, https://github.com/advisories/GHSA-g4vj-cjjj-v7hg
-  Restored /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.Analyzers.CodeFixes/MessagePack.Analyzers.CodeFixes.csproj (in 481 ms).
-  Restored /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack/MessagePack.csproj (in 481 ms).
-  Restored /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/MessagePack.SourceGenerator.csproj (in 481 ms).
-  Restored /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.Analyzers/MessagePack.Analyzers.csproj (in 481 ms).
-  Restored /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.Annotations/MessagePack.Annotations.csproj (in 481 ms).
-  Restored /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/tests/MessagePack.SourceGenerator.Tests/MessagePack.SourceGenerator.Tests.csproj (in 553 ms).
+  Restored /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.Annotations/MessagePack.Annotations.csproj (in 1.04 sec).
+  Restored /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.Analyzers/MessagePack.Analyzers.csproj (in 1.04 sec).
+  Restored /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.Analyzers.CodeFixes/MessagePack.Analyzers.CodeFixes.csproj (in 1.04 sec).
+  Restored /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack.SourceGenerator/MessagePack.SourceGenerator.csproj (in 1.04 sec).
+  Restored /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/src/MessagePack/MessagePack.csproj (in 1.04 sec).
+  Restored /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/tests/MessagePack.SourceGenerator.Tests/MessagePack.SourceGenerator.Tests.csproj (in 1.06 sec).
 /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/tests/MessagePack.SourceGenerator.Tests/MessagePack.SourceGenerator.Tests.csproj : warning NU1901: Package 'NuGet.Protocol' 6.8.0 has a known low severity vulnerability, https://github.com/advisories/GHSA-g4vj-cjjj-v7hg
   MessagePack.SourceGenerator -> /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/bin/MessagePack.SourceGenerator/Debug/netstandard2.0/MessagePack.SourceGenerator.dll
   MessagePack.Analyzers.CodeFixes -> /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/bin/MessagePack.Analyzers.CodeFixes/Debug/netstandard2.0/MessagePack.Analyzers.CodeFixes.dll
@@ -20,7 +20,7 @@ VSTest version 17.11.0 (x64)
 Starting test execution, please wait...
 A total of 1 test files matched the specified pattern.
 [xUnit.net 00:00:07.57]     GenericsFormatterTests.ClosedGenericRecordStruct_FromMetadataReference [FAIL]
-  Failed GenericsFormatterTests.ClosedGenericRecordStruct_FromMetadataReference [2 s]
+  Failed GenericsFormatterTests.ClosedGenericRecordStruct_FromMetadataReference [621 ms]
   Error Message:
    System.InvalidOperationException : Mismatch between number of diagnostics returned, expected "0" actual "2"
 
@@ -112,8 +112,8 @@ DiagnosticResult.CompilerWarning("CS8785").WithArguments("MessagePackGenerator",
    at GenericsFormatterTests.RunWithMetadataReferenceAsync(String defineSource, String usageSource, String expectedResolverHintName, LanguageVersion languageVersion) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs:line 648
    at GenericsFormatterTests.ClosedGenericRecordStruct_FromMetadataReference() in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs:line 579
 --- End of stack trace from previous location ---
-[xUnit.net 00:00:10.36]     GenericsFormatterTests.ClosedGenericStruct_FromMetadataReference_UnkeyedMember [FAIL]
-  Failed GenericsFormatterTests.ClosedGenericStruct_FromMetadataReference_UnkeyedMember [361 ms]
+[xUnit.net 00:00:08.36]     GenericsFormatterTests.ClosedGenericStruct_FromMetadataReference_UnkeyedMember [FAIL]
+  Failed GenericsFormatterTests.ClosedGenericStruct_FromMetadataReference_UnkeyedMember [98 ms]
   Error Message:
    System.InvalidOperationException : Mismatch between number of diagnostics returned, expected "0" actual "3"
 
@@ -207,8 +207,8 @@ new DiagnosticResult(MsgPack00xMessagePackAnalyzer.MsgPack004).WithArguments("gl
    at GenericsFormatterTests.RunWithMetadataReferenceAsync(String defineSource, String usageSource, String expectedResolverHintName, LanguageVersion languageVersion) in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs:line 648
    at GenericsFormatterTests.ClosedGenericStruct_FromMetadataReference_UnkeyedMember() in /home/huyhoangle/junction/review-proof/.work/wt/overlay-2283/tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs:line 625
 --- End of stack trace from previous location ---
-[xUnit.net 00:00:13.11]     GenericsFormatterTests.ClosedGenericStruct_FromMetadataReference [FAIL]
-  Failed GenericsFormatterTests.ClosedGenericStruct_FromMetadataReference [164 ms]
+[xUnit.net 00:00:09.33]     GenericsFormatterTests.ClosedGenericStruct_FromMetadataReference [FAIL]
+  Failed GenericsFormatterTests.ClosedGenericStruct_FromMetadataReference [91 ms]
   Error Message:
    System.InvalidOperationException : Mismatch between number of diagnostics returned, expected "0" actual "2"
 
@@ -302,7 +302,7 @@ DiagnosticResult.CompilerWarning("CS8785").WithArguments("MessagePackGenerator",
 --- End of stack trace from previous location ---
 Results File: /home/huyhoangle/junction/review-proof/.work/results/data_cases_2283_runs/without-change.MessagePack.SourceGenerator.Tests/without-change.MessagePack.SourceGenerator.Tests.trx
 
-Failed!  - Failed:     3, Passed:   167, Skipped:     0, Total:   170, Duration: 17 s - MessagePack.SourceGenerator.Tests.dll (net8.0)
+Failed!  - Failed:     3, Passed:   167, Skipped:     0, Total:   170, Duration: 9 s - MessagePack.SourceGenerator.Tests.dll (net8.0)
 
 Build FAILED.
 
@@ -311,4 +311,4 @@ Build FAILED.
     2 Warning(s)
     0 Error(s)
 
-Time Elapsed 00:00:44.42
+Time Elapsed 00:00:27.77

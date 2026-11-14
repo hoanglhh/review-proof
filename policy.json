@@ -1,0 +1,11 @@
+{
+  "version": "2026-11-14.1",
+  "note": "Illustrative and unvalidated thresholds. Changing any value requires a new version.",
+  "trust": {
+    "cleanSpotChecksPerStep": 3
+  },
+  "spotCheckShare": 0.25,
+  "sheet": {
+    "maxFindingsShown": 5
+  }
+}

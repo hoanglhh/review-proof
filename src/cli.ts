@@ -1,18 +1,23 @@
 // ReviewProof command line. Every stage reads and writes files under data/cases/<id>/, so any stage can be rerun alone.
-import { existsSync } from "node:fs";
-import { basename, join } from "node:path";
+import { existsSync, readFileSync, writeFileSync } from "node:fs";
+import { basename, join, relative } from "node:path";
 import { parseArgs } from "node:util";
-import { caseDir, loadCase, loadProfile, PIPELINE_VERSION, readJson, writeJson, type Case, type Profile } from "./config.ts";
+import { caseDir, DATA, loadCase, loadProfile, PIPELINE_VERSION, readJson, ROOT, writeJson, type Case, type Profile } from "./config.ts";
 import { classify, diffArgs, parseDiff, type FileChange, type Hunk } from "./diff.ts";
-import { ensureClone, ensureWorktree, git, listFiles, overlayWorktree } from "./git.ts";
+import { ensureClone, ensureWorktree, git, listFiles, overlayWorktree, showFile } from "./git.ts";
 import { runTests, type Run } from "./runner.ts";
 import { inventory, issueReproduction, patternGroups, publicSurface, REGISTRY, securitySurface, testEvidence, testProjects } from "./checks.ts";
-import { Report, type Evidence } from "./report.ts";
+import type { Evidence } from "./report.ts";
+import { buildPrompt, loadReview, runReview } from "./review.ts";
+import { assembleReport } from "./assemble.ts";
+import { renderHtml, renderMarkdown } from "./render.ts";
 
 const USAGE = `usage: node src/cli.ts <command> <case-id> [options]
   ingest <id>                      clone, worktrees, save the requirement, classify the diff
   check <id> [--fresh]             deterministic checks; test runs are reused unless --fresh
-  assemble <id>                    write data/cases/<id>/report.json
+  review <id> [--fresh]            the bounded AI step; a saved response with the same prompt hash is reused unless --fresh
+  assemble <id>                    validate citations, compute states and route, write report.json, sheet.html, sheet.md
+  all <id>                         ingest, check, review, assemble
   test-run <id> --at head|base|without-change [--filter EXPR]   one container test run, printed`;
 
 // ---- ingest ----
@@ -128,40 +133,51 @@ async function check(c: Case, p: Profile, fresh: boolean) {
   for (const e of evidence) console.log(`${e.status.padEnd(12)} ${e.id}: ${e.summary}${e.reason ? ` [${e.reason}]` : ""}`);
 }
 
-// ---- assemble (step 2: no model output yet, so no claims) ----
+// ---- review ----
 
-function assemble(c: Case, p: Profile) {
+const readAt = (repo: string, commit: string, path: string) => { try { return showFile(repo, commit, path); } catch { return null; } };
+
+async function review(c: Case, p: Profile, fresh: boolean) {
   const dir = caseDir(c.id);
   const { files, hunks } = loadIngest(c);
   const req = readJson(join(dir, "requirement.json"));
   const chk = readJson(join(dir, "check.json"));
-  const ps = chk.evidence.find((e: Evidence) => e.check === "public-surface")?.details as ReturnType<typeof publicSurface> | undefined;
-  const byFile = Map.groupBy(ps?.hits ?? [], (h) => h.file);
-  const decisions: Report["decisions"] = [...byFile].map(([file, hits], i) => ({
-    id: `D${i + 1}`,
-    statement: `Public surface changed in ${file}: ${hits.map((h) => `${h.change} ${h.text}`).slice(0, 5).join("; ")}${hits.length > 5 ? `; and ${hits.length - 5} more` : ""}.`,
-    whyHuman: "Public API and diagnostic IDs are permanent once released. Whether to commit to them is an ownership choice that no test can settle.",
-    options: ["Accept as permanent public surface", "Request that it be made non-public or removed", "Escalate to the API owner"],
-    hunkIds: [...new Set(hits.map((h) => h.hunkId))], citations: [], raisedBy: { kind: "rule", name: "public-surface" }, response: null,
-  }));
-  const covered = new Set(decisions.flatMap((d) => d.hunkIds));
-  const report: Report = Report.parse({
-    schemaVersion: 1,
-    case: {
-      id: c.id, requirementId: c.requirement.id, requirementUrl: c.requirement.url ?? null, requirementRetrievedAt: req.retrievedAt,
-      repository: c.repository, profile: p.name, base: c.base, head: c.head, generatedAt: new Date().toISOString(),
-      pipelineVersion: PIPELINE_VERSION, policyVersion: null, model: null, promptHash: null,
-    },
-    reviewer: { status: "unavailable", reason: "no model output: the AI review stage has not run" },
-    requirements: [],
-    inventory: { files, totals: inventory(files).totals },
-    hunks, evidence: chk.evidence, claims: [], decisions,
-    unexplained: hunks.filter((h) => !covered.has(h.id)).map((h) => h.id),
-    findings: [],
-    notChecked: [...chk.notChecked, { what: "requirements, claims, model-raised decisions and findings", reason: "the AI review stage has not run, so there are no claims to check" }],
+  const repo = ensureClone(c.repository, [c.base, c.head]);
+  const prompt = buildPrompt({
+    requirement: { id: c.requirement.id, title: req.title, body: req.body }, base: c.base, head: c.head,
+    files, hunks, evidence: chk.evidence, readHead: (path) => readAt(repo, c.head, path),
+  });
+  console.log(`reviewer prompt: ${prompt.system.length + prompt.user.length} chars; files in full: ${prompt.fullFiles.join(", ") || "none"}`);
+  const rec = await runReview(c.id, prompt, fresh);
+  writeJson(join(dir, "review.json"), rec);
+  console.log(`reviewer ${rec.status}${rec.reason ? `: ${rec.reason}` : ""}${rec.rawResponse ? ` (raw response ${rec.rawResponse})` : ""}`);
+  if (rec.output) console.log(`  ${rec.output.requirements.length} requirements, ${rec.output.claims.length} claims, ${rec.output.decisions.length} decisions, ${rec.output.findings.length} findings, ${rec.output.cannotDecide.length} cannot-decide`);
+}
+
+// ---- assemble: citations, states, route, sheet ----
+
+function assemble(c: Case, p: Profile) {
+  const dir = caseDir(c.id);
+  const { files, hunks } = loadIngest(c);
+  const repo = ensureClone(c.repository, [c.base, c.head]);
+  const policy = readJson(join(ROOT, "policy.json"));
+  const trustFile = join(DATA, "trust", "events.jsonl");
+  const report = assembleReport({
+    c, p, policy, requirement: readJson(join(dir, "requirement.json")), files, hunks,
+    checks: readJson(join(dir, "check.json")), review: loadReview(c.id),
+    readAt: (at, path) => readAt(repo, at === "head" ? c.head : c.base, path),
+    confirmedBy: () => null, // shortcut: interpretation confirmation is recorded by the sign-off server (build step 4)
+    trustEvents: existsSync(trustFile) ? readFileSync(trustFile, "utf8").split("\n").filter(Boolean).map((l) => JSON.parse(l)) : [],
+    generatedAt: new Date().toISOString(), pipelineVersion: PIPELINE_VERSION,
   });
   writeJson(join(dir, "report.json"), report);
-  console.log(`wrote ${join(dir, "report.json")}: ${report.evidence.length} evidence records, ${report.decisions.length} decisions, ${report.unexplained.length} of ${hunks.length} hunks unexplained`);
+  const link = (repoPath: string) => relative(dir, join(ROOT, repoPath));
+  writeFileSync(join(dir, "sheet.html"), renderHtml(report, link, policy.sheet.maxFindingsShown));
+  writeFileSync(join(dir, "sheet.md"), renderMarkdown(report, "sheet.html", policy.sheet.maxFindingsShown));
+  const states = Map.groupBy(report.claims, (x) => x.state);
+  console.log(`wrote ${relative(ROOT, dir)}/report.json, sheet.html, sheet.md`);
+  console.log(`  route: ${report.route.effectiveRoute} (evidence ${report.route.evidenceRoute}, trust floor ${report.route.trustFloor}); claims: ${[...states].map(([k, v]) => `${v.length} ${k}`).join(", ") || "none"}; ${report.decisions.length} decisions; ${report.unexplained.length} unexplained hunks`);
+  for (const x of report.route.reasons) console.log(`  - ${x.code}: ${x.detail}`);
 }
 
 // ---- test-run (environment proof and debugging) ----
@@ -198,6 +214,8 @@ const c = loadCase(id);
 const p = loadProfile(c.profile);
 if (cmd === "ingest") await ingest(c, p);
 else if (cmd === "check") await check(c, p, values.fresh!);
+else if (cmd === "review") await review(c, p, values.fresh!);
 else if (cmd === "assemble") assemble(c, p);
+else if (cmd === "all") { await ingest(c, p); await check(c, p, values.fresh!); await review(c, p, values.fresh!); assemble(c, p); }
 else if (cmd === "test-run") await testRun(c, p, values.at ?? "", values.filter);
 else { console.error(USAGE); process.exit(2); }

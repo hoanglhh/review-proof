@@ -16,7 +16,7 @@ Starting test execution, please wait...
 A total of 1 test files matched the specified pattern.
 Results File: /home/huyhoangle/junction/review-proof/.work/results/data_cases_2283_runs/head.MessagePack.SourceGenerator.Tests/head.MessagePack.SourceGenerator.Tests.trx
 
-Passed!  - Failed:     0, Passed:   170, Skipped:     0, Total:   170, Duration: 17 s - MessagePack.SourceGenerator.Tests.dll (net8.0)
+Passed!  - Failed:     0, Passed:   170, Skipped:     0, Total:   170, Duration: 11 s - MessagePack.SourceGenerator.Tests.dll (net8.0)
 
 Build succeeded.
 
@@ -25,4 +25,4 @@ Build succeeded.
     2 Warning(s)
     0 Error(s)
 
-Time Elapsed 00:00:27.09
+Time Elapsed 00:00:17.15
