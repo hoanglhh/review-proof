@@ -47,3 +47,10 @@ Short, dated entries. Newest last.
 - **2026-11-14: Final calibration outcomes are appended to the real trust record** as `planted_caught` / `planted_missed`, marked synthetic, once per plant. A miss resets the area it touched (`generator-templates`); a catch changes nothing.
 - **2026-11-14: The reading list reads a repeated-pattern group once, through its exemplar.** Before this, a decision citing group G1 put all 402 identical snapshot hunks of #2297 on the reading list (1390 of 1392 lines), which defeats grouping. Now: 183 of 1392 lines. This completes the design in the brief (grouping tells the person which files are identical; deviating files stay listed) and changed no route.
 - **2026-11-14: A blocked sheet also states what its evidence supports once unblocked** (route, read ratio, reasons), and that the trust floor would still apply. All four changes are blocked on unconfirmed interpretations; without this line, #2129's forced full read and #2297's targeted read would not be visible.
+- **2026-11-14: Rules and prompt frozen before the holdout** (git tag `holdout-freeze` at 2de4b66). From here on, the holdout is run once and reported as it comes out; any change to these files afterwards is logged here with the reason:
+  - `src/review.ts` sha256 `c2e61d42e5aa3f35`
+  - `src/states.ts` sha256 `e1f27d38fee3d1fc`
+  - `src/assemble.ts` sha256 `ea73eababf14c018`
+  - `src/checks.ts` sha256 `943d820b312a02d7`
+  - `policy.json` sha256 `f70a0a0ea5a679c6`
+  - `profiles/messagepack-csharp.json` sha256 `6ba475bbe8085aab`
