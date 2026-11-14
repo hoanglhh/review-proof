@@ -51,7 +51,8 @@ export async function runTests(o: {
   const args = [
     "run", "--rm", "--name", cname, "--user", `${process.getuid!()}:${process.getgid!()}`,
     ...env.flatMap(([k, v]) => ["-e", `${k}=${v}`]),
-    "-v", `${WORK}:${WORK}`, "-w", o.worktree, container.image, ...inner,
+    // the clones (with their .git config) are read-only inside the container
+    "-v", `${WORK}:${WORK}`, "-v", `${join(WORK, "repos")}:${join(WORK, "repos")}:ro`, "-w", o.worktree, container.image, ...inner,
   ];
   const logPath = join(o.outDir, `${o.name}.log`);
   const base = {

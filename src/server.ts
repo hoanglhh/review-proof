@@ -29,7 +29,11 @@ export function validateSignoff(r: Report, currentHash: string, f: URLSearchPara
 
 const stamp = () => new Date().toISOString().replace(/[:.]/g, "-");
 const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 40) || "owner";
-const hashOf = (id: string) => createHash("sha256").update(readFileSync(join(caseDir(id), "report.json"))).digest("hex");
+/** Hash of the report's content; the generation time is left out so re-running the pipeline does not outdate a signature. */
+const hashOf = (id: string) => {
+  const r = JSON.parse(readFileSync(join(caseDir(id), "report.json"), "utf8"));
+  return createHash("sha256").update(JSON.stringify({ ...r, case: { ...r.case, generatedAt: null } })).digest("hex");
+};
 const writeNew = (path: string, value: unknown) => { mkdirSync(dirname(path), { recursive: true }); writeFileSync(path, JSON.stringify(value, null, 2) + "\n", { flag: "wx" }); }; // never overwrites
 const seconds = (v: string | null) => Math.max(0, Number.parseInt(v ?? "0", 10) || 0);
 
@@ -168,11 +172,14 @@ export function startServer(port: number) {
           let notice = "Informed read saved. It is kept out of the trust record.";
           if (spot.blind) {
             const at = new Date().toISOString();
+            // reading the same change again earns nothing: a clean check counts once per change and area
+            const counted = new Set(readJsonl(TRUST_LOG).filter((e) => e.type === "spot_check_clean" && e.caseId === c.id).map((e) => e.area));
             const events = missed.length ? missed.map((area) => ({ area, type: "spot_check_miss", at, caseId: c.id, spotCheck: parts[3] }))
-              : areas.map((area) => ({ area, type: "spot_check_clean", at, caseId: c.id, spotCheck: parts[3] }));
+              : areas.filter((area) => !counted.has(area)).map((area) => ({ area, type: "spot_check_clean", at, caseId: c.id, spotCheck: parts[3] }));
             mkdirSync(dirname(TRUST_LOG), { recursive: true });
             for (const e of events) appendFileSync(TRUST_LOG, JSON.stringify(e) + "\n");
-            notice = missed.length ? `Recorded ${missed.length} miss(es): ${missed.join(", ")} reset to full read.` : `Recorded a clean blind spot-check for ${areas.join(", ")}.`;
+            notice = missed.length ? `Recorded ${missed.length} miss(es): ${missed.join(", ")} reset to full read.`
+              : events.length ? `Recorded a clean blind spot-check for ${events.map((e) => e.area).join(", ")}.` : "Clean, but this change was already counted for these areas; trust is earned on different changes.";
           }
           return redirect(res, `/trust?notice=${encodeURIComponent(notice)}`);
         }

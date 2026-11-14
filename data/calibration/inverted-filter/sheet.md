@@ -8,7 +8,7 @@
 
 Once these are resolved, the evidence supports a targeted read of 100% of the changed lines: there are no claims; 9 hunk(s) map to no claim or decision. The areas' trust floors would still require a full read.
 
-Read ratio: not applicable until unblocked (228 changed lines). Generated 2026-11-14T07:17:43.213Z, base `32258fdb` → head `b542bc44`, policy 2026-11-14.1 (illustrative thresholds). Full sheet: sheet.html
+Read ratio: not applicable until unblocked (228 changed lines). Generated 2026-11-14T07:44:58.859Z, base `32258fdb` → head `b542bc44`, policy 2026-11-14.1 (illustrative thresholds). Full sheet: sheet.html
 
 ### Requirement
 - none

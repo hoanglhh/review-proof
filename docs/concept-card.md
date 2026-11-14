@@ -39,4 +39,5 @@ Line-by-line review is replaced by a one-page sign-off sheet per agent-written c
 - Four changes show the method, not safety at scale.
 - Each repository needs a profile and a test suite that runs in a container. Each new language also needs its own result parser and surface patterns.
 - `proven` means the named test discriminates. It does not check that the claim's wording is no broader than the test.
+- The agent's code runs in the same container as its tests, with network access (for package restore) and write access to the working directory. A hostile change could forge its own passing result file or poison the shared package cache. The clones are read-only and the host never runs git inside a directory the container touched, but runs are evidence against careless agents, not against malicious ones.
 - Owner identity is self-declared in this prototype. In a real pull-request flow it comes from the Git host account and code owners.

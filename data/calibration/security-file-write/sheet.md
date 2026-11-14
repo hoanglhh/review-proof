@@ -8,7 +8,7 @@
 
 Once these are resolved, the evidence supports a full read: the security surface scan hit.
 
-Read ratio: not applicable until unblocked (229 changed lines). Generated 2026-11-14T07:17:42.732Z, base `32258fdb` → head `43daf6ec`, policy 2026-11-14.1 (illustrative thresholds). Full sheet: sheet.html
+Read ratio: not applicable until unblocked (229 changed lines). Generated 2026-11-14T07:44:58.179Z, base `32258fdb` → head `43daf6ec`, policy 2026-11-14.1 (illustrative thresholds). Full sheet: sheet.html
 
 ### Requirement
 - none

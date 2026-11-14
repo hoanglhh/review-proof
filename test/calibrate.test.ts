@@ -39,3 +39,8 @@ test("summary counts every outcome against the same total", () => {
   assert.deepEqual(summarize([{ outcome: "caught_by_run" }, { outcome: "missed" }, { outcome: "model_not_run" }]),
     { total: 3, caughtByRun: 1, caughtByModelOnly: 0, missed: 1, modelNotRun: 1 });
 });
+
+test("a run that did not finish is not a catch", () => {
+  const planted = report({ hunks: [h("H1", "a.cs", ["fix"]), h("H2", "a.cs", ["x"], 20)], evidence: [ev("tests-at-head:p", "tests-at-head", "inconclusive"), ev("security-surface", "security-surface", "passed")], reviewer: "unavailable" });
+  assert.equal(classifyPlant(original, planted).outcome, "model_not_run");
+});

@@ -211,9 +211,12 @@ export function testEvidence(project: string, head: RunView, base: RunView, with
     const fixed = rows.filter((r) => r.base !== "passed" && r.head === "passed");
     const failingBoth = rows.filter((r) => r.base !== "passed" && r.head !== "passed");
     const removed = [...B.keys()].filter((n) => !H.has(n));
+    const removedPassing = removed.filter((n) => B.get(n) === "passed");
     existing = {
-      ...common("existing-tests", [head, base]), status: regressions.length ? "failed" : "passed",
-      summary: `${pre.length} pre-existing tests: ${rows.filter((r) => r.base === "passed" && r.head === "passed").length} pass at both, ${regressions.length} regressed, ${fixed.length} newly pass, ${failingBoth.length} fail at both; ${removed.length} removed at head.`,
+      // deleting a test that passed is the cheapest way to make a suite pass, so it fails this check like a regression
+      ...common("existing-tests", [head, base]), status: regressions.length || removedPassing.length ? "failed" : "passed",
+      summary: `${pre.length} pre-existing tests: ${rows.filter((r) => r.base === "passed" && r.head === "passed").length} pass at both, ${regressions.length} regressed, ${fixed.length} newly pass, ${failingBoth.length} fail at both; ${removed.length} removed at head.` +
+        (removedPassing.length ? ` Tests that passed at base and are gone at head count as failures: ${removedPassing.join(", ")}.` : ""),
       tests: rows, // every pre-existing test: claim states need the passing ones too
       details: { preExisting: pre.length, removedAtHead: removed },
     };

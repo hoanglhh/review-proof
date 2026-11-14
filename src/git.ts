@@ -6,7 +6,8 @@ import { join } from "node:path";
 import { WORK } from "./config.ts";
 
 export function git(cwd: string, args: string[]): string {
-  return execFileSync("git", ["-c", "core.quotePath=false", "--literal-pathspecs", ...args], {
+  // settings that would make git run a program; the container can write to worktrees, so never honour them
+  return execFileSync("git", ["-c", "core.quotePath=false", "-c", "core.fsmonitor=false", "-c", "core.hooksPath=/dev/null", "--literal-pathspecs", ...args], {
     cwd, encoding: "utf8", maxBuffer: 1 << 28, stdio: ["ignore", "pipe", "pipe"],
   });
 }
@@ -25,15 +26,12 @@ export function ensureClone(repository: string, commits: string[]): string {
   return dir;
 }
 
-/** A detached worktree at `commit`, reused only if it is still clean and at that commit. */
-export function ensureWorktree(repo: string, name: string, commit: string, fresh = false): string {
+/**
+ * A fresh detached worktree at `commit`. Never reused: the container ran untrusted code in it, and running git
+ * inside a directory the container could write to would let that code choose git's settings.
+ */
+export function ensureWorktree(repo: string, name: string, commit: string): string {
   const dir = join(WORK, "wt", name);
-  if (existsSync(dir) && !fresh) {
-    try {
-      // ignored build output (bin/obj) is not listed by status, so a clean status means sources are untouched
-      if (git(dir, ["rev-parse", "HEAD"]).trim() === commit && git(dir, ["status", "--porcelain"]).trim() === "") return dir;
-    } catch { /* broken worktree: recreate below */ }
-  }
   rmSync(dir, { recursive: true, force: true });
   git(repo, ["worktree", "prune"]);
   git(repo, ["worktree", "add", "--quiet", "--detach", dir, commit]);
@@ -42,7 +40,7 @@ export function ensureWorktree(repo: string, name: string, commit: string, fresh
 
 /** Base source plus the head versions of the given files, in a throwaway worktree. */
 export function overlayWorktree(repo: string, name: string, base: string, head: string, files: { path: string; status: string }[]): string {
-  const dir = ensureWorktree(repo, name, base, true);
+  const dir = ensureWorktree(repo, name, base);
   const keep = files.filter((f) => f.status !== "deleted").map((f) => f.path);
   const del = files.filter((f) => f.status === "deleted").map((f) => f.path);
   if (keep.length) git(dir, ["checkout", head, "--", ...keep]);
@@ -52,11 +50,11 @@ export function overlayWorktree(repo: string, name: string, base: string, head: 
 
 /** Head plus a patch, committed with a fixed identity and date so the hash is reproducible. Local only, on no branch. */
 export function plantedCommit(repo: string, head: string, name: string, patchFile: string): string {
-  const dir = ensureWorktree(repo, `planted-${name}`, head, true);
+  const dir = ensureWorktree(repo, `planted-${name}`, head);
   git(dir, ["apply", "--whitespace=nowarn", patchFile]);
   git(dir, ["add", "-A"]);
   const who = { GIT_AUTHOR_NAME: "reviewproof calibration", GIT_AUTHOR_EMAIL: "calibration@invalid", GIT_AUTHOR_DATE: "2026-11-14T00:00:00Z" };
-  execFileSync("git", ["commit", "-q", "--no-verify", "-m", `calibration: ${name}`], {
+  execFileSync("git", ["-c", "core.fsmonitor=false", "-c", "core.hooksPath=/dev/null", "commit", "-q", "--no-verify", "-m", `calibration: ${name}`], {
     cwd: dir, env: { ...process.env, ...who, GIT_COMMITTER_NAME: who.GIT_AUTHOR_NAME, GIT_COMMITTER_EMAIL: who.GIT_AUTHOR_EMAIL, GIT_COMMITTER_DATE: who.GIT_AUTHOR_DATE },
   });
   return git(dir, ["rev-parse", "HEAD"]).trim();

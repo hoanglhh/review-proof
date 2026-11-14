@@ -8,7 +8,6 @@
     "test": "node --test"
   },
   "dependencies": {
-    "dotnet": "^1.1.4",
     "zod": "^4.6.7"
   },
   "devDependencies": {

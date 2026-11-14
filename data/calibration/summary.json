@@ -1,7 +1,7 @@
 {
   "synthetic": true,
   "note": "Planted bugs are hand-written and synthetic; they are not real bugs.",
-  "generatedAt": "2026-11-14T07:17:44.684Z",
+  "generatedAt": "2026-11-14T07:45:00.605Z",
   "reviewer": "run only for plants no run caught (it cannot change the others)",
   "total": 8,
   "caughtByRun": 7,
@@ -103,8 +103,6 @@
         "H6 src/MessagePack.SourceGenerator/CodeAnalysis/TypeCollector.cs:1429"
       ],
       "runSignals": [
-        "tests-at-head:MessagePack.SourceGenerator.Tests inconclusive: The head run did not complete.",
-        "existing-tests:MessagePack.SourceGenerator.Tests inconclusive: Pre-existing tests could not be compared.",
         "security-surface failed: 0 build/dependency file(s) changed; 1 added line(s) match security-sensitive patterns."
       ],
       "modelSignals": [],

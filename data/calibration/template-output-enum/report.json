@@ -10,7 +10,7 @@
     "profile": "messagepack-csharp",
     "base": "32258fdbee4bcd653c79f51b4376b5103c6f4d27",
     "head": "b715699ce309930670e9dbcbe6f3276aff7fa287",
-    "generatedAt": "2026-11-14T07:17:43.860Z",
+    "generatedAt": "2026-11-14T07:44:59.658Z",
     "pipelineVersion": "0.1.0",
     "policyVersion": "2026-11-14.1",
     "model": null,
@@ -11976,7 +11976,7 @@
         "area": "generator-templates",
         "owner": "Huy Hoang Le",
         "floor": "full",
-        "reason": "Area `generator-templates` has no track record: full read required"
+        "reason": "Area `generator-templates` has not earned lighter review (0 of 3 clean spot-checks since the last reset): full read required"
       },
       {
         "area": "tests",

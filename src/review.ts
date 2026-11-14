@@ -4,7 +4,7 @@
 // This module never reads the scoring key; a unit test enforces that.
 import { createHash } from "node:crypto";
 import { existsSync, readFileSync } from "node:fs";
-import { join } from "node:path";
+import { join, relative } from "node:path";
 import { parseEnv } from "node:util";
 import { z } from "zod";
 import { caseDir, readJson, ROOT, writeJson } from "./config.ts";
@@ -152,7 +152,7 @@ export async function runReview(caseId: string, prompt: ReturnType<typeof buildP
   if (!cfg) return { status: "unavailable", reason: "no model configured (OPENAI_BASE_URL, OPENAI_API_KEY and REVIEWPROOF_MODEL in .env)", model: null, promptHash: null, rawResponse: null, fullFiles: prompt.fullFiles, represented: prompt.represented };
   const { $schema, ...schema } = z.toJSONSchema(ReviewOutput, { target: "draft-7" }) as Record<string, unknown>;
   const promptHash = createHash("sha256").update(JSON.stringify({ model: cfg.model, system: prompt.system, user: prompt.user, schema })).digest("hex");
-  const rel = join("data", "cases", caseId, "review", `${promptHash}.json`);
+  const rel = relative(ROOT, join(caseDir(caseId), "review", `${promptHash}.json`));
   const file = join(ROOT, rel);
   let saved = !fresh && existsSync(file) ? readJson(file) : undefined;
   if (saved?.httpStatus !== 200) saved = undefined; // reuse only successful responses; a failed call is retried

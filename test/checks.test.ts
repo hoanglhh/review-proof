@@ -149,3 +149,9 @@ test("tests: an unfinished head run makes every check not passed; a project abse
   assert.deepEqual(n["tests-at-head"].tests!.map((t) => t.name), ["N"]);
   assert.equal(n["existing-tests"].status, "not_run");
 });
+
+test("tests: a test that passed at base and is gone at head fails the existing-tests check", () => {
+  const e = byCheck(testEvidence("p", run("completed", [["Keep", "passed"]]), run("completed", [["Keep", "passed"], ["Awkward", "passed"]]), run("completed", [["Keep", "passed"]]), false));
+  assert.equal(e["existing-tests"].status, "failed");
+  assert.match(e["existing-tests"].summary, /gone at head count as failures: Awkward/);
+});

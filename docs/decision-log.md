@@ -55,3 +55,19 @@ Short, dated entries. Newest last.
   - `policy.json` sha256 `f70a0a0ea5a679c6`
   - `profiles/messagepack-csharp.json` sha256 `6ba475bbe8085aab`
 - **2026-11-14: Added `docs/lessons-log.md`,** because the challenge asks for a lessons log alongside the failure modes and decision log. Every lesson points to evidence in `data/` or to a failure mode.
+- **2026-11-14: Fixes from an outside code review, before the holdout** (frozen files changed: `src/assemble.ts`, `src/checks.ts`, `src/review.ts`; the holdout has not run yet):
+  - An interpretation confirmation now covers one reading of one quote. It was keyed by the quote alone, and on #2234 three readings quote the same sentence, so confirming one would have unlocked readings nobody saw.
+  - The agent's code could make the host run commands: the container could write git settings (e.g. `core.fsmonitor`) that the host's next `git status` executes. Now the clones are mounted read-only, worktrees are always recreated rather than inspected after a run, and the host's git ignores `core.fsmonitor` and hooks. Checked: the container build still works; an injected `core.fsmonitor` command runs under plain git but not through the tool.
+  - A clean blind spot-check counts once per change and area; re-reading the same change earns nothing.
+  - A test that passed at base and is gone at head fails `existing-tests`. The check's `asserts` wording was kept, because it is part of every prompt and changing it would invalidate every saved model response; the summary names the deleted tests instead.
+  - The report hash behind a signature ignores the generation time, so re-running the pipeline does not make a signature look outdated.
+  - In calibration, only a check that *failed* counts as a catch; a run that did not finish does not. The result is unchanged (7 of 8 by a run; the security plant now counts through the security scan).
+  - Raw model responses are saved under the case's own directory (planted bugs: `data/calibration/`). The one planted response was moved; no new model call.
+  - The unused `dotnet` npm package (installed before the build started) is removed.
+- **2026-11-14: Fingerprints after these fixes**, replacing the list under the freeze entry:
+  - `src/review.ts` sha256 `17218174425051a9`
+  - `src/states.ts` sha256 `e1f27d38fee3d1fc`
+  - `src/assemble.ts` sha256 `d435ad58746bcc16`
+  - `src/checks.ts` sha256 `4f2a2dab8a5d9c1c`
+  - `policy.json` sha256 `f70a0a0ea5a679c6`
+  - `profiles/messagepack-csharp.json` sha256 `6ba475bbe8085aab`

@@ -23,7 +23,7 @@ export function classifyPlant(original: Report, planted: Report) {
 
   // a run catches the plant if a check that passed on the original no longer passes, or a claim became broken
   const runSignals = [
-    ...planted.evidence.filter((e) => RUN_CHECKS.includes(e.check) && statusBefore.get(e.id) === "passed" && (e.status === "failed" || e.status === "inconclusive"))
+    ...planted.evidence.filter((e) => RUN_CHECKS.includes(e.check) && statusBefore.get(e.id) === "passed" && e.status === "failed") // a run that did not finish (e.g. a network drop) is not a catch
       .map((e) => `${e.id} ${e.status}: ${e.summary}`),
     ...planted.claims.filter((c) => c.state === "broken").map((c) => `claim ${c.id} broken: ${c.stateReason}`),
   ];

@@ -41,3 +41,10 @@ test("assemble: a group ID in the reviewer's hunkIds expands to every hunk of th
   assert.deepEqual(r.claims[0].hunkIds, ["H1", "H2", "H3", "H4"]);
   assert.deepEqual(r.unexplained, ["H5"]);
 });
+
+test("a confirmation covers one reading of one quote, not every reading of the same words", async () => {
+  const { confirmationKey } = await import("../src/assemble.ts");
+  const quote = "The analyzer does not work if SuppressSourceGeneration = true";
+  assert.notEqual(confirmationKey(quote, "reading A"), confirmationKey(quote, "reading B"));
+  assert.equal(confirmationKey(quote, "reading A"), confirmationKey(`  ${quote}\n`, "reading  A"));
+});

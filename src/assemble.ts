@@ -32,7 +32,7 @@ export function resolveCitation(c: ModelCitation, readAt: ReadAt, commits: { bas
 export function assembleReport(i: {
   c: Case; p: Profile; policy: Policy; requirement: { title: string; body: string; retrievedAt: string | null };
   files: FileChange[]; hunks: Hunk[]; checks: { evidence: Evidence[]; notChecked: { what: string; reason: string }[] };
-  review: ReviewRecord | null; readAt: ReadAt; confirmedBy: (quote: string) => string | null;
+  review: ReviewRecord | null; readAt: ReadAt; confirmedBy: (quote: string, text: string) => string | null;
   trustEvents: TrustEvent[]; generatedAt: string; pipelineVersion: string;
 }): Report {
   const { c, files, hunks } = i;
@@ -56,7 +56,7 @@ export function assembleReport(i: {
     stats.citations++;
     if (norm(q.quote).length >= MIN_QUOTE_CHARS && reqText.includes(norm(q.quote))) {
       stats.resolved++;
-      return [{ ...q, confirmedBy: q.kind === "interpretation" ? i.confirmedBy(q.quote) : null }];
+      return [{ ...q, confirmedBy: q.kind === "interpretation" ? i.confirmedBy(q.quote, q.text) : null }];
     }
     stats.dropped.push({ where: `requirement ${q.id}`, reason: "quote not found in the saved requirement", citation: q.quote });
     return [];
@@ -154,6 +154,9 @@ export function assembleReport(i: {
   });
 }
 
+/** What one confirmation covers: this reading of this quote. */
+export const confirmationKey = (quote: string, text: string) => `${norm(quote)}\n${norm(text)}`;
+
 export const TRUST_LOG = join(DATA, "trust", "events.jsonl"); // the real record: append-only, never simulated
 export const readJsonl = (f: string) => (existsSync(f) ? readFileSync(f, "utf8").split("\n").filter(Boolean).map((l) => JSON.parse(l)) : []);
 const records = (dir: string) => (existsSync(dir) ? readdirSync(dir).filter((f) => f.endsWith(".json")).sort().map((f) => readJson(join(dir, f))) : []);
@@ -165,13 +168,14 @@ export function assembleCase(c: Case, p: Profile): Report {
   const { files, hunks } = readJson(join(dir, "ingest.json"));
   const repo = ensureClone(c.repository, [c.base, c.head]);
   const policy: Policy = readJson(join(ROOT, "policy.json"));
-  // interpretations confirmed by a human, matched by quote so they survive a regenerated review
-  const confirmed = new Map(records(join(dir, "confirmations")).map((x) => [norm(x.quote), x.confirmedBy as string]));
+  // a confirmation covers one reading of one quote: a reworded reading, or another reading of the same words, needs its own
+  const key = confirmationKey;
+  const confirmed = new Map(records(join(dir, "confirmations")).map((x) => [key(x.quote, x.text), x.confirmedBy as string]));
   const report = assembleReport({
     c, p, policy, requirement: readJson(join(dir, "requirement.json")), files, hunks,
     checks: readJson(join(dir, "check.json")), review: loadReview(c.id),
     readAt: (at, path) => readAt(repo, at === "head" ? c.head : c.base, path),
-    confirmedBy: (quote) => confirmed.get(norm(quote)) ?? null,
+    confirmedBy: (quote, text) => confirmed.get(key(quote, text)) ?? null,
     trustEvents: readJsonl(TRUST_LOG), generatedAt: new Date().toISOString(), pipelineVersion: PIPELINE_VERSION,
   });
   writeJson(join(dir, "report.json"), report);
