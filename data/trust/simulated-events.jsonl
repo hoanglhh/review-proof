@@ -1,0 +1,9 @@
+{"area":"example-area","type":"spot_check_clean","at":"synthetic-step-1","synthetic":true}
+{"area":"example-area","type":"spot_check_clean","at":"synthetic-step-2","synthetic":true}
+{"area":"example-area","type":"spot_check_clean","at":"synthetic-step-3","synthetic":true}
+{"area":"example-area","type":"spot_check_clean","at":"synthetic-step-4","synthetic":true}
+{"area":"example-area","type":"spot_check_clean","at":"synthetic-step-5","synthetic":true}
+{"area":"example-area","type":"spot_check_clean","at":"synthetic-step-6","synthetic":true}
+{"area":"example-area","type":"spot_check_miss","at":"synthetic-step-7","synthetic":true}
+{"area":"example-area","type":"spot_check_clean","at":"synthetic-step-8","synthetic":true}
+{"area":"example-area","type":"spot_check_clean","at":"synthetic-step-9","synthetic":true}

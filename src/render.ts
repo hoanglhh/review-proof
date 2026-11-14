@@ -2,16 +2,16 @@
 // Every value from the report is escaped: requirement text, code and model output are untrusted.
 import type { Report } from "./report.ts";
 
-const esc = (s: unknown) => String(s).replace(/[&<>"']/g, (ch) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[ch]!);
+export const esc = (s: unknown) => String(s).replace(/[&<>"']/g, (ch) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[ch]!);
 const STATE_ORDER = ["broken", "not_checked", "argued", "proven"] as const;
 const STATE_TEXT = { proven: "proven", argued: "argued", not_checked: "not checked", broken: "broken" };
 const short = (sha: string) => sha.slice(0, 8);
 const pct = (x: number) => `${Math.round(x * 100)}%`;
 
 const GLYPH = { proven: "●", argued: "◐", not_checked: "○", broken: "✕" };
-const VERDICT = { blocked: "Blocked", full: "Full read", targeted: "Targeted read", light: "Light review" };
+export const VERDICT = { blocked: "Blocked", full: "Full read", targeted: "Targeted read", light: "Light review" };
 
-const CSS = `
+export const CSS = `
 :root{--paper:#F2F4F6;--sheet:#FFFFFF;--ink:#12304A;--text:#232A31;--muted:#5B6570;--rule:#C9D1D9;--wash:#F6F8FA;
 --proven:#1F6E3D;--argued:#8A6100;--not_checked:#5F6670;--broken:#B42318;
 --head:"Bahnschrift","DIN Alternate","DIN Condensed","Roboto Condensed","Liberation Sans Narrow","Arial Narrow",system-ui,sans-serif;
@@ -56,18 +56,51 @@ tr.total td{font-weight:600;border-bottom:none}
 .options{list-style:none;padding:0;margin:10px 0}
 .options li::before{content:"☐";margin-right:8px;color:var(--ink)}
 .owner{border:2px solid var(--ink);padding:18px 22px;margin-top:12px}
-.field{display:grid;grid-template-columns:110px 1fr;gap:12px;align-items:end;margin:12px 0}
 .field span:first-child{font-weight:600}
 .line{border-bottom:1px solid var(--text);min-height:24px;color:var(--muted)}
 .hunk{margin:18px 0;border:1px solid var(--rule)} .hunk h3{margin:0;padding:6px 10px;font:600 13px var(--mono);background:var(--wash);color:var(--text)}
 .hunk pre{padding:6px 0} .add,.del{display:block;padding:0 10px} .add{background:#E6F4EA} .del{background:#FBE7E5}
 .hunk:target{outline:3px solid var(--argued)}
-@media (max-width:760px){.sheet{padding:20px 18px;margin:0;border:none}h2 .n{position:static;margin-right:8px}.verdict{grid-template-columns:1fr}}
+input[type=text],textarea,select{font:inherit;color:var(--text);background:var(--sheet);border:0;border-bottom:1.5px solid var(--text);padding:4px 2px;width:100%}
+textarea{border:1.5px solid var(--rule);border-bottom-color:var(--text);padding:6px 8px;resize:vertical}
+input:focus-visible,textarea:focus-visible,select:focus-visible,button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+fieldset{border:0;padding:0;margin:0} legend{font-weight:600;padding:0}
+.decision fieldset{margin-top:14px;padding-top:10px;border-top:1px dashed var(--rule)}
+fieldset.field{display:block} fieldset.field legend{float:left;width:122px;padding-top:4px} fieldset.field .choices{margin-top:0;padding-top:2px}
+.choices{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:6px}
+.choices label{display:inline-flex;align-items:center;gap:6px;padding:4px 2px;cursor:pointer}
+input[type=radio],input[type=checkbox]{accent-color:var(--ink);width:18px;height:18px;margin:0}
+button{font:700 17px var(--head);font-stretch:condensed;letter-spacing:.01em;background:var(--ink);color:#fff;border:2px solid var(--ink);padding:9px 22px;border-radius:2px;cursor:pointer}
+button.secondary{background:var(--sheet);color:var(--ink);font-size:15px;padding:5px 14px}
+button:disabled{background:var(--rule);border-color:var(--rule);color:var(--muted);cursor:not-allowed}
+.errors{border:3px solid var(--broken);padding:12px 16px;margin:0 0 16px} .errors h3{margin:0 0 6px;font:700 18px var(--head);color:var(--broken)}
+.errors a{color:var(--broken);font-weight:600}
+.inline{display:flex;flex-wrap:wrap;gap:10px;align-items:end;margin-top:8px} .inline label{flex:1 1 220px;font-size:14px;font-weight:600}
+.signed{border-left:6px solid var(--proven);background:var(--wash);padding:10px 14px;margin:0 0 14px}
+.notice{border-left:6px solid var(--ink);background:var(--wash);padding:10px 14px;margin:16px 0}
+.field{display:grid;grid-template-columns:110px 1fr;gap:12px;align-items:start;margin:14px 0} .field>label,.field>legend{font-weight:600;padding-top:4px}
+@media (max-width:760px){.sheet{padding:20px 18px;margin:0;border:none}h2 .n{position:static;margin-right:8px}.verdict{grid-template-columns:1fr}.field{grid-template-columns:1fr}}
 @media print{body{background:#fff}.sheet{border:none;margin:0;padding:0 0 0 56px}.hunk{break-inside:avoid}}
 `;
 
+/** Present only when the sheet is served by the sign-off server: real controls instead of printed boxes. */
+export type Interactive = { reportHash: string; nonce: string; signoffs: any[]; errors: string[]; form?: URLSearchParams; notice?: string };
+
+/** Counts the seconds the page is visible and focused; the value is submitted with any form on the page. */
+export const ACTIVE_TIME_SCRIPT = `(()=>{let a=0,t=null;const k=()=>{const n=performance.now(),on=document.visibilityState==="visible"&&document.hasFocus();if(t!==null)a+=n-t;t=on?n:null};
+["visibilitychange","focus","blur"].forEach(e=>addEventListener(e,k));setInterval(k,1000);k();
+for(const f of document.forms)f.addEventListener("submit",()=>{k();const i=f.elements.namedItem("activeSeconds");if(i)i.value=String(Math.round(a/1000))})})();`;
+
+const ACTIONS = [["accept", "Accept"], ["request_changes", "Request changes"], ["escalate", "Escalate"]];
+const RESPONSES = [["accept", "Accept"], ["reject", "Reject"], ["escalate", "Escalate"]];
+
 /** `link` turns a repo-relative path (a log, a raw model response) into an href relative to the sheet. */
-export function renderHtml(r: Report, link: (repoPath: string) => string, maxFindings: number): string {
+export function renderHtml(r: Report, link: (repoPath: string) => string, maxFindings: number, ui?: Interactive): string {
+  const base = `/case/${encodeURIComponent(r.case.id)}`;
+  const val = (k: string) => esc(ui?.form?.get(k) ?? "");
+  const radios = (name: string, opts: string[][], formAttr = "") => `<div class="choices">${opts.map(([v, label]) =>
+    `<label><input type="radio" name="${esc(name)}" value="${v}" required${formAttr}${ui?.form?.get(name) === v ? " checked" : ""}> ${label}</label>`).join("")}</div>`;
+  const blocked = r.route.effectiveRoute === "blocked";
   const route = r.route;
   const byId = new Map(r.evidence.map((e) => [e.id, e]));
   const hunk = (id: string) => `<a href="#${esc(id)}">${esc(id)}</a>`;
@@ -103,12 +136,15 @@ ${route.spotCheck.selected ? `<span class="verdict-sub"><b>Selected for a blind 
 <div>Evidence supports: <b>${VERDICT[route.evidenceRoute].toLowerCase()}</b>.${floorReasons.length ? ` ${floorReasons.join(" ")}` : ""}
 <ul>${route.reasons.map((x) => `<li>${esc(x.detail)} <span class="muted">(${esc(x.code)})</span></li>`).join("")}</ul></div>
 </div>
+${ui?.notice ? `<p class="notice" role="status">${esc(ui.notice)}</p>` : ""}
 ${r.reviewer.status !== "ok" ? `<p><span class="flag">AI reviewer ${esc(r.reviewer.status)}.</span> ${esc(r.reviewer.reason ?? "")}</p>` : ""}
 
 ${section(1, "What the change is for", `<p>Requirement <a href="${esc(r.case.requirementUrl ?? "#")}">${esc(r.case.requirementId)}</a>, saved ${esc(r.case.requirementRetrievedAt ?? "from the case text")}. Each item quotes it.</p>
 ${r.requirements.map((q) => `<div class="req${q.kind === "interpretation" ? " interp" : ""}"><b>${esc(q.id)}</b> ${esc(q.text)} <span class="muted">(${q.kind})</span>
 <blockquote class="quote"><pre>${esc(q.quote)}</pre></blockquote>
-${q.kind === "interpretation" ? `<div class="detail">${q.confirmedBy ? `Confirmed by ${esc(q.confirmedBy)}.` : `<span class="flag">The requirement does not say this.</span> A human must confirm this reading before the change can be signed.`}</div>` : ""}</div>`).join("") || "<p>No requirement items.</p>"}`)}
+${q.kind === "interpretation" ? `<div class="detail">${q.confirmedBy ? `Confirmed by ${esc(q.confirmedBy)}.` : `<span class="flag">The requirement does not say this.</span> A human must confirm this reading before the change can be signed.`}</div>` : ""}
+${ui && q.kind === "interpretation" && !q.confirmedBy ? `<form class="inline" method="post" action="${base}/confirm"><input type="hidden" name="reportHash" value="${esc(ui.reportHash)}"><input type="hidden" name="requirementId" value="${esc(q.id)}">
+<label>Your name<input type="text" name="name" required autocomplete="name"></label><button class="secondary" type="submit">Confirm this reading</button></form>` : ""}</div>`).join("") || "<p>No requirement items.</p>"}`)}
 
 ${section(2, "What it touches", `<div class="scroll"><table><thead><tr><th>Kind of file</th><th>Files</th><th>Changed lines</th></tr></thead><tbody>
 ${Object.entries(r.inventory.totals.byClass).map(([k, v]) => `<tr><td>${esc(k)}</td><td>${v.files}</td><td>${v.lines}</td></tr>`).join("")}
@@ -136,7 +172,8 @@ ${r.decisions.map((d) => `<div class="decision"><b>${esc(d.id)}</b> ${esc(d.stat
 <div class="detail">Why a human: ${esc(d.whyHuman)}</div>
 <div class="detail">Raised by ${d.raisedBy.kind === "rule" ? `the deterministic rule <code>${esc(d.raisedBy.name)}</code>` : `the AI reviewer (${esc(d.raisedBy.name)})`}. Hunks ${hunks(d.hunkIds)}.</div>
 <div class="detail">Options:</div><ul>${d.options.map((o) => `<li>${esc(o)}</li>`).join("")}</ul>${cites(d.citations)}
-<ul class="options" aria-label="Owner response, not given yet"><li>Accept</li><li>Reject</li><li>Escalate</li></ul></div>`).join("") || "<p>No open decisions.</p>"}`)}
+${ui ? `<fieldset id="decision-${esc(d.id)}"><legend>Your response to ${esc(d.id)}</legend>${radios(`decision.${d.id}`, RESPONSES, ' form="signoff"')}</fieldset>`
+  : `<ul class="options" aria-label="Owner response, not given yet"><li>Accept</li><li>Reject</li><li>Escalate</li></ul>`}</div>`).join("") || "<p>No open decisions.</p>"}`)}
 
 ${section(7, "Suspected problems", `${r.findings.slice(0, maxFindings).map((f) => `<div class="decision"><b>${esc(f.id)}</b> ${esc(f.statement)} <span class="muted">(${f.status})</span><div class="detail">Hunks ${hunks(f.hunkIds)}.</div>${cites(f.citations)}</div>`).join("") || "<p>None that the reviewer could back with a citation that resolves.</p>"}
 ${r.findings.length > maxFindings ? `<p class="muted">${r.findings.length - maxFindings} more are in report.json.</p>` : ""}`)}
@@ -150,7 +187,19 @@ ${section(9, "What to read", `<p>The effective route is <b>${VERDICT[route.effec
 <p>A targeted read would cover ${route.readingListLines} of ${route.totalLines} changed lines:</p>
 <div class="scroll"><table><thead><tr><th>Hunk</th><th>File</th><th>Lines</th><th>Why it is on the list</th></tr></thead><tbody>${route.readingList.map((x) => `<tr><td>${hunk(x.hunkId)}</td><td><code>${esc(x.file)}</code></td><td>${x.lines}</td><td>${x.why.map(esc).join("; ")}</td></tr>`).join("")}</tbody></table></div>`)}
 
-${section(10, "Sign-off", `<div class="owner">
+${section(10, "Sign-off", ui ? `<div class="owner">
+${ui.signoffs.map((s) => `<div class="signed"><b>Signed by ${esc(s.owner)}</b> on ${esc(s.signedAt)}: ${esc(ACTIONS.find(([v]) => v === s.action)?.[1] ?? s.action)}. ${esc(s.reason)}
+<div class="detail">Report ${esc(String(s.reportHash).slice(0, 12))}${s.reportHash === ui.reportHash ? " (this version)" : " (an earlier version)"}; page open and focused for ${esc(s.activeSeconds)} s.</div></div>`).join("")}
+${ui.errors.length ? `<div class="errors" role="alert" tabindex="-1" id="errors"><h3>The sheet was not signed</h3><ul>${ui.errors.map((e) => `<li>${e}</li>`).join("")}</ul></div>` : ""}
+${blocked ? `<p><span class="flag">This change cannot be signed yet.</span> ${r.route.reasons.map((x) => esc(x.detail)).join("; ")}.</p>` : `<p>The AI reviewer never approves. You sign: choose an action and write the reason another person could check.</p>`}
+<form id="signoff" method="post" action="${base}/signoff"><input type="hidden" name="reportHash" value="${esc(ui.reportHash)}"><input type="hidden" name="activeSeconds" value="0">
+<div class="field"><label for="name">Name</label><input type="text" id="name" name="name" required autocomplete="name" value="${val("name")}"></div>
+<fieldset class="field" id="action"><legend>Action</legend>${radios("action", ACTIONS)}</fieldset>
+<div class="field"><label for="reason">Reason</label><textarea id="reason" name="reason" rows="3" required>${val("reason")}</textarea></div>
+<button type="submit"${blocked ? " disabled" : ""}>Sign this sheet</button></form>
+<p class="muted">Owner identity is self-declared in this prototype. In a real pull-request flow it would come from the Git host account and the code owners of the areas above. Each signature is stored as a new file; the report is never rewritten.</p>
+<p><a href="${base}/blind">Do a blind spot-check of this change instead</a>: the sheet is hidden while you read the diff, then you compare your notes with it.</p>
+</div>` : `<div class="owner">
 <p><b>Not signed.</b> The AI reviewer never approves. A named human signs, choosing an action and writing a reason.</p>
 <div class="field"><span>Name</span><span class="line"></span></div>
 <div class="field"><span>Action</span><ul class="options" style="margin:0"><li>Accept</li><li>Request changes</li><li>Escalate</li></ul></div>
@@ -163,7 +212,7 @@ ${r.hunks.map((h) => `<div class="hunk" id="${esc(h.id)}"><h3>${esc(h.id)}  ${es
     ...h.removed.map((l, k) => `<span class="del">−${String(h.oldStart + k).padStart(5)}  ${esc(l)}</span>`),
     ...h.added.map((l, k) => `<span class="add">+${String(h.newStart + k).padStart(5)}  ${esc(l)}</span>`)].join("")}</pre></div>`).join("")}
 </section>
-</main></body></html>
+</main>${ui ? `<script nonce="${esc(ui.nonce)}">${ACTIVE_TIME_SCRIPT}</script>` : ""}</body></html>
 `;
 }
 

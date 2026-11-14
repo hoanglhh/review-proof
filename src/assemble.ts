@@ -1,6 +1,11 @@
 // Turns ingest + checks + reviewer output into a validated report. Nothing the model says is evidence:
 // citations must resolve, references must name things that exist, and states are computed here.
-import type { Case, Profile } from "./config.ts";
+import { existsSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
+import { join, relative } from "node:path";
+import { caseDir, DATA, PIPELINE_VERSION, readJson, ROOT, writeJson, type Case, type Profile } from "./config.ts";
+import { ensureClone, readAt } from "./git.ts";
+import { renderHtml, renderMarkdown } from "./render.ts";
+import { loadReview } from "./review.ts";
 import type { FileChange, Hunk } from "./diff.ts";
 import { inventory, publicSurface, REGISTRY } from "./checks.ts";
 import { Report, type Evidence } from "./report.ts";
@@ -144,4 +149,30 @@ export function assembleReport(i: {
     inventory: { files, totals: inventory(files).totals },
     hunks, evidence, claims, decisions, unexplained, findings, notChecked, route,
   });
+}
+
+export const TRUST_LOG = join(DATA, "trust", "events.jsonl"); // the real record: append-only, never simulated
+export const readJsonl = (f: string) => (existsSync(f) ? readFileSync(f, "utf8").split("\n").filter(Boolean).map((l) => JSON.parse(l)) : []);
+const records = (dir: string) => (existsSync(dir) ? readdirSync(dir).filter((f) => f.endsWith(".json")).sort().map((f) => readJson(join(dir, f))) : []);
+export const signoffsOf = (id: string) => records(join(caseDir(id), "signoffs"));
+
+/** Reads everything a report depends on, assembles it, and writes report.json, sheet.html and sheet.md. */
+export function assembleCase(c: Case, p: Profile): Report {
+  const dir = caseDir(c.id);
+  const { files, hunks } = readJson(join(dir, "ingest.json"));
+  const repo = ensureClone(c.repository, [c.base, c.head]);
+  const policy: Policy = readJson(join(ROOT, "policy.json"));
+  // interpretations confirmed by a human, matched by quote so they survive a regenerated review
+  const confirmed = new Map(records(join(dir, "confirmations")).map((x) => [norm(x.quote), x.confirmedBy as string]));
+  const report = assembleReport({
+    c, p, policy, requirement: readJson(join(dir, "requirement.json")), files, hunks,
+    checks: readJson(join(dir, "check.json")), review: loadReview(c.id),
+    readAt: (at, path) => readAt(repo, at === "head" ? c.head : c.base, path),
+    confirmedBy: (quote) => confirmed.get(norm(quote)) ?? null,
+    trustEvents: readJsonl(TRUST_LOG), generatedAt: new Date().toISOString(), pipelineVersion: PIPELINE_VERSION,
+  });
+  writeJson(join(dir, "report.json"), report);
+  writeFileSync(join(dir, "sheet.html"), renderHtml(report, (x) => relative(dir, join(ROOT, x)), policy.sheet.maxFindingsShown));
+  writeFileSync(join(dir, "sheet.md"), renderMarkdown(report, "sheet.html", policy.sheet.maxFindingsShown));
+  return report;
 }

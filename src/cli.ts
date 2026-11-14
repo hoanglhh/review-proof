@@ -4,13 +4,14 @@ import { basename, join, relative } from "node:path";
 import { parseArgs } from "node:util";
 import { caseDir, DATA, loadCase, loadProfile, PIPELINE_VERSION, readJson, ROOT, writeJson, type Case, type Profile } from "./config.ts";
 import { classify, diffArgs, parseDiff, type FileChange, type Hunk } from "./diff.ts";
-import { ensureClone, ensureWorktree, git, listFiles, overlayWorktree, showFile } from "./git.ts";
+import { ensureClone, ensureWorktree, git, listFiles, overlayWorktree, readAt } from "./git.ts";
 import { runTests, type Run } from "./runner.ts";
 import { inventory, issueReproduction, patternGroups, publicSurface, REGISTRY, securitySurface, testEvidence, testProjects } from "./checks.ts";
 import type { Evidence } from "./report.ts";
-import { buildPrompt, loadReview, runReview } from "./review.ts";
-import { assembleReport } from "./assemble.ts";
-import { renderHtml, renderMarkdown } from "./render.ts";
+import { buildPrompt, runReview } from "./review.ts";
+import { assembleCase } from "./assemble.ts";
+import { startServer, writeSimulation } from "./server.ts";
+import { trustFloor } from "./states.ts";
 
 const USAGE = `usage: node src/cli.ts <command> <case-id> [options]
   ingest <id>                      clone, worktrees, save the requirement, classify the diff
@@ -18,6 +19,8 @@ const USAGE = `usage: node src/cli.ts <command> <case-id> [options]
   review <id> [--fresh]            the bounded AI step; a saved response with the same prompt hash is reused unless --fresh
   assemble <id>                    validate citations, compute states and route, write report.json, sheet.html, sheet.md
   all <id>                         ingest, check, review, assemble
+  serve [--port 4400]              local sign-off server: view sheets, confirm, sign, blind spot-checks
+  simulate                         write a synthetic trust history to its own file (shown under a SIMULATED banner)
   test-run <id> --at head|base|without-change [--filter EXPR]   one container test run, printed`;
 
 // ---- ingest ----
@@ -135,8 +138,6 @@ async function check(c: Case, p: Profile, fresh: boolean) {
 
 // ---- review ----
 
-const readAt = (repo: string, commit: string, path: string) => { try { return showFile(repo, commit, path); } catch { return null; } };
-
 async function review(c: Case, p: Profile, fresh: boolean) {
   const dir = caseDir(c.id);
   const { files, hunks } = loadIngest(c);
@@ -157,25 +158,9 @@ async function review(c: Case, p: Profile, fresh: boolean) {
 // ---- assemble: citations, states, route, sheet ----
 
 function assemble(c: Case, p: Profile) {
-  const dir = caseDir(c.id);
-  const { files, hunks } = loadIngest(c);
-  const repo = ensureClone(c.repository, [c.base, c.head]);
-  const policy = readJson(join(ROOT, "policy.json"));
-  const trustFile = join(DATA, "trust", "events.jsonl");
-  const report = assembleReport({
-    c, p, policy, requirement: readJson(join(dir, "requirement.json")), files, hunks,
-    checks: readJson(join(dir, "check.json")), review: loadReview(c.id),
-    readAt: (at, path) => readAt(repo, at === "head" ? c.head : c.base, path),
-    confirmedBy: () => null, // shortcut: interpretation confirmation is recorded by the sign-off server (build step 4)
-    trustEvents: existsSync(trustFile) ? readFileSync(trustFile, "utf8").split("\n").filter(Boolean).map((l) => JSON.parse(l)) : [],
-    generatedAt: new Date().toISOString(), pipelineVersion: PIPELINE_VERSION,
-  });
-  writeJson(join(dir, "report.json"), report);
-  const link = (repoPath: string) => relative(dir, join(ROOT, repoPath));
-  writeFileSync(join(dir, "sheet.html"), renderHtml(report, link, policy.sheet.maxFindingsShown));
-  writeFileSync(join(dir, "sheet.md"), renderMarkdown(report, "sheet.html", policy.sheet.maxFindingsShown));
+  const report = assembleCase(c, p);
   const states = Map.groupBy(report.claims, (x) => x.state);
-  console.log(`wrote ${relative(ROOT, dir)}/report.json, sheet.html, sheet.md`);
+  console.log(`wrote ${relative(ROOT, caseDir(c.id))}/report.json, sheet.html, sheet.md`);
   console.log(`  route: ${report.route.effectiveRoute} (evidence ${report.route.evidenceRoute}, trust floor ${report.route.trustFloor}); claims: ${[...states].map(([k, v]) => `${v.length} ${k}`).join(", ") || "none"}; ${report.decisions.length} decisions; ${report.unexplained.length} unexplained hunks`);
   for (const x of report.route.reasons) console.log(`  - ${x.code}: ${x.detail}`);
 }
@@ -206,9 +191,16 @@ async function testRun(c: Case, p: Profile, at: string, filter?: string) {
 
 const { positionals, values } = parseArgs({
   allowPositionals: true,
-  options: { fresh: { type: "boolean", default: false }, at: { type: "string" }, filter: { type: "string" } },
+  options: { fresh: { type: "boolean", default: false }, at: { type: "string" }, filter: { type: "string" }, port: { type: "string", default: "4400" } },
 });
 const [cmd, id] = positionals;
+if (cmd === "serve") { startServer(Number(values.port)); }
+else if (cmd === "simulate") {
+  const per = readJson(join(ROOT, "policy.json")).trust.cleanSpotChecksPerStep;
+  const events = writeSimulation(per);
+  console.log(`wrote ${events.length} SYNTHETIC events to data/trust/simulated-events.jsonl (not the real record):`);
+  events.forEach((e, i) => console.log(`  ${String(i + 1).padStart(2)} ${e.type.padEnd(17)} floor after: ${trustFloor(events.slice(0, i + 1), per).floor}`));
+} else {
 if (!cmd || !id) { console.error(USAGE); process.exit(2); }
 const c = loadCase(id);
 const p = loadProfile(c.profile);
@@ -219,3 +211,4 @@ else if (cmd === "assemble") assemble(c, p);
 else if (cmd === "all") { await ingest(c, p); await check(c, p, values.fresh!); await review(c, p, values.fresh!); assemble(c, p); }
 else if (cmd === "test-run") await testRun(c, p, values.at ?? "", values.filter);
 else { console.error(USAGE); process.exit(2); }
+}

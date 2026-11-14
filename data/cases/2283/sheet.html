@@ -46,19 +46,36 @@ tr.total td{font-weight:600;border-bottom:none}
 .options{list-style:none;padding:0;margin:10px 0}
 .options li::before{content:"☐";margin-right:8px;color:var(--ink)}
 .owner{border:2px solid var(--ink);padding:18px 22px;margin-top:12px}
-.field{display:grid;grid-template-columns:110px 1fr;gap:12px;align-items:end;margin:12px 0}
 .field span:first-child{font-weight:600}
 .line{border-bottom:1px solid var(--text);min-height:24px;color:var(--muted)}
 .hunk{margin:18px 0;border:1px solid var(--rule)} .hunk h3{margin:0;padding:6px 10px;font:600 13px var(--mono);background:var(--wash);color:var(--text)}
 .hunk pre{padding:6px 0} .add,.del{display:block;padding:0 10px} .add{background:#E6F4EA} .del{background:#FBE7E5}
 .hunk:target{outline:3px solid var(--argued)}
-@media (max-width:760px){.sheet{padding:20px 18px;margin:0;border:none}h2 .n{position:static;margin-right:8px}.verdict{grid-template-columns:1fr}}
+input[type=text],textarea,select{font:inherit;color:var(--text);background:var(--sheet);border:0;border-bottom:1.5px solid var(--text);padding:4px 2px;width:100%}
+textarea{border:1.5px solid var(--rule);border-bottom-color:var(--text);padding:6px 8px;resize:vertical}
+input:focus-visible,textarea:focus-visible,select:focus-visible,button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+fieldset{border:0;padding:0;margin:0} legend{font-weight:600;padding:0}
+.decision fieldset{margin-top:14px;padding-top:10px;border-top:1px dashed var(--rule)}
+fieldset.field{display:block} fieldset.field legend{float:left;width:122px;padding-top:4px} fieldset.field .choices{margin-top:0;padding-top:2px}
+.choices{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:6px}
+.choices label{display:inline-flex;align-items:center;gap:6px;padding:4px 2px;cursor:pointer}
+input[type=radio],input[type=checkbox]{accent-color:var(--ink);width:18px;height:18px;margin:0}
+button{font:700 17px var(--head);font-stretch:condensed;letter-spacing:.01em;background:var(--ink);color:#fff;border:2px solid var(--ink);padding:9px 22px;border-radius:2px;cursor:pointer}
+button.secondary{background:var(--sheet);color:var(--ink);font-size:15px;padding:5px 14px}
+button:disabled{background:var(--rule);border-color:var(--rule);color:var(--muted);cursor:not-allowed}
+.errors{border:3px solid var(--broken);padding:12px 16px;margin:0 0 16px} .errors h3{margin:0 0 6px;font:700 18px var(--head);color:var(--broken)}
+.errors a{color:var(--broken);font-weight:600}
+.inline{display:flex;flex-wrap:wrap;gap:10px;align-items:end;margin-top:8px} .inline label{flex:1 1 220px;font-size:14px;font-weight:600}
+.signed{border-left:6px solid var(--proven);background:var(--wash);padding:10px 14px;margin:0 0 14px}
+.notice{border-left:6px solid var(--ink);background:var(--wash);padding:10px 14px;margin:16px 0}
+.field{display:grid;grid-template-columns:110px 1fr;gap:12px;align-items:start;margin:14px 0} .field>label,.field>legend{font-weight:600;padding-top:4px}
+@media (max-width:760px){.sheet{padding:20px 18px;margin:0;border:none}h2 .n{position:static;margin-right:8px}.verdict{grid-template-columns:1fr}.field{grid-template-columns:1fr}}
 @media print{body{background:#fff}.sheet{border:none;margin:0;padding:0 0 0 56px}.hunk{break-inside:avoid}}
 </style></head><body><main class="sheet">
 <h1>Sign-off sheet for #2283</h1>
 <p class="title">Generator and analyzer crash with IndexOutOfRangeException on a closed generic struct from a referenced assembly</p>
 <dl class="facts">
-<dt>Generated</dt><dd>2026-11-14T06:15:23.799Z, from test runs on this machine</dd>
+<dt>Generated</dt><dd>2026-11-14T06:34:00.125Z, from test runs on this machine</dd>
 <dt>Change</dt><dd>base <code>32258fdb</code> to head <code>9df83c38</code> in https://github.com/te-industry-tech-office/junction26-messagepack-csharp</dd>
 <dt>Policy</dt><dd>2026-11-14.1; its thresholds are illustrative and unvalidated</dd>
 <dt>AI reviewer</dt><dd>kimi-k3-1-pro, prompt sha256 <code>7e32fa48c768</code>, <a href="review/7e32fa48c76868add97e65b7292391f9a5fabf9a39d79c71fe53fa045d9f18c1.json">raw response</a></dd>
@@ -74,16 +91,21 @@ tr.total td{font-weight:600;border-bottom:none}
 </div>
 
 
+
 <section aria-labelledby="s1"><h2 id="s1"><span class="n">1</span>What the change is for</h2><p>Requirement <a href="https://github.com/MessagePack-CSharp/MessagePack-CSharp/issues/2283">#2283</a>, saved 2026-11-14T05:32:46.427Z. Each item quotes it.</p>
 <div class="req"><b>R1</b> The generator and analyzer must not crash with IndexOutOfRangeException for the reported referenced-assembly generic struct scenario. <span class="muted">(explicit)</span>
 <blockquote class="quote"><pre>Generator and analyzer crash with IndexOutOfRangeException on a closed generic struct from a referenced assembly</pre></blockquote>
+
 </div><div class="req"><b>R2</b> The consuming app must build cleanly and contain a generated resolver. <span class="muted">(explicit)</span>
 <blockquote class="quote"><pre>A clean build, with a generated resolver in `app`.</pre></blockquote>
+
 </div><div class="req"><b>R3</b> The scenario requiring coverage is the combination of a generic value type and a definition originating in a referenced assembly. <span class="muted">(explicit)</span>
 <blockquote class="quote"><pre>So it needs all three of: **generic**, **value type**, **from a referenced assembly**.</pre></blockquote>
+
 </div><div class="req interp"><b>R4</b> Collection and diagnostic handling should tolerate metadata symbols that have no source declaration syntax. <span class="muted">(interpretation)</span>
 <blockquote class="quote"><pre>and that collection is empty for a metadata symbol.</pre></blockquote>
-<div class="detail"><span class="flag">The requirement does not say this.</span> A human must confirm this reading before the change can be signed.</div></div></section>
+<div class="detail"><span class="flag">The requirement does not say this.</span> A human must confirm this reading before the change can be signed.</div>
+</div></section>
 
 <section aria-labelledby="s2"><h2 id="s2"><span class="n">2</span>What it touches</h2><div class="scroll"><table><thead><tr><th>Kind of file</th><th>Files</th><th>Changed lines</th></tr></thead><tbody>
 <tr><td>docs</td><td>2</td><td>10</td></tr><tr><td>source</td><td>1</td><td>29</td></tr><tr><td>test</td><td>1</td><td>189</td></tr>

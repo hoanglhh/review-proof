@@ -54,3 +54,4 @@ export const listFiles = (repo: string, commit: string) =>
   git(repo, ["ls-tree", "-r", "--name-only", "-z", commit]).split("\0").filter(Boolean);
 
 export const showFile = (repo: string, commit: string, path: string) => git(repo, ["show", `${commit}:${path}`]);
+export const readAt = (repo: string, commit: string, path: string) => { try { return showFile(repo, commit, path); } catch { return null; } };
