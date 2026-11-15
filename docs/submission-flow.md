@@ -1,6 +1,6 @@
 # New assessment flow
 
-Users start an assessment from `/assess`, using repository path or HTTPS GitHub URL, base/head revisions, requirement text and a named owner. Supplied samples can prefill the form into a distinct run. Repository profiles are trusted application configuration; commands cannot come from form text or model output. The form offers Automatic verification for a successfully verified repository setup. Code-inspection-only mode remains available with no test execution.
+Users start an assessment from `/assess`, using repository path or HTTPS GitHub URL, base/head revisions, requirement text and a named owner. Supplied samples can prefill the form into a distinct run. Repository profiles are trusted application configuration; commands cannot come from form text or model output. Automatic verification reuses a matching setup or detects one inline and continues the same assessment after human execution trust and a passing baseline. Code-inspection-only mode remains available with no test execution.
 
 Resolve and pin revisions, register each immutable submission under `data/submissions/<id>/`, and run existing CLI stages sequentially in a child process. Persist stage status and a bounded log; a progress page polls status and links the validated report on completion. Missing model configuration and failed/inconclusive checks remain truthful outcomes. Existing benchmark manifest, reports and frozen pipeline modules remain unchanged.
 

@@ -91,3 +91,7 @@ The user requested clearer evidence semantics, human effort measurement, an expl
 ## Automatic submissions and visible progress
 
 Users repeatedly needed a new assessment without editing `cases.json`. Add `/assess`, a separate submission registry, trusted profile snapshots and sequential execution of the existing CLI stages. Resolve branches to pinned commits before analysis and expose actual stage/log updates. Default to generic code inspection with explicit unavailable executable verification; require a suitable trusted profile before running tests. Require requirements text under the existing evidence model. Permit copying only supplied samples into new runs; holdout inputs are not prefilled by this workflow. Submitted reviews are labelled independently in scoped aggregates. Starting a job never creates human approvals or trust events.
+
+## Inline Automatic setup
+
+Starting an Automatic assessment now checks for a matching verified repository plan and otherwise detects one from its pinned head. The job waits for explicit named execution trust and a passing baseline, then continues under the same assessment ID and requirements. Waiting does not hold the execution lock needed by the trust endpoint, but it reserves the assessment slot; cancellation before trust releases it. Shutdown aborts waiters rather than silently executing plans after restart. Automatic verification executes head commands only, so reuse follows head configuration; base commands are not executed or claimed verified. Relevant head configuration changes require a fresh plan review.

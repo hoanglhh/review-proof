@@ -1,0 +1,21 @@
+{
+  "checkedAt": "2026-11-15T04:34:16.859975+00:00",
+  "tests": {
+    "passed": 87,
+    "failed": 0,
+    "integration": "Temporary Git fixture with fake Docker; first-time Automatic setup, no code execution before plan trust, same-job continuation, setup reuse, changed configuration, branch movement while waiting, failed verification gate, cancellation and shutdown.",
+    "ui": "VM polling regression: confirmation -> baseline verification -> completed; Chromium previews at phone/desktop widths."
+  },
+  "preservation": {
+    "existingDataFiles": 328,
+    "changedExistingData": [],
+    "changedFrozenReviewModules": [],
+    "newHumanRecords": []
+  },
+  "review": "Independent read-only review found no material issues; minor interrupted-state copy corrected.",
+  "notRun": [
+    "Live model reviews or new container baselines",
+    "Human execution trust or PR acceptance records"
+  ],
+  "scope": "Plan reuse matches repository identity and submitted head configuration, because automatic verification executes head commands only. Base/head regression discrimination remains explicitly unclaimed."
+}

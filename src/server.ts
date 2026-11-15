@@ -13,7 +13,7 @@ import { COHORT_LABELS, type Cohort } from "./cohorts.ts";
 import type { Report } from "./report.ts";
 import { experimentRecord, renderExperiment, renderExperiments, validateExperiment, type Experiment } from "./experiment.ts";
 
-import {installedProfiles, startSubmission, submissionJob, submissionJobs, stopSubmissions, validateSubmission, submissionsRunning} from "./submissions.ts";
+import {installedProfiles, startSubmission, submissionJob, submissionJobs, stopSubmissions, validateSubmission, submissionsRunning, cancelPendingSubmission} from "./submissions.ts";
 import {renderAssessmentForm, renderAssessmentProgress} from "./assessment-pages.ts";
 
 import {allSetups,getSetup,startSetup,trustSetup,validateSetupInput,stopSetups,setupBusy} from "./repository-setup.ts";
@@ -114,7 +114,7 @@ export function startServer(port: number) {
       if (parts[0] === "assess") {
         const nonce = randomBytes(16).toString("base64");
         if (parts.length === 1 && ["GET","POST"].includes(req.method ?? "")) {
-          const profiles = [{id:"auto",description:"Reuse a verified repository setup; detect and trust a plan first."},...installedProfiles().map(id => ({id, description: readJson(join(ROOT,"profiles",`${id}.json`)).description ?? id}))];
+          const profiles = [{id:"auto",description:"Reuse verified setup automatically, or detect a plan and continue after your execution trust and a passing baseline."},...installedProfiles().map(id => ({id, description: readJson(join(ROOT,"profiles",`${id}.json`)).description ?? id}))];
           if (req.method === "POST") {
             const form = await body(req);
             const errors = validateSubmission(form);
@@ -133,6 +133,10 @@ export function startServer(port: number) {
             if (existsSync(file)) {const requirement=readJson(file);form.set("requirement",[requirement.title,requirement.body].filter(Boolean).join("\n\n"));}
           }
           return send(res,200,renderAssessmentForm(profiles,form,[],nonce),nonce);
+        }
+        if(req.method==="POST"&&parts.length===3&&parts[2]==="cancel"){
+          try{cancelPendingSubmission(parts[1]);return redirect(res,`/assess/${parts[1]}`);}
+          catch(error){return send(res,409,renderMessage("Assessment not cancelled",esc(String(error)),"/assess"));}
         }
         if (req.method === "GET" && (parts.length===2 || (parts.length===3 && parts[2]==="status"))) {
           const job = submissionJob(parts[1]);

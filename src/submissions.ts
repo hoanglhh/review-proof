@@ -6,14 +6,15 @@ import {join} from 'node:path';
 import {DATA, ROOT, WORK, loadProfile, readJson, type Case} from './config.ts';
 import {git} from './git.ts';
 
-import {reusableSetup,setupProfile,verifySubmissionSetup,type RepositorySetup} from './repository-setup.ts';
+import {reusableSetup,setupForAssessment,waitForVerifiedSetup,setupProfile,verifySubmissionSetup,type RepositorySetup} from './repository-setup.ts';
 
 import {persistSetupGate} from './setup-gate.ts';
 
 export const SUBMISSIONS = join(DATA,'submissions');
-export const STAGES = ['prepare','ingest','check','review','assemble'] as const;
-export type Job = {id:string; status:'running'|'completed'|'failed'|'interrupted';stage:string;startedAt:string;updatedAt:string;owner:string;repository:string;log:string;error?:string;exitCode?:number|null};
+export const STAGES = ['prepare','setup','ingest','check','review','assemble'] as const;
+export type Job = {id:string; status:'running'|'awaiting_setup'|'completed'|'failed'|'interrupted';setupId?:string;setupStatus?:RepositorySetup['status'];stage:string;startedAt:string;updatedAt:string;owner:string;repository:string;log:string;error?:string;exitCode?:number|null};
 const active = new Map<string,ChildProcess|null>();
+const waiting = new Map<string,AbortController>();
 const safeId = (id:string) => /^submission-[0-9a-f-]{36}$/.test(id);
 export const installedProfiles = () => readdirSync(join(ROOT,'profiles')).filter(f=>/^[a-z0-9_-]+\.json$/.test(f)).map(f=>f.slice(0,-5));
 export function validateSubmission(f:URLSearchParams, profiles=['auto',...installedProfiles()]) {
@@ -39,7 +40,7 @@ function saveJob(job:Job) {
 export function submissionJob(id:string):Job|null {
   if(!safeId(id)||!existsSync(join(SUBMISSIONS,id,'job.json')))return null;
   const job:Job=readJson(join(SUBMISSIONS,id,'job.json'));
-  if(job.status==='running'&&!active.has(id)){job.status='interrupted';job.error='The server stopped before this assessment completed. Submit a new assessment to retry.';saveJob(job);}
+  if((job.status==='running'&&!active.has(id))||(job.status==='awaiting_setup'&&!waiting.has(id))){job.status='interrupted';job.error='The server stopped before this assessment completed. Submit a new assessment to retry.';saveJob(job);}
   return job;
 }
 export function submissionJobs():Job[]{return existsSync(SUBMISSIONS)?readdirSync(SUBMISSIONS).map(submissionJob).filter((j):j is Job=>!!j).sort((a,b)=>b.startedAt.localeCompare(a.startedAt)):[];}
@@ -69,7 +70,22 @@ async function execute(job:Job,f:URLSearchParams) {
     if(base===head)throw new Error('Base and head resolve to the same commit. Choose a comparison with changes.');
     git(clone,['update-ref','refs/heads/assessment-base',base]);git(clone,['update-ref','refs/heads/assessment-head',head]);
     const c:Case={id:job.id,profile:job.id,repository:clone,sourceRepository:repository,base,head,requirement:{id:f.get('requirementId')?.trim()||'Submitted requirement',text:f.get('requirement')!.trim()},submission:true};
-    const verified:RepositorySetup|undefined=f.get('profile')==='auto'?reusableSetup(repository,clone,base,head):undefined;
+    let verified:RepositorySetup|undefined;
+    if(f.get('profile')==='auto'){
+      job.stage='setup';job.log+='Checking for a verified setup matching the pinned head configuration.\n';saveJob(job);
+      verified=reusableSetup(repository,clone,base,head);
+      if(!verified){
+        const setup=setupForAssessment(repository,clone,head,job.id);job.setupId=setup.id;job.setupStatus=setup.status;
+        if(!setup.detection?.runnable)throw new Error(`Automatic verification is unavailable for this configuration: ${setup.detection?.limitations.join(' ')??'No supported checks detected.'} Review the detected plan or select another verification mode.`);
+        const controller=new AbortController();waiting.set(job.id,controller);active.delete(job.id);job.status='awaiting_setup';
+        job.log+='No matching verified setup. Review the detected execution plan; this assessment will continue after you trust it and its baseline passes.\n';saveJob(job);
+        verified=await waitForVerifiedSetup(setup.id,controller.signal,current=>{
+          if(!waiting.has(job.id))return;job.setupStatus=current.status;saveJob(job);
+        });
+        if(controller.signal.aborted)throw new Error('The assessment was interrupted.');
+        waiting.delete(job.id);active.set(job.id,null);job.status='running';job.log+='Repository baseline passed. Continuing this assessment with the original pinned commits.\n';saveJob(job);
+      }else{job.setupId=verified.id;job.setupStatus='verified';job.log+='Reusing the verified repository setup.\n';saveJob(job);}
+    }
     if(verified)c.verificationSetup={id:verified.id,fingerprint:verified.detection!.fingerprint};
     const profile=verified?setupProfile():loadProfile(f.get('profile')!);const identity=repository.startsWith('/')?realpathSync(repository):repository.replace(/\.git\/?$/,'').replace(/\/$/,'').toLowerCase();
     const scope=createHash('sha256').update(identity).digest('hex').slice(0,16);
@@ -78,7 +94,7 @@ async function execute(job:Job,f:URLSearchParams) {
     writeFileSync(join(SUBMISSIONS,job.id,'case.json'),JSON.stringify(c,null,2)+'\n');
     job.log+=`Source snapshot ${clone}\nPinned base ${base}\nPinned head ${head}\n`;
     if(f.get('profile')==='inspection-only')job.log+='No executable verification configured: code inspection only.\n';
-    for(const stage of STAGES.slice(1)){job.stage=stage;job.log+=`\nStarting ${stage}…\n`;saveJob(job);await command(job,process.execPath,[join(ROOT,'src/cli.ts'),stage,job.id]);
+    for(const stage of ['ingest','check','review','assemble'] as const){job.stage=stage;job.log+=`\nStarting ${stage}…\n`;saveJob(job);await command(job,process.execPath,[join(ROOT,'src/cli.ts'),stage,job.id]);
       if(stage==='check' && (f.get('profile')==='inspection-only'||verified)) {
         const path=join(DATA,'cases',job.id,'check.json');const checks=readJson(path);
         if(verified){
@@ -91,15 +107,20 @@ async function execute(job:Job,f:URLSearchParams) {
     }
     if(verified)persistSetupGate(job.id);
     job.status='completed';
-  }catch(e){job.status=active.has(job.id)?'failed':'interrupted';job.error=e instanceof Error?e.message:String(e);}
-  finally{saveJob(job);active.delete(job.id);}
+  }catch(e){job.status=active.has(job.id)||waiting.has(job.id)?'failed':'interrupted';job.error=e instanceof Error?e.message:String(e);}
+  finally{saveJob(job);active.delete(job.id);waiting.delete(job.id);}
 }
 export function startSubmission(f:URLSearchParams):Job {
   const errors=validateSubmission(f);if(errors.length)throw new Error(errors.join(' '));
-  if(active.size)throw new Error('Another assessment is running. Wait for it to finish before starting another.');
+  if(active.size||waiting.size)throw new Error('Another assessment is running. Wait for it to finish before starting another.');
   const at=new Date().toISOString();const job:Job={id:`submission-${randomUUID()}`,status:'running',stage:'prepare',startedAt:at,updatedAt:at,owner:f.get('owner')!.trim(),repository:f.get('repository')!.trim(),log:'Resolving repository and revisions…\n'};
   active.set(job.id,null);saveJob(job);
   void execute(job,new URLSearchParams(f));return job;
 }
+export function cancelPendingSubmission(id:string){
+ const controller=waiting.get(id),job=submissionJob(id);
+ if(!controller||!job||job.status!=='awaiting_setup'||job.setupStatus!=='review')throw new Error('Only an assessment awaiting plan confirmation can be cancelled here.');
+ waiting.delete(id);controller.abort();job.status='interrupted';job.error='Assessment cancelled before verification. You can start another assessment with a different verification mode.';saveJob(job);
+}
 export const submissionsRunning=()=>active.size>0;
-export function stopSubmissions(){for(const [id,child] of active){terminate(child);const file=join(SUBMISSIONS,id,'job.json');if(existsSync(file)){const job:Job=readJson(file);job.status='interrupted';job.error='The server stopped. Submit a new assessment to retry.';saveJob(job);}}active.clear();}
+export function stopSubmissions(){for(const [id,controller] of waiting){controller.abort();const job:Job=readJson(join(SUBMISSIONS,id,'job.json'));job.status='interrupted';job.error='The server stopped while waiting for setup. Submit a new assessment to retry.';saveJob(job);}waiting.clear();for(const [id,child] of active){terminate(child);const file=join(SUBMISSIONS,id,'job.json');if(existsSync(file)){const job:Job=readJson(file);job.status='interrupted';job.error='The server stopped. Submit a new assessment to retry.';saveJob(job);}}active.clear();}

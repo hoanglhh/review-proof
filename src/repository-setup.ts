@@ -1,4 +1,5 @@
 // Repository setup permission is separate from accepting any code change.
+import {EventEmitter} from 'node:events';
 import {randomUUID,createHash} from 'node:crypto';
 import {spawn,type ChildProcess} from 'node:child_process';
 import {existsSync,mkdirSync,readdirSync,writeFileSync,renameSync,realpathSync} from 'node:fs';
@@ -10,8 +11,9 @@ import {runSetupChecks,cancelSetupRuns,type SetupRun} from './setup-runner.ts';
 import type {Evidence} from './report.ts';
 
 export const SETUPS=join(DATA,'repository-setups');
-export type RepositorySetup={id:string;repository:string;identity:string;revision:string;commit?:string;clone?:string;status:'detecting'|'review'|'running'|'verified'|'failed'|'interrupted';createdAt:string;updatedAt:string;log:string;error?:string;detection?:Detection;planHash?:string;trustedBy?:string;trustedAt?:string;run?:SetupRun};
+export type RepositorySetup={assessmentId?:string;id:string;repository:string;identity:string;revision:string;commit?:string;clone?:string;status:'detecting'|'review'|'running'|'verified'|'failed'|'interrupted';createdAt:string;updatedAt:string;log:string;error?:string;detection?:Detection;planHash?:string;trustedBy?:string;trustedAt?:string;run?:SetupRun};
 const active=new Map<string,ChildProcess|null>();
+const changes=new EventEmitter();
 const safe=(id:string)=>/^setup-[0-9a-f-]{36}$/.test(id);
 export const repositoryIdentity=(repository:string)=>repository.startsWith('/')?realpathSync(repository):repository.replace(/\.git\/?$/,'').replace(/\/$/,'').toLowerCase();
 export function validateSetupInput(f:URLSearchParams){
@@ -23,7 +25,7 @@ export function validateSetupInput(f:URLSearchParams){
   if(!/^[A-Za-z0-9][A-Za-z0-9._/~^@{}-]{0,199}$/.test(f.get('revision')??''))errors.push('Enter a valid committed revision.');
   return errors;
 }
-function save(s:RepositorySetup){s.updatedAt=new Date().toISOString();mkdirSync(join(SETUPS,s.id),{recursive:true});const tmp=join(SETUPS,s.id,'setup.tmp');writeFileSync(tmp,JSON.stringify(s,null,2)+'\n');renameSync(tmp,join(SETUPS,s.id,'setup.json'));}
+function save(s:RepositorySetup){s.updatedAt=new Date().toISOString();mkdirSync(join(SETUPS,s.id),{recursive:true});const tmp=join(SETUPS,s.id,'setup.tmp');writeFileSync(tmp,JSON.stringify(s,null,2)+'\n');renameSync(tmp,join(SETUPS,s.id,'setup.json'));changes.emit(s.id,s);}
 export function getSetup(id:string):RepositorySetup|null {
   if(!safe(id)||!existsSync(join(SETUPS,id,'setup.json')))return null;
   const s:RepositorySetup=readJson(join(SETUPS,id,'setup.json'));
@@ -71,11 +73,29 @@ export function trustSetup(id:string,f:URLSearchParams){
   s.status=s.run.status==='passed'?'verified':'failed';if(s.status==='failed')s.error=s.run.reason??'Baseline checks did not all pass. Inspect the results before trying a new setup.';
  }catch(e){s.status='failed';s.error=String(e);}finally{if(!active.has(id)){s.status='interrupted';s.error='The server stopped during setup.';}active.delete(id);save(s);}})();return s;
 }
-export function reusableSetup(repository:string,repo:string,base:string,head:string){
- const identity=repositoryIdentity(repository),basePlan=detectAt(repo,base),headPlan=detectAt(repo,head);
- const s=allSetups().find(s=>s.status==='verified'&&s.identity===identity&&s.detection?.fingerprint===headPlan.fingerprint&&s.detection.fingerprint===basePlan.fingerprint&&s.run?.imageDigest);
- if(!s||!headPlan.runnable||!basePlan.runnable)throw new Error('No verified setup matches this repository and both revisions. Detect and confirm its current configuration at /setups, or select code inspection only.');
- return s;
+export function reusableSetup(repository:string,repo:string,_base:string,head:string):RepositorySetup|undefined {
+ const identity=repositoryIdentity(repository),headPlan=detectAt(repo,head);
+ if(!headPlan.runnable)return undefined;
+ return allSetups().find(s=>s.status==='verified'&&s.identity===identity&&s.detection?.fingerprint===headPlan.fingerprint&&s.run?.imageDigest);
+}
+export function setupForAssessment(repository:string,clone:string,head:string,assessmentId:string):RepositorySetup {
+ if(setupBusy())throw new Error('Another repository setup is running. Wait for it to finish.');
+ const at=new Date().toISOString(),detection=detectAt(clone,head),identity=repositoryIdentity(repository);
+ const s:RepositorySetup={id:`setup-${randomUUID()}`,assessmentId,repository,identity,clone,revision:head,commit:head,status:'review',createdAt:at,updatedAt:at,log:'Detected configuration from the pinned assessment head. No source commands have been executed.\n',detection};
+ s.planHash=createHash('sha256').update(JSON.stringify({identity,commit:head,detection})).digest('hex');save(s);return s;
+}
+export function waitForVerifiedSetup(id:string,signal:AbortSignal,onUpdate?:(setup:RepositorySetup)=>void):Promise<RepositorySetup>{
+ return new Promise((resolve,reject)=>{
+  const cleanup=()=>{changes.removeListener(id,onChange);signal.removeEventListener('abort',onAbort);};
+  const onAbort=()=>{cleanup();reject(new Error('The assessment was interrupted while waiting for verification setup.'));};
+  const onChange=(s:RepositorySetup)=>{
+   onUpdate?.(s);
+   if(s.status==='verified'){cleanup();resolve(s);}
+   else if(['failed','interrupted'].includes(s.status)){cleanup();reject(new Error(s.error??'Repository setup did not pass.'));}
+  };
+  changes.on(id,onChange);signal.addEventListener('abort',onAbort,{once:true});
+  if(signal.aborted)onAbort();else{const setup=getSetup(id);if(setup)onChange(setup);else{cleanup();reject(new Error('Verification setup was not found.'));}}
+ });
 }
 export function setupProfile():Profile{return loadProfile('inspection-only');}
 export async function verifySubmissionSetup(s:RepositorySetup,repo:string,head:string,id:string,onProgress:(text:string)=>void):Promise<Evidence[]> {

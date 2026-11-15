@@ -31,20 +31,43 @@ const reserve=createServer();await new Promise(r=>reserve.listen(0,'127.0.0.1',r
 const post=(path,form,origin=url)=>fetch(url+path,{method:'POST',headers:{origin},body:form,redirect:'manual'});
 const waitSetup=async(id)=>{for(let i=0;i<150;i++){const setup=allSetups().find(s=>s.id===id);if(!['detecting','running'].includes(setup.status))return setup;await new Promise(r=>setTimeout(r,50));}throw Error('Setup timed out');};
 try{
- const form=new URLSearchParams({repository:${JSON.stringify(repo)},revision:'main'});assert.equal((await post('/setups',form,'https://other.example')).status,403);
- const start=await post('/setups',form);assert.equal(start.status,303);const path=start.headers.get('location'),id=path.split('/').pop();let setup=await waitSetup(id);assert.equal(setup.status,'review');assert.equal(setup.detection.runnable,true);assert.equal(existsSync('docker-calls.jsonl'),false);
- const html=await(await fetch(url+path)).text();assert.match(html,/Trust plan and run baseline/);const trust=new URLSearchParams({planHash:'wrong',name:'Synthetic fixture only',trust:'yes'});assert.equal((await post(path+'/trust',trust)).status,400);trust.set('planHash',setup.planHash);trust.delete('trust');assert.equal((await post(path+'/trust',trust)).status,400);trust.set('trust','yes');assert.equal((await post(path+'/trust',trust)).status,303);setup=await waitSetup(id);assert.equal(setup.status,'verified',JSON.stringify(setup));assert.match(setup.run.imageDigest,/^node@sha256:/);assert.ok(setup.run.checks.every(c=>c.status==='passed'));
  const assessment=new URLSearchParams({repository:${JSON.stringify(repo)},base:'main',head:'feature',owner:'Synthetic fixture only',requirement:'Return zero.',profile:'auto'});
- const submit=async()=>{const response=await post('/assess',assessment);assert.equal(response.status,303);const path=response.headers.get('location');for(let i=0;i<200;i++){const job=await(await fetch(url+path+'/status')).json();if(job.status!=='running')return job;await new Promise(r=>setTimeout(r,50));}throw Error('Assessment timeout');};
- let job=await submit();assert.equal(job.status,'completed',JSON.stringify(job));let report=JSON.parse(readFileSync('data/cases/'+job.id+'/report.json'));assert.ok(report.evidence.some(e=>e.id==='repository-setup-overall'&&e.status==='passed'));assert.ok(report.notChecked.some(x=>/Regression discrimination/.test(x.what)));
- writeFileSync('fail-check','yes');job=await submit();assert.equal(job.status,'completed',JSON.stringify(job));report=JSON.parse(readFileSync('data/cases/'+job.id+'/report.json'));assert.equal(report.route.effectiveRoute,'blocked');assert.ok(report.route.reasons.some(r=>r.code==='repository-verification'));
+ const waitJob=async(path)=>{for(let i=0;i<200;i++){const job=await(await fetch(url+path+'/status')).json();if(job.status!=='running')return job;await new Promise(r=>setTimeout(r,50));}throw Error('Assessment timeout');};
+ const submit=async()=>{const response=await post('/assess',assessment);assert.equal(response.status,303);return waitJob(response.headers.get('location'));};
+ assert.equal((await post('/assess',assessment,'https://other.example')).status,403);
+ let job=await submit();const originalId=job.id;assert.equal(job.status,'awaiting_setup',JSON.stringify(job));assert.ok(job.setupId);assert.equal(existsSync('docker-calls.jsonl'),false);
+ const path='/setups/'+job.setupId,id=job.setupId;let setup=await waitSetup(id);assert.equal(setup.status,'review');assert.equal(setup.assessmentId,job.id);assert.equal(setup.detection.runnable,true);
+ const pinnedHead=setup.commit;execFileSync('git',['-C',${JSON.stringify(repo)},'checkout','-q','feature']);writeFileSync(${JSON.stringify(join(repo,'calc.js'))},'export const count=2;\\n');execFileSync('git',['-C',${JSON.stringify(repo)},'-c','user.name=Fixture','-c','user.email=fixture@invalid','commit','-qam','branch advanced while awaiting setup']);
+ const pendingPage=await(await fetch(url+'/assess/'+job.id)).text();assert.match(pendingPage,/Review verification plan/);
+ const html=await(await fetch(url+path)).text();assert.match(html,/Trust plan and run baseline/);const trust=new URLSearchParams({planHash:'wrong',name:'Synthetic fixture only',trust:'yes'});assert.equal((await post(path+'/trust',trust)).status,400);trust.set('planHash',setup.planHash);trust.delete('trust');assert.equal((await post(path+'/trust',trust)).status,400);trust.set('trust','yes');assert.equal((await post(path+'/trust',trust)).status,303);
+ setup=await waitSetup(id);assert.equal(setup.status,'verified',JSON.stringify(setup));assert.match(setup.run.imageDigest,/^node@sha256:/);assert.ok(setup.run.checks.every(c=>c.status==='passed'));
+ for(let i=0;i<200;i++){job=await(await fetch(url+'/assess/'+originalId+'/status')).json();if(!['running','awaiting_setup'].includes(job.status))break;await new Promise(r=>setTimeout(r,50));}
+ assert.equal(job.id,originalId);assert.equal(job.status,'completed',JSON.stringify(job));let report=JSON.parse(readFileSync('data/cases/'+job.id+'/report.json'));assert.equal(report.case.head,pinnedHead);assert.ok(report.hunks.some(h=>h.added.some(line=>line.includes('count=1'))));assert.ok(report.evidence.some(e=>e.id==='repository-setup-overall'&&e.status==='passed'));assert.ok(report.notChecked.some(x=>/Regression discrimination/.test(x.what)));
+ const setupCount=allSetups().length;
+ writeFileSync('fail-check','yes');job=await submit();assert.equal(allSetups().length,setupCount);assert.equal(job.status,'completed',JSON.stringify(job));report=JSON.parse(readFileSync('data/cases/'+job.id+'/report.json'));assert.equal(report.route.effectiveRoute,'blocked');assert.ok(report.route.reasons.some(r=>r.code==='repository-verification'));
  execFileSync(process.execPath,['src/cli.ts','check',job.id],{stdio:'pipe'});execFileSync(process.execPath,['src/cli.ts','assemble',job.id],{stdio:'pipe'});
  const erased=JSON.parse(readFileSync('data/cases/'+job.id+'/report.json'));assert.equal(erased.evidence.some(e=>e.check==='repository-setup'),false);
  const gatedPage=await(await fetch(url+'/case/'+job.id)).text();assert.match(gatedPage,/required repository verification evidence was removed/);assert.ok(gatedPage.includes('saved repository verification (failed)'));const registered=loadCase(job.id);assembleWithSetupGate(registered,loadProfile(registered.profile));assert.ok(JSON.parse(readFileSync('data/cases/'+job.id+'/report.json')).route.reasons.some(r=>r.code==='repository-verification'));
- const callsBefore=readFileSync('docker-calls.jsonl','utf8');assessment.set('head','config-change');job=await submit();assert.equal(job.status,'failed');assert.match(job.error,/No verified setup matches/);assert.equal(readFileSync('docker-calls.jsonl','utf8'),callsBefore);
+ const callsBefore=readFileSync('docker-calls.jsonl','utf8');assessment.set('head','config-change');job=await submit();assert.equal(job.status,'awaiting_setup');assert.notEqual(job.setupId,id);assert.equal(allSetups().length,setupCount+1);assert.equal(readFileSync('docker-calls.jsonl','utf8'),callsBefore);
+ const cancelledId=job.id;assert.equal((await post('/assess/'+job.id+'/cancel',new URLSearchParams())).status,303);await new Promise(r=>setTimeout(r,50));assert.equal(JSON.parse(readFileSync('data/submissions/'+cancelledId+'/job.json')).status,'interrupted');job=await submit();assert.equal(job.status,'awaiting_setup');
+ server.close();await new Promise(r=>setTimeout(r,100));assert.equal(JSON.parse(readFileSync('data/submissions/'+job.id+'/job.json')).status,'interrupted');
  assert.equal(existsSync('data/trust'),false);assert.equal(existsSync('data/experiments'),false);assert.deepEqual(JSON.parse(readFileSync('cases.json')),{cases:[]});
-}finally{server.close();}
+}finally{if(server.listening)server.close();}
 `);
   const result=spawnSync(process.execPath,[join(fixture,'check.mjs')],{cwd:fixture,encoding:'utf8',timeout:30000,env:{...process.env,PATH:join(fixture,'bin')+':'+process.env.PATH}});assert.equal(result.status,0,result.stderr+'\n'+result.stdout);
  }finally{rmSync(fixture,{recursive:true,force:true});}
+});
+
+
+test('progress keeps polling while setup waits and switches from confirmation to baseline to completed',async()=>{
+ const {renderAssessmentProgress}=await import('../src/assessment-pages.ts');const {STAGES}=await import('../src/submissions.ts');const {runInNewContext}=await import('node:vm');
+ const initial:any={id:'submission-11111111-1111-1111-1111-111111111111',status:'running',stage:'prepare',startedAt:'2026-11-15T00:00:00Z',updatedAt:'2026-11-15T00:00:00Z',repository:'/synthetic/fixture',owner:'Synthetic fixture',log:''};
+ const setupId='setup-11111111-1111-1111-1111-111111111111';
+ const states=[{...initial,status:'awaiting_setup',stage:'setup',setupId,setupStatus:'review'},{...initial,status:'awaiting_setup',stage:'setup',setupId,setupStatus:'running'},{...initial,status:'completed',stage:'assemble',setupId,setupStatus:'verified'}];
+ const nodes:any=Object.fromEntries(['job-status','job-log','job-error','job-result','job-cancel','job-setup','job-setup-link','job-setup-title','job-setup-note',...STAGES.map(s=>'stage-'+s)].map(id=>[id,{textContent:'',hidden:true,href:'',classList:{toggle(){}}}]));
+ const timers:Function[]=[];const html=renderAssessmentProgress(initial,'nonce');const code=html.match(/<script nonce="nonce">([\s\S]*?)<\/script>/)![1];
+ runInNewContext(code,{document:{getElementById:(id:string)=>nodes[id]},location:{pathname:'/assess/'+initial.id},setTimeout:(fn:Function)=>timers.push(fn),fetch:async()=>({ok:true,json:async()=>states.shift()})});
+ await timers.shift()!();assert.match(nodes['job-status'].textContent,/Waiting for verification plan/);assert.equal(nodes['job-cancel'].hidden,false);assert.equal(nodes['job-setup-link'].href,'/setups/'+setupId);assert.equal(timers.length,1);
+ await timers.shift()!();assert.match(nodes['job-status'].textContent,/Verifying repository baseline/);assert.equal(nodes['job-cancel'].hidden,true);assert.equal(timers.length,1);
+ await timers.shift()!();assert.equal(nodes['job-result'].hidden,false);assert.match(nodes['job-setup-link'].textContent,/verified/);assert.equal(timers.length,0);
 });

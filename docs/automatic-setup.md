@@ -9,7 +9,7 @@ Detect committed manifests and CI configuration, propose fixed trusted .NET/npm 
 - [x] Implement pure language/runtime/lockfile/test detection and configuration fingerprints; test malformed, unsupported and changed configurations.
 - [x] Implement isolated command execution with trusted image validation, immutable image resolution, bounded logs/timeouts and truthful outcomes; test execution boundaries.
 - [x] Add setup registry, pinned repository/revision snapshots, human plan confirmation, baseline progress and reusable successful plans.
-- [x] Integrate automatic-profile selection into assessments, recheck both base/head configuration, run full configured head verification and attach evidence with explicit coverage limits.
+- [x] Integrate automatic-profile selection into assessments, check submitted head configuration, run full configured head verification and attach evidence with explicit coverage limits.
 - [x] Add setup/review/progress pages and navigation using existing styles; test the complete flow in temporary fixtures without real human records.
 - [x] Run focused/full tests, inspect desktop/mobile pages, preserve existing data/frozen modules, independent review, local commit only.
 
@@ -19,7 +19,7 @@ No dependency upgrades, model-authored executable commands, or silent fallback t
 
 ## Using the workflow
 
-Open `/setups`, enter a repository and a baseline revision, and select **Detect verification setup**. Review all proposed commands, script bodies, image and unsupported coverage. A named person then selects **Trust plan and run baseline**. After successful baseline checks, choose **Assess a change with this setup** and use **Automatic** verification. Both comparison revisions must match the approved relevant configuration; configuration changes require another detection and trust review.
+Start an assessment in Automatic mode. A matching setup is reused; otherwise a plan is detected from the pinned head and the assessment waits for confirmation. Standalone detection remains available at `/setups`. Review all proposed commands, script bodies, image and unsupported coverage. A named person then selects **Trust plan and run baseline**. After successful baseline checks, choose **Assess a change with this setup** and use **Automatic** verification. The submitted head must match the approved relevant configuration; configuration changes trigger a new plan review. Automatic verification does not execute base commands or claim regression discrimination.
 
 The saved setup permission is not a PR sign-off. It never changes trust history or accepts findings. Verification failure, missing results or erased setup evidence blocks signing regardless of what the model links. Re-running the old CLI cannot remove the persisted setup requirement.
 
