@@ -1,5 +1,5 @@
 // Paths, the case list and repository profiles. Nothing repository-specific is written here.
-import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 
 export const ROOT = resolve(import.meta.dirname, "..");
@@ -25,6 +25,8 @@ export type Case = {
   id: string; profile: string; repository: string; base: string; head: string;
   requirement: { id: string; url?: string; text?: string };
   cohort?: "sample" | "holdout" | "control"; // evaluation metadata only; never used for review decisions
+  sourceRepository?: string;
+  submission?: boolean;
   synthetic?: string; // set for planted-bug cases; shown on every page that displays them
 };
 
@@ -37,8 +39,15 @@ export function writeJson(path: string, value: unknown): void {
   writeFileSync(path, JSON.stringify(value, null, 2) + "\n");
 }
 
+export function listCases(): Case[] {
+  const fixed: Case[] = readJson(join(ROOT, "cases.json")).cases;
+  const directory = join(DATA, "submissions");
+  const submitted: Case[] = existsSync(directory) ? readdirSync(directory).filter(id => /^submission-[0-9a-f-]{36}$/.test(id) && existsSync(join(directory,id,"case.json"))).map(id => readJson(join(directory,id,"case.json"))) : [];
+  return [...fixed, ...submitted.filter(c => !fixed.some(f => f.id === c.id))];
+}
+
 export function loadCase(id: string): Case {
-  const c = (readJson(join(ROOT, "cases.json")).cases as Case[]).find((x) => x.id === id);
+  const c = listCases().find((x) => x.id === id);
   if (!c) throw new Error(`unknown case "${id}" (see cases.json)`);
   if (!/^[0-9a-f]{40}$/.test(c.base) || !/^[0-9a-f]{40}$/.test(c.head)) throw new Error(`case ${id}: base and head must be full commit hashes`);
   if (!c.requirement.url && !c.requirement.text) throw new Error(`case ${id}: requirement needs a url or text`);
@@ -46,6 +55,8 @@ export function loadCase(id: string): Case {
 }
 
 export function loadProfile(name: string): Profile {
+  if (/^submission-[0-9a-f-]{36}$/.test(name)) return readJson(join(DATA,"submissions",name,"profile.json"));
+  if (!/^[A-Za-z0-9_-]+$/.test(name)) throw new Error("Invalid profile name");
   return readJson(join(ROOT, "profiles", `${name}.json`));
 }
 

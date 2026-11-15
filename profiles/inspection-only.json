@@ -1,0 +1,88 @@
+{
+  "name": "inspection-only",
+  "description": "Generic code inspection without executable verification. Language-specific correctness and test coverage are not established.",
+  "container": {
+    "image": "unavailable",
+    "timeoutSeconds": 2400,
+    "env": {
+      "HOME": "{work}/home",
+      "DOTNET_CLI_HOME": "{work}/home",
+      "NUGET_PACKAGES": "{work}/nuget",
+      "DOTNET_CLI_TELEMETRY_OPTOUT": "1",
+      "DOTNET_NOLOGO": "1"
+    }
+  },
+  "tests": {
+    "paths": [],
+    "projectFile": "Tests\\.csproj$",
+    "command": [],
+    "filterArgs": [],
+    "resultFormat": "trx"
+  },
+  "classify": [
+    {
+      "class": "docs",
+      "pattern": "\\.md$"
+    },
+    {
+      "class": "source",
+      "pattern": "."
+    }
+  ],
+  "repetitiveClasses": [],
+  "publicSurface": {
+    "classes": [
+      "source"
+    ],
+    "paths": ".",
+    "declaration": "^\\s*(public\\s|export\\s)",
+    "apiFiles": "PublicAPI\\.",
+    "diagnosticFiles": "(?!)",
+    "diagnosticId": "(?!)"
+  },
+  "securitySurface": {
+    "classes": [
+      "source"
+    ],
+    "patterns": [
+      {
+        "name": "process-execution",
+        "regex": "\\bProcess\\.Start\\b|\\bProcessStartInfo\\b"
+      },
+      {
+        "name": "network-access",
+        "regex": "\\b(HttpClient|WebClient|WebRequest|TcpClient|UdpClient|Socket|Dns)\\b"
+      },
+      {
+        "name": "file-access",
+        "regex": "\\b(File|Directory|FileStream|FileInfo|DirectoryInfo|StreamWriter|StreamReader)\\s*[.(]"
+      },
+      {
+        "name": "reflection-emit",
+        "regex": "\\bSystem\\.Reflection\\.Emit\\b|\\b(ILGenerator|DynamicMethod|AssemblyBuilder|TypeBuilder)\\b"
+      },
+      {
+        "name": "unsafe-code",
+        "regex": "\\bunsafe\\b|\\bstackalloc\\b|\\bMarshal\\.|\\bUnsafe\\."
+      },
+      {
+        "name": "secret-like-string",
+        "regex": "(password|passwd|secret|api[_-]?key|access[_-]?token|private[_-]?key)\\s*[:=]\\s*[\"'][^\"']{6,}",
+        "flags": "i"
+      },
+      {
+        "name": "secret-like-string",
+        "regex": "AKIA[0-9A-Z]{16}|-----BEGIN [A-Z ]*PRIVATE KEY-----|gh[pousr]_[A-Za-z0-9]{30,}"
+      }
+    ]
+  },
+  "areas": [
+    {
+      "name": "submitted-change",
+      "owner": "Named submission owner",
+      "paths": [
+        "."
+      ]
+    }
+  ]
+}

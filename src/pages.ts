@@ -1,5 +1,6 @@
 // Pages of the sign-off server other than the sheet itself. Same design system as the sheet.
 import { cohortLabel, COHORT_LABELS } from "./cohorts.ts";
+import type {Job} from "./submissions.ts";
 import type { Report } from "./report.ts";
 import { ACTIVE_TIME_SCRIPT, CSS, esc, VERDICT } from "./render.ts";
 import { trustFloor, type TrustEvent } from "./states.ts";
@@ -27,15 +28,17 @@ const page = (title: string, body: string, nonce?: string) => `<!doctype html>
 <title>${esc(title)}</title><style>${CSS}${PAGE_CSS}</style></head><body><main class="sheet">${body}</main>
 ${nonce ? `<script nonce="${esc(nonce)}">${ACTIVE_TIME_SCRIPT}</script>` : ""}</body></html>`;
 
-export function renderIndex(rows: { id: string; requirementId: string; title: string; route: string | null; generatedAt: string | null; signoffs: number }[]) {
+export function renderIndex(rows: { id: string; requirementId: string; title: string; route: string | null; generatedAt: string | null; signoffs: number }[], jobs: Job[] = []) {
   return page("ReviewProof: changes waiting for an owner", `<div class="desk">
 <h1>Changes waiting for an owner</h1>
+<p><a href="/assess">Start a new assessment</a></p>
+${jobs.length ? `<h2>Your submissions</h2><p class="muted">User submissions are separate from the supplied examples and evaluation cases.</p><ul>${jobs.map(job => `<li><a href="/assess/${esc(job.id)}">${esc(job.repository)}</a> — ${esc(job.status)}, ${esc(job.stage)}${job.status === "completed" ? ` · <a href="/case/${esc(job.id)}">Open report</a>` : ""}</li>`).join("")}</ul>` : ""}
 <p>Each change has a sign-off sheet; supplied samples, the holdout and the merged control are labelled separately. The AI reviewer never approves; a named person signs.</p>
-<div class="scroll"><table><thead><tr><th>Requirement</th><th>Route</th><th>Sheet generated</th><th>Signatures</th><th></th></tr></thead><tbody>
+<h2>Examples and evaluation cases</h2><div class="scroll"><table><thead><tr><th>Requirement</th><th>Route</th><th>Sheet generated</th><th>Signatures</th><th></th></tr></thead><tbody>
 ${rows.map((r) => `<tr><td><span class="muted">${esc(cohortLabel(r.id))}</span><br><b>${esc(r.requirementId)}</b> ${esc(r.title)}</td>
 <td>${r.route ? `<span class="route-word r-${esc(r.route)}">${esc(VERDICT[r.route as keyof typeof VERDICT])}</span>` : `<span class="muted">No report yet</span>`}</td>
 <td class="muted nowrap">${esc(when(r.generatedAt))}</td><td>${r.signoffs}</td>
-<td class="nowrap">${r.route ? `<a href="/case/${encodeURIComponent(r.id)}">Open sheet</a><br><a href="/case/${encodeURIComponent(r.id)}/blind">Blind spot-check</a>` : `<span class="muted">Generate with</span><br><code>node src/cli.ts all ${esc(r.id)}</code>`}</td></tr>`).join("")}
+<td class="nowrap">${r.route ? `<a href="/case/${encodeURIComponent(r.id)}">Open sheet</a><br><a href="/case/${encodeURIComponent(r.id)}/blind">Blind spot-check</a>${cohortLabel(r.id) === "Supplied sample" ? `<br><a href="/assess?example=${encodeURIComponent(r.id)}">Assess a copy</a>` : ""}` : `<span class="muted">Generate with</span><br><code>node src/cli.ts all ${esc(r.id)}</code>`}</td></tr>`).join("")}
 </tbody></table></div>
 <p><a href="/trust">Trust record by area</a><br><a href="/metrics">How trust is measured</a><br><a href="/evaluation/control">Merged control: availability and build attempts</a></p><h2>Separate follow-up experiments</h2><p><a href="/evaluation/experiments">Human review observations</a><br><a href="/evaluation/control-v2">Control with repaired SDK environment</a></p><p class="muted">These observations and follow-up results do not enter the frozen evaluation. Start a timed exercise from a live sheet.</p></div>`);
 }

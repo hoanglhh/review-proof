@@ -95,3 +95,17 @@ The live sheet now labels the legacy `proven` state **Observed in a discriminati
 The human must perform the timing exercise and judge findings. No timings, correctness labels, sign-offs or spot-checks are manufactured by setup or tests. See [follow-up design](docs/improvements-v2.md).
 
 The separate v2 control completed: 4 raw findings (4 citation-validated), 4 model-raised decisions, 1 unexplained hunk, 1 broken claim; route blocked. These are not false-positive judgments. Its head tests passed, but upstream snapshot comparison is disabled; see [control evidence and limitations](docs/control-v2.md).
+
+## Assess your own change without editing JSON
+
+Start `node src/cli.ts serve` and open **Start a new assessment** on the home page, or go directly to `/assess`.
+
+Enter an absolute local Git repository path or a public HTTPS GitHub repository URL, base/head branches or commits, the intended requirement, and a human owner. Select **Code inspection only** to assess an unfamiliar repository without running executable checks. To run tests, choose an installed trusted repository profile and confirm that it applies. The owner is recorded for the submitted change; starting a run never signs it.
+
+Click **Start assessment**. The progress page shows repository resolution, diff ingestion, verification, AI review and report assembly, with live logs. Once complete, open the report; its route may still be blocked or require a full human read. Docker is needed only for executable verification; the configured model endpoint is needed for AI findings. Without model configuration, the pipeline produces a truthful unavailable/blocked report.
+
+To try a supplied sample, click **Assess a copy** next to its saved report. This prefills a new submission and leaves the original assessment intact. Enter your name and verify the selected profile before starting. No manual `cases.json` change or terminal pipeline command is needed.
+
+Submissions are registered under `data/submissions/<generated-id>/`, with a snapshot of the chosen profile and pinned commits. Each source comparison is cloned into its own directory under `.work/submission-repos/`; the report names that isolated source snapshot, while the progress page and submission metadata retain the original repository. Their evidence and report use `data/cases/<generated-id>/`. Trust area names are scoped to the source repository, so unrelated repositories cannot inherit each other’s earned trust. They are labelled **User submission**, with their own metrics filter (`/metrics?cohort=submitted`); every aggregate lists its case scope. `cases.json` remains the fixed benchmark manifest. One assessment runs at a time. Keep the server running; an interrupted run is recorded as interrupted and can be retried by submitting again.
+
+The expanded-context v2 CLI remains a separate sample-only experiment; ordinary submissions currently use the original generic reviewer and its changed-file context. Requirements are mandatory in this first form because the existing review model checks evidence against stated intent.

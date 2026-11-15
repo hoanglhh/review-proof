@@ -1,0 +1,105 @@
+{
+  "checkedAt": "2026-11-15T00:58:51.018883+00:00",
+  "tests": {
+    "command": "npm test",
+    "passed": 65,
+    "failed": 0,
+    "integration": "Temporary real Git repositories with a mock model; no live model or Docker checks for this UI change."
+  },
+  "browser": [
+    {
+      "width": 1100,
+      "title": "New assessment",
+      "overflow": false,
+      "button": "Start assessment",
+      "fields": [
+        {
+          "name": "repository",
+          "label": true
+        },
+        {
+          "name": "base",
+          "label": true
+        },
+        {
+          "name": "head",
+          "label": true
+        },
+        {
+          "name": "owner",
+          "label": true
+        },
+        {
+          "name": "requirementId",
+          "label": true
+        },
+        {
+          "name": "requirement",
+          "label": true
+        },
+        {
+          "name": "profile",
+          "label": true
+        },
+        {
+          "name": "trustProfile",
+          "label": true
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "title": "New assessment",
+      "overflow": false,
+      "button": "Start assessment",
+      "fields": [
+        {
+          "name": "repository",
+          "label": true
+        },
+        {
+          "name": "base",
+          "label": true
+        },
+        {
+          "name": "head",
+          "label": true
+        },
+        {
+          "name": "owner",
+          "label": true
+        },
+        {
+          "name": "requirementId",
+          "label": true
+        },
+        {
+          "name": "requirement",
+          "label": true
+        },
+        {
+          "name": "profile",
+          "label": true
+        },
+        {
+          "name": "trustProfile",
+          "label": true
+        }
+      ]
+    }
+  ],
+  "preservation": {
+    "existingDataFiles": 304,
+    "changedData": [],
+    "changedFrozenReviewModules": [],
+    "newHumanRecords": []
+  },
+  "review": "Two material issues corrected and independently re-reviewed: repository cache collisions and cross-repository trust transfer.",
+  "limits": [
+    "One active assessment at a time.",
+    "Requirements text is mandatory in the current evidence model.",
+    "Only installed trusted profiles execute checks; code inspection is default.",
+    "Local Git paths and public HTTPS GitHub repositories.",
+    "New submissions use original generic reviewer; expanded-context v2 remains a separate experiment."
+  ]
+}

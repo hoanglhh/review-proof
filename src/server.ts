@@ -4,7 +4,7 @@ import { createHash, randomBytes } from "node:crypto";
 import { appendFileSync, existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { createServer, type IncomingMessage, type ServerResponse } from "node:http";
 import { dirname, extname, join, resolve, sep } from "node:path";
-import { caseDir, DATA, loadCase, loadProfile, readJson, ROOT, type Case } from "./config.ts";
+import { caseDir, DATA, loadCase, loadProfile, readJson, ROOT, listCases, type Case } from "./config.ts";
 import { assembleCase, readJsonl, signoffsOf, TRUST_LOG, type Policy } from "./assemble.ts";
 import { esc, renderHtml } from "./render.ts";
 import { renderControlEvaluation, renderBlind, renderIndex, renderMessage, renderMetrics, renderReveal, renderTrust } from "./pages.ts";
@@ -12,6 +12,9 @@ import { loadMetrics } from "./metrics.ts";
 import { COHORT_LABELS, type Cohort } from "./cohorts.ts";
 import type { Report } from "./report.ts";
 import { experimentRecord, renderExperiment, renderExperiments, validateExperiment, type Experiment } from "./experiment.ts";
+
+import {installedProfiles, startSubmission, submissionJob, submissionJobs, stopSubmissions, validateSubmission} from "./submissions.ts";
+import {renderAssessmentForm, renderAssessmentProgress} from "./assessment-pages.ts";
 
 export const SIMULATED_LOG = join(DATA, "trust", "simulated-events.jsonl");
 const ACTIONS = ["accept", "request_changes", "escalate"];
@@ -57,7 +60,7 @@ export function startServer(port: number) {
   const send = (res: ServerResponse, status: number, body: string, nonce = "", type = "text/html; charset=utf-8") => {
     res.writeHead(status, {
       "content-type": type, "x-content-type-options": "nosniff", "referrer-policy": "same-origin", "x-frame-options": "DENY",
-      "content-security-policy": `default-src 'none'; style-src 'unsafe-inline'; script-src 'nonce-${nonce}'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'`,
+      "content-security-policy": `default-src 'none'; style-src 'unsafe-inline'; connect-src 'self'; script-src 'nonce-${nonce}'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'`,
     });
     res.end(body);
   };
@@ -72,7 +75,7 @@ export function startServer(port: number) {
   const sheet = (res: ServerResponse, c: Case, r: Report, extra: { errors?: string[]; form?: URLSearchParams; notice?: string } = {}, status = 200) => {
     const nonce = randomBytes(16).toString("base64");
     send(res, status, renderHtml(r, (x) => `/${x}`, policy.sheet.maxFindingsShown, {
-      reportHash: hashOf(c.id), nonce, signoffs: signoffsOf(c.id), errors: extra.errors ?? [], form: extra.form, notice: extra.notice,
+      reportHash: hashOf(c.id), nonce, signoffs: signoffsOf(c.id), errors: extra.errors ?? [], form: extra.form, notice: extra.notice ?? (c.sourceRepository ? `Submitted source: ${c.sourceRepository}. The report uses an isolated snapshot of its pinned commits.` : undefined),
     }), nonce);
   };
 
@@ -85,16 +88,46 @@ export function startServer(port: number) {
       if (req.method === "POST" && !sameOrigin) return send(res, 403, "Posts are accepted only from this server's own pages.", "", "text/plain");
       const parts = url.pathname.split("/").filter(Boolean).map(decodeURIComponent);
 
+      if (parts[0] === "assess") {
+        const nonce = randomBytes(16).toString("base64");
+        if (parts.length === 1 && ["GET","POST"].includes(req.method ?? "")) {
+          const profiles = installedProfiles().map(id => ({id, description: readJson(join(ROOT,"profiles",`${id}.json`)).description ?? id}));
+          if (req.method === "POST") {
+            const form = await body(req);
+            const errors = validateSubmission(form);
+            if (errors.length) return send(res,400,renderAssessmentForm(profiles,form,errors,nonce),nonce);
+            try { const job = startSubmission(form); return redirect(res,`/assess/${job.id}`); }
+            catch(error) { return send(res,409,renderAssessmentForm(profiles,form,[String(error)],nonce),nonce); }
+          }
+          const form = new URLSearchParams();
+          const sample = listCases().find(c => c.id === url.searchParams.get("example") && c.cohort === "sample");
+          if (sample) {
+            for (const key of ["repository","base","head","profile"] as const) form.set(key,sample[key]);
+            form.set("requirementId",sample.requirement.id);
+            const file=join(caseDir(sample.id),"requirement.json");
+            if (existsSync(file)) {const requirement=readJson(file);form.set("requirement",[requirement.title,requirement.body].filter(Boolean).join("\n\n"));}
+          }
+          return send(res,200,renderAssessmentForm(profiles,form,[],nonce),nonce);
+        }
+        if (req.method === "GET" && (parts.length===2 || (parts.length===3 && parts[2]==="status"))) {
+          const job = submissionJob(parts[1]);
+          if (!job) return send(res,404,renderMessage("Assessment not found","Start a new assessment from the form.","/assess"));
+          if (parts[2] === "status") { res.setHeader("cache-control","no-store");return send(res,200,JSON.stringify(job),"","application/json; charset=utf-8"); }
+          return send(res,200,renderAssessmentProgress(job,nonce),nonce);
+        }
+        return send(res,404,renderMessage("Not found","There is no assessment at this address.","/assess"));
+      }
+
       if (req.method === "GET" && parts.length === 0) {
-        const cases: Case[] = readJson(join(ROOT, "cases.json")).cases;
-        return send(res, 200, renderIndex(cases.map((c) => {
+        const cases: Case[] = listCases();
+        return send(res, 200, renderIndex(cases.filter(c => !c.submission).map((c) => {
           const r = report(c.id);
           return { id: c.id, requirementId: c.requirement.id, title: r?.case.title ?? "", route: r?.route.effectiveRoute ?? null, generatedAt: r?.case.generatedAt ?? null, signoffs: signoffsOf(c.id).length };
-        })));
+        }), submissionJobs()));
       }
 
       if (parts[0] === "trust") {
-        const cases: Case[] = readJson(join(ROOT, "cases.json")).cases;
+        const cases: Case[] = listCases();
         const areas = [...new Map(cases.flatMap((c) => loadProfile(c.profile).areas).map((a) => [a.name, a])).values()];
         if (req.method === "POST" && parts[1] === "escape") {
           // an escape: a problem found after a change was accepted. It resets the area to full read.
@@ -269,6 +302,11 @@ export function startServer(port: number) {
       send(res, 500, renderMessage("Something went wrong", String(e instanceof Error ? e.message : e), "/"));
     }
   });
+  server.on("close", stopSubmissions);
+  if (process.argv[1]?.endsWith("cli.ts")) {
+    const stop = () => { stopSubmissions(); server.close(); process.exit(0); };
+    process.once("SIGINT",stop); process.once("SIGTERM",stop);
+  }
   server.listen(port, "127.0.0.1", () => console.log(`ReviewProof sign-off server on http://127.0.0.1:${port}/ (local only; Ctrl-C to stop)`));
   return server;
 }

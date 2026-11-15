@@ -87,3 +87,7 @@ Short, dated entries. Newest last.
 ## Follow-up v2: preserve the frozen experiment
 
 The user requested clearer evidence semantics, human effort measurement, an explicit explanation map, relevant unchanged-source context, and a compatible-environment control. Live presentation changes preserve stored states and original static reports. New timing observations and context/control evaluations use separate directories and denominators. No holdout rerun, prompt tuning on it, human judgment, or trust record mutation is authorized by this work. Lexical context retrieval is bounded and reports omissions rather than claiming full repository coverage.
+
+## Automatic submissions and visible progress
+
+Users repeatedly needed a new assessment without editing `cases.json`. Add `/assess`, a separate submission registry, trusted profile snapshots and sequential execution of the existing CLI stages. Resolve branches to pinned commits before analysis and expose actual stage/log updates. Default to generic code inspection with explicit unavailable executable verification; require a suitable trusted profile before running tests. Require requirements text under the existing evidence model. Permit copying only supplied samples into new runs; holdout inputs are not prefilled by this workflow. Submitted reviews are labelled independently in scoped aggregates. Starting a job never creates human approvals or trust events.
