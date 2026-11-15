@@ -5,7 +5,7 @@ import { appendFileSync, existsSync, mkdirSync, readFileSync, readdirSync, write
 import { createServer, type IncomingMessage, type ServerResponse } from "node:http";
 import { dirname, extname, join, resolve, sep } from "node:path";
 import { caseDir, DATA, loadCase, loadProfile, readJson, ROOT, listCases, type Case } from "./config.ts";
-import { assembleCase, readJsonl, signoffsOf, TRUST_LOG, type Policy } from "./assemble.ts";
+import { readJsonl, signoffsOf, TRUST_LOG, type Policy } from "./assemble.ts";
 import { esc, renderHtml } from "./render.ts";
 import { renderControlEvaluation, renderBlind, renderIndex, renderMessage, renderMetrics, renderReveal, renderTrust } from "./pages.ts";
 import { loadMetrics } from "./metrics.ts";
@@ -13,8 +13,13 @@ import { COHORT_LABELS, type Cohort } from "./cohorts.ts";
 import type { Report } from "./report.ts";
 import { experimentRecord, renderExperiment, renderExperiments, validateExperiment, type Experiment } from "./experiment.ts";
 
-import {installedProfiles, startSubmission, submissionJob, submissionJobs, stopSubmissions, validateSubmission} from "./submissions.ts";
+import {installedProfiles, startSubmission, submissionJob, submissionJobs, stopSubmissions, validateSubmission, submissionsRunning} from "./submissions.ts";
 import {renderAssessmentForm, renderAssessmentProgress} from "./assessment-pages.ts";
+
+import {allSetups,getSetup,startSetup,trustSetup,validateSetupInput,stopSetups,setupBusy} from "./repository-setup.ts";
+import {renderSetupIndex,renderSetup} from "./setup-pages.ts";
+
+import {assembleWithSetupGate as assembleCase,gateSetupReport} from "./setup-gate.ts";
 
 export const SIMULATED_LOG = join(DATA, "trust", "simulated-events.jsonl");
 const ACTIONS = ["accept", "request_changes", "escalate"];
@@ -70,7 +75,7 @@ export function startServer(port: number) {
     req.on("data", (chunk) => { s += chunk; if (s.length > 1_000_000) { req.destroy(); fail(new Error("request body too large")); } });
     req.on("end", () => ok(new URLSearchParams(s)));
   });
-  const report = (id: string): Report | null => (existsSync(join(caseDir(id), "report.json")) ? readJson(join(caseDir(id), "report.json")) : null);
+  const report = (id: string): Report | null => (existsSync(join(caseDir(id), "report.json")) ? gateSetupReport(readJson(join(caseDir(id), "report.json"))) : null);
 
   const sheet = (res: ServerResponse, c: Case, r: Report, extra: { errors?: string[]; form?: URLSearchParams; notice?: string } = {}, status = 200) => {
     const nonce = randomBytes(16).toString("base64");
@@ -88,18 +93,38 @@ export function startServer(port: number) {
       if (req.method === "POST" && !sameOrigin) return send(res, 403, "Posts are accepted only from this server's own pages.", "", "text/plain");
       const parts = url.pathname.split("/").filter(Boolean).map(decodeURIComponent);
 
+      if (parts[0] === "setups") {
+        const nonce=randomBytes(16).toString("base64");
+        if(parts.length===1 && req.method==="GET")return send(res,200,renderSetupIndex(allSetups()));
+        if(parts.length===1 && req.method==="POST"){
+          const form=await body(req);const errors=validateSetupInput(form);
+          if(errors.length)return send(res,400,renderSetupIndex(allSetups(),errors,form));
+          try {if(submissionsRunning())throw new Error("An assessment is running. Wait before starting setup.");const setup=startSetup(form);return redirect(res,`/setups/${setup.id}`);}
+          catch(e){return send(res,409,renderSetupIndex(allSetups(),[String(e)],form));}
+        }
+        if(parts.length===2 && req.method==="GET"){const setup=getSetup(parts[1]);return setup?send(res,200,renderSetup(setup,nonce),nonce):send(res,404,renderMessage("Setup not found","Detect a repository setup first.","/setups"));}
+        if(parts.length===3 && parts[2]==="trust" && req.method==="POST"){
+          const setup=getSetup(parts[1]);if(!setup)return send(res,404,renderMessage("Setup not found","Detect a repository setup first.","/setups"));
+          try {if(submissionsRunning())throw new Error("An assessment is running. Wait before running setup.");trustSetup(parts[1],await body(req));return redirect(res,`/setups/${parts[1]}`);}
+          catch(e){return send(res,400,renderSetup(setup,nonce,String(e)),nonce);}
+        }
+        return send(res,404,renderMessage("Setup not found","There is no setup at this address.","/setups"));
+      }
+
       if (parts[0] === "assess") {
         const nonce = randomBytes(16).toString("base64");
         if (parts.length === 1 && ["GET","POST"].includes(req.method ?? "")) {
-          const profiles = installedProfiles().map(id => ({id, description: readJson(join(ROOT,"profiles",`${id}.json`)).description ?? id}));
+          const profiles = [{id:"auto",description:"Reuse a verified repository setup; detect and trust a plan first."},...installedProfiles().map(id => ({id, description: readJson(join(ROOT,"profiles",`${id}.json`)).description ?? id}))];
           if (req.method === "POST") {
             const form = await body(req);
             const errors = validateSubmission(form);
             if (errors.length) return send(res,400,renderAssessmentForm(profiles,form,errors,nonce),nonce);
-            try { const job = startSubmission(form); return redirect(res,`/assess/${job.id}`); }
+            try { if(setupBusy())throw new Error("Repository setup is running. Wait for it to finish."); const job = startSubmission(form); return redirect(res,`/assess/${job.id}`); }
             catch(error) { return send(res,409,renderAssessmentForm(profiles,form,[String(error)],nonce),nonce); }
           }
           const form = new URLSearchParams();
+          const setup=getSetup(url.searchParams.get("setup")??"");
+          if(setup?.status==="verified"){form.set("repository",setup.repository);form.set("base",setup.commit!);form.set("owner",setup.trustedBy??"");form.set("profile","auto");}
           const sample = listCases().find(c => c.id === url.searchParams.get("example") && c.cohort === "sample");
           if (sample) {
             for (const key of ["repository","base","head","profile"] as const) form.set(key,sample[key]);
@@ -213,7 +238,7 @@ export function startServer(port: number) {
       if (req.method === "GET" && action === "earned") { // simulated trust: read-only, no form, never signable
         const f = join(caseDir(c.id), "report-earned.json");
         if (!existsSync(f)) return send(res, 404, renderMessage("No simulated view yet", `Run: node src/cli.ts assemble ${c.id}`, back));
-        return send(res, 200, renderHtml(readJson(f), (x) => `/${x}`, policy.sheet.maxFindingsShown));
+        return send(res, 200, renderHtml(gateSetupReport(readJson(f)), (x) => `/${x}`, policy.sheet.maxFindingsShown));
       }
 
       if (req.method === "POST" && action === "confirm") {
@@ -302,9 +327,9 @@ export function startServer(port: number) {
       send(res, 500, renderMessage("Something went wrong", String(e instanceof Error ? e.message : e), "/"));
     }
   });
-  server.on("close", stopSubmissions);
+  server.on("close", () => {stopSubmissions();void stopSetups();});
   if (process.argv[1]?.endsWith("cli.ts")) {
-    const stop = () => { stopSubmissions(); server.close(); process.exit(0); };
+    const stop = async () => { server.close(); stopSubmissions(); await stopSetups(); process.exit(0); };
     process.once("SIGINT",stop); process.once("SIGTERM",stop);
   }
   server.listen(port, "127.0.0.1", () => console.log(`ReviewProof sign-off server on http://127.0.0.1:${port}/ (local only; Ctrl-C to stop)`));

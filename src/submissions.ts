@@ -6,13 +6,17 @@ import {join} from 'node:path';
 import {DATA, ROOT, WORK, loadProfile, readJson, type Case} from './config.ts';
 import {git} from './git.ts';
 
+import {reusableSetup,setupProfile,verifySubmissionSetup,type RepositorySetup} from './repository-setup.ts';
+
+import {persistSetupGate} from './setup-gate.ts';
+
 export const SUBMISSIONS = join(DATA,'submissions');
 export const STAGES = ['prepare','ingest','check','review','assemble'] as const;
 export type Job = {id:string; status:'running'|'completed'|'failed'|'interrupted';stage:string;startedAt:string;updatedAt:string;owner:string;repository:string;log:string;error?:string;exitCode?:number|null};
 const active = new Map<string,ChildProcess|null>();
 const safeId = (id:string) => /^submission-[0-9a-f-]{36}$/.test(id);
 export const installedProfiles = () => readdirSync(join(ROOT,'profiles')).filter(f=>/^[a-z0-9_-]+\.json$/.test(f)).map(f=>f.slice(0,-5));
-export function validateSubmission(f:URLSearchParams, profiles=installedProfiles()) {
+export function validateSubmission(f:URLSearchParams, profiles=['auto',...installedProfiles()]) {
   const errors:string[]=[];
   for(const key of ['repository','base','head','requirement','owner','profile']) if(f.getAll(key).length!==1) errors.push(`Supply ${key} exactly once.`);
   if(f.getAll('requirementId').length>1) errors.push('Supply the requirement ID once.');
@@ -24,7 +28,7 @@ export function validateSubmission(f:URLSearchParams, profiles=installedProfiles
   for(const [key,max] of [['owner',120],['requirement',50000]] as const) if(!f.get(key)?.trim()||f.get(key)!.length>max) errors.push(`Supply ${key} (maximum ${max} characters).`);
   if((f.get('requirementId')??'').length>120) errors.push('Requirement ID must be at most 120 characters.');
   if(!profiles.includes(f.get('profile')??'')) errors.push('Choose an installed verification profile.');
-  if(f.get('profile')!=='inspection-only'&&f.get('trustProfile')!=='yes') errors.push('Confirm that the selected verification profile is trusted for this repository.');
+  if(!['auto','inspection-only'].includes(f.get('profile')??'')&&f.get('trustProfile')!=='yes') errors.push('Confirm that the selected verification profile is trusted for this repository.');
   return errors;
 }
 function saveJob(job:Job) {
@@ -65,7 +69,9 @@ async function execute(job:Job,f:URLSearchParams) {
     if(base===head)throw new Error('Base and head resolve to the same commit. Choose a comparison with changes.');
     git(clone,['update-ref','refs/heads/assessment-base',base]);git(clone,['update-ref','refs/heads/assessment-head',head]);
     const c:Case={id:job.id,profile:job.id,repository:clone,sourceRepository:repository,base,head,requirement:{id:f.get('requirementId')?.trim()||'Submitted requirement',text:f.get('requirement')!.trim()},submission:true};
-    const profile=loadProfile(f.get('profile')!);const identity=repository.startsWith('/')?realpathSync(repository):repository.replace(/\.git\/?$/,'').replace(/\/$/,'').toLowerCase();
+    const verified:RepositorySetup|undefined=f.get('profile')==='auto'?reusableSetup(repository,clone,base,head):undefined;
+    if(verified)c.verificationSetup={id:verified.id,fingerprint:verified.detection!.fingerprint};
+    const profile=verified?setupProfile():loadProfile(f.get('profile')!);const identity=repository.startsWith('/')?realpathSync(repository):repository.replace(/\.git\/?$/,'').replace(/\/$/,'').toLowerCase();
     const scope=createHash('sha256').update(identity).digest('hex').slice(0,16);
     profile.areas=profile.areas.map(a=>({...a,name:`repository-${scope}/${a.name}`,owner:job.owner}));
     writeFileSync(join(SUBMISSIONS,job.id,'profile.json'),JSON.stringify(profile,null,2)+'\n');
@@ -73,12 +79,17 @@ async function execute(job:Job,f:URLSearchParams) {
     job.log+=`Source snapshot ${clone}\nPinned base ${base}\nPinned head ${head}\n`;
     if(f.get('profile')==='inspection-only')job.log+='No executable verification configured: code inspection only.\n';
     for(const stage of STAGES.slice(1)){job.stage=stage;job.log+=`\nStarting ${stage}…\n`;saveJob(job);await command(job,process.execPath,[join(ROOT,'src/cli.ts'),stage,job.id]);
-      if(stage==='check' && f.get('profile')==='inspection-only') {
+      if(stage==='check' && (f.get('profile')==='inspection-only'||verified)) {
         const path=join(DATA,'cases',job.id,'check.json');const checks=readJson(path);
-        checks.notChecked.push({what:'Executable verification and language-specific coverage',reason:'No trusted executable verification is configured for this submission. Only generic pattern scans and AI inspection are available; no tests were executed.'});
+        if(verified){
+          job.log+='Running the verified repository setup against the full configured head scope.\n';saveJob(job);
+          checks.evidence.push(...await verifySubmissionSetup(verified,clone,head,job.id,text=>{if(!active.has(job.id))return;job.log=(job.log+text).slice(-16000);saveJob(job);}));
+          checks.notChecked.push({what:'Regression discrimination and test assertion scope',reason:'The automatic setup runs configured commands on head. It does not compare base with head tests or prove claim-specific assertions.'});
+        }else checks.notChecked.push({what:'Executable verification and language-specific coverage',reason:'No trusted executable verification is configured for this submission. Only generic pattern scans and AI inspection are available; no tests were executed.'});
         writeFileSync(path,JSON.stringify(checks,null,2)+'\n');
       }
     }
+    if(verified)persistSetupGate(job.id);
     job.status='completed';
   }catch(e){job.status=active.has(job.id)?'failed':'interrupted';job.error=e instanceof Error?e.message:String(e);}
   finally{saveJob(job);active.delete(job.id);}
@@ -90,4 +101,5 @@ export function startSubmission(f:URLSearchParams):Job {
   active.set(job.id,null);saveJob(job);
   void execute(job,new URLSearchParams(f));return job;
 }
+export const submissionsRunning=()=>active.size>0;
 export function stopSubmissions(){for(const [id,child] of active){terminate(child);const file=join(SUBMISSIONS,id,'job.json');if(existsSync(file)){const job:Job=readJson(file);job.status='interrupted';job.error='The server stopped. Submit a new assessment to retry.';saveJob(job);}}active.clear();}

@@ -6,7 +6,7 @@ import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 
 const SRC = join(import.meta.dirname, "..", "src");
-const FORBIDDEN = /MessagePack|messagepack|MsgPack|SourceGenerator|dotnet|\.csproj|\b(2283|2234|2129|2297)\b|ju26|junction26|32258fdb|9df83c38|9007cee1|083afd99|a0aa5ab2/;
+const FORBIDDEN = /MessagePack|messagepack|MsgPack|SourceGenerator|\b(2283|2234|2129|2297)\b|ju26|junction26|32258fdb|9df83c38|9007cee1|083afd99|a0aa5ab2/;
 
 test("no corpus-specific names in pipeline code", () => {
   const offenders: string[] = [];

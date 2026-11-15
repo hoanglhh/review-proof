@@ -1,0 +1,197 @@
+{
+  "checkedAt": "2026-11-15T03:55:53.461013+00:00",
+  "tests": {
+    "passed": 86,
+    "failed": 0,
+    "integration": "Temporary Git repositories and fake Docker exercise plan trust, baseline reuse, configuration invalidation, failed-check gate, legacy CLI erasure, and isolated command boundaries."
+  },
+  "realContainerSmoke": {
+    "source": "Synthetic npm package with no dependencies and one node:test assertion; direct runner test without setup trust or PR human records.",
+    "status": "passed",
+    "imageDigest": "node@sha256:e9f565d32859f0cbfb52125eafe8be39390f24dac302dc3cdf566e8ba3ab21ee",
+    "checks": [
+      {
+        "id": "npm-restore",
+        "status": "passed",
+        "exitCode": 0
+      },
+      {
+        "id": "npm-test",
+        "status": "passed",
+        "exitCode": 0
+      }
+    ]
+  },
+  "browser": [
+    {
+      "width": 1100,
+      "path": "/setups",
+      "title": "Repository verification setup",
+      "overflow": false,
+      "fields": [
+        {
+          "name": "repository",
+          "label": true
+        },
+        {
+          "name": "revision",
+          "label": true
+        }
+      ]
+    },
+    {
+      "width": 1100,
+      "path": "/assess",
+      "title": "New assessment",
+      "overflow": false,
+      "fields": [
+        {
+          "name": "repository",
+          "label": true
+        },
+        {
+          "name": "base",
+          "label": true
+        },
+        {
+          "name": "head",
+          "label": true
+        },
+        {
+          "name": "owner",
+          "label": true
+        },
+        {
+          "name": "requirementId",
+          "label": true
+        },
+        {
+          "name": "requirement",
+          "label": true
+        },
+        {
+          "name": "profile",
+          "label": true
+        },
+        {
+          "name": "trustProfile",
+          "label": true
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "path": "/setups",
+      "title": "Repository verification setup",
+      "overflow": false,
+      "fields": [
+        {
+          "name": "repository",
+          "label": true
+        },
+        {
+          "name": "revision",
+          "label": true
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "path": "/assess",
+      "title": "New assessment",
+      "overflow": false,
+      "fields": [
+        {
+          "name": "repository",
+          "label": true
+        },
+        {
+          "name": "base",
+          "label": true
+        },
+        {
+          "name": "head",
+          "label": true
+        },
+        {
+          "name": "owner",
+          "label": true
+        },
+        {
+          "name": "requirementId",
+          "label": true
+        },
+        {
+          "name": "requirement",
+          "label": true
+        },
+        {
+          "name": "profile",
+          "label": true
+        },
+        {
+          "name": "trustProfile",
+          "label": true
+        }
+      ]
+    },
+    {
+      "width": 1100,
+      "path": "/plan",
+      "title": "Verification plan",
+      "overflow": false,
+      "fields": [
+        {
+          "name": "planHash",
+          "label": false
+        },
+        {
+          "name": "name",
+          "label": true
+        },
+        {
+          "name": "trust",
+          "label": true
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "path": "/plan",
+      "title": "Verification plan",
+      "overflow": false,
+      "fields": [
+        {
+          "name": "planHash",
+          "label": false
+        },
+        {
+          "name": "name",
+          "label": true
+        },
+        {
+          "name": "trust",
+          "label": true
+        }
+      ]
+    }
+  ],
+  "preservation": {
+    "existingDataFiles": 327,
+    "changedExistingData": [],
+    "changedFrozenReviewModules": [],
+    "newHumanRecords": []
+  },
+  "review": "Independent review completed; source symlink preservation, explicit npm-version pin handling, durable signing gate and shutdown cleanup were corrected.",
+  "notRun": [
+    "Live model reviews or original benchmark reruns",
+    "Real .NET baseline execution for this feature",
+    "Human execution-plan trust or PR decisions"
+  ],
+  "limits": [
+    "Mixed/ambiguous stacks require manually configured setup.",
+    "Command exit outcomes do not establish full test coverage or claim correctness.",
+    "Restore has network access; verification check containers have none.",
+    "Writable source/results mounts have no disk quota."
+  ]
+}

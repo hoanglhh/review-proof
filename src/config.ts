@@ -25,6 +25,7 @@ export type Case = {
   id: string; profile: string; repository: string; base: string; head: string;
   requirement: { id: string; url?: string; text?: string };
   cohort?: "sample" | "holdout" | "control"; // evaluation metadata only; never used for review decisions
+  verificationSetup?: { id: string; fingerprint: string };
   sourceRepository?: string;
   submission?: boolean;
   synthetic?: string; // set for planted-bug cases; shown on every page that displays them

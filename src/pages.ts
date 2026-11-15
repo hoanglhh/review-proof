@@ -31,7 +31,7 @@ ${nonce ? `<script nonce="${esc(nonce)}">${ACTIVE_TIME_SCRIPT}</script>` : ""}</
 export function renderIndex(rows: { id: string; requirementId: string; title: string; route: string | null; generatedAt: string | null; signoffs: number }[], jobs: Job[] = []) {
   return page("ReviewProof: changes waiting for an owner", `<div class="desk">
 <h1>Changes waiting for an owner</h1>
-<p><a href="/assess">Start a new assessment</a></p>
+<p><a href="/assess">Start a new assessment</a> · <a href="/setups">Set up repository verification</a></p>
 ${jobs.length ? `<h2>Your submissions</h2><p class="muted">User submissions are separate from the supplied examples and evaluation cases.</p><ul>${jobs.map(job => `<li><a href="/assess/${esc(job.id)}">${esc(job.repository)}</a> — ${esc(job.status)}, ${esc(job.stage)}${job.status === "completed" ? ` · <a href="/case/${esc(job.id)}">Open report</a>` : ""}</li>`).join("")}</ul>` : ""}
 <p>Each change has a sign-off sheet; supplied samples, the holdout and the merged control are labelled separately. The AI reviewer never approves; a named person signs.</p>
 <h2>Examples and evaluation cases</h2><div class="scroll"><table><thead><tr><th>Requirement</th><th>Route</th><th>Sheet generated</th><th>Signatures</th><th></th></tr></thead><tbody>
