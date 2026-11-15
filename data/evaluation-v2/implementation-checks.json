@@ -1,0 +1,72 @@
+{
+  "checkedAt": "2026-11-15T00:21:48.110670+00:00",
+  "tests": {
+    "command": "npm test",
+    "passed": 63,
+    "failed": 0
+  },
+  "browser": {
+    "engine": "installed Chromium via CDP",
+    "pages": [
+      {
+        "path": "/case/2283",
+        "title": "Sign-off sheet #2283: Generator and analyzer crash with IndexOutOfRangeException on a closed generic struct from a referenced assembly",
+        "text": "Sign-off sheet for #2283\n\nGenerator and analyzer crash with IndexOutOfRangeException on a closed generic struct from a referenced assembly\n\nEvaluation cohort\nSupplied sample\nGenerated\n2026-11-14T19:09:19.423Z, from test runs on this machine\nChange\nbase 32258fdb to head 9df83c38 in https://github.com",
+        "overflow": false,
+        "forms": 1
+      },
+      {
+        "path": "/case/2283/experiment",
+        "title": "Timed review: #2283",
+        "text": "Timed human review\n\n#2283 \u00b7 Recorded observations\n\nThis is an observational timing record, separate from sign-off and trust. No safety or speedup conclusion can be drawn from these records.\n\nChoose your method before starting. If you have seen this change, its sheet, discussion or others\u2019 review not",
+        "overflow": false,
+        "forms": 1
+      },
+      {
+        "path": "/evaluation/experiments",
+        "title": "Human review observations",
+        "text": "Human review observations\n\nAll changes\n\n0 submitted human records (denominator). 0 declared first-read records; 0 prior-exposure record(s) and 0 additional repeat record(s) excluded from method summaries.\n\nNo safety or speedup conclusion can be drawn from this observational data. Identity and prior ",
+        "overflow": false,
+        "forms": 0
+      },
+      {
+        "path": "/evaluation/control-v2",
+        "title": "Sign-off sheet 2180: Unexpected warning CS8669: The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.",
+        "text": "Control v2 follow-up \u00b7 Separate from frozen evaluation results. Human false-positive judgments remain pending; this view cannot be signed.\nSign-off sheet for 2180\n\nUnexpected warning CS8669: The annotation for nullable reference types should only be used in code within a '#nullable' annotations cont",
+        "overflow": false,
+        "forms": 0
+      },
+      {
+        "path": "/evaluation/context-v2/2283",
+        "title": "Sign-off sheet #2283: Generator and analyzer crash with IndexOutOfRangeException on a closed generic struct from a referenced assembly",
+        "text": "Expanded-context v2 follow-up \u00b7 Separate observational output. Frozen evaluation results are unchanged; this view cannot be signed. Context selected and omitted\nSign-off sheet for #2283\n\nGenerator and analyzer crash with IndexOutOfRangeException on a closed generic struct from a referenced assembly\n",
+        "overflow": false,
+        "forms": 0
+      }
+    ],
+    "humanSubmissions": 0
+  },
+  "preservation": {
+    "existingDataFiles": 258,
+    "changedExistingData": [],
+    "changedFrozenSource": [],
+    "newHumanRecords": []
+  },
+  "contextFollowup": {
+    "sourceCase": "2283",
+    "reviewerStatus": "ok",
+    "resolvedCitations": 27,
+    "droppedCitations": 0,
+    "unknownReferences": 0,
+    "runs": 1,
+    "contextFiles": 12
+  },
+  "controlFollowup": "data/evaluation-v2/control/summary.json",
+  "limits": [
+    "Human review timing and false-alarm judgments remain unperformed.",
+    "Focused-page timer excludes external tabs; optional external time is human-measured.",
+    "Context retrieval is bounded lexical matching, not full repository understanding.",
+    "Control generated-source snapshot comparison is disabled upstream.",
+    "No TypeScript compiler was installed; verification used Node execution and tests."
+  ]
+}

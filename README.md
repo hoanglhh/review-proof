@@ -2,7 +2,7 @@
 
 **Machines verify claims. Humans own decisions. Nobody reviews lines by default.**
 
-ReviewProof is a reference implementation for Tieto's Junction 2026 challenge "Earned Trust in AI Code". For each agent-written change it produces a one-page sign-off sheet: what the change is for, what it touches, which of its claims were proven by a run, which choices it made that no test can settle, what was not checked and why, and how much of it a person still has to read. The AI reviewer never approves anything. A named person signs, and only through the sign-off page.
+ReviewProof is a reference implementation for Tieto's Junction 2026 challenge "Earned Trust in AI Code". For each agent-written change it produces a one-page sign-off sheet: what the change is for, what it touches, which named tests distinguish the changed behavior, which choices it made that no test can settle, what was not checked and why, and how much of it a person still has to read. The AI reviewer never approves anything. A named person signs, and only through the sign-off page.
 
 Its original evaluation corpus is the four agent-written changes Tieto supplied to [MessagePack-CSharp](https://github.com/te-industry-tech-office/junction26-messagepack-csharp) (requirements: upstream issues #2283, #2234, #2129, #2297).
 
@@ -76,8 +76,22 @@ The holdout head exists only on branch `submission-holdout` in `.work/repos/te-i
 
 The submitted blind-review entry point is `/case/holdout/blind`. Run the local server before opening it; avoid the ordinary sheet and metrics until after the blind read.
 
-### Control availability
+### Frozen control availability
 
 The three permitted candidates (#2279, #1818, #1802) failed SDK resolution in the frozen .NET 8.0.402 image: they require 10.0.300, 8.0.201 and 8.0.201 respectively. No fourth candidate, SDK substitution or control AI review was attempted. **All requested control counts and its route are unavailable, not zero.** No control report enters the reviewed-case aggregates; the manifest currently holds four samples and one holdout.
 
-Open `/evaluation/control` for the six head-project run records/logs and the stop reason. `data/evaluation/control-selection.json` records merge ordering, closure evidence and candidates; `control-path-screening.json` records path exclusions. A future completed control would still be only one case assumed clean because it was merged and not known reverted; only the owner may mark findings false. The selected source inputs were not modified to make a build pass.
+Open `/evaluation/control` for the six head-project run records/logs and the stop reason. `data/evaluation/control-selection.json` records merge ordering, closure evidence and candidates; `control-path-screening.json` records path exclusions. Any completed follow-up control is still only one case assumed clean because it was merged and not known reverted; only the owner may mark findings false. The selected source inputs were not modified to make a build pass.
+
+## Follow-up improvements (v2, separate from the frozen evaluation)
+
+The live sheet now labels the legacy `proven` state **Observed in a discriminating test**: the named test passes with the change and fails without it. This does not establish the full wording of the linked claim. The original JSON states, routing, prompts and saved static sheets remain unchanged. An explanation-coverage table maps every hunk to claims, decisions and reasons for attention; coverage is not correctness or measured time saved.
+
+- `/case/2283/experiment`: start a human review exercise explicitly, choose sheet or diff, declare prior exposure, and track reading, evidence, code and decision time. Record evidence openings and remaining questions. This saves an observation, never a sign-off or trust event.
+- `/evaluation/experiments`: observations with explicit denominators. Prior-exposure reads are separated; a single-person repeated read is not a controlled speed comparison. External tools/tabs are outside the page timer; an optional human-timed external duration is stored separately, with blank meaning not measured.
+- `node src/review-v2.ts 2283 --prepare`: prepare bounded unchanged-source context and a distinct prompt without calling the model. `--run` executes a separate review; see [context v2](docs/context-v2.md). The holdout is excluded.
+- `/evaluation/context-v2/2283`: read-only follow-up report after a successful run. Follow-up outputs never enter the original metrics or trust record.
+- `/evaluation/control-v2`: the separate environment-repair control experiment, including an explicit unavailable outcome if it cannot finish. The original three-attempt control result at `/evaluation/control` remains unchanged.
+
+The human must perform the timing exercise and judge findings. No timings, correctness labels, sign-offs or spot-checks are manufactured by setup or tests. See [follow-up design](docs/improvements-v2.md).
+
+The separate v2 control completed: 4 raw findings (4 citation-validated), 4 model-raised decisions, 1 unexplained hunk, 1 broken claim; route blocked. These are not false-positive judgments. Its head tests passed, but upstream snapshot comparison is disabled; see [control evidence and limitations](docs/control-v2.md).

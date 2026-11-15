@@ -37,7 +37,7 @@ ${rows.map((r) => `<tr><td><span class="muted">${esc(cohortLabel(r.id))}</span><
 <td class="muted nowrap">${esc(when(r.generatedAt))}</td><td>${r.signoffs}</td>
 <td class="nowrap">${r.route ? `<a href="/case/${encodeURIComponent(r.id)}">Open sheet</a><br><a href="/case/${encodeURIComponent(r.id)}/blind">Blind spot-check</a>` : `<span class="muted">Generate with</span><br><code>node src/cli.ts all ${esc(r.id)}</code>`}</td></tr>`).join("")}
 </tbody></table></div>
-<p><a href="/trust">Trust record by area</a><br><a href="/metrics">How trust is measured</a><br><a href="/evaluation/control">Merged control: availability and build attempts</a></p></div>`);
+<p><a href="/trust">Trust record by area</a><br><a href="/metrics">How trust is measured</a><br><a href="/evaluation/control">Merged control: availability and build attempts</a></p><h2>Separate follow-up experiments</h2><p><a href="/evaluation/experiments">Human review observations</a><br><a href="/evaluation/control-v2">Control with repaired SDK environment</a></p><p class="muted">These observations and follow-up results do not enter the frozen evaluation. Start a timed exercise from a live sheet.</p></div>`);
 }
 
 export function renderBlind(r: Report, requirement: { title: string; body: string }, nonce: string) {

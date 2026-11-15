@@ -1,0 +1,204 @@
+
+  Determining projects to restore...
+  Restored /home/huyhoangle/junction/review-proof/.work/wt/control-v2-2279-without/src/MessagePack.Annotations/MessagePack.Annotations.csproj (in 355 ms).
+  Restored /home/huyhoangle/junction/review-proof/.work/wt/control-v2-2279-without/src/MessagePack.Analyzers/MessagePack.Analyzers.csproj (in 355 ms).
+  Restored /home/huyhoangle/junction/review-proof/.work/wt/control-v2-2279-without/src/MessagePack.SourceGenerator/MessagePack.SourceGenerator.csproj (in 355 ms).
+  Restored /home/huyhoangle/junction/review-proof/.work/wt/control-v2-2279-without/src/MessagePack.Analyzers.CodeFixes/MessagePack.Analyzers.CodeFixes.csproj (in 355 ms).
+  Restored /home/huyhoangle/junction/review-proof/.work/wt/control-v2-2279-without/src/MessagePack/MessagePack.csproj (in 360 ms).
+  Restored /home/huyhoangle/junction/review-proof/.work/wt/control-v2-2279-without/tests/MessagePack.SourceGenerator.Tests/MessagePack.SourceGenerator.Tests.csproj (in 399 ms).
+  MessagePack.SourceGenerator -> /home/huyhoangle/junction/review-proof/.work/wt/control-v2-2279-without/bin/MessagePack.SourceGenerator/Debug/netstandard2.0/MessagePack.SourceGenerator.dll
+  MessagePack.Analyzers.CodeFixes -> /home/huyhoangle/junction/review-proof/.work/wt/control-v2-2279-without/bin/MessagePack.Analyzers.CodeFixes/Debug/netstandard2.0/MessagePack.Analyzers.CodeFixes.dll
+  MessagePack.Analyzers -> /home/huyhoangle/junction/review-proof/.work/wt/control-v2-2279-without/bin/MessagePack.Analyzers/Debug/netstandard2.0/MessagePack.Analyzers.dll
+  MessagePack.Annotations -> /home/huyhoangle/junction/review-proof/.work/wt/control-v2-2279-without/bin/MessagePack.Annotations/Debug/netstandard2.0/MessagePack.Annotations.dll
+  MessagePack -> /home/huyhoangle/junction/review-proof/.work/wt/control-v2-2279-without/bin/MessagePack/Debug/net8.0/MessagePack.dll
+/home/huyhoangle/junction/review-proof/.work/wt/control-v2-2279-without/tests/MessagePack.SourceGenerator.Tests/Verifiers/CSharpSourceGeneratorVerifier`1+Test.cs(8,10): warning CS1030: #warning: 'WRITE_EXPECTED is fine for local builds, but should not be merged to the main branch.' [/home/huyhoangle/junction/review-proof/.work/wt/control-v2-2279-without/tests/MessagePack.SourceGenerator.Tests/MessagePack.SourceGenerator.Tests.csproj::TargetFramework=net8.0]
+  MessagePack.SourceGenerator.Tests -> /home/huyhoangle/junction/review-proof/.work/wt/control-v2-2279-without/bin/MessagePack.SourceGenerator.Tests/Debug/net8.0/MessagePack.SourceGenerator.Tests.dll
+Test run for /home/huyhoangle/junction/review-proof/.work/wt/control-v2-2279-without/bin/MessagePack.SourceGenerator.Tests/Debug/net8.0/MessagePack.SourceGenerator.Tests.dll (.NETCoreApp,Version=v8.0)
+A total of 1 test files matched the specified pattern.
+[xUnit.net 00:00:00.37]     MsgPack00xAnalyzerTests.AddAttributeToTypeForRecord1 [SKIP]
+  Skipped MsgPack00xAnalyzerTests.AddAttributeToTypeForRecord1 [1 ms]
+[xUnit.net 00:00:07.78]     MsgPack00xAnalyzerTests.AddAttributeToType_Properties [SKIP]
+  Skipped MsgPack00xAnalyzerTests.AddAttributeToType_Properties [1 ms]
+[xUnit.net 00:00:08.44]     MsgPack00xAnalyzerTests.AddAttributeToTypeForRecord2 [SKIP]
+  Skipped MsgPack00xAnalyzerTests.AddAttributeToTypeForRecord2 [1 ms]
+[xUnit.net 00:00:08.75]     MsgPack00xAnalyzerTests.AddAttributeToGenericType [SKIP]
+[xUnit.net 00:00:08.75]     MsgPack00xAnalyzerTests.AddAttributeToType_Generic [SKIP]
+  Skipped MsgPack00xAnalyzerTests.AddAttributeToGenericType [1 ms]
+  Skipped MsgPack00xAnalyzerTests.AddAttributeToType_Generic [1 ms]
+[xUnit.net 00:00:09.41]     MsgPack00xAnalyzerTests.AddAttributeToType_Nullable [SKIP]
+[xUnit.net 00:00:09.41]     MsgPack00xAnalyzerTests.AddAttributeToTypeForRecordPrimaryConstructor [SKIP]
+[xUnit.net 00:00:09.46]     MsgPack00xAnalyzerTests.AddAttributeToType_Fields [SKIP]
+[xUnit.net 00:00:09.57]     GenericsFormatterTests.NullableReferenceTypeInListFormatter [FAIL]
+  Skipped MsgPack00xAnalyzerTests.AddAttributeToType_Nullable [1 ms]
+  Skipped MsgPack00xAnalyzerTests.AddAttributeToTypeForRecordPrimaryConstructor [1 ms]
+  Skipped MsgPack00xAnalyzerTests.AddAttributeToType_Fields [1 ms]
+  Failed GenericsFormatterTests.NullableReferenceTypeInListFormatter [121 ms]
+  Error Message:
+   System.InvalidOperationException : Mismatch between number of diagnostics returned, expected "0" actual "2"
+
+Diagnostics:
+// MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs(44,82): warning CS8669: The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.
+DiagnosticResult.CompilerWarning("CS8669").WithSpan("MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs", 44, 82, 44, 83),
+// MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs(54,88): warning CS8669: The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.
+DiagnosticResult.CompilerWarning("CS8669").WithSpan("MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs", 54, 88, 54, 89),
+
+
+  Stack Trace:
+     at Microsoft.CodeAnalysis.Testing.DefaultVerifier.Equal[T](T expected, T actual, String message) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/DefaultVerifier.cs:line 79
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticResults(IEnumerable`1 actualResults, ImmutableArray`1 analyzers, DiagnosticResult[] expectedResults, IVerifier verifier) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 546
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.VerifyDiagnosticsAsync(EvaluatedProjectState primaryProject, ImmutableArray`1 additionalProjects, DiagnosticResult[] expected, IVerifier verifier, CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 449
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunImplAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 203
+   at Microsoft.CodeAnalysis.Testing.AnalyzerTest`1.RunAsync(CancellationToken cancellationToken) in /_/src/Microsoft.CodeAnalysis.Testing/Microsoft.CodeAnalysis.Analyzer.Testing/AnalyzerTest`1.cs:line 172
+   at CSharpSourceGeneratorVerifier`1.Test.RunDefaultAsync(ITestOutputHelper logger) in /home/huyhoangle/junction/review-proof/.work/wt/control-v2-2279-without/tests/MessagePack.SourceGenerator.Tests/Verifiers/CSharpSourceGeneratorVerifier`1+Test.cs:line 75
+   at GenericsFormatterTests.NullableReferenceTypeInListFormatter() in /home/huyhoangle/junction/review-proof/.work/wt/control-v2-2279-without/tests/MessagePack.SourceGenerator.Tests/GenericsFormatterTests.cs:line 64
+--- End of stack trace from previous location ---
+  Standard Output Messages:
+ --------------------------------------------------------------
+ MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.SomeClassFormatter.g.cs
+ --------------------------------------------------------------
+      1: // <auto-generated />
+      2: 
+      3: #pragma warning disable 618, 612, 414, 168, CS1591, SA1129, SA1309, SA1312, SA1403, SA1649, CS8669
+      4: 
+      5: using MsgPack = global::MessagePack;
+      6: 
+      7: namespace MessagePack {
+      8: internal partial class GeneratedMessagePackResolver {
+      9: internal partial class TempProject {
+     10: 
+     11: 	internal sealed class SomeClassFormatter : MsgPack::Formatters.IMessagePackFormatter<global::TempProject.SomeClass>
+     12: 	{
+     13: 
+     14: 		public void Serialize(ref MsgPack::MessagePackWriter writer, global::TempProject.SomeClass value, MsgPack::MessagePackSerializerOptions options)
+     15: 		{
+     16: 			if (value == null)
+     17: 			{
+     18: 				writer.WriteNil();
+     19: 				return;
+     20: 			}
+     21: 
+     22: 			MsgPack::IFormatterResolver formatterResolver = options.Resolver;
+     23: 			writer.WriteArrayHeader(1);
+     24: 			MsgPack::FormatterResolverExtensions.GetFormatterWithVerify<global::System.Collections.Generic.List<global::TempProject.SomeClass>>(formatterResolver).Serialize(ref writer, value.Values, options);
+     25: 		}
+     26: 
+     27: 		public global::TempProject.SomeClass Deserialize(ref MsgPack::MessagePackReader reader, MsgPack::MessagePackSerializerOptions options)
+     28: 		{
+     29: 			if (reader.TryReadNil())
+     30: 			{
+     31: 				return null;
+     32: 			}
+     33: 
+     34: 			options.Security.DepthStep(ref reader);
+     35: 			MsgPack::IFormatterResolver formatterResolver = options.Resolver;
+     36: 			var length = reader.ReadArrayHeader();
+     37: 			var __Values__ = default(global::System.Collections.Generic.List<global::TempProject.SomeClass>);
+     38: 
+     39: 			for (int i = 0; i < length; i++)
+     40: 			{
+     41: 				switch (i)
+     42: 				{
+     43: 					case 0:
+     44: 						__Values__ = MsgPack::FormatterResolverExtensions.GetFormatterWithVerify<global::System.Collections.Generic.List<global::TempProject.SomeClass>>(formatterResolver).Deserialize(ref reader, options);
+     45: 						break;
+     46: 					default:
+     47: 						reader.Skip();
+     48: 						break;
+     49: 				}
+     50: 			}
+     51: 
+     52: 			var ____result = new global::TempProject.SomeClass() { Values = __Values__ };
+     53: 			reader.Depth--;
+     54: 			return ____result;
+     55: 		}
+     56: 	}
+     57: }
+     58: }
+     59: }
+     60: 
+ --------------------------------------------------------------
+ --------------------------------------------------------------
+ MessagePack.SourceGenerator/MessagePack.SourceGenerator.MessagePackGenerator/MessagePack.GeneratedMessagePackResolver.g.cs
+ --------------------------------------------------------------
+      1: // <auto-generated />
+      2: 
+      3: #pragma warning disable 618, 612, 414, 168, CS1591, SA1129, SA1309, SA1312, SA1403, SA1649, CS8669
+      4: 
+      5: using MsgPack = global::MessagePack;
+      6: 
+      7: [assembly: MsgPack::Internal.GeneratedAssemblyMessagePackResolverAttribute(typeof(MessagePack.GeneratedMessagePackResolver), 1, 0)]
+      8: 
+      9: namespace MessagePack {
+     10: 
+     11: /// <summary>A MessagePack resolver that uses generated formatters for types in this assembly.</summary>
+     12: partial class GeneratedMessagePackResolver : MsgPack::IFormatterResolver
+     13: {
+     14: 	/// <summary>An instance of this resolver that only returns formatters specifically generated for types in this assembly.</summary>
+     15: 	public static readonly MsgPack::IFormatterResolver Instance = new GeneratedMessagePackResolver();
+     16: 
+     17: 	private GeneratedMessagePackResolver()
+     18: 	{
+     19: 	}
+     20: 
+     21: 	public MsgPack::Formatters.IMessagePackFormatter<T> GetFormatter<T>()
+     22: 	{
+     23: 		return FormatterCache<T>.Formatter;
+     24: 	}
+     25: 
+     26: 	private static class FormatterCache<T>
+     27: 	{
+     28: 		internal static readonly MsgPack::Formatters.IMessagePackFormatter<T> Formatter;
+     29: 
+     30: 		static FormatterCache()
+     31: 		{
+     32: 			var f = GeneratedMessagePackResolverGetFormatterHelper.GetFormatter(typeof(T));
+     33: 			if (f != null)
+     34: 			{
+     35: 				Formatter = (MsgPack::Formatters.IMessagePackFormatter<T>)f;
+     36: 			}
+     37: 		}
+     38: 	}
+     39: 
+     40: 	private static class GeneratedMessagePackResolverGetFormatterHelper
+     41: 	{
+     42: 		private static readonly global::System.Collections.Generic.Dictionary<global::System.Type, int> closedTypeLookup = new global::System.Collections.Generic.Dictionary<global::System.Type, int>(2)
+     43: 		{
+     44: 			{ typeof(global::System.Collections.Generic.List<global::TempProject.SomeClass?>), 0 },
+     45: 			{ typeof(global::TempProject.SomeClass), 1 },
+     46: 		};
+     47: 
+     48: 		internal static object GetFormatter(global::System.Type t)
+     49: 		{
+     50: 			if (closedTypeLookup.TryGetValue(t, out int closedKey))
+     51: 			{
+     52: 				switch (closedKey)
+     53: 				{
+     54: 					case 0: return new MsgPack::Formatters.ListFormatter<global::TempProject.SomeClass?>();
+     55: 					case 1: return new global::MessagePack.GeneratedMessagePackResolver.TempProject.SomeClassFormatter();
+     56: 					default: return null; // unreachable
+     57: 				};
+     58: 			}
+     59: 
+     60: 			return null;
+     61: 		}
+     62: 	}
+     63: }
+     64: 
+     65: }
+     66: 
+ --------------------------------------------------------------
+
+
+[xUnit.net 00:00:10.92]     GenerationTests.InterfaceUnionUsedWithNullableRefAnnotation [SKIP]
+  Skipped GenerationTests.InterfaceUnionUsedWithNullableRefAnnotation [1 ms]
+Results File: /home/huyhoangle/junction/review-proof/.work/results/data_evaluation-v2_control_runs/without-change.MessagePack.SourceGenerator.Tests/without-change.MessagePack.SourceGenerator.Tests.trx
+
+Failed!  - Failed:     1, Passed:   159, Skipped:     9, Total:   169, Duration: 11 s - MessagePack.SourceGenerator.Tests.dll (net8.0)
+
+Build FAILED.
+
+/home/huyhoangle/junction/review-proof/.work/wt/control-v2-2279-without/tests/MessagePack.SourceGenerator.Tests/Verifiers/CSharpSourceGeneratorVerifier`1+Test.cs(8,10): warning CS1030: #warning: 'WRITE_EXPECTED is fine for local builds, but should not be merged to the main branch.' [/home/huyhoangle/junction/review-proof/.work/wt/control-v2-2279-without/tests/MessagePack.SourceGenerator.Tests/MessagePack.SourceGenerator.Tests.csproj::TargetFramework=net8.0]
+    1 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:33.79

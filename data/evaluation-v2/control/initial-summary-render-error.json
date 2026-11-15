@@ -1,0 +1,51 @@
+{
+  "cohort": "control",
+  "protocol": "data/evaluation-v2/control/protocol.json",
+  "caseId": "control-v2-2279",
+  "status": "blocked",
+  "rawCounts": null,
+  "route": null,
+  "humanFalsePositiveLabels": "pending",
+  "cleanAssumption": "Merged upstream and not known reverted in the original selection snapshot; neither proof of correctness nor a false-positive label. No refreshed most-recent or revert search.",
+  "reason": "TypeError: link is not a function",
+  "completedAt": "2026-11-15T00:17:18.268Z",
+  "runs": [
+    {
+      "name": "head.MessagePack.SourceGenerator.Tests",
+      "status": "completed",
+      "exitCode": 0,
+      "tests": 169,
+      "outcomes": {
+        "passed": 160,
+        "skipped": 9
+      },
+      "log": "data/evaluation-v2/control/runs/head.MessagePack.SourceGenerator.Tests.log",
+      "results": "data/evaluation-v2/control/runs/head.MessagePack.SourceGenerator.Tests.trx"
+    },
+    {
+      "name": "base.MessagePack.SourceGenerator.Tests",
+      "status": "completed",
+      "exitCode": 0,
+      "tests": 168,
+      "outcomes": {
+        "passed": 159,
+        "skipped": 9
+      },
+      "log": "data/evaluation-v2/control/runs/base.MessagePack.SourceGenerator.Tests.log",
+      "results": "data/evaluation-v2/control/runs/base.MessagePack.SourceGenerator.Tests.trx"
+    },
+    {
+      "name": "without-change.MessagePack.SourceGenerator.Tests",
+      "status": "completed",
+      "exitCode": 1,
+      "tests": 169,
+      "outcomes": {
+        "passed": 159,
+        "skipped": 9,
+        "failed": 1
+      },
+      "log": "data/evaluation-v2/control/runs/without-change.MessagePack.SourceGenerator.Tests.log",
+      "results": "data/evaluation-v2/control/runs/without-change.MessagePack.SourceGenerator.Tests.trx"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+Running head.MessagePack.SourceGenerator.Tests
+head.MessagePack.SourceGenerator.Tests: completed, exit 0, 169 tests
+Running base.MessagePack.SourceGenerator.Tests
+base.MessagePack.SourceGenerator.Tests: completed, exit 0, 168 tests
+Running without-change.MessagePack.SourceGenerator.Tests
+without-change.MessagePack.SourceGenerator.Tests: completed, exit 1, 169 tests
+{"status":"blocked","reason":"TypeError: link is not a function","rawCounts":null}

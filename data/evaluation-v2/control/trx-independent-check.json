@@ -1,0 +1,33 @@
+{
+  "method": "Python standard-library XML parser reads saved TRX UnitTestResult elements independently of the pipeline parser.",
+  "checks": [
+    {
+      "run": "base.MessagePack.SourceGenerator.Tests",
+      "xmlTestResults": 168,
+      "xmlOutcomes": {
+        "Passed": 159,
+        "NotExecuted": 9
+      },
+      "matchesSavedParsedCount": true
+    },
+    {
+      "run": "head.MessagePack.SourceGenerator.Tests",
+      "xmlTestResults": 169,
+      "xmlOutcomes": {
+        "Passed": 160,
+        "NotExecuted": 9
+      },
+      "matchesSavedParsedCount": true
+    },
+    {
+      "run": "without-change.MessagePack.SourceGenerator.Tests",
+      "xmlTestResults": 169,
+      "xmlOutcomes": {
+        "Passed": 159,
+        "NotExecuted": 9,
+        "Failed": 1
+      },
+      "matchesSavedParsedCount": true
+    }
+  ]
+}

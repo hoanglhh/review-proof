@@ -1,3 +1,4 @@
+import { explanationCoverage } from "./attention.ts";
 import { cohortLabel } from "./cohorts.ts";
 // Renders a report as a one-page sign-off sheet: HTML for the browser, Markdown as the pull-request comment.
 // Every value from the report is escaped: requirement text, code and model output are untrusted.
@@ -5,7 +6,7 @@ import type { Report } from "./report.ts";
 
 export const esc = (s: unknown) => String(s).replace(/[&<>"']/g, (ch) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[ch]!);
 const STATE_ORDER = ["broken", "not_checked", "argued", "proven"] as const;
-const STATE_TEXT = { proven: "proven", argued: "argued", not_checked: "not checked", broken: "broken" };
+const STATE_TEXT = { proven: "Observed in a discriminating test", argued: "argued", not_checked: "not checked", broken: "broken" };
 const short = (sha: string) => sha.slice(0, 8);
 const pct = (x: number) => `${Math.round(x * 100)}%`;
 
@@ -28,13 +29,14 @@ section{position:relative;margin-top:40px}
 h2{font-size:22px;font-weight:700;margin:0 0 10px}
 h2 .n{position:absolute;left:-56px;width:40px;text-align:right;color:var(--muted);font-weight:400}
 p,li{max-width:76ch} .muted{color:var(--muted);font-size:14px}
-code{font:13.5px var(--mono)} pre{font:13px/1.5 var(--mono);white-space:pre-wrap;word-break:break-word;margin:0}
+code{font:13.5px var(--mono);overflow-wrap:anywhere} pre{font:13px/1.5 var(--mono);white-space:pre-wrap;word-break:break-word;margin:0}
 code,pre{font-variant-ligatures:none} /* quotes must look exactly like the source */
 .facts{display:grid;grid-template-columns:max-content 1fr;gap:2px 16px;font-size:14px;margin:0;color:var(--muted)}
-.facts dt{font-weight:600;color:var(--text)} .facts dd{margin:0}
+.facts dt{font-weight:600;color:var(--text)} .facts dd{margin:0;min-width:0;overflow-wrap:anywhere}
 .verdict{display:grid;grid-template-columns:minmax(220px,300px) 1fr;gap:24px;margin:28px 0 8px;padding:20px 24px;border:3px solid var(--route);background:var(--sheet)}
 .verdict-word{display:block;font-size:52px;line-height:1;font-weight:800;color:var(--route)}
 .verdict-sub{display:block;margin-top:10px;font-size:15px}
+.verdict>div{min-width:0;overflow-wrap:anywhere}
 .verdict ul{margin:8px 0 0;padding-left:18px}
 .r-blocked{--route:var(--broken)}.r-full{--route:var(--ink)}.r-targeted{--route:var(--argued)}.r-light{--route:var(--proven)}
 .req{margin:14px 0;padding-left:14px;border-left:3px solid var(--rule)} .req.interp{border-left-color:var(--argued)}
@@ -46,7 +48,7 @@ table{border-collapse:collapse;width:100%;font-size:14.5px;margin:8px 0}
 th{text-align:left;font-weight:600;color:var(--muted);border-bottom:2px solid var(--rule);padding:6px 10px 6px 0}
 td{vertical-align:top;border-bottom:1px solid var(--rule);padding:8px 10px 8px 0}
 tr.total td{font-weight:600;border-bottom:none}
-.state{white-space:nowrap;font-weight:700;color:var(--s)} .state .g{font-size:15px;margin-right:4px}
+.state{white-space:normal;font-weight:700;color:var(--s)} .state .g{font-size:15px;margin-right:4px}
 .s-proven{--s:var(--proven)}.s-argued{--s:var(--argued)}.s-not_checked{--s:var(--not_checked)}.s-broken{--s:var(--broken)}
 .st-passed{--s:var(--proven)}.st-failed{--s:var(--broken)}.st-not_run,.st-inconclusive{--s:var(--not_checked)}
 .claim td:first-child{width:130px}
@@ -59,7 +61,7 @@ tr.total td{font-weight:600;border-bottom:none}
 .owner{border:2px solid var(--ink);padding:18px 22px;margin-top:12px}
 .field span:first-child{font-weight:600}
 .line{border-bottom:1px solid var(--text);min-height:24px;color:var(--muted)}
-.hunk{margin:18px 0;border:1px solid var(--rule)} .hunk h3{margin:0;padding:6px 10px;font:600 13px var(--mono);background:var(--wash);color:var(--text)}
+.hunk{margin:18px 0;border:1px solid var(--rule)} .hunk h3{margin:0;overflow-wrap:anywhere;padding:6px 10px;font:600 13px var(--mono);background:var(--wash);color:var(--text)}
 .hunk pre{padding:6px 0} .add,.del{display:block;padding:0 10px} .add{background:#E6F4EA} .del{background:#FBE7E5}
 .hunk:target{outline:3px solid var(--argued)}
 .sim-band{background:repeating-linear-gradient(-45deg,#F7E7B4 0 14px,#FFFFFF 14px 28px);border:3px solid var(--argued);padding:10px 16px;margin:0 0 18px}
@@ -112,6 +114,7 @@ export function renderHtml(r: Report, link: (repoPath: string) => string, maxFin
   const val = (k: string) => esc(ui?.form?.get(k) ?? "");
   const radios = (name: string, opts: string[][], formAttr = "") => `<div class="choices">${opts.map(([v, label]) =>
     `<label><input type="radio" name="${esc(name)}" value="${v}" required${formAttr}${ui?.form?.get(name) === v ? " checked" : ""}> ${label}</label>`).join("")}</div>`;
+  const coverage = explanationCoverage(r);
   const blocked = r.route.effectiveRoute === "blocked";
   const route = r.route;
   const byId = new Map(r.evidence.map((e) => [e.id, e]));
@@ -151,6 +154,8 @@ ${route.spotCheck.selected ? `<span class="verdict-sub"><b>Selected for a blind 
 <ul>${route.reasons.map((x) => `<li>${esc(x.detail)} <span class="muted">(${esc(x.code)})</span></li>`).join("")}</ul>
 ${unblockedLine(route, esc)}</div>
 </div>
+<nav aria-label="Review guide"><a href="#s3">What can I check quickly?</a> · <a href="#s6">What must I decide?</a> · <a href="#explanation">Why must I read more?</a>${ui && !r.case.synthetic ? ` · <a href="${base}/experiment">Time a review exercise</a>` : ""}</nav>
+<p class="muted">Reading percentages describe the rule-selected diff, not measured time saved. Evidence links need human scrutiny.</p>
 ${ui?.notice ? `<p class="notice" role="status">${esc(ui.notice)}</p>` : ""}
 ${r.reviewer.status !== "ok" ? `<p><span class="flag">AI reviewer ${esc(r.reviewer.status)}.</span> ${esc(r.reviewer.reason ?? "")}</p>` : ""}
 
@@ -168,9 +173,10 @@ ${Object.entries(r.inventory.totals.byClass).map(([k, v]) => `<tr><td>${esc(k)}<
 ${r.inventory.files.map((f) => `<tr><td><code>${esc(f.path)}</code>${f.status !== "modified" ? ` <span class="muted">(${f.status})</span>` : ""}</td><td>${esc(f.class)}</td><td>+${f.added}/−${f.removed}</td><td>${hunks(f.hunkIds)}</td></tr>`).join("")}</tbody></table></div>
 <p><b>Unexplained:</b> ${hunks(r.unexplained)}. These are changed hunks that no claim or decision accounts for.</p>`)}
 
-${section(3, "How sure we are of each part", `<p class="muted">Code computes each state from evidence records; the model never sets one. Proven: a run supports it and that check was shown able to fail. Argued: resolved citations, or tests that pass but were not shown able to fail. Not checked: nothing was done. Broken: a check contradicts it.</p>
+${section(3, "What the evidence establishes", `<p class="muted">Code computes each state; the model never sets one. Observed in a discriminating test: a named test passes with the change and fails without it. This does not establish the full wording of the linked claim; check the test assertion and its scope. Argued: resolved citations, or passing tests without a discriminating failure. Not checked: no linked support. Broken: a linked check contradicts it. The stored state name remains <code>proven</code> for compatibility with the frozen report.</p>
 ${r.claims.length ? `<div class="scroll"><table><thead><tr><th>State</th><th>Claim</th></tr></thead><tbody>${STATE_ORDER.flatMap((s) => r.claims.filter((c) => c.state === s)).map((c) => `<tr class="claim"><td>${state(c.state)}</td><td><b>${esc(c.id)}</b> ${esc(c.statement)}
 <div class="detail">Why: ${esc(c.stateReason)}</div>
+${c.state === "proven" ? `<div class="detail"><b>Not established:</b> that the named test covers every behavior in this claim. Inspect its assertions before relying on this evidence.</div>` : ""}
 <div class="detail">Serves ${c.requirementIds.map(esc).join(", ") || `<span class="flag">no requirement item</span>`}. Hunks ${hunks(c.hunkIds)}. Checked by ${performer(c.evidenceIds)}.</div>
 ${c.testNames.length ? `<div class="detail">Tests: ${c.testNames.map((t) => `<code>${esc(t)}</code>`).join(", ")}</div>` : ""}${cites(c.citations)}</td></tr>`).join("")}</tbody></table></div>` : "<p>No claims.</p>"}`)}
 
@@ -204,6 +210,12 @@ ${section(9, "What to read", `<p>The effective route is <b>${VERDICT[route.effec
 ${!r.case.synthetic && route.trustFloor !== "light" ? `<p><a href="${ui ? `${base}/earned` : "sheet-earned.html"}">See this sheet as it would read once these areas have earned trust</a> (simulated trust history, cannot be signed).</p>` : ""}
 <p>A targeted read would cover ${route.readingListLines} of ${route.totalLines} changed lines:</p>
 <div class="scroll"><table><thead><tr><th>Hunk</th><th>File</th><th>Lines</th><th>Why it is on the list</th></tr></thead><tbody>${route.readingList.map((x) => `<tr><td>${hunk(x.hunkId)}</td><td><code>${esc(x.file)}</code></td><td>${x.lines}</td><td>${x.why.map(esc).join("; ")}</td></tr>`).join("")}</tbody></table></div>`)}
+
+<section aria-labelledby="explanation"><h2 id="explanation">Explanation coverage</h2>
+<p>${coverage.explained} of ${coverage.total} changed hunks are linked to a claim or decision. This is explanation coverage, not correctness coverage. Findings alone do not explain a change.</p>
+<details><summary>Inspect every hunk and why it needs attention</summary><div class="scroll"><table><thead><tr><th>Hunk / file</th><th>Explanation</th><th>Attention required</th></tr></thead><tbody>
+${coverage.rows.map(x => `<tr><td>${hunk(x.id)} <code>${esc(x.file)}</code></td><td>${x.explained ? [...x.claims.map(id => `Claim ${esc(id)}`), ...x.decisions.map(id => `Decision ${esc(id)}`)].join(", ") : "Unexplained"}${x.findings.length ? `<div>Suspected findings: ${x.findings.map(esc).join(", ")}</div>` : ""}</td><td>${x.attention.map(esc).join("; ")}</td></tr>`).join("")}
+</tbody></table></div></details></section>
 
 ${section(10, "Sign-off", ui ? `<div class="owner">
 ${ui.signoffs.map((s) => `<div class="signed"><b>Signed by ${esc(s.owner)}</b> on ${esc(s.signedAt)}: ${esc(ACTIONS.find(([v]) => v === s.action)?.[1] ?? s.action)}. ${esc(s.reason)}
@@ -259,6 +271,7 @@ export function renderMarkdown(r: Report, sheetHref: string, maxFindings: number
     `${r.inventory.totals.files} files, +${r.inventory.totals.added}/−${r.inventory.totals.removed}: ` + Object.entries(r.inventory.totals.byClass).map(([k, v]) => `${v.files} ${k} (${v.lines} lines)`).join(", ") + `. Unexplained hunks: ${r.unexplained.join(", ") || "none"}.`,
     ``,
     `### Claims (states computed from evidence)`,
+    `Observed in a discriminating test means a named test passes with the change and fails without it; this does not establish the full wording of the claim. Inspect the assertion and its scope.`,
     ...(r.claims.length ? STATE_ORDER.flatMap((s) => r.claims.filter((c) => c.state === s)).map((c) => `- **${STATE_TEXT[c.state]}** ${md(c.id)}: ${md(c.statement)} — ${md(c.stateReason)}`) : ["- none"]),
     ``,
     `### Checks`,

@@ -1,7 +1,7 @@
 // Local sign-off server. The only code path that writes a sign-off, a confirmation or a trust event is a
 // POST from a person using these pages. Binds to 127.0.0.1 and refuses posts from other origins.
 import { createHash, randomBytes } from "node:crypto";
-import { appendFileSync, existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { appendFileSync, existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { createServer, type IncomingMessage, type ServerResponse } from "node:http";
 import { dirname, extname, join, resolve, sep } from "node:path";
 import { caseDir, DATA, loadCase, loadProfile, readJson, ROOT, type Case } from "./config.ts";
@@ -11,6 +11,7 @@ import { renderControlEvaluation, renderBlind, renderIndex, renderMessage, rende
 import { loadMetrics } from "./metrics.ts";
 import { COHORT_LABELS, type Cohort } from "./cohorts.ts";
 import type { Report } from "./report.ts";
+import { experimentRecord, renderExperiment, renderExperiments, validateExperiment, type Experiment } from "./experiment.ts";
 
 export const SIMULATED_LOG = join(DATA, "trust", "simulated-events.jsonl");
 const ACTIONS = ["accept", "request_changes", "escalate"];
@@ -110,6 +111,32 @@ export function startServer(port: number) {
           url.searchParams.get("notice") ?? undefined, cases.filter((c) => report(c.id)).map((c) => ({ id: c.id, requirementId: c.requirement.id }))));
       }
 
+      if (req.method === "GET" && parts.join("/") === "evaluation/experiments") {
+        const directory = join(DATA, "experiments");
+        const records: Experiment[] = existsSync(directory) ? readdirSync(directory).filter((name) => name.endsWith(".json")).sort().map((name) => readJson(join(directory, name))) : [];
+        return send(res, 200, renderExperiments(records));
+      }
+
+      if (req.method === "GET" && parts[0] === "evaluation" && parts[1] === "context-v2" && parts.length === 3 && /^[\w-]+$/.test(parts[2])) {
+        const file = join(DATA, "followup-v2", parts[2], "report.json");
+        if (!existsSync(file)) return send(res, 404, renderMessage("No follow-up report", "This separate follow-up report is unavailable.", "/"));
+        const html = renderHtml(readJson(file), (path) => `/${path}`, policy.sheet.maxFindingsShown);
+        return send(res, 200, html.replace('<main class="sheet">', '<main class="sheet"><div class="notice"><b>Expanded-context v2 follow-up</b> · Separate observational output. Frozen evaluation results are unchanged; this view cannot be signed. <a href="/data/followup-v2/' + encodeURIComponent(parts[2]) + '/manifest.json">Context selected and omitted</a></div>'));
+      }
+
+      if (req.method === "GET" && parts.join("/") === "evaluation/control-v2") {
+        const directory = join(DATA, "evaluation-v2", "control");
+        const file = join(directory, "report.json");
+        if (existsSync(file)) {
+          const html = renderHtml(readJson(file), (path) => `/${path}`, policy.sheet.maxFindingsShown);
+          return send(res, 200, html.replace('<main class="sheet">', '<main class="sheet"><div class="notice"><b>Control v2 follow-up</b> · Separate from frozen evaluation results. Human false-positive judgments remain pending; this view cannot be signed.</div>'));
+        }
+        const summaryFile = join(directory, "summary.json");
+        if (!existsSync(summaryFile)) return send(res, 404, renderMessage("No control v2 result", "No separate control follow-up result has been recorded.", "/"));
+        const summary = readJson(summaryFile);
+        return send(res, 200, renderMessage("Control v2 availability", `Status: ${summary.status}. ${summary.reason ?? "Review report unavailable."} Raw review counts are unavailable, not zero. Human false-positive judgments remain pending.`, "/"));
+      }
+
       if (req.method === "GET" && parts.join("/") === "evaluation/control") {
         const file = join(DATA, "evaluation", "control-run.json");
         if (!existsSync(file)) return send(res, 404, renderMessage("No control evaluation", "No control evaluation has been recorded.", "/"));
@@ -137,6 +164,18 @@ export function startServer(port: number) {
       const action = parts[2];
 
       if (req.method === "GET" && !action) return sheet(res, c, r, { notice: url.searchParams.get("notice") ?? undefined });
+
+      if (action === "experiment" && parts.length === 3 && ["GET", "POST"].includes(req.method ?? "")) {
+        const nonce = randomBytes(16).toString("base64");
+        const current = hashOf(c.id);
+        const requirement = readJson(join(caseDir(c.id), "requirement.json"));
+        if (req.method === "GET") return send(res, 200, renderExperiment(r, requirement, current, nonce, [], undefined, policy.sheet.maxFindingsShown), nonce);
+        const f = await body(req);
+        const errors = validateExperiment(current, f);
+        if (errors.length) return send(res, 400, renderExperiment(r, requirement, current, nonce, errors, f, policy.sheet.maxFindingsShown), nonce);
+        writeNew(join(DATA, "experiments", `${stamp()}-${randomBytes(8).toString("hex")}.json`), experimentRecord(c.id, current, f));
+        return redirect(res, "/evaluation/experiments");
+      }
 
       if (req.method === "GET" && action === "earned") { // simulated trust: read-only, no form, never signable
         const f = join(caseDir(c.id), "report-earned.json");

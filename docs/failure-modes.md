@@ -62,3 +62,9 @@ The independently authored holdout ran once with the frozen pipeline. No pipelin
 - **Consequence:** no eligible buildable control reached AI review. Findings, model-raised decisions, unexplained hunks, broken claims and route are **unavailable, not zero**. There is no false-alarm rate or completed control case in the aggregate denominator.
 - **Action:** stopped after the three permitted candidates. Did not change `global.json`, the container profile, SDK roll-forward behavior, rules or prompts. `/evaluation/control` displays the attempts and links their logs; no fourth candidate was tried.
 - **Evidence:** `data/evaluation/control-selection.json`, `control-run.json`, and `control-attempts/{2279,1818,1802}/` (six head-project run records and logs). `control-path-screening.json` records intervening PRs excluded by the path criterion. This is an environment failure, not evidence that the merged changes are wrong.
+
+## Follow-up control: passing runs do not check generated snapshots
+
+The separate SDK-repaired control builds and runs, but its checked-in generator-test verifier defines `WRITE_EXPECTED` and sets `TestBehaviors.SkipGeneratedSourcesCheck`. The head build warns about this. Parsed passes are real, but cannot establish generated-source snapshot agreement. The source was not changed to improve the result; this limitation is preserved in `data/evaluation-v2/control/runs/` logs and `docs/control-v2.md`. A human must assess any related finding; it is not automatically a false alarm because the PR was merged.
+
+The control follow-up wrapper also hit a presentation-only `TypeError: link is not a function` after saving a valid model response and report. The renderer call was repaired and output regenerated from those saved artifacts; no test or model call was repeated. The original execution and failure record are retained in the follow-up directory.

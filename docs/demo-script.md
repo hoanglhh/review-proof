@@ -46,3 +46,12 @@ Before showing the holdout sheet, metrics, notes or results, send the owner dire
 Open `/evaluation/control`: all three permitted candidates failed SDK resolution in the pinned image. Raw findings, model-raised decisions, unexplained hunks, broken claims and route are unavailable, not zero. Show the candidate logs and the empty control metric scope; do not present this as a completed noise measurement. A future merged control would be one assumed-clean case, not ground truth, and only the owner may judge findings.
 
 Never combine the four samples, holdout, control and eight planted defects into an unlabeled success rate. The concept card explains the cost to shared code knowledge, the current human-signature boundary, the absence of real escape data and the missing undo assessment.
+
+## Optional v2 follow-up (separate evaluation)
+
+1. Use a supplied sample, not the holdout. Open its live sheet and explain “Observed in a discriminating test”; show the named test and the warning about claim breadth.
+2. Open Explanation coverage. Trace one hunk to its claim or decision and the reason it requires attention. State that this is not correctness coverage.
+3. Open `/case/2283/experiment`. The human chooses method and prior exposure, starts the timer, switches phases, and records what remains unresolved. Do not populate the exercise on the human's behalf.
+4. Open `/evaluation/experiments`. Report observations and denominators; do not claim causal speedup or stable incident rates.
+5. Show `/evaluation/context-v2/2283` and its retrieval manifest if available. Explain the bounded lexical search and omitted context.
+6. Show `/evaluation/control-v2`, separate from the frozen control result. Only the human judges false alarms.

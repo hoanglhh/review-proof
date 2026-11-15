@@ -1,0 +1,7 @@
+{
+  "inspectedAt": "2026-11-15T00:12:21.303Z",
+  "tag": "mcr.microsoft.com/dotnet/sdk:10.0.300",
+  "digest": "mcr.microsoft.com/dotnet/sdk@sha256:c0790639332692a0d56cdd81ed581cfd24d040d9839764c138994866df89a3b6",
+  "imageId": "sha256:c0790639332692a0d56cdd81ed581cfd24d040d9839764c138994866df89a3b6",
+  "sdk": "10.0.300 [/usr/share/dotnet/sdk]\n"
+}

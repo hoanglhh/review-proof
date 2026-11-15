@@ -1,0 +1,12 @@
+{
+  "repairedAt": "2026-11-15T00:19:22.757Z",
+  "error": "TypeError: link is not a function",
+  "cause": "The new orchestration wrapper omitted mandatory renderer arguments after successful model review and report assembly.",
+  "repair": "Render existing report using the repository-relative link callback and frozen policy maxFindingsShown; derive summary counts from saved review/report only.",
+  "validation": "HTML contains the case ID and Markdown contains the computed BLOCKED route. Initial validation assumed Markdown includes the case ID; renderer actually uses requirement ID and title. Corrected assertion without changing report or model output.",
+  "originalSummary": "data/evaluation-v2/control/initial-summary-render-error.json",
+  "originalExecutedScript": "data/evaluation-v2/control/inputs/executed-script.ts",
+  "currentScriptHash": "ebd0fd6f1bbda1aaba56723de39f4257c40c6b8a0162b7cca223e8c7e27a4836",
+  "newModelCalls": 0,
+  "newTestRuns": 0
+}

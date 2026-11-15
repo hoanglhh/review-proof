@@ -1,0 +1,8 @@
+{
+  "image": "mcr.microsoft.com/dotnet/sdk:10.0.300",
+  "pullAttempts": 1,
+  "pullLog": "data/evaluation-v2/control/image-pull.log",
+  "wrapperExitCode": 1,
+  "wrapperIssue": "After Docker completed, zsh rejected assigning to its read-only status variable. No pull retry was made; subsequent docker image inspect and exact SDK execution verified the pulled image.",
+  "verification": "data/evaluation-v2/control/environment.json"
+}

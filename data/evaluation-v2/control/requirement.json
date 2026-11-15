@@ -1,0 +1,6 @@
+{
+  "id": "2180",
+  "title": "Unexpected warning CS8669: The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.",
+  "body": "#### Bug description\n\nMessagePack v3 generates a CS8669 warning for the file `MessagePack.GeneratedMessagePackResolver.g.cs` if your code contains a class like the one below.\n\n#### Repro steps\n\nAdd the following class to your code and build your project, you will see the CS8669 warning:\n```cs\n[MessagePackObject]\npublic class SomeClass\n{\n    [Key(0)]\n    public required List<SomeClass?> Values { get; set; }\n}\n```\n\n#### Expected behavior\n\nNo warning.\n\n#### Actual behavior\n\nWarning CS8669: The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. Auto-generated code requires an explicit '#nullable' directive in source.\n\n- Version used: MessagePack 3.1.3\n- Runtime: .NET 9\n\n#### Possible solution\n\nThe solution might be to include the line `#pragma warning disable CS8669` in the file `MessagePack.GeneratedMessagePackResolver.g.cs`. This line is already present in the other generated files.\n",
+  "retrievedAt": null
+}

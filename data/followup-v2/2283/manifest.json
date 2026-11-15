@@ -1,0 +1,2975 @@
+{
+  "version": "context-v2",
+  "base": "32258fdbee4bcd653c79f51b4376b5103c6f4d27",
+  "head": "9df83c38409c8bfad0517aebffe48211eda4a5b4",
+  "limits": {
+    "scanFiles": 2000,
+    "fileBytes": 256000,
+    "files": 12,
+    "fileLines": 300,
+    "lines": 2000,
+    "chars": 100000,
+    "symbols": 80
+  },
+  "symbols": [
+    "README",
+    "MsgPack004",
+    "TypeCollector",
+    "GenericsFormatterTests",
+    "MessagePack",
+    "Framework",
+    "Unity",
+    "Xamarin",
+    "NuGet",
+    "Releases",
+    "CSharp",
+    "Join",
+    "Lobby",
+    "Build",
+    "Status",
+    "MsgPack",
+    "Performance",
+    "Perf",
+    "Please",
+    "JSON",
+    "ZeroFormatter",
+    "Table",
+    "Contents",
+    "Installation",
+    "Migration",
+    "Quick",
+    "Start",
+    "Analyzer",
+    "Built",
+    "Object",
+    "Serialization",
+    "DataContract",
+    "Serializing",
+    "SerializationConstructor",
+    "Callback",
+    "Union",
+    "Dynamic",
+    "Untyped",
+    "Deserialization",
+    "Type",
+    "Typeless",
+    "Security",
+    "String",
+    "Compression",
+    "Attributions",
+    "Comparison",
+    "Hints",
+    "Contractless",
+    "Create",
+    "Choosing",
+    "Extensions",
+    "Experimental",
+    "Features",
+    "High",
+    "Level",
+    "MessagePackSerializer",
+    "Multiple",
+    "Stream",
+    "IMessagePackFormatter",
+    "Primitive",
+    "MessagePackWriter",
+    "MessagePackReader",
+    "Main",
+    "Extension",
+    "Point",
+    "IFormatterResolver",
+    "MessagePackFormatterAttribute",
+    "IgnoreFormatter",
+    "Reserved",
+    "Types",
+    "Code",
+    "Generation",
+    "MagicOnion",
+    "StreamJsonRpc",
+    "Author",
+    "Info",
+    "Conduct",
+    "Foundation",
+    "This",
+    "Special"
+  ],
+  "counts": {
+    "headEntries": 953,
+    "unchangedEligible": 696,
+    "scanned": 696,
+    "selected": 12,
+    "selectedLines": 646,
+    "selectedChars": 23442,
+    "unscanned": 0
+  },
+  "selected": [
+    {
+      "path": "benchmark/ExperimentalBenchmark/BoolDeserializeTest.cs",
+      "reasons": [
+        "test: lexical references to MessagePack, MessagePackSerializer, MessagePackReader"
+      ],
+      "startLine": 1,
+      "endLine": 77,
+      "totalLines": 77,
+      "truncated": false
+    },
+    {
+      "path": "benchmark/ExperimentalBenchmark/BoolSerializeTest.cs",
+      "reasons": [
+        "test: lexical references to MessagePack, MessagePackWriter"
+      ],
+      "startLine": 1,
+      "endLine": 83,
+      "totalLines": 83,
+      "truncated": false
+    },
+    {
+      "path": "benchmark/ExperimentalBenchmark/DoubleTest.cs",
+      "reasons": [
+        "test: lexical references to MessagePack, MessagePackWriter"
+      ],
+      "startLine": 1,
+      "endLine": 45,
+      "totalLines": 45,
+      "truncated": false
+    },
+    {
+      "path": "benchmark/ExperimentalBenchmark/IntTest.cs",
+      "reasons": [
+        "test: lexical references to MessagePack, MessagePackWriter"
+      ],
+      "startLine": 1,
+      "endLine": 76,
+      "totalLines": 76,
+      "truncated": false
+    },
+    {
+      "path": "benchmark/ExperimentalBenchmark/SByteTest.cs",
+      "reasons": [
+        "test: lexical references to MessagePack, MessagePackWriter"
+      ],
+      "startLine": 1,
+      "endLine": 76,
+      "totalLines": 76,
+      "truncated": false
+    },
+    {
+      "path": "benchmark/ExperimentalBenchmark/ShortTest.cs",
+      "reasons": [
+        "test: lexical references to MessagePack, MessagePackWriter"
+      ],
+      "startLine": 1,
+      "endLine": 76,
+      "totalLines": 76,
+      "truncated": false
+    },
+    {
+      "path": "benchmark/ExperimentalBenchmark/SingleTest.cs",
+      "reasons": [
+        "test: lexical references to MessagePack, MessagePackWriter"
+      ],
+      "startLine": 1,
+      "endLine": 45,
+      "totalLines": 45,
+      "truncated": false
+    },
+    {
+      "path": "sandbox/TestData.InvalidProject/Class1.cs",
+      "reasons": [
+        "test: lexical references to MessagePack"
+      ],
+      "startLine": 1,
+      "endLine": 36,
+      "totalLines": 36,
+      "truncated": false
+    },
+    {
+      "path": "sandbox/TestData.InvalidSyntax/Class1.cs",
+      "reasons": [
+        "test: lexical references to MessagePack"
+      ],
+      "startLine": 1,
+      "endLine": 38,
+      "totalLines": 38,
+      "truncated": false
+    },
+    {
+      "path": "sandbox/TestData2/NestedTypeCheck.cs",
+      "reasons": [
+        "test: lexical references to MessagePack"
+      ],
+      "startLine": 1,
+      "endLine": 49,
+      "totalLines": 49,
+      "truncated": false
+    },
+    {
+      "path": "sandbox/TestData2/PropNameCheck1.cs",
+      "reasons": [
+        "test: lexical references to MessagePack"
+      ],
+      "startLine": 1,
+      "endLine": 19,
+      "totalLines": 19,
+      "truncated": false
+    },
+    {
+      "path": "sandbox/TestData2/PropNameCheck2.cs",
+      "reasons": [
+        "test: lexical references to MessagePack"
+      ],
+      "startLine": 1,
+      "endLine": 26,
+      "totalLines": 26,
+      "truncated": false
+    }
+  ],
+  "omitted": [
+    {
+      "path": "benchmark/SerializerBenchmark/BenchmarkConfig.cs",
+      "reason": "no selected lexical symbol or filename-stem match"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/IGenericEquality`1.cs",
+      "reason": "no selected lexical symbol or filename-stem match"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Serializers/BsonNetSerializer.cs",
+      "reason": "no selected lexical symbol or filename-stem match"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Serializers/CerasSerializer.cs",
+      "reason": "no selected lexical symbol or filename-stem match"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Serializers/FsPicklerSerializer.cs",
+      "reason": "no selected lexical symbol or filename-stem match"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Serializers/HyperionSerializer.cs",
+      "reason": "no selected lexical symbol or filename-stem match"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Serializers/JsonNetSerializer.cs",
+      "reason": "no selected lexical symbol or filename-stem match"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Serializers/OdinSerializer.cs",
+      "reason": "no selected lexical symbol or filename-stem match"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Serializers/ProtobufNetSerializer.cs",
+      "reason": "no selected lexical symbol or filename-stem match"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Serializers/SerializerBase.cs",
+      "reason": "no selected lexical symbol or filename-stem match"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Serializers/SpanJsonSerializer.cs",
+      "reason": "no selected lexical symbol or filename-stem match"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Serializers/SystemTextJsonSerializer.cs",
+      "reason": "no selected lexical symbol or filename-stem match"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Serializers/Utf8JsonSerializer.cs",
+      "reason": "no selected lexical symbol or filename-stem match"
+    },
+    {
+      "path": "sandbox/PerfBenchmarkDotNet/BenchmarkConfig.cs",
+      "reason": "no selected lexical symbol or filename-stem match"
+    },
+    {
+      "path": "sandbox/PerfBenchmarkDotNet/ContractlessType.cs",
+      "reason": "no selected lexical symbol or filename-stem match"
+    },
+    {
+      "path": "sandbox/PerfBenchmarkDotNet/SpanBenchmarks.cs",
+      "reason": "no selected lexical symbol or filename-stem match"
+    },
+    {
+      "path": "sandbox/PerfBenchmarkDotNet/TypelessPrimitiveType.cs",
+      "reason": "no selected lexical symbol or filename-stem match"
+    },
+    {
+      "path": "sandbox/PerfNetFramework/Measure.cs",
+      "reason": "no selected lexical symbol or filename-stem match"
+    },
+    {
+      "path": "sandbox/PerfNetFramework/Sex.cs",
+      "reason": "no selected lexical symbol or filename-stem match"
+    },
+    {
+      "path": "sandbox/TestData2/A.cs",
+      "reason": "no selected lexical symbol or filename-stem match"
+    },
+    {
+      "path": "sandbox/TestData2/B.cs",
+      "reason": "no selected lexical symbol or filename-stem match"
+    },
+    {
+      "path": "sandbox/TestData2/C.cs",
+      "reason": "no selected lexical symbol or filename-stem match"
+    },
+    {
+      "path": "sandbox/TestData2/NestedGenerics.cs",
+      "reason": "no selected lexical symbol or filename-stem match"
+    },
+    {
+      "path": "sandbox/TestData2/NullableTest.cs",
+      "reason": "no selected lexical symbol or filename-stem match"
+    },
+    {
+      "path": "src/AssemblyInfo.cs",
+      "reason": "no selected lexical symbol or filename-stem match"
+    },
+    {
+      "path": "src/MessagePack.SourceGenerator/Shims/System.CodeDom.cs",
+      "reason": "no selected lexical symbol or filename-stem match"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.ExecutionTests/CustomFormatterRecord.cs",
+      "reason": "no selected lexical symbol or filename-stem match"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.ExecutionTests/Derived1.cs",
+      "reason": "no selected lexical symbol or filename-stem match"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.ExecutionTests/Derived2.cs",
+      "reason": "no selected lexical symbol or filename-stem match"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.ExecutionTests/GeneratedMessagePackResolver.cs",
+      "reason": "no selected lexical symbol or filename-stem match"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.ExecutionTests/HasInitProperty.cs",
+      "reason": "no selected lexical symbol or filename-stem match"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.ExecutionTests/HasPrivateSerializedMembers.cs",
+      "reason": "no selected lexical symbol or filename-stem match"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.ExecutionTests/HasPropertiesWithGetterAndCtor.cs",
+      "reason": "no selected lexical symbol or filename-stem match"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.ExecutionTests/HasPropertiesWithGetterAndSetter.cs",
+      "reason": "no selected lexical symbol or filename-stem match"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.ExecutionTests/HasPropertyWithCustomFormatterAttribute.cs",
+      "reason": "no selected lexical symbol or filename-stem match"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.ExecutionTests/HasPropertyWithTypeWithCustomFormatter.cs",
+      "reason": "no selected lexical symbol or filename-stem match"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.ExecutionTests/HasRequiredMembers.cs",
+      "reason": "no selected lexical symbol or filename-stem match"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.ExecutionTests/MyEnum.cs",
+      "reason": "no selected lexical symbol or filename-stem match"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.ExecutionTests/MyMessagePackObject.cs",
+      "reason": "no selected lexical symbol or filename-stem match"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.ExecutionTests/NewPropertyInDerivedType.cs",
+      "reason": "no selected lexical symbol or filename-stem match"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.ExecutionTests/UnionContainer.cs",
+      "reason": "no selected lexical symbol or filename-stem match"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.ExecutionTests/UnserializableRecord.cs",
+      "reason": "no selected lexical symbol or filename-stem match"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.MapModeExecutionTests/GeneratedMessagePackResolver.cs",
+      "reason": "no selected lexical symbol or filename-stem match"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.MapModeExecutionTests/MapModeWithOverriddenKeyCollision.cs",
+      "reason": "no selected lexical symbol or filename-stem match"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/CodeAnalysis/MemberSerializationInfoTests.cs",
+      "reason": "no selected lexical symbol or filename-stem match"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/ContainerKind.cs",
+      "reason": "no selected lexical symbol or filename-stem match"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Verifiers/VisualBasicCodeFixVerifier`2.cs",
+      "reason": "no selected lexical symbol or filename-stem match"
+    },
+    {
+      "path": "tests/MessagePack.Tests/IsExternalInit.cs",
+      "reason": "no selected lexical symbol or filename-stem match"
+    },
+    {
+      "path": "sandbox/TestData2/Record.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "sandbox/TestData2/UnionInterface.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.SourceGenerator/Analyzers/MsgPack001SpecifyOptionsAnalyzer.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.UnityClient/Assets/Scripts/Tests/IL2CPPTest.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.AspNetCoreMvcFormatter.Tests/AspNetCoreMvcFormatterTest.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Experimental.Tests/ArrayTests.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Experimental.Tests/ArrayTests.tt",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Experimental.Tests/UnsafeUnmanagedStruct/UnsafeUnmanagedStructTest.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.GeneratedCode.Tests/CompositeResolverTests.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.GeneratedCode.Tests/MissingPropertiesTest.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Internal.Tests/MessagePackInternalTest.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.ExecutionTests/CustomFormatterRecordFormatter.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.ExecutionTests/DeserializingConstructorStartsWithIdx1.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.ExecutionTests/ExcludedCustomFormatter.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.ExecutionTests/ExecutionTests.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.ExecutionTests/GeneratedCompositeResolverTests.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.ExecutionTests/IMyType.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.ExecutionTests/InaccessibleFormatter.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.ExecutionTests/UnserializableRecordFormatter.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.ExecutionTests/Usings.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.MapModeExecutionTests/ClassWithUseMapAndMembersOfVariousVisibility.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.MapModeExecutionTests/MapModeExecutionTests.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.MapModeExecutionTests/StringKeyOverrideTests.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/CodeAnalysis/FullModelTests.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/CodeAnalysis/UnionSerializationInfoTests.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/CompositeResolverGeneratorTests.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/CustomStringKeyFormatterTests.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/FormatterCodeFixProviderTests.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/GenerationTests.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/ImplicitResolverForCustomFormattersTests.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/MessagePackFormatterAttributeTests.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/MsgPack001SpecifyOptionsAnalyzerTests.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/MsgPack002UseConstantOptionsAnalyzerTests.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/MsgPack00xAnalyzerTests.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/MsgPack011PartialTypeRequiredTests.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/MsgPack012InaccessibleDataTypeTests.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/MsgPack014NullableRefTypeFormatterTests.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/MsgPack015AllowPrivateRequiredTests.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/MultipleTypesTests.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/PrivateMemberAccessTests.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/AdditionalAllowTypes/Formatters.MessagePack.GeneratedMessagePackResolver.TypeWithAutoGeneratedFormatterFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/AdditionalAllowTypes/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/AdditionalFormatterTypes_RedundantAttribute/Formatters.MessagePack.GeneratedMessagePackResolver.TypeWithAutoGeneratedFormatterFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/AdditionalFormatterTypes_RedundantAttribute/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/AdditionalFormatterTypes/DefiningProject.MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/AdditionalFormatterTypes/TestProject.Formatters.MessagePack.GeneratedMessagePackResolver.TypeWithAutoGeneratedFormatterFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/AdditionalFormatterTypes/TestProject.MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/Array2DJaggedProperty/Formatters.MessagePack.GeneratedMessagePackResolver.ContainerObjectFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/Array2DJaggedProperty/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/ArrayTypedProperty/Formatters.MessagePack.GeneratedMessagePackResolver.ContainerObjectFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/ArrayTypedProperty/Formatters.MessagePack.GeneratedMessagePackResolver.SubObjectFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/ArrayTypedProperty/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/CanGenerateMessagePackFormatterAttr/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.BarFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/CanGenerateMessagePackFormatterAttr/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/CompositeResolver_MixedResolverTypes/MyResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/CompositeResolver_Nested/MyResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/CustomFormatterForGenericWithConstraints/Formatters.MessagePack.GeneratedMessagePackResolver.SampleObjectFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/CustomFormatterForGenericWithConstraints/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/CustomFormatterViaAttributeOnField(False)/Formatters.MessagePack.GeneratedMessagePackResolver.HasFieldWithCustomFormatterAttributeFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/CustomFormatterViaAttributeOnField(False)/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/CustomFormatterViaAttributeOnField(True)/Formatters.MessagePack.GeneratedMessagePackResolver.HasFieldWithCustomFormatterAttributeFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/CustomFormatterViaAttributeOnField(True)/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/CustomFormatterViaAttributeOnProperty(False)/Formatters.MessagePack.GeneratedMessagePackResolver.HasPropertyWithCustomFormatterAttributeFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/CustomFormatterViaAttributeOnProperty(False)/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/CustomFormatterViaAttributeOnProperty(True)/Formatters.MessagePack.GeneratedMessagePackResolver.HasPropertyWithCustomFormatterAttributeFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/CustomFormatterViaAttributeOnProperty(True)/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/CustomFormatterWithSingletonPattern/Formatters.MessagePack.GeneratedMessagePackResolver.GFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/CustomFormatterWithSingletonPattern/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/DeserializingConstructorParameterMemberTypeAssignability_Incompatible/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/DeserializingConstructorParameterMemberTypeAssignability_MemberAssignsToParamType/Formatters.MessagePack.GeneratedMessagePackResolver.AFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/DeserializingConstructorParameterMemberTypeAssignability_MemberAssignsToParamType/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/EmbeddedTypes/Formatters.MessagePack.GeneratedMessagePackResolver.AFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/EmbeddedTypes/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter_CollidingTypeNames/Formatters.MessagePack.GeneratedMessagePackResolver.MyMessagePackObjectFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter_CollidingTypeNames/Formatters.MessagePack.GeneratedMessagePackResolver.NS1.MyEnumFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter_CollidingTypeNames/Formatters.MessagePack.GeneratedMessagePackResolver.NS2.MyEnumFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter_CollidingTypeNames/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(Namespace, False)/Formatters.MessagePack.GeneratedMessagePackResolver.MyTestNamespace.MyEnumFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(Namespace, False)/Formatters.MessagePack.GeneratedMessagePackResolver.MyTestNamespace.MyMessagePackObjectFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(Namespace, False)/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(Namespace, True)/Formatters.MessagePack.GeneratedMessagePackResolver.MyTestNamespace.MyEnumFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(Namespace, True)/Formatters.MessagePack.GeneratedMessagePackResolver.MyTestNamespace.MyMessagePackObjectFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(Namespace, True)/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(NestingClass, False)/Formatters.MessagePack.GeneratedMessagePackResolver.ContainingClass.MyEnumFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(NestingClass, False)/Formatters.MessagePack.GeneratedMessagePackResolver.ContainingClass.MyMessagePackObjectFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(NestingClass, False)/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(NestingClass, True)/Formatters.MessagePack.GeneratedMessagePackResolver.ContainingClass.MyEnumFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(NestingClass, True)/Formatters.MessagePack.GeneratedMessagePackResolver.ContainingClass.MyMessagePackObjectFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(NestingClass, True)/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(None, False)/Formatters.MessagePack.GeneratedMessagePackResolver.MyEnumFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(None, False)/Formatters.MessagePack.GeneratedMessagePackResolver.MyMessagePackObjectFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(None, False)/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(None, True)/Formatters.MessagePack.GeneratedMessagePackResolver.MyEnumFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(None, True)/Formatters.MessagePack.GeneratedMessagePackResolver.MyMessagePackObjectFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/EnumFormatter(None, True)/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/FormatterForClassWithPrivateMembers_MapMode/Formatters.MyObject.MyObjectFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/FormatterForClassWithPrivateMembers_MapMode/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/FormatterForClassWithPrivateMembers_WithNamespace/Formatters.A.MyObject.MyObjectFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/FormatterForClassWithPrivateMembers_WithNamespace/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/FormatterForClassWithPrivateMembers(class)/Formatters.MyObject.MyObjectFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/FormatterForClassWithPrivateMembers(class)/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/FormatterForClassWithPrivateMembers(record struct)/Formatters.MyObject.MyObjectFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/FormatterForClassWithPrivateMembers(record struct)/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/FormatterForClassWithPrivateMembers(record)/Formatters.MyObject.MyObjectFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/FormatterForClassWithPrivateMembers(record)/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/FormatterForClassWithPrivateMembers(struct)/Formatters.MyObject.MyObjectFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/FormatterForClassWithPrivateMembers(struct)/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/GenericCustomFormatter/Formatters.SampleObject.SampleObjectFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/GenericCustomFormatter/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/GenericDataTypeWithPrivateMember/Formatters.HasPrivateSerializedMemberAndIsGenericNamed`1.HasPrivateSerializedMemberAndIsGenericNamedFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/GenericDataTypeWithPrivateMember/Formatters.HasPrivateSerializedMemberAndIsGenericOrdinal`1.HasPrivateSerializedMemberAndIsGenericOrdinalFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/GenericDataTypeWithPrivateMember/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Constraints_Multiple/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`4.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Constraints_Multiple/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Constraints_NullableReferenceType/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`4.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Constraints_NullableReferenceType/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Constraints_ReferenceType_Nullable/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`2.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Constraints_ReferenceType_Nullable/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Constraints_Struct/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`1.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Constraints_Struct/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Constraints_Type/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`1.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Constraints_Type/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Defined_In_ReferencedProject/DefiningProject.Formatters.TempProject.MyResolver.TempProject.MyGenericObjectFormatter`1.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Defined_In_ReferencedProject/DefiningProject.TempProject.MyResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Defined_In_ReferencedProject/TestProject.Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`1.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Defined_In_ReferencedProject/TestProject.Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObjectFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Defined_In_ReferencedProject/TestProject.Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObjectNestedFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/Generics_Defined_In_ReferencedProject/TestProject.MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfT1T2Formatter/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`2.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfT1T2Formatter/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObjectFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfT1T2Formatter/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObjectNestedFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfT1T2Formatter/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfTFormatter_FormatterOnly/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`1.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfTFormatter_FormatterOnly/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfTFormatter_WithKnownTypes/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`1.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfTFormatter_WithKnownTypes/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObject2Formatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfTFormatter_WithKnownTypes/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObjectFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfTFormatter_WithKnownTypes/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfTFormatter/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`1.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfTFormatter/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObjectFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfTFormatter/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObjectNestedFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsOfTFormatter/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsUnionFormatter_Nested/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`1.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsUnionFormatter_Nested/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyInnerGenericObjectFormatter`1.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsUnionFormatter_Nested/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.WrapperFormatter`1.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsUnionFormatter_Nested/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsUnionFormatter/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.WrapperFormatter`1.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/GenericsUnionFormatter/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/GenericType_CollidingTypeNames/Formatters.MessagePack.GeneratedMessagePackResolver.MyMessagePackObjectFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/GenericType_CollidingTypeNames/Formatters.MessagePack.GeneratedMessagePackResolver.NS1.MyTypeFormatter`1.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/GenericType_CollidingTypeNames/Formatters.MessagePack.GeneratedMessagePackResolver.NS2.MyTypeFormatter`1.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/GenericType_CollidingTypeNames/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/GenericType/Formatters.MessagePack.GeneratedMessagePackResolver.ContainerObjectFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/GenericType/Formatters.MessagePack.GeneratedMessagePackResolver.MyGenericTypeFormatter`1.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/GenericType/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/GenericTypeArg/Formatters.MessagePack.GeneratedMessagePackResolver.GenericClassFormatter`2.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/GenericTypeArg/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/GenericWithConstraintsThatReferenceTypeParameter/Formatters.MessagePack.GeneratedMessagePackResolver.GenericConstrainedClassIntKeyFormatter`2.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/GenericWithConstraintsThatReferenceTypeParameter/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/ImplicitFormatterTypes/Formatters.MessagePack.GeneratedMessagePackResolver.TypeWithAutoGeneratedFormatterFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/ImplicitFormatterTypes/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/InterfaceUnion/Formatters.MessagePack.GeneratedMessagePackResolver.IMyTypeFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/InterfaceUnion/Formatters.MessagePack.GeneratedMessagePackResolver.UnionContainerFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/InterfaceUnion/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/InterfaceUnionUsedWithNullableRefAnnotation/Formatters.MessagePack.GeneratedMessagePackResolver.IMyTypeFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/InterfaceUnionUsedWithNullableRefAnnotation/Formatters.MessagePack.GeneratedMessagePackResolver.UnionContainerFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/InterfaceUnionUsedWithNullableRefAnnotation/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/MixType_CollidingTypeNames/Formatters.MessagePack.GeneratedMessagePackResolver.MyMessagePackObjectFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/MixType_CollidingTypeNames/Formatters.MessagePack.GeneratedMessagePackResolver.NS1.MyTypeFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/MixType_CollidingTypeNames/Formatters.MessagePack.GeneratedMessagePackResolver.NS2.MyTypeFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/MixType_CollidingTypeNames/Formatters.MessagePack.GeneratedMessagePackResolver.NS3.MyTypeFormatter`1.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/MixType_CollidingTypeNames/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/MultipleFunctionalCustomFormattersForType_MultiFormatter/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/MultipleFunctionalCustomFormattersForType_OnlyOneNonExcluded/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/NestedGenericTypes/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyGenericObjectFormatter`1.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/NestedGenericTypes/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyInnerGenericObjectFormatter`1.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/NestedGenericTypes/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObject2Formatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/NestedGenericTypes/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObjectFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/NestedGenericTypes/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.WrapperFormatter`1.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/NestedGenericTypes/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/NestedMessagePackObjects_Array/Formatters.MessagePack.GeneratedMessagePackResolver.A.B.CFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/NestedMessagePackObjects_Array/Formatters.MessagePack.GeneratedMessagePackResolver.A.BFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/NestedMessagePackObjects_Array/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/NestedMessagePackObjects/Formatters.MessagePack.GeneratedMessagePackResolver.A.B.CFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/NestedMessagePackObjects/Formatters.MessagePack.GeneratedMessagePackResolver.A.BFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/NestedMessagePackObjects/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/NoFieldWithCustomFormatterCollected/Formatters.MessagePack.GeneratedMessagePackResolver.TestFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/NoFieldWithCustomFormatterCollected/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/NonDefaultDeserializingConstructor_Private/Formatters.A.AFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/NonDefaultDeserializingConstructor_Private/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/NonGenericType_CollidingTypeNames/Formatters.MessagePack.GeneratedMessagePackResolver.MyMessagePackObjectFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/NonGenericType_CollidingTypeNames/Formatters.MessagePack.GeneratedMessagePackResolver.NS1.MyTypeFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/NonGenericType_CollidingTypeNames/Formatters.MessagePack.GeneratedMessagePackResolver.NS2.MyTypeFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/NonGenericType_CollidingTypeNames/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/NoPrivateAccessNeeded/Formatters.MessagePack.GeneratedMessagePackResolver.Test3Formatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/NoPrivateAccessNeeded/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/NoPrivateMemberCollected/Formatters.MessagePack.GeneratedMessagePackResolver.TestFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/NoPrivateMemberCollected/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/NullableFormatter/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyEnumFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/NullableFormatter/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObjectFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/NullableFormatter/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/OpenGenericFormatter/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterOnlyDefaultValue/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterOnlyDefaultValue/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterOnlyIgnore/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterOnlyIgnore/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterOnlyMixed/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterOnlyMixed/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterOnlyWithParameterizedConstructor/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterOnlyWithParameterizedConstructor/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterOnlyWithParameterizedConstructorDefaultValue/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterOnlyWithParameterizedConstructorDefaultValue/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterOnlyWithParameterizedConstructorPartially/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterOnlyWithParameterizedConstructorPartially/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetter/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetter/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetterWithDefaultValue/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetterWithDefaultValue/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetterWithDefaultValueInputPartially/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetterWithDefaultValueInputPartially/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetterWithParameterizedConstructor/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetterWithParameterizedConstructor/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetterWithParameterizedConstructorAndDefaultValue/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetterWithParameterizedConstructorAndDefaultValue/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetterWithParameterizedConstructorDoNotUseSetter/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetterWithParameterizedConstructorDoNotUseSetter/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetterWithParameterizedConstructorPartially/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/PropertiesGetterSetterWithParameterizedConstructorPartially/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/RecordWithPrimaryConstructor/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/RecordWithPrimaryConstructor/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/RecordWithWithInitOnlyProps/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyMessagePackObjectFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/RecordWithWithInitOnlyProps/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/RecursiveGenerics_Direct/Formatters.MessagePack.GeneratedMessagePackResolver.AFormatter`1.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/RecursiveGenerics_Direct/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/SimplifiedNameForKeywordsAndSyntaxSugar/Formatters.MessagePack.GeneratedMessagePackResolver.SampleObjectFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/SimplifiedNameForKeywordsAndSyntaxSugar/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/SpecifyFormatterFromStockSet/Formatters.MessagePack.GeneratedMessagePackResolver.GFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/SpecifyFormatterFromStockSet/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/SystemCollectionsObjectModelCollection/Formatters.MessagePack.GeneratedMessagePackResolver.AFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/SystemCollectionsObjectModelCollection/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/SystemMemoryTypes/Formatters.MessagePack.GeneratedMessagePackResolver.AFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/SystemMemoryTypes/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/TwoTypes(False)/Formatters.MessagePack.GeneratedMessagePackResolver.Object1Formatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/TwoTypes(False)/Formatters.MessagePack.GeneratedMessagePackResolver.Object2Formatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/TwoTypes(False)/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/TwoTypes(True)/Formatters.MessagePack.GeneratedMessagePackResolver.Object1Formatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/TwoTypes(True)/Formatters.MessagePack.GeneratedMessagePackResolver.Object2Formatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/TwoTypes(True)/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(Namespace)/Formatters.MessagePack.GeneratedMessagePackResolver.MyTestNamespace.Derived1Formatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(Namespace)/Formatters.MessagePack.GeneratedMessagePackResolver.MyTestNamespace.Derived2Formatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(Namespace)/Formatters.MessagePack.GeneratedMessagePackResolver.MyTestNamespace.IMyTypeFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(Namespace)/Formatters.MessagePack.GeneratedMessagePackResolver.MyTestNamespace.MyMessagePackObjectFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(Namespace)/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(NestingClass)/Formatters.MessagePack.GeneratedMessagePackResolver.ContainingClass.Derived1Formatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(NestingClass)/Formatters.MessagePack.GeneratedMessagePackResolver.ContainingClass.Derived2Formatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(NestingClass)/Formatters.MessagePack.GeneratedMessagePackResolver.ContainingClass.IMyTypeFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(NestingClass)/Formatters.MessagePack.GeneratedMessagePackResolver.ContainingClass.MyMessagePackObjectFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(NestingClass)/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(None)/Formatters.MessagePack.GeneratedMessagePackResolver.Derived1Formatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(None)/Formatters.MessagePack.GeneratedMessagePackResolver.Derived2Formatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(None)/Formatters.MessagePack.GeneratedMessagePackResolver.IMyTypeFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(None)/Formatters.MessagePack.GeneratedMessagePackResolver.MyMessagePackObjectFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/UnionFormatter(None)/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/WellKnownGenericsFormatter/Formatters.MessagePack.GeneratedMessagePackResolver.TempProject.MyObjectFormatter.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Resources/WellKnownGenericsFormatter/MessagePack.GeneratedMessagePackResolver.g.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/StringKeyedFormatterTests.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/TestUtilities.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Usings.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Verifiers/CSharpCodeFixVerifier`2.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Verifiers/CSharpCodeFixVerifier`2+Test.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Verifiers/CSharpSourceGeneratorCodeFixVerifier`2.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Verifiers/CSharpSourceGeneratorVerifier`1+Test.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Verifiers/ReferencesHelper.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Verifiers/ReferencesSet.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.SourceGenerator.Tests/Verifiers/VisualBasicCodeFixVerifier`2+Test.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/AllowPrivateTest.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/AnonymousTypeTest.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/AssemblyLoadContextTests.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/AutomataTests.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/ByteArrayComparerTest.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/ByteArrayStringHashTableTest.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/CollectionTest.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/ContractlessStandardResolverConstructorTests.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/ContractlessStandardResolverTest.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/DataContractTest.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/DictionaryTest.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/DynamicObjectFallbackTest.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/DynamicObjectResolverConstructorTest.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/DynamicObjectResolverDerivedAttributeInheritanceTest.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/DynamicObjectResolverDuplicateKeyTests.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/DynamicObjectResolverInterfaceTest.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/DynamicObjectResolverOrderTest.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/DynamicObjectResolverRecordsTests.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/DynamicObjectResolverTests.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/EnumAsStringIgnoreCaseTests.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/EnumAsStringTest.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/ExpandoObjectTests.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/ExtensionHeaderTests.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/ExtensionTests/FrozenCollectionTest.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/ExtensionTests/ImmutableCollectionTest.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/ExtensionTests/LZ4Test.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/ExtensionTests/ReactivePropertyTest.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/ExtensionTests/UnityShimTest.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/FloatConversionTest.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/FormatterTest.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/GenericFormatters.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/IgnoreTest.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/LZ4Test.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/MessagePackBinaryTest.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/MessagePackFormatterPerFieldTest.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/MessagePackReaderTests.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/MessagePackReaderTests.ReadInt.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/MessagePackReaderTests.ReadInt.tt",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/MessagePackReaderTests.ReadString.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/MessagePackSecurityTests.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/MessagePackSerializerOptionsTests.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/MessagePackSerializerTest.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/MessagePackSerializerTypelessTests.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/MessagePackStreamReaderArrayTests.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/MessagePackStreamReaderMapTests.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/MessagePackStreamReaderTests.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/MessagePackWriterTests.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/MultibyteCharPropertyTest.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/MultiDimensionalArrayTest.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/NewGuidFormatterTest.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/NonGenericCollectionTest.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/ObjectResolverTest.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/OldSpecBinaryFormatterTest.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/OneByteAtATimeStream.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/PrimitiveCollectionTests.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/PrimitivelikeFormatterTest.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/PrimitiveObjectFormatterTests.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/PrimitiveResolverTest.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/SipHashTests.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/SpecifiedFormatterResolverTest.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/StandardClassLibraryFormatterTests.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/StringInterningTests.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/TestBase.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/TestConstants.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/TestUtilities.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/ToJsonTest.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/UnionResolverTest.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/UnsafeFormattersTest.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/UnsafeMemoryTest.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/Utils/ChainingAssertion.Ext.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/Utils/ChainingAssertion.Xunit.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "tests/MessagePack.Tests/ValueTupleTest.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/CollectionsMarshalBenchmark/OldListFormatter`1.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/CollectionsMarshalBenchmark/Program.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/CollectionsMarshalBenchmark/RandomByteBenchmark.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/CollectionsMarshalBenchmark/RandomMatrix4x4Benchmark.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/ExperimentalBenchmark/Program.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/ExtensionMethods.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Fixture/BooleanValueFixture.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Fixture/ByteValueFixture.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Fixture/DateTimeOffsetValueFixture.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Fixture/DateTimeValueFixture.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Fixture/DecimalValueFixture.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Fixture/DoubleValueFixture.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Fixture/EnumValueFixture.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Fixture/ExpressionTreeFixture.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Fixture/FloatValueFixture.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Fixture/GuidValueFixture.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Fixture/IntValueFixture.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Fixture/IValueFixture.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Fixture/LongValueFixture.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Fixture/OtherPrimitiveFixtures.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Fixture/ShortValueFixture.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Fixture/StringValueFixture.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Models/AccessToken.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Models/AccountMerge.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Models/Answer.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Models/Badge.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Models/Comment.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Models/Error.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Models/Event.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Models/Feed.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Models/FlagOption.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Models/InboxItem.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Models/Info.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Models/NetworkUser.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Models/Notification.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Models/Post.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Models/Privilege.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Models/Question.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Models/QuestionTimeline.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Models/Reputation.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Models/ReputationHistory.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Models/Revision.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Models/SearchExcerpt.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Models/ShallowUser.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Models/SuggestedEdit.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Models/Tag.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Models/TagScore.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Models/TagSynonym.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Models/TagWiki.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Models/TopTag.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Models/User.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Models/UserTimeline.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Models/WritePermission.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Program.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/SerializerBenchmark.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Serializers/DataContractSerializer.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Serializers/HagarSerializer.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Serializers/JilSerializer.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Serializers/MessagePackSerializer.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "benchmark/SerializerBenchmark/Serializers/MsgPackCliSerializer.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "sandbox/DynamicCodeDumper/Program.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "sandbox/MessagePack.Internal/AssemblyInfo.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "sandbox/PerfBenchmarkDotNet/ContractType.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "sandbox/PerfBenchmarkDotNet/DeserializeBenchmark.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "sandbox/PerfBenchmarkDotNet/DictionaryLookupCompare.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "sandbox/PerfBenchmarkDotNet/GeneratedFormatter.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "sandbox/PerfBenchmarkDotNet/GuidImprov.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "sandbox/PerfBenchmarkDotNet/ImproveStringKeySerializeBenchmark.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "sandbox/PerfBenchmarkDotNet/IntKeySerializerTarget.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "sandbox/PerfBenchmarkDotNet/Lz4Benchmark.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "sandbox/PerfBenchmarkDotNet/Lz4PrimitiveBenchmark.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "sandbox/PerfBenchmarkDotNet/MessagePackReaderBenchmark.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "sandbox/PerfBenchmarkDotNet/MessagePackWriterBenchmark.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "sandbox/PerfBenchmarkDotNet/NewVsOld.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "sandbox/PerfBenchmarkDotNet/Program.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "sandbox/PerfBenchmarkDotNet/Resolver.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "sandbox/PerfBenchmarkDotNet/SerializeBenchmark.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "sandbox/PerfBenchmarkDotNet/StringKeyDeserializeCompare.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "sandbox/PerfBenchmarkDotNet/StringKeySerializerTarget.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "sandbox/PerfBenchmarkDotNet/StringKeySerializerTarget2.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "sandbox/PerfBenchmarkDotNet/TypelessDeserializeBenchmark.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "sandbox/PerfBenchmarkDotNet/TypelessSerializeBenchmark.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "sandbox/PerfNetFramework/BenchmarkEventSource.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "sandbox/PerfNetFramework/Person.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "sandbox/PerfNetFramework/Program.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "sandbox/Sandbox/GeneratedMessagePackResolver.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "sandbox/Sandbox/Program.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "sandbox/SharedData/Class1.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "sandbox/SharedData/GeneratedMessagePackResolver.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.Analyzers.CodeFixes/CodeFixes/FormatterCodeFixProvider.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.Analyzers.CodeFixes/CodeFixes/MessagePackCodeFixProvider.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.Analyzers.CodeFixes/CodeFixes/MsgPack015CodeFixProvider.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.Analyzers.CodeFixes/Usings.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.Annotations/AnalyzerAttributes.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.Annotations/Attributes.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.Annotations/IMessagePackSerializationCallbackReceiver.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.AspNetCoreMvcFormatter/MessagePackInputFormatter.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.AspNetCoreMvcFormatter/MessagePackOutputFormatter.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.Experimental/HardwareIntrinsics/FormatterHelpers.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.Experimental/HardwareIntrinsics/FormatterHelpers.tt",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.Experimental/HardwareIntrinsics/Formatters.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.Experimental/HardwareIntrinsics/PrimitiveArrayGetFormatterHelper.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.Experimental/HardwareIntrinsics/PrimitiveArrayGetFormatterHelper.tt",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.Experimental/HardwareIntrinsics/PrimitiveArrayResolver.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.Experimental/HardwareIntrinsics/UnsafeMemoryAlignmentUtility.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.Experimental/UnsafeUnmanagedStructFormatter/UnsafeUnmanagedStructArrayFormatter.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.Experimental/UnsafeUnmanagedStructFormatter/UnsafeUnmanagedStructFormatter.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.Experimental/UnsafeUnmanagedStructFormatter/UnsafeUnmanagedStructMemoryFormatter.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.Experimental/UnsafeUnmanagedStructFormatter/UnsafeUnmanagedStructReadOnlyMemoryFormatter.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.Experimental/UnsafeUnmanagedStructFormatter/UnsafeUnmanagedStructReadOnlySequenceFormatter.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.ImmutableCollection/AssemblyInfo.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.ReactiveProperty/Formatters.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.ReactiveProperty/ReactivePropertyResolver.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.SourceGenerator.Unity/CompositeResolverGenerator.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.SourceGenerator/Analyzers/MsgPack002UseConstantOptionsAnalyzer.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.SourceGenerator/Analyzers/MsgPack00xMessagePackAnalyzer.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.SourceGenerator/CodeAnalysis/AnalyzerOptions.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.SourceGenerator/CodeAnalysis/CodeAnalysisUtilities.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.SourceGenerator/CodeAnalysis/CustomFormatterRegisterInfo.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.SourceGenerator/CodeAnalysis/EnumSerializationInfo.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.SourceGenerator/CodeAnalysis/FullModel.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.SourceGenerator/CodeAnalysis/GenericSerializationInfo.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.SourceGenerator/CodeAnalysis/GenericTypeParameterInfo.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.SourceGenerator/CodeAnalysis/MemberSerializationInfo.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.SourceGenerator/CodeAnalysis/ObjectSerializationInfo.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.SourceGenerator/CodeAnalysis/QualifiedArrayTypeName.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.SourceGenerator/CodeAnalysis/QualifiedNamedTypeName.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.SourceGenerator/CodeAnalysis/QualifiedTypeName.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.SourceGenerator/CodeAnalysis/ReferenceSymbols.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.SourceGenerator/CodeAnalysis/ResolverRegisterInfo.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.SourceGenerator/CodeAnalysis/ResolverRegisterInfoComparer.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.SourceGenerator/CodeAnalysis/TypeParameter.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.SourceGenerator/CodeAnalysis/UnionSerializationInfo.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.SourceGenerator/CodeAnalysis/UnionSubTypeInfo.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.SourceGenerator/CompositeResolverGenerator.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.SourceGenerator/GeneratorUtilities.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.SourceGenerator/IGeneratorContext.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.SourceGenerator/MessagePackGenerator.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.SourceGenerator/MessagePackGenerator.Emit.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.SourceGenerator/Transforms/CompositeResolverTemplate.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.SourceGenerator/Transforms/CompositeResolverTemplate.tt",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.SourceGenerator/Transforms/EnumTemplate.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.SourceGenerator/Transforms/EnumTemplate.tt",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.SourceGenerator/Transforms/FormatterTemplate.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.SourceGenerator/Transforms/FormatterTemplate.tt",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.SourceGenerator/Transforms/GeneratorUtilities.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.SourceGenerator/Transforms/IFormatterTemplate.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.SourceGenerator/Transforms/ResolverTemplate.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.SourceGenerator/Transforms/ResolverTemplate.tt",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.SourceGenerator/Transforms/StringKey/EmbedStringHelper.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.SourceGenerator/Transforms/StringKey/StringKeyFormatterDeserializeHelper.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.SourceGenerator/Transforms/StringKey/StringKeyFormatterTemplate.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.SourceGenerator/Transforms/StringKey/StringKeyFormatterTemplate.tt",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.SourceGenerator/Transforms/TemplatePartials.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.SourceGenerator/Transforms/TransformUtilities.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.SourceGenerator/Transforms/UnionTemplate.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.SourceGenerator/Transforms/UnionTemplate.tt",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.SourceGenerator/Usings.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.SourceGenerator/Utils/AnalyzerUtilities.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.SourceGenerator/Utils/Constants.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.SourceGenerator/Utils/ImmutableEquatableArray.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.SourceGenerator/Utils/RoslynAnalyzerExtensions.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.UnityClient/Assets/Scenes/SandboxBehaviour.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.UnityClient/Assets/Scripts/MessagePack/Extension/UnityBlitResolver.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.UnityClient/Assets/Scripts/MessagePack/Extension/UnsafeBlitFormatter.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.UnityClient/Assets/Scripts/MessagePack/Formatters.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.UnityClient/Assets/Scripts/MessagePack/MessagePackInitializer.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.UnityClient/Assets/Scripts/MessagePack/UnityResolver.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack.UnityShims/Shims.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/BitOperations.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/BufferWriter.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/CompositeResolverAttribute.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/ExtensionHeader.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/ExtensionResult.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Formatters/CollectionFormatter.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Formatters/CollectionHelpers`2.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Formatters/DateTimeFormatters.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Formatters/DictionaryFormatter.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Formatters/DynamicObjectTypeFallbackFormatter.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Formatters/EnumAsStringFormatter`1.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Formatters/ExpandoObjectFormatter.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Formatters/ForceSizePrimitiveFormatter.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Formatters/ForceSizePrimitiveFormatter.tt",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Formatters/FrozenCollectionFormatters.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Formatters/GenericEnumFormatter`1.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Formatters/IgnoreFormatter`1.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Formatters/IMessagePackFormatter`1.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Formatters/ImmutableCollectionFormatters.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Formatters/MultiDimensionalArrayFormatter.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Formatters/NilFormatter.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Formatters/NullableFormatter.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Formatters/PrimitiveFormatter.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Formatters/PrimitiveFormatter.tt",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Formatters/PrimitiveObjectFormatter.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Formatters/StandardClassLibraryFormatter.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Formatters/StringInterningFormatter.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Formatters/TupleFormatter.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Formatters/TupleFormatter.tt",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Formatters/TypelessFormatter.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Formatters/UnsafeBinaryFormatters.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Formatters/ValueTupleFormatter.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Formatters/ValueTupleFormatter.tt",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/GeneratedMessagePackResolverAttribute.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/HashCode.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/IFormatterResolver.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Internal/AsymmetricKeyHashTable.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Internal/AutomataDictionary.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Internal/AutomataKeyGen.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Internal/ByteArrayStringHashTable.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Internal/CodeGenHelpers.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Internal/DateTimeConstants.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Internal/DynamicAssembly.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Internal/DynamicAssemblyFactory.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Internal/ExpressionUtility.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Internal/FarmHash.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Internal/GeneratedAssemblyMessagePackResolverAttribute.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Internal/GuidBits.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Internal/ILGeneratorExtensions.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Internal/ReflectionExtensions.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Internal/RuntimeTypeHandleEqualityComparer.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Internal/Sequence`1.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Internal/ThreadsafeTypeKeyHashTable.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Internal/TinyJsonReader.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Internal/UnsafeMemory.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Internal/UnsafeMemory.Low.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Internal/UnsafeMemory.tt",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Internal/UnsafeRefDeserializeHelper.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Internal/UnsafeRefSerializeHelper.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/LZ4/LZ4Codec.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/LZ4/LZ4Codec.Helper.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/LZ4/LZ4Codec.Unsafe.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/LZ4/LZ4Codec.Unsafe32.Dirty.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/LZ4/LZ4Codec.Unsafe64.Dirty.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/MessagePackCode.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/MessagePackCompression.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/MessagePackEventSource.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/MessagePackPrimitives.Readers.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/MessagePackPrimitives.Readers.Integers.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/MessagePackPrimitives.Readers.Integers.tt",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/MessagePackPrimitives.Writers.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/MessagePackReader.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/MessagePackReader.Integers.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/MessagePackReader.Integers.tt",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/MessagePackSecurity.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/MessagePackSerializationException.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/MessagePackSerializer.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/MessagePackSerializer.Json.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/MessagePackSerializer.NonGeneric.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/MessagePackSerializer+Typeless.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/MessagePackSerializerOptions.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/MessagePackStreamReader.Arrays.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/MessagePackStreamReader.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/MessagePackStreamReader.Maps.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/MessagePackWriter.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/MonoProtection.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Nil.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/ReservedExtensionTypeCodes.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Resolvers/AttributeFormatterResolver.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Resolvers/BuiltinResolver.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Resolvers/CachingFormatterResolver.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Resolvers/CompositeResolver.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Resolvers/ContractlessReflectionObjectResolver.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Resolvers/DynamicEnumAsStringIgnoreCaseResolver.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Resolvers/DynamicEnumAsStringResolver.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Resolvers/DynamicEnumResolver.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Resolvers/DynamicGenericResolver.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Resolvers/DynamicObjectResolver.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Resolvers/DynamicUnionResolver.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Resolvers/ExpandoObjectResolver.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Resolvers/ImmutableCollectionResolver.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Resolvers/NativeDateTimeResolver.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Resolvers/NativeDecimalResolver.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Resolvers/NativeGuidResolver.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Resolvers/PrimitiveObjectResolver.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Resolvers/ResolverUtilities.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Resolvers/SkipClrVisibilityChecks.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Resolvers/SourceGeneratedFormatterResolver.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Resolvers/StandardResolver.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Resolvers/StaticCompositeResolver.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Resolvers/TypelessContractlessStandardResolver.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Resolvers/TypelessObjectResolver.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/SafeBitConverter.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/SequencePool.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/SequenceReader.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/SequenceReaderExtensions.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/SipHash.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/StreamPolyfillExtensions.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/StringEncoding.cs",
+      "reason": "selected files/lines limit"
+    },
+    {
+      "path": "src/MessagePack/Utilities.cs",
+      "reason": "selected files/lines limit"
+    }
+  ],
+  "limitations": [
+    "Lexical heuristics only, not an AST, call graph, dependency proof or full repository context; comments and strings can produce false matches.",
+    "Only unchanged regular source/template blobs with identical base/head Git object IDs are eligible; symlinks, changed files, other extensions and submodules are excluded.",
+    "Seeds use at most 40 changed head files within fileBytes, filename stems, and the first bounded unique PascalCase identifiers; lowercase names and dynamic relationships can be missed.",
+    "Scanning and output are bounded. Selected files are prefixes, so a matching reference can be outside the shown excerpt; inspect start/end/total lines and omitted entries.",
+    "The limits cover added source listings, not the manifest or frozen legacy prompt. Existing evidence is reused without rerunning tests. Retrieved tests are source, not additional executed evidence."
+  ],
+  "sourceCase": "2283",
+  "experiment": "sample-only follow-up; excluded from legacy evaluation metrics",
+  "rawCacheCaseId": "followup-v2-2283"
+}
