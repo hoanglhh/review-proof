@@ -75,8 +75,12 @@ fieldset.field{display:block} fieldset.field legend{float:left;width:122px;paddi
 .choices{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:6px}
 .choices label{display:inline-flex;align-items:center;gap:6px;padding:4px 2px;cursor:pointer}
 input[type=radio],input[type=checkbox]{accent-color:var(--ink);width:18px;height:18px;margin:0}
-button{font:700 17px var(--head);font-stretch:condensed;letter-spacing:.01em;background:var(--ink);color:#fff;border:2px solid var(--ink);padding:9px 22px;border-radius:2px;cursor:pointer}
-button.secondary{background:var(--sheet);color:var(--ink);font-size:15px;padding:5px 14px}
+.button,button{display:inline-flex;align-items:center;justify-content:center;text-align:center;text-decoration:none;line-height:1.3;max-width:100%;white-space:normal;font:700 17px var(--head);font-stretch:condensed;letter-spacing:.01em;background:var(--ink);color:#fff;border:2px solid var(--ink);padding:9px 22px;border-radius:2px;cursor:pointer}
+.button.secondary,button.secondary{background:var(--sheet);color:var(--ink);font-size:15px;padding:5px 14px}
+.button:hover,button:not(:disabled):hover{background:#1c4565;border-color:#1c4565;color:#fff}
+.button.secondary:hover,button.secondary:not(:disabled):hover{background:var(--wash);color:var(--ink);border-color:var(--ink)}
+.actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:16px 0}.actions.vertical{flex-direction:column;align-items:stretch;margin:0}
+.advanced{margin:24px 0}.advanced>summary{cursor:pointer;font-weight:600}.advanced[open]>summary{margin-bottom:12px}
 button:disabled{background:var(--rule);border-color:var(--rule);color:var(--muted);cursor:not-allowed}
 .errors{border:3px solid var(--broken);padding:12px 16px;margin:0 0 16px} .errors h3{margin:0 0 6px;font:700 18px var(--head);color:var(--broken)}
 .errors a{color:var(--broken);font-weight:600}
@@ -154,7 +158,7 @@ ${route.spotCheck.selected ? `<span class="verdict-sub"><b>Selected for a blind 
 <ul>${route.reasons.map((x) => `<li>${esc(x.detail)} <span class="muted">(${esc(x.code)})</span></li>`).join("")}</ul>
 ${unblockedLine(route, esc)}</div>
 </div>
-<nav aria-label="Review guide"><a href="#s3">What can I check quickly?</a> · <a href="#s6">What must I decide?</a> · <a href="#explanation">Why must I read more?</a>${ui && !r.case.synthetic ? ` · <a href="${base}/experiment">Time a review exercise</a>` : ""}</nav>
+<nav aria-label="Review guide"><a href="#s3">What can I check quickly?</a> · <a href="#s6">What must I decide?</a> · <a href="#explanation">Why must I read more?</a>${ui && !r.case.synthetic ? ` · <a class="button secondary" href="${base}/experiment">Time a review exercise</a>` : ""}</nav>
 <p class="muted">Reading percentages describe the rule-selected diff, not measured time saved. Evidence links need human scrutiny.</p>
 ${ui?.notice ? `<p class="notice" role="status">${esc(ui.notice)}</p>` : ""}
 ${r.reviewer.status !== "ok" ? `<p><span class="flag">AI reviewer ${esc(r.reviewer.status)}.</span> ${esc(r.reviewer.reason ?? "")}</p>` : ""}
@@ -229,7 +233,7 @@ ${blocked ? `<p><span class="flag">This change cannot be signed yet.</span> ${r.
 <div class="field"><label for="reason">Reason</label><textarea id="reason" name="reason" rows="3" required>${val("reason")}</textarea></div>
 <button type="submit"${blocked ? " disabled" : ""}>Sign this sheet</button></form>
 <p class="muted">Owner identity is self-declared in this prototype. In a real pull-request flow it would come from the Git host account and the code owners of the areas above. Each signature is stored as a new file; the report is never rewritten.</p>
-<p><a href="${base}/blind">Do a blind spot-check of this change instead</a>: the sheet is hidden while you read the diff, then you compare your notes with it.</p>
+<p><a class="button secondary" href="${base}/blind">Do a blind spot-check</a>: the sheet is hidden while you read the diff, then you compare your notes with it.</p>
 </div>` : `<div class="owner">
 <p><b>Not signed.</b> The AI reviewer never approves. A named human signs, choosing an action and writing a reason.</p>
 <div class="field"><span>Name</span><span class="line"></span></div>
