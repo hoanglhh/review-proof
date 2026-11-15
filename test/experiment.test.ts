@@ -6,39 +6,36 @@ import { validateExperiment, experimentRecord, renderExperiment, renderExperimen
 import { startServer } from "../src/server.ts";
 
 const hash = "a".repeat(64);
-const form = (overrides: Record<string, string> = {}) => new URLSearchParams({ reportHash: hash, name: "A person", method: "sheet", priorExposure: "no", readingSeconds: "10", evidenceSeconds: "2", codeSeconds: "3", decisionsSeconds: "4", evidenceOpenings: "2", unresolvedQuestions: "None", fullReadNeeded: "no", human: "yes", started: "yes", ...overrides });
+const form = (overrides: Record<string, string> = {}) => new URLSearchParams({ reportHash: hash, name: "A person", method: "sheet", priorExposure: "no", evidenceOpenings: "2", unresolvedQuestions: "None", fullReadNeeded: "no", human: "yes", ...overrides });
 
 test("experiment requires a human declaration, fresh hash, complete choices and bounded strict numbers", () => {
   assert.deepEqual(validateExperiment(hash, form()), []);
-  for (const [key, values] of Object.entries({ reportHash: ["old", ""], name: [" ", "x".repeat(121)], method: ["other"], priorExposure: [""], human: [""], started: [""], fullReadNeeded: [""], unresolvedQuestions: ["", "x".repeat(4001)], evidenceOpenings: ["2x", "-1", "10001", "1.5"], readingSeconds: ["NaN", "Infinity", "1e3", "-1", "86401", "1.2", ""] })) {
+  for (const [key, values] of Object.entries({ reportHash: ["old", ""], name: [" ", "x".repeat(121)], method: ["other"], priorExposure: [""], human: [""], fullReadNeeded: [""], unresolvedQuestions: ["", "x".repeat(4001)], evidenceOpenings: ["2x", "-1", "10001", "1.5"] })) {
     for (const value of values) assert.ok(validateExperiment(hash, form({ [key]: value })).length, `${key}=${value} must fail`);
   }
   const duplicate = form(); duplicate.append("method", "diff");
   assert.ok(validateExperiment(hash, duplicate).length);
-  assert.ok(validateExperiment(hash, form({ readingSeconds: "0", evidenceSeconds: "0", codeSeconds: "0", decisionsSeconds: "0" })).length);
-  assert.ok(validateExperiment(hash, form({ readingSeconds: "86400", codeSeconds: "1" })).length);
+  assert.ok(validateExperiment(hash, form({ unexpected: "value" })).length);
 });
 
 test("experiment record and aggregate preserve exposure and exclude exposed records from method summaries", () => {
   const first = experimentRecord("test", hash, form(), "2026-11-15T00:00:00.000Z");
-  const exposed = experimentRecord("test", hash, form({ priorExposure: "yes", readingSeconds: "999" }), "2026-11-15T00:00:00.000Z");
-  assert.equal(first.activeSeconds, 19);
+  const exposed = experimentRecord("test", hash, form({ priorExposure: "yes", evidenceOpenings: "999" }), "2026-11-15T00:00:00.000Z");
+  assert.equal("activeSeconds" in first, false);
   assert.equal(first.identity, "self-declared");
   const html = renderExperiments([first, exposed]);
   assert.match(html, /2 submitted human records/);
   assert.match(html, /1 prior-exposure record/);
-  assert.match(html, /19 s/);
-  assert.doesNotMatch(html, /1018 s|999 s/);
+  assert.match(html, /<td>sheet<\/td><td>1<\/td><td>2<\/td>/);
+  assert.doesNotMatch(html, />1001<|>999</);
   assert.match(html, /No safety or speedup conclusion/);
 });
 
-test("experiment page starts paused, escapes values and contains no sign-off or trust form", () => {
+test("experiment page shows material immediately, escapes values and contains no sign-off or trust form", () => {
   const report = JSON.parse(readFileSync(join(import.meta.dirname, "../data/cases/2283/report.json"), "utf8"));
   const html = renderExperiment(report, { title: "<script>", body: "<img>" }, hash, "nonce");
-  assert.match(html, /Start review/);
-  assert.match(html, /let running=false/);
-  assert.match(html, /document.visibilityState/);
-  assert.match(html, /document.hasFocus/);
+  assert.match(html, /id="material" class=/);
+  assert.doesNotMatch(html, /performance.now|timer-status|id="material" hidden/);
   assert.match(html, /&lt;img&gt;/);
   assert.match(html, /target="_blank" rel="noopener"/);
   assert.doesNotMatch(html, /action="[^"]*\/(signoff|spotcheck|confirm)/);
@@ -56,30 +53,6 @@ test("experiment GET and invalid POST use the server origin and stale-report pro
     assert.equal((await post("https://evil.example")).status, 403);
     assert.equal((await post(url)).status, 400);
   } finally { server.close(); }
-});
-
-test("experiment timer requires start, attributes phases and pauses on focus loss", async () => {
-  const { runInNewContext } = await import("node:vm");
-  const report = JSON.parse(readFileSync(join(import.meta.dirname, "../data/cases/2283/report.json"), "utf8"));
-  const html = renderExperiment(report, { title: "Fixture", body: "Fixture" }, hash, "nonce");
-  const fields = Object.fromEntries([...form({ started: "no", readingSeconds: "0", evidenceSeconds: "0", codeSeconds: "0", decisionsSeconds: "0" })].map(([key, value]) => [key, { value, reportValidity: () => true }]));
-  const element = () => ({ hidden: true, disabled: false, value: "sheet", textContent: "", events: {} as Record<string, Function>, addEventListener(name: string, fn: Function) { this.events[name] = fn; }, reportValidity: () => true, setAttribute() {} });
-  const nodes = Object.fromEntries(["experiment", "material", "method-choice", "start", "pause", "timer-status", "elapsed", "sheet-material", "diff-material"].map((id) => [id, element()]));
-  Object.assign(nodes.experiment, { elements: { namedItem: (name: string) => fields[name] } });
-  const phases = ["reading", "evidence", "code", "decisions"].map((phase) => Object.assign(element(), { dataset: { phase } }));
-  let now = 0, focused = true, tick: Function = () => {};
-  const docEvents: Record<string, Function> = {}, winEvents: Record<string, Function> = {};
-  const document = { visibilityState: "visible", hasFocus: () => focused, getElementById: (id: string) => nodes[id], querySelectorAll: () => phases, addEventListener: (name: string, fn: Function) => { docEvents[name] = fn; } };
-  runInNewContext(html.match(/<script nonce="nonce">([\s\S]*?)<\/script>/)![1], { document, window: { addEventListener: (name: string, fn: Function) => { winEvents[name] = fn; } }, performance: { now: () => now }, setInterval: (fn: Function) => { tick = fn; } });
-  now = 5000; tick(); assert.equal(fields.readingSeconds.value, "0");
-  nodes.start.events.click(); now = 8000; tick(); assert.equal(fields.readingSeconds.value, "3");
-  phases[1].events.click(); now = 10000; tick(); assert.equal(fields.evidenceSeconds.value, "2");
-  focused = false; winEvents.blur(); now = 30000; tick(); assert.equal(fields.evidenceSeconds.value, "2");
-  focused = true; tick(); now = 40000; tick(); assert.equal(fields.evidenceSeconds.value, "2");
-  nodes.start.events.click(); now = 42000; tick(); assert.equal(fields.evidenceSeconds.value, "4");
-  document.visibilityState = "hidden"; docEvents.visibilitychange(); now = 50000; tick(); assert.equal(fields.evidenceSeconds.value, "4");
-  assert.equal(nodes["method-choice"].disabled, true);
-  assert.equal(nodes.material.hidden, false);
 });
 
 test("valid experiment POST writes append-only records only in an isolated temporary repository", async () => {
@@ -128,9 +101,9 @@ test("valid experiment POST writes append-only records only in an isolated tempo
   } finally { rmSync(fixture, { recursive: true, force: true }); }
 });
 
- test("external effort is optional, explicit and bounded, never imputed as zero", () => {
-  assert.equal(experimentRecord("test", hash, form()).externalSeconds, null);
-  assert.equal(experimentRecord("test", hash, form({externalSeconds:"0"})).externalSeconds, 0);
-  assert.equal(experimentRecord("test", hash, form({externalSeconds:"23"})).externalSeconds, 23);
-  for(const externalSeconds of ["-1", "NaN", "1.5", "86401"]) assert.ok(validateExperiment(hash, form({externalSeconds})).length);
+test("removed timing fields are rejected instead of silently recording new durations", () => {
+  const record=experimentRecord("test", hash, form());
+  assert.equal("externalSeconds" in record, false);
+  assert.equal("phaseSeconds" in record, false);
+  for(const key of ["started","readingSeconds","externalSeconds"]) assert.ok(validateExperiment(hash, form({[key]:"1"})).length);
 });

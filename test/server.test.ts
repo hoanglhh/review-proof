@@ -34,8 +34,8 @@ test("sign-off: error text escapes IDs that came from model output", () => {
 
 test("only the server writes sign-offs, and no command creates one", () => {
   const src = (f: string) => readFileSync(join(ROOT, "src", f), "utf8");
-  for (const f of readdirSync(join(ROOT, "src"))) {
-    if (f === "server.ts") continue;
+  for (const f of readdirSync(join(ROOT, "src"), {recursive:true}) as string[]) {
+    if (f === "server.ts" || !f.endsWith('.ts')) continue;
     assert.doesNotMatch(src(f), /"signoffs"\)?\s*,\s*`|writeNew|flag: "wx"/, `${f} must not write sign-offs`);
   }
   assert.doesNotMatch(src("cli.ts"), /cmd === "sign/);

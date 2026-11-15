@@ -12,7 +12,7 @@ Open the saved sheets in a browser: `data/cases/<id>/sheet.html`. The Markdown v
 
 ## Prerequisites
 
-- Node 26 or later (TypeScript runs directly; no build step). Run `npm install` once.
+- Node 26 or later (TypeScript runs directly). Run `npm install` once. The UI uses locally compiled Tailwind CSS; run `npm run build:css` after editing styles or view classes. The generated stylesheet and fonts are embedded for direct Node execution and offline reports.
 - Docker. The agent's code is built and tested only inside the repository's own container image (`mcr.microsoft.com/dotnet/sdk:8.0.402-jammy`), as your user, with only `.work/` mounted. No .NET SDK on the host.
 - For the AI step: an OpenAI-compatible endpoint in a git-ignored `.env`:
 
@@ -62,6 +62,8 @@ The scoring key in `labels/` was drafted by an AI model from reading the diffs a
 - `data/`: reports, the evidence they cite, sign-offs, the trust record. `.work/`: clone, worktrees, caches (git-ignored).
 - `docs/`: concept card, lessons log, decision log, failure modes, demo script.
 
+The app shares a Tailwind design system and reusable layouts/components under `src/ui/`; page modules contain their feature views rather than separate document wrappers and stylesheets. `npm run build` compiles the UI assets, and `npm test` rebuilds them before checking the workflows. See [UI architecture and design notes](docs/ui-redesign.md). Restart an existing server after rebuilding to load the latest UI. Historical saved report HTML remains unchanged; live views and newly rendered exports use the new design.
+
 ## Evaluation cohorts
 
 The four Tieto samples are **supplied samples**; the independently authored **holdout** is separate, and the planned upstream merged **control** has its own availability record. Neither is a planted bug. Selection rules and frozen-file hashes are in `data/evaluation/protocol.json`; selection snapshots and run records live alongside it. Cohorts do not enter the model prompt or routing rules.
@@ -86,15 +88,23 @@ Open `/evaluation/control` for the six head-project run records/logs and the sto
 
 The live sheet now labels the legacy `proven` state **Observed in a discriminating test**: the named test passes with the change and fails without it. This does not establish the full wording of the linked claim. The original JSON states, routing, prompts and saved static sheets remain unchanged. An explanation-coverage table maps every hunk to claims, decisions and reasons for attention; coverage is not correctness or measured time saved.
 
-- `/case/2283/experiment`: start a human review exercise explicitly, choose sheet or diff, declare prior exposure, and track reading, evidence, code and decision time. Record evidence openings and remaining questions. This saves an observation, never a sign-off or trust event.
-- `/evaluation/experiments`: observations with explicit denominators. Prior-exposure reads are separated; a single-person repeated read is not a controlled speed comparison. External tools/tabs are outside the page timer; an optional human-timed external duration is stored separately, with blank meaning not measured.
+- `/case/2283/experiment`: choose sheet or diff, declare prior exposure, and record evidence openings and remaining questions. No review timer is required or collected. This saves an observation, never a sign-off or trust event.
+- `/evaluation/experiments`: observations with explicit denominators. Prior-exposure reads are separated; a single-person repeated read is not a controlled speed comparison. Review durations are not collected or summarized; historical records remain unchanged.
 - `node src/review-v2.ts 2283 --prepare`: prepare bounded unchanged-source context and a distinct prompt without calling the model. `--run` executes a separate review; see [context v2](docs/context-v2.md). The holdout is excluded.
 - `/evaluation/context-v2/2283`: read-only follow-up report after a successful run. Follow-up outputs never enter the original metrics or trust record.
 - `/evaluation/control-v2`: the separate environment-repair control experiment, including an explicit unavailable outcome if it cannot finish. The original three-attempt control result at `/evaluation/control` remains unchanged.
 
-The human must perform the timing exercise and judge findings. No timings, correctness labels, sign-offs or spot-checks are manufactured by setup or tests. See [follow-up design](docs/improvements-v2.md).
+The human must perform the reading exercise and judge findings. No correctness labels, sign-offs or spot-checks are manufactured by setup or tests. See [follow-up design](docs/improvements-v2.md).
 
 The separate v2 control completed: 4 raw findings (4 citation-validated), 4 model-raised decisions, 1 unexplained hunk, 1 broken claim; route blocked. These are not false-positive judgments. Its head tests passed, but upstream snapshot comparison is disabled; see [control evidence and limitations](docs/control-v2.md).
+
+## Human evaluation and domain examples
+
+- **Judge findings** on a live sheet, or `/case/<id>/findings`, records real problem / not a problem / not sure with a named reviewer, explanation and supporting evidence. It works on blocked reports without accepting the change. `/evaluation/findings` counts each current finding once, keeps disagreement and uncertainty visible, and excludes stale versions from current judgments. See [finding feedback](docs/finding-feedback.md).
+- **Compare targeted and full reading**, or `/case/<id>/targeted`, saves initial notes from the selected hunks and linked evidence before revealing the full changed-line diff. A separate comparison records additional findings and questions. `/evaluation/targeted` separates first reads, prior exposure, repeats and incomplete comparisons. These are sequential observations, not a controlled speed comparison; see [targeted review](docs/targeted-review.md). Holdout and control cases are excluded from this new exercise.
+- `/examples` contains runnable, explicitly synthetic frontend and security examples, with requirements, exact before/after source, checks, human decisions and limits. The frontend exercises keyboard access and inline error recovery; the security fixture demonstrates an ownership check with a discriminating denial test. Actual local test/browser records live separately under `data/domain-examples/`; see [worked examples](docs/domain-examples.md).
+
+Human observations remain separate from sign-offs and trust. Until a person submits their own assessments, these pages report missing observations; setup and tests do not manufacture human judgments or performance results. Restart an already running server after updating the source to load the new routes.
 
 ## Assess your own change without editing JSON
 
@@ -109,6 +119,8 @@ To try a supplied sample, click **Assess a copy** next to its saved report. This
 Submissions are registered under `data/submissions/<generated-id>/`, with a snapshot of the chosen profile and pinned commits. Each source comparison is cloned into its own directory under `.work/submission-repos/`; the report names that isolated source snapshot, while the progress page and submission metadata retain the original repository. Their evidence and report use `data/cases/<generated-id>/`. Trust area names are scoped to the source repository, so unrelated repositories cannot inherit each other’s earned trust. They are labelled **User submission**, with their own metrics filter (`/metrics?cohort=submitted`); every aggregate lists its case scope. `cases.json` remains the fixed benchmark manifest. One assessment runs at a time. Keep the server running; an interrupted run is recorded as interrupted and can be retried by submitting again.
 
 The expanded-context v2 CLI remains a separate sample-only experiment; ordinary submissions currently use the original generic reviewer and its changed-file context. Requirements are mandatory in this first form because the existing review model checks evidence against stated intent.
+
+User submissions also apply an independent test-verification gate: failed head-test checks, pre-existing test regressions, and removal of passing tests block signing even when the AI links none of them to a claim. The gate applies during CLI assembly and live viewing/signing. Non-discriminating tests and unavailable legacy checks retain their existing coverage-limit behavior; they are not reported as observed test failures. Fixed benchmark cases keep their original routing policy for evaluation comparability.
 
 ## Automatic verification setup
 

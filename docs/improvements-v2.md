@@ -1,5 +1,7 @@
 # Follow-up improvements (v2)
 
+> Update (2026-11-15): The user subsequently requested removal of human review timing. The current implementation retains untimed observations and reading comparisons; the original timing design below is historical. See [targeted review](targeted-review.md).
+
 Implement the approved improvements without changing the frozen review experiment.
 
 1. Clarify evidence labels and expose claim/decision/hunk explanation coverage in the live sheet. Preserve machine states, routes, stored reports and original static sheets.

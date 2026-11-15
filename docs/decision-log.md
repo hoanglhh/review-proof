@@ -95,3 +95,33 @@ Users repeatedly needed a new assessment without editing `cases.json`. Add `/ass
 ## Inline Automatic setup
 
 Starting an Automatic assessment now checks for a matching verified repository plan and otherwise detects one from its pinned head. The job waits for explicit named execution trust and a passing baseline, then continues under the same assessment ID and requirements. Waiting does not hold the execution lock needed by the trust endpoint, but it reserves the assessment slot; cancellation before trust releases it. Shutdown aborts waiters rather than silently executing plans after restart. Automatic verification executes head commands only, so reuse follows head configuration; base commands are not executed or claimed verified. Relevant head configuration changes require a fresh plan review.
+
+## Submission test-verification gate (2026-11-15)
+
+Failed `tests-at-head` and `existing-tests` records now block user-submission signing independently of the model's claim links. This includes removal of a test that passed at base. Reuse the existing live verification gate and persist the result through submission CLI assembly so saved sheets, metrics inputs and live signing agree. A failed `tests-without-change` record describes weak discrimination rather than a head regression and does not independently block signing; unavailable legacy checks keep their existing behavior. Existing automatic-setup gates remain in force.
+
+This follow-up changes `src/cli.ts` for submissions only; fixed samples, the holdout, calibration and control experiments retain their original assembly policy. Frozen evaluation artifacts and model responses are not regenerated. Tests use synthetic runs and temporary submission repositories; they verify command-line assembly and refusal of a sign-off with a current report hash without creating real human records.
+
+## Human evaluation and domain coverage (2026-11-15)
+
+Finding judgments can now be recorded without signing a change, including on blocked reports. New records snapshot the report version, finding and citations, require an explanation and supporting evidence for decisive judgments, and remain append-only. Current summaries count each finding once, keep uncertainty/disagreement explicit, and show stale/excluded history separately. Sign-off feedback and frozen evaluation aggregates are not pooled with these observations.
+
+The targeted-first exercise saves initial human notes before revealing all changed-line hunks, then saves a separate full-diff comparison. It includes linked evidence, separate focused/external effort, prior exposure and repeat handling, current-version checks and immutable comparisons. It does not authorize skipping, accept code or alter trust. Holdout/control cases are excluded; no human observation is created by implementation or tests.
+
+Runnable synthetic frontend and authorization fixtures make the cross-domain concept concrete. Their requirements, exact source, discriminating security assertion, browser checks, human decisions and coverage limits are separate from real benchmark reports. Automated tests and browser captures live under `data/domain-examples/`. Browser inspection found and corrected long-text mobile overflow and invalid empty CSP nonces. Independent review found a stale-version race during request-body arrival; streaming synthetic tests reproduced it before moving version checks after body receipt. Original prompts, state rules, checks and stored evaluation evidence were not rerun or rewritten.
+
+## Tailwind interface and rendering refactor (2026-11-15)
+
+The user requested a complete UI redesign and cleanup of the HTML rendering. Keep the existing Node-rendered application and form contracts, but move the document shell, components, escaped code hunks, report formatting and Tailwind styles into `src/ui/`. Compile Tailwind locally and embed licensed fonts so saved reports remain self-contained. Add responsive navigation, clear task hierarchy and accessible controls across every page family. Historical report exports and human records are preserved; live pages and new exports use the new design.
+
+All 119 tests and 24 browser checks passed, including mobile menu bounds, keyboard controls, timers and offline reports. Source style inspection passed without findings; visual inspection retained one documented warning for muted secondary metadata. See `docs/ui-redesign.md` for the design rationale, build steps and verification limits.
+
+## Remove human review timing (2026-11-15)
+
+The user requested removal of timing. Remove page-focus tracking, Start/Pause clocks, phase and external-duration inputs, timing validation and timing summaries from sign-off, blind spot-checks and both reading exercises. Preserve named human decisions, notes, prior-exposure handling, stale-report checks and append-only records. Initial targeted notes still save before the full diff is revealed. Pipeline durations and safety timeouts remain operational metadata. Historical evidence and records are not rewritten; current views ignore their old timing fields. The prototype consequently makes no measured human-review speed claim.
+
+The challenge’s Measurement criterion is 25% and explicitly includes review time and time to merge. Removing the built-in timer does not satisfy those measurements by itself; separate study measurements or pull-request telemetry would be needed. Final verification passed all 118 tests and 26 browser checks; no real human records were submitted and all 343 snapshotted evidence/core files remained unchanged.
+
+## Focus the interface on assessment work (2026-11-15)
+
+The user asked for an informative, clean application without unnecessary material. Keep three primary navigation destinations and move secondary tools into native disclosures. Remove redundant queue counters and repeated guidance; prioritize the report over completed-run progress. Keep safety blockers and named human decisions visible. Expand technical definitions and live source quotations on demand, while standalone report quotations remain open. Optional studies and evidence stay reachable; no records or review rules are removed.

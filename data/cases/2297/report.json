@@ -10,7 +10,7 @@
     "profile": "messagepack-csharp",
     "base": "32258fdbee4bcd653c79f51b4376b5103c6f4d27",
     "head": "a0aa5ab2de7f5a669d97e37184a89034c1de82b6",
-    "generatedAt": "2026-11-14T15:48:52.751Z",
+    "generatedAt": "2026-11-15T05:02:03.196Z",
     "pipelineVersion": "0.1.0",
     "policyVersion": "2026-11-14.1",
     "model": "kimi-k3-1-pro",
@@ -297,7 +297,7 @@
       "text": "The requested coverage applies to every emitted generated type, including generated nested resolver helpers, rather than merely requiring one attribute somewhere in each generated file.",
       "quote": "all generated code",
       "kind": "interpretation",
-      "confirmedBy": null
+      "confirmedBy": "Hoang"
     }
   ],
   "inventory": {
@@ -13969,50 +13969,40 @@
     }
   ],
   "route": {
-    "evidenceRoute": "blocked",
+    "evidenceRoute": "targeted",
     "trustFloor": "full",
-    "effectiveRoute": "blocked",
+    "effectiveRoute": "full",
     "reasons": [
       {
-        "code": "interpretation-unconfirmed",
-        "detail": "R3 is an interpretation no human has confirmed"
+        "code": "claim-argued",
+        "detail": "C6 is argued"
+      },
+      {
+        "code": "decision-open",
+        "detail": "D1 needs the owner"
+      },
+      {
+        "code": "decision-open",
+        "detail": "D2 needs the owner"
+      },
+      {
+        "code": "decision-open",
+        "detail": "D3 needs the owner"
+      },
+      {
+        "code": "finding",
+        "detail": "F1 is a suspected problem"
+      },
+      {
+        "code": "finding",
+        "detail": "F2 is a suspected problem"
+      },
+      {
+        "code": "finding",
+        "detail": "F3 is a suspected problem"
       }
     ],
-    "ifUnblocked": {
-      "route": "targeted",
-      "reasons": [
-        {
-          "code": "claim-argued",
-          "detail": "C6 is argued"
-        },
-        {
-          "code": "decision-open",
-          "detail": "D1 needs the owner"
-        },
-        {
-          "code": "decision-open",
-          "detail": "D2 needs the owner"
-        },
-        {
-          "code": "decision-open",
-          "detail": "D3 needs the owner"
-        },
-        {
-          "code": "finding",
-          "detail": "F1 is a suspected problem"
-        },
-        {
-          "code": "finding",
-          "detail": "F2 is a suspected problem"
-        },
-        {
-          "code": "finding",
-          "detail": "F3 is a suspected problem"
-        }
-      ],
-      "readRatio": 0.1314655172413793,
-      "effectiveRoute": "full"
-    },
+    "ifUnblocked": null,
     "areas": [
       {
         "area": "docs",
@@ -14233,7 +14223,7 @@
     ],
     "readingListLines": 183,
     "totalLines": 1392,
-    "readRatio": null,
+    "readRatio": 1,
     "spotCheck": {
       "eligible": false,
       "selected": false,

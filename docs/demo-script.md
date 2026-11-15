@@ -6,7 +6,7 @@ About 8 minutes. Everything shown is generated from real runs saved in `data/`; 
 
 ## 0. The one line (20 s)
 
-"Machines verify claims. Humans own decisions. Nobody reviews lines by default." The index distinguishes the four supplied samples, the independent holdout and the merged control. Use `/metrics?cohort=sample` for the original four; each metric view names its population. #2283 has already been confirmed and signed by its owner; the other original sheets retain their recorded state.
+"Machines verify claims. Humans own decisions. Nobody reviews lines by default." The index distinguishes the four supplied samples, the independent holdout and the merged control. Use `/metrics?cohort=sample` for the original four; each metric view names its population. #2283 has already been confirmed and signed by its owner. #2297's R3 interpretation has also been confirmed by its owner; that confirmation is not a sign-off on the change.
 
 ## 1. #2283 in depth (3 min)
 
@@ -19,7 +19,12 @@ Open **#2283**.
 
 ## 2. #2297: what grouping buys (1 min)
 
-Open **#2297**. 237 files, 1392 changed lines. Section 2: 222 are test snapshots. Section 4, `pattern-groups`: 402 identical three-line insertions in 222 files (G1), and two snapshot files that deviate: one with a moved brace, one with an extra blank line. The verdict says that once unblocked, the evidence supports a **targeted read of 13%** of the changed lines: one exemplar per group plus everything that deviates. The trust floor still says full read, because no area has earned less. Only the owner may confirm R3; for a read-only demonstration, follow section 9's link to the simulated view where the areas have earned trust: the verdict becomes **Targeted read**, with a reading list of 183 of 1392 lines. That is the payoff of earned trust, and the band says it is simulated. The reviewer itself saw 20 of 423 hunks.
+Open **#2297** at `/case/2297`. 237 files, 1392 changed lines. Section 2: 222 are test snapshots. Section 4, `pattern-groups`: 402 identical three-line insertions in 222 files (G1), and two snapshot files that deviate: one with a moved brace, one with an extra blank line.
+
+- **Human interpretation:** section 1 records the owner's confirmation of R3: coverage applies to every emitted generated type, including nested resolver helpers. This resolves the requirement blocker; it does not approve the implementation.
+- **Real route:** the evidence supports a targeted read, but the effective route remains **Full read** because these areas have not earned lighter review.
+- **Conditional payoff:** follow section 9's link to `/case/2297/earned`. The clearly labelled simulation treats each area as having passed six clean blind spot-checks; its route is **Targeted read**, with a reading list of **183 of 1392 changed lines (13%)**. Show the repeated-pattern exemplar and a deviating hunk. The reviewer itself saw 20 of 423 hunks.
+- **Limit:** say, "This is a reduction in rule-selected changed lines under simulated earned trust. We have not measured an equivalent reduction in review time or established that skipping the remaining lines preserves quality." The simulated view cannot be signed.
 
 ## 3. #2234: a one-sentence requirement (1 min)
 
@@ -51,7 +56,7 @@ Never combine the four samples, holdout, control and eight planted defects into 
 
 1. Use a supplied sample, not the holdout. Open its live sheet and explain “Observed in a discriminating test”; show the named test and the warning about claim breadth.
 2. Open Explanation coverage. Trace one hunk to its claim or decision and the reason it requires attention. State that this is not correctness coverage.
-3. Open `/case/2283/experiment`. The human chooses method and prior exposure, starts the timer, switches phases, and records what remains unresolved. Do not populate the exercise on the human's behalf.
+3. Open `/case/2283/experiment`. The human chooses method and prior exposure, reads the chosen material, and records what remains unresolved. No timer is collected. Do not populate the exercise on the human's behalf.
 4. Open `/evaluation/experiments`. Report observations and denominators; do not claim causal speedup or stable incident rates.
 5. Show `/evaluation/context-v2/2283` and its retrieval manifest if available. Explain the bounded lexical search and omitted context.
 6. Show `/evaluation/control-v2`, separate from the frozen control result. Only the human judges false alarms.

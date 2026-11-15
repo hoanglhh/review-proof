@@ -1,0 +1,10 @@
+{
+  "caseId": "2297",
+  "requirementId": "R3",
+  "text": "The requested coverage applies to every emitted generated type, including generated nested resolver helpers, rather than merely requiring one attribute somewhere in each generated file.",
+  "quote": "all generated code",
+  "confirmedBy": "Hoang",
+  "identity": "self-declared",
+  "confirmedAt": "2026-11-15T05:02:03.174Z",
+  "reportHash": "6ee2593ba17383111ce97c303040c07a433fa4804ba185207b301f1b6d18f78d"
+}

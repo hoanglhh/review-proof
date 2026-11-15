@@ -23,6 +23,7 @@ test('form submits a real unseen diff, streams stage logs and registers the repo
     const repo2=join(fixture,'a__b');mkdirSync(repo2);git(['init','-q','-b','main'],repo2);writeFileSync(join(repo2,'calc.ts'),'export function emptyCount() { return 2; }\n');git(['add','.'],repo2);git(['commit','-qm','other base'],repo2);git(['checkout','-qb','feature'],repo2);writeFileSync(join(repo2,'calc.ts'),'export function emptyCount() { return 3; }\n');git(['commit','-qam','other change'],repo2);
     writeFileSync(join(fixture,'check.mjs'),`
 import assert from 'node:assert/strict';import {createServer} from 'node:http';import {readFileSync,writeFileSync,readdirSync,existsSync} from 'node:fs';
+import {execFileSync} from 'node:child_process';
 import {startServer} from './src/server.ts';
 const fake=createServer(async(req,res)=>{let text='';for await(const chunk of req)text+=chunk;const request=JSON.parse(text);assert.match(request.messages[1].content,/return 1/);
 const output={requirements:[{id:'R1',text:'Return zero for an empty input.',quote:'Return zero for an empty input.',kind:'explicit'}],claims:[{id:'C1',statement:'The implementation returns one.',requirementIds:['R1'],evidenceIds:[],testNames:[],hunkIds:['H1'],citations:[{file:'calc.ts',at:'head',startLine:1,endLine:1,quote:'return 1;'}]}],decisions:[],findings:[{id:'F1',statement:'Returning one conflicts with the supplied requirement.',hunkIds:['H1'],citations:[{file:'calc.ts',at:'head',startLine:1,endLine:1,quote:'return 1;'}]}],cannotDecide:[{item:'Executable verification',reason:'No tests configured.'}]};res.setHeader('content-type','application/json');res.end(JSON.stringify({choices:[{finish_reason:'stop',message:{content:JSON.stringify(output)}}]}));});
@@ -40,6 +41,18 @@ try{
   assert.equal(job.status,'completed',JSON.stringify(job));for(const stage of ['ingest','check','review','assemble'])assert.ok(job.log.includes('Starting '+stage));
   const report=JSON.parse(readFileSync('data/cases/'+job.id+'/report.json'));assert.equal(report.inventory.totals.files,1);assert.match(report.hunks[0].added.join(' '),/return 1/);assert.equal(report.findings.length,1);assert.equal(report.reviewer.status,'ok');assert.equal(report.case.base.length,40);assert.equal(report.route.areas[0].owner,'Fixture owner');assert.match(report.route.areas[0].area,/^repository-[a-f0-9]{16}/);assert.match(report.case.repository,/submission-repos/);const registered=JSON.parse(readFileSync('data/submissions/'+job.id+'/case.json'));assert.equal(registered.sourceRepository,${JSON.stringify(repo)});assert.ok(report.notChecked.some(x=>/No trusted executable/.test(x.reason)));
   assert.deepEqual(JSON.parse(readFileSync('cases.json')),{cases:[]});assert.equal(existsSync('data/trust'),false);assert.equal(existsSync('data/cases/'+job.id+'/signoffs'),false);
+  const checksPath='data/cases/'+job.id+'/check.json',savedChecks=readFileSync(checksPath,'utf8');
+  for(const check of ['tests-at-head','existing-tests']){
+    const checks=JSON.parse(savedChecks);checks.evidence.push({...checks.evidence[0],id:check+':fixture',check,status:'failed',summary:'Synthetic fixture: a verified test failure.',tests:[]});writeFileSync(checksPath,JSON.stringify(checks));
+    execFileSync(process.execPath,['src/cli.ts','assemble',job.id],{stdio:'pipe'});
+    const gated=JSON.parse(readFileSync('data/cases/'+job.id+'/report.json'));assert.equal(gated.route.effectiveRoute,'blocked');assert.ok(gated.route.reasons.some(r=>r.code==='test-verification'));
+    const page=await(await fetch(url+'/case/'+job.id)).text(),hash=page.match(/name="reportHash" value="([a-f0-9]{64})"/)[1];
+    const signoff=new URLSearchParams({reportHash:hash,name:'Synthetic fixture only',action:'accept',reason:'Synthetic refusal test'});
+    const refused=await fetch(url+'/case/'+job.id+'/signoff',{method:'POST',headers:{origin:url},body:signoff});assert.equal(refused.status,400);assert.match(await refused.text(),/report is blocked/);
+    assert.equal(existsSync('data/cases/'+job.id+'/signoffs'),false);
+  }
+  writeFileSync(checksPath,savedChecks);execFileSync(process.execPath,['src/cli.ts','assemble',job.id],{stdio:'pipe'});
+  assert.equal(JSON.parse(readFileSync('data/cases/'+job.id+'/report.json')).route.effectiveRoute,'full');
   assert.equal((await fetch(url+'/case/'+job.id)).status,200);assert.match(await(await fetch(url+'/')).text(),/User submission/);assert.match(await(await fetch(url+path)).text(),/Open assessment report/);
   assert.equal((await fetch(url+'/assess/not-a-job/status')).status,404);
   writeFileSync('.env','');form.set('repository',${JSON.stringify(repo2)});

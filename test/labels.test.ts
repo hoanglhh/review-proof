@@ -25,6 +25,8 @@ test("no label sentence appears in any prompt sent to the model", () => {
 });
 
 test("no pipeline code refers to the labels directory", () => {
-  for (const f of readdirSync(join(ROOT, "src"))) assert.doesNotMatch(readFileSync(join(ROOT, "src", f), "utf8"), /labels/, f);
+  for (const f of readdirSync(join(ROOT, "src"), {recursive:true}) as string[]) {
+    if(f.endsWith('.ts')) assert.doesNotMatch(readFileSync(join(ROOT, "src", f), "utf8"), /labels/, f);
+  }
   assert.doesNotMatch(readFileSync(join(ROOT, "src", "review.ts"), "utf8"), /plants\.json|calibration/, "the reviewer must not read the planted-bug labels");
 });

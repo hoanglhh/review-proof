@@ -1,0 +1,35 @@
+<!-- SYNTHETIC accessible search interaction; no network or real records. -->
+<form id="search-form" novalidate>
+  <label for="search-query">Find a synthetic note</label>
+  <input type="text" id="search-query" name="query" aria-describedby="search-error" autocomplete="off">
+  <p id="search-error" class="flag" hidden></p>
+  <button type="submit">Search synthetic notes</button>
+  <p id="search-result" role="status"></p>
+</form>
+<script>
+const form = document.getElementById('search-form');
+const query = document.getElementById('search-query');
+const error = document.getElementById('search-error');
+const result = document.getElementById('search-result');
+query.addEventListener('input', () => {
+  error.hidden = true;
+  error.textContent = '';
+  query.removeAttribute('aria-invalid');
+  result.textContent = '';
+});
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+  if (!query.value.trim()) {
+    error.textContent = 'Enter a search term, then search again.';
+    error.hidden = false;
+    query.setAttribute('aria-invalid', 'true');
+    result.textContent = '';
+    query.focus();
+    return;
+  }
+  error.hidden = true;
+  error.textContent = '';
+  query.removeAttribute('aria-invalid');
+  result.textContent = 'Synthetic result: Example planning note.';
+});
+</script>

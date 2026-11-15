@@ -1,0 +1,40 @@
+TAP version 13
+# Subtest: SEC-1 returns the document only to its authenticated owner
+ok 1 - SEC-1 returns the document only to its authenticated owner
+  ---
+  duration_ms: 1.127918
+  type: 'test'
+  ...
+# Subtest: SEC-2 invalid boundary inputs return the same generic unavailable result
+ok 2 - SEC-2 invalid boundary inputs return the same generic unavailable result
+  ---
+  duration_ms: 0.229152
+  type: 'test'
+  ...
+# Subtest: the same other-owner denial assertion fails on base and passes on head
+ok 3 - the same other-owner denial assertion fails on base and passes on head
+  ---
+  duration_ms: 1.374843
+  type: 'test'
+  ...
+# Subtest: worked examples are synthetic, non-signable, and show exact fixture code
+ok 4 - worked examples are synthetic, non-signable, and show exact fixture code
+  ---
+  duration_ms: 0.741563
+  type: 'test'
+  ...
+# Subtest: frontend fixture renderer selects semantic head controls and escapes the CSP nonce
+ok 5 - frontend fixture renderer selects semantic head controls and escapes the CSP nonce
+  ---
+  duration_ms: 0.345105
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 97.965586

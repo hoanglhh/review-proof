@@ -1,0 +1,17 @@
+<!-- SYNTHETIC intentionally inaccessible baseline; no network or real records. -->
+<form id="search-form" novalidate>
+  <input type="text" id="search-query" name="query" placeholder="Find a synthetic note" autocomplete="off">
+  <div class="button" id="search-submit">Search synthetic notes</div>
+  <p id="search-result" role="status"></p>
+</form>
+<script>
+const form = document.getElementById('search-form');
+const query = document.getElementById('search-query');
+const result = document.getElementById('search-result');
+form.addEventListener('submit', (event) => event.preventDefault());
+document.getElementById('search-submit').addEventListener('click', () => {
+  result.textContent = query.value.trim()
+    ? 'Synthetic result: Example planning note.'
+    : 'Enter a search term.';
+});
+</script>

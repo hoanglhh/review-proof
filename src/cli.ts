@@ -10,6 +10,7 @@ import { inventory, issueReproduction, patternGroups, publicSurface, REGISTRY, s
 import type { Evidence } from "./report.ts";
 import { buildPrompt, runReview } from "./review.ts";
 import { assembleCase, readJsonl, TRUST_LOG } from "./assemble.ts";
+import { assembleWithSetupGate } from "./setup-gate.ts";
 import { startServer, writeSimulation } from "./server.ts";
 import { trustFloor } from "./states.ts";
 import { classifyPlant, summarize } from "./calibrate.ts";
@@ -162,7 +163,7 @@ async function review(c: Case, p: Profile, fresh: boolean) {
 // ---- assemble: citations, states, route, sheet ----
 
 function assemble(c: Case, p: Profile) {
-  const report = assembleCase(c, p);
+  const report = c.submission ? assembleWithSetupGate(c, p) : assembleCase(c, p);
   const states = Map.groupBy(report.claims, (x) => x.state);
   console.log(`wrote ${relative(ROOT, caseDir(c.id))}/report.json, sheet.html, sheet.md`);
   console.log(`  route: ${report.route.effectiveRoute} (evidence ${report.route.evidenceRoute}, trust floor ${report.route.trustFloor}); claims: ${[...states].map(([k, v]) => `${v.length} ${k}`).join(", ") || "none"}; ${report.decisions.length} decisions; ${report.unexplained.length} unexplained hunks`);

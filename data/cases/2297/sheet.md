@@ -2,29 +2,34 @@ Evaluation cohort: Supplied sample
 
 ## ReviewProof sign-off sheet: \#2297 Add ExcludeFromCodeCoverage attribute to generated code.
 
-**Route: BLOCKED** (cannot be signed yet). Evidence supports: blocked. 
+**Route: FULL**. Evidence supports: targeted. Area docs has no track record: full read required. Area generator-templates has not earned lighter review (0 of 3 clean spot-checks since the last reset): full read required. Area tests has not earned lighter review (0 of 3 clean spot-checks since the last reset): full read required. Area test-snapshots has no track record: full read required.
 
-- `interpretation-unconfirmed` R3 is an interpretation no human has confirmed
+- `claim-argued` C6 is argued
+- `decision-open` D1 needs the owner
+- `decision-open` D2 needs the owner
+- `decision-open` D3 needs the owner
+- `finding` F1 is a suspected problem
+- `finding` F2 is a suspected problem
+- `finding` F3 is a suspected problem
 
-Once these are resolved, the evidence supports a targeted read of 13% of the changed lines: C6 is argued; D1 needs the owner; D2 needs the owner; and 4 more. The areas' trust floors would still require a full read.
-
-Read ratio: not applicable until unblocked (1392 changed lines). Generated 2026-11-14T15:48:52.751Z, base `32258fdb` → head `a0aa5ab2`, policy 2026-11-14.1 (illustrative thresholds). Full sheet: sheet.html
+Read ratio: 100% of 1392 changed lines. Generated 2026-11-15T05:02:03.196Z, base `32258fdb` → head `a0aa5ab2`, policy 2026-11-14.1 (illustrative thresholds). Full sheet: sheet.html
 
 ### Requirement
 - **R1** (explicit) Generated MessagePack code should be decorated with ExcludeFromCodeCoverage so that it does not distort coverage results.
 - **R2** (explicit) A configuration setting for the behavior is optional; always-on behavior is acceptable.
-- **R3** (interpretation, **unconfirmed**) The requested coverage applies to every emitted generated type, including generated nested resolver helpers, rather than merely requiring one attribute somewhere in each generated file.
+- **R3** (interpretation, confirmed by Hoang) The requested coverage applies to every emitted generated type, including generated nested resolver helpers, rather than merely requiring one attribute somewhere in each generated file.
 
 ### What it touches
 237 files, +1383/−9: 1 docs (3 lines), 6 template-output (20 lines), 6 template (27 lines), 1 source (2 lines), 1 test (130 lines), 222 test-snapshot (1210 lines). Unexplained hunks: none.
 
 ### Claims (states computed from evidence)
+Observed in a discriminating test means a named test passes with the change and fails without it; this does not establish the full wording of the claim. Inspect the assertion and its scope.
 - **argued** C6: The README documents formatter/resolver decoration together with the netstandard2.0 and .NET Framework exception, while the change adds no public generator setting, public declaration, API entry, or diagnostic ID. — 1 resolved citation(s) and no run that supports it
-- **proven** C1: The integer-key, enum, string-key, and union formatter templates and their compiled template-output counterparts emit a fully qualified ExcludeFromCodeCoverage attribute on the formatter class, guarded by !NETSTANDARD2\_0 && !NETFRAMEWORK. — test CodeCoverageExclusionTests.AllGeneratedTypesAreExcludedFromCodeCoverage passes at head and fails without the change
-- **proven** C2: ResolverTemplate emits the guarded attribute on the outer generated resolver, its nested FormatterCache\<T\>, and its nested GetFormatterHelper class; the corresponding ResolverTemplate.cs output contains the same insertions. — test CodeCoverageExclusionTests.AllGeneratedTypesAreExcludedFromCodeCoverage passes at head and fails without the change
-- **proven** C3: CompositeResolverTemplate emits the guarded attribute on both the generated composite resolver and its nested FormatterCache\<T\>, in both the .tt template and the compiled template-output file. — test CompositeResolverGeneratorTests.CompositeResolver\_MixedResolverTypes passes at head and fails without the change
-- **proven** C4: The repeated-output portion contains 402 identical guarded insertions across 222 files in G1; separately, constrained nesting-type output now terminates the opening brace with CRLF, and the generic-private-member snapshots show the guard beginning on a fresh line. — test GenerationTests.GenericDataTypeWithPrivateMember passes at head and fails without the change
-- **proven** C5: The two new tests inspect every GeneratedTree returned for their fixture: one requires at least one attribute substring per file, and the other requires every attribute occurrence to match one of two exact guarded layouts with either one leading tab or no leading tab. — test CodeCoverageExclusionTests.AllGeneratedTypesAreExcludedFromCodeCoverage passes at head and fails without the change
+- **Observed in a discriminating test** C1: The integer-key, enum, string-key, and union formatter templates and their compiled template-output counterparts emit a fully qualified ExcludeFromCodeCoverage attribute on the formatter class, guarded by !NETSTANDARD2\_0 && !NETFRAMEWORK. — test CodeCoverageExclusionTests.AllGeneratedTypesAreExcludedFromCodeCoverage passes at head and fails without the change
+- **Observed in a discriminating test** C2: ResolverTemplate emits the guarded attribute on the outer generated resolver, its nested FormatterCache\<T\>, and its nested GetFormatterHelper class; the corresponding ResolverTemplate.cs output contains the same insertions. — test CodeCoverageExclusionTests.AllGeneratedTypesAreExcludedFromCodeCoverage passes at head and fails without the change
+- **Observed in a discriminating test** C3: CompositeResolverTemplate emits the guarded attribute on both the generated composite resolver and its nested FormatterCache\<T\>, in both the .tt template and the compiled template-output file. — test CompositeResolverGeneratorTests.CompositeResolver\_MixedResolverTypes passes at head and fails without the change
+- **Observed in a discriminating test** C4: The repeated-output portion contains 402 identical guarded insertions across 222 files in G1; separately, constrained nesting-type output now terminates the opening brace with CRLF, and the generic-private-member snapshots show the guard beginning on a fresh line. — test GenerationTests.GenericDataTypeWithPrivateMember passes at head and fails without the change
+- **Observed in a discriminating test** C5: The two new tests inspect every GeneratedTree returned for their fixture: one requires at least one attribute substring per file, and the other requires every attribute occurrence to match one of two exact guarded layouts with either one leading tab or no leading tab. — test CodeCoverageExclusionTests.AllGeneratedTypesAreExcludedFromCodeCoverage passes at head and fails without the change
 
 ### Checks
 | Check | Status | Result |

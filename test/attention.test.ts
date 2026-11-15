@@ -27,7 +27,7 @@ test('live sheet qualifies test evidence, escapes coverage and preserves report'
   assert.match(html, /Observed in a discriminating test/);
   assert.match(html, /Explanation coverage/);
   assert.match(html, /not correctness coverage/);
-  assert.match(html, /What must I decide/);
+  assert.match(html, /href="#s6">Human decisions/);
   assert.match(md, /does not establish the full wording/);
   assert.equal(JSON.stringify(r), before);
   r.hunks[0].file = '<script>bad</script>';

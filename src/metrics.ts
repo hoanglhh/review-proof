@@ -5,7 +5,7 @@ import { DATA, readJson } from "./config.ts";
 import { caseCohorts, type Cohort } from "./cohorts.ts";
 import type { Report } from "./report.ts";
 
-type Signoff = { caseId: string; activeSeconds: number; findings?: Record<string, string | null> };
+type Signoff = { caseId: string; findings?: Record<string, string | null> };
 type Calibration = { total: number; caughtByRun: number; caughtByModelOnly: number; missed: number; modelNotRun: number; reviewer: string; results?: { plant: string; case: string }[] } | null;
 const frac = (n: number, of: number) => ({ n, of });
 
@@ -36,14 +36,13 @@ export function computeMetrics(reports: Report[], signoffs: Signoff[], calibrati
     citationCasesWithReviewer: frac(cites.length, reports.length),
     calibration,
     signoffs: signoffs.length,
-    activeSeconds: signoffs.map((s) => ({ caseId: s.caseId, seconds: s.activeSeconds })),
     findingsMarked: { real: frac(marks.filter((m) => m === "real").length, marks.length), notReal: frac(marks.filter((m) => m === "not_real").length, marks.length) },
     noDataYet: [
       { metric: "Decision recall against the scoring key", definition: "Share of key items the sheet raised as a decision or finding. Needs the user to confirm the AI-drafted key and to match key items to sheet items." },
-      { metric: "Reverts and incidents per area and route", definition: "Changes reverted or tied to an incident after merge, per area and per route, set against the review time spent on them." },
+      { metric: "Reverts and incidents per area and route", definition: "Changes reverted or tied to an incident after merge, per area and per route." },
       { metric: "Time to merge", definition: "Time from the agent's change to a signed, merged change, per route." },
     ],
-    guardRule: "An area keeps a lighter route only while escapes stay flat as review time falls.",
+    guardRule: "An area keeps a lighter route only while its spot-checks and escape history support it.",
   };
 }
 

@@ -1,0 +1,27 @@
+{
+  "status": "passed",
+  "domainFixturesSynthetic": true,
+  "scope": "Synthetic domain/comparison fixtures and read-only UI inspection of supplied sample 2297",
+  "checkedAt": "2026-11-15T05:38:04.781091+00:00",
+  "browser": "153.0.8010.52",
+  "checks": [
+    "Head keyboard Enter on native submit exposes empty-input error and focuses the associated input.",
+    "Editing clears stale errors; native submit activates with Space and displays synthetic output.",
+    "Enter in the search input submits the head form.",
+    "Input-focused Enter produces no result on base; its click-only div is outside keyboard tab order and the input has no associated label.",
+    "/examples: no document-level horizontal overflow at desktop and 375px viewport.",
+    "/examples/frontend?version=head: no document-level horizontal overflow at desktop and 375px viewport.",
+    "/case/2297/findings: no document-level horizontal overflow at desktop and 375px viewport.",
+    "/case/2297/targeted: no document-level horizontal overflow at desktop and 375px viewport.",
+    "/evaluation/findings: no document-level horizontal overflow at desktop and 375px viewport.",
+    "/evaluation/targeted: no document-level horizontal overflow at desktop and 375px viewport.",
+    "Targeted reading material reveals only after explicit start; browser inspection submits no human observation.",
+    "Revealed targeted code and linked evidence also fit desktop and 375px viewports without document-level overflow.",
+    "Separate synthetic comparison UI preserves locked notes, reveals the full diff on Start, and fits desktop/mobile; no real record is created."
+  ],
+  "humanRecordsSubmitted": false,
+  "limitations": [
+    "Automated Chromium checks, not a screen-reader session, usability study, full accessibility audit or real human evaluation.",
+    "Frontend output, comparison test values and security fixtures are synthetic; original evaluation metrics remain separate."
+  ]
+}

@@ -1,6 +1,6 @@
 // Local sign-off server. The only code path that writes a sign-off, a confirmation or a trust event is a
 // POST from a person using these pages. Binds to 127.0.0.1 and refuses posts from other origins.
-import { createHash, randomBytes } from "node:crypto";
+import { createHash, randomBytes, randomUUID } from "node:crypto";
 import { appendFileSync, existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { createServer, type IncomingMessage, type ServerResponse } from "node:http";
 import { dirname, extname, join, resolve, sep } from "node:path";
@@ -12,6 +12,9 @@ import { loadMetrics } from "./metrics.ts";
 import { COHORT_LABELS, type Cohort } from "./cohorts.ts";
 import type { Report } from "./report.ts";
 import { experimentRecord, renderExperiment, renderExperiments, validateExperiment, type Experiment } from "./experiment.ts";
+import { findingFeedbackRecord, renderFindingFeedback, renderFindingFeedbackSummary, validateFindingFeedback, type FindingFeedback } from "./finding-feedback.ts";
+import { targetedReviewRecord, targetedComparisonRecord, renderTargetedReview, renderTargetedComparison, renderTargetedSummary, validateTargetedReview, validateTargetedComparison, type TargetedReview, type TargetedComparison } from "./targeted-experiment.ts";
+import { renderDomainExamples, renderFrontendExample } from "./domain-examples.ts";
 
 import {installedProfiles, startSubmission, submissionJob, submissionJobs, stopSubmissions, validateSubmission, submissionsRunning, cancelPendingSubmission} from "./submissions.ts";
 import {renderAssessmentForm, renderAssessmentProgress} from "./assessment-pages.ts";
@@ -55,7 +58,11 @@ const hashOf = (id: string) => {
   return createHash("sha256").update(JSON.stringify({ ...r, case: { ...r.case, generatedAt: null } })).digest("hex");
 };
 const writeNew = (path: string, value: unknown) => { mkdirSync(dirname(path), { recursive: true }); writeFileSync(path, JSON.stringify(value, null, 2) + "\n", { flag: "wx" }); }; // never overwrites
-const seconds = (v: string | null) => Math.max(0, Number.parseInt(v ?? "0", 10) || 0);
+const FEEDBACK_DIR = join(DATA, "finding-feedback");
+const TARGETED_DIR = join(DATA, "targeted-experiments");
+const jsonFiles = (directory: string) => existsSync(directory) ? readdirSync(directory).filter(name => name.endsWith(".json")).sort() : [];
+const findingFeedback = (): FindingFeedback[] => jsonFiles(FEEDBACK_DIR).map(name => readJson(join(FEEDBACK_DIR, name)));
+const recordId = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
 
 export function startServer(port: number) {
   const policy: Policy = readJson(join(ROOT, "policy.json"));
@@ -65,7 +72,7 @@ export function startServer(port: number) {
   const send = (res: ServerResponse, status: number, body: string, nonce = "", type = "text/html; charset=utf-8") => {
     res.writeHead(status, {
       "content-type": type, "x-content-type-options": "nosniff", "referrer-policy": "same-origin", "x-frame-options": "DENY",
-      "content-security-policy": `default-src 'none'; style-src 'unsafe-inline'; connect-src 'self'; script-src 'nonce-${nonce}'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'`,
+      "content-security-policy": `default-src 'none'; style-src 'unsafe-inline'; font-src data:; connect-src 'self'; script-src ${nonce ? `'nonce-${nonce}'` : "'none'"}; form-action 'self'; frame-ancestors 'none'; base-uri 'none'`,
     });
     res.end(body);
   };
@@ -92,6 +99,34 @@ export function startServer(port: number) {
       const sameOrigin = origins.includes(req.headers.origin ?? "") || req.headers["sec-fetch-site"] === "same-origin";
       if (req.method === "POST" && !sameOrigin) return send(res, 403, "Posts are accepted only from this server's own pages.", "", "text/plain");
       const parts = url.pathname.split("/").filter(Boolean).map(decodeURIComponent);
+
+      if (req.method === "GET" && parts[0] === "examples") {
+        if (parts.length === 1) return send(res, 200, renderDomainExamples());
+        if (parts.length === 2 && parts[1] === "frontend") {
+          const version = url.searchParams.get("version") ?? "head";
+          if (version !== "base" && version !== "head") return send(res, 400, "Unknown example version", "", "text/plain");
+          const nonce = randomBytes(16).toString("base64");
+          return send(res, 200, renderFrontendExample(version, nonce), nonce);
+        }
+      }
+
+      if (req.method === "GET" && parts.join("/") === "evaluation/findings") {
+        const cohort = url.searchParams.get("cohort");
+        if (cohort && !["sample", "holdout", "control", "submitted"].includes(cohort)) return send(res, 400, "Unknown cohort", "", "text/plain");
+        const current = listCases().filter(c => !c.synthetic && (cohort ? (c.submission ? "submitted" : c.cohort) === cohort : c.cohort === "sample" || c.submission)).flatMap(c => {
+          const r = report(c.id);
+          return r ? [{ report: r, hash: hashOf(c.id) }] : [];
+        });
+        const scope = `<p class="notice">${cohort ? `Selected cohort: ${esc(cohort)}.` : "Default scope: supplied samples and user submissions."} <a href="?cohort=sample">Samples</a> · <a href="?cohort=submitted">Submissions</a> · <a href="?cohort=holdout">Holdout (complete its blind read first)</a> · <a href="?cohort=control">Control</a></p>`;
+        return send(res, 200, renderFindingFeedbackSummary(current, findingFeedback()).replace('<main class="sheet">', '<main class="sheet">' + scope));
+      }
+
+      if (req.method === "GET" && parts.join("/") === "evaluation/targeted") {
+        const names = jsonFiles(TARGETED_DIR);
+        const reviews: TargetedReview[] = names.filter(name => !name.endsWith(".comparison.json")).map(name => readJson(join(TARGETED_DIR, name)));
+        const comparisons: TargetedComparison[] = names.filter(name => name.endsWith(".comparison.json")).map(name => readJson(join(TARGETED_DIR, name)));
+        return send(res, 200, renderTargetedSummary(reviews, comparisons));
+      }
 
       if (parts[0] === "setups") {
         const nonce=randomBytes(16).toString("base64");
@@ -227,6 +262,51 @@ export function startServer(port: number) {
 
       if (req.method === "GET" && !action) return sheet(res, c, r, { notice: url.searchParams.get("notice") ?? undefined });
 
+      if (action === "findings" && parts.length === 3 && ["GET", "POST"].includes(req.method ?? "")) {
+        const f = req.method === "POST" ? await body(req) : undefined;
+        const fresh = report(c.id);
+        if (!fresh) return send(res, 404, renderMessage("Report unavailable", "Reload the case after its report is available.", back));
+        const current = hashOf(c.id);
+        if (!f) return send(res, 200, renderFindingFeedback(fresh, current, findingFeedback()));
+        const errors = validateFindingFeedback(fresh, current, f);
+        if (errors.length) return send(res, 400, renderFindingFeedback(fresh, current, findingFeedback(), errors, f));
+        // The numbered append-only filenames preserve correction order, including submissions in the same millisecond.
+        const sequence = String(jsonFiles(FEEDBACK_DIR).length + 1).padStart(12, "0");
+        writeNew(join(FEEDBACK_DIR, `${sequence}-${randomUUID()}.json`), findingFeedbackRecord(fresh, current, f));
+        return redirect(res, `${back}/findings#feedback-history`);
+      }
+
+      if (action === "targeted" && ["GET", "POST"].includes(req.method ?? "") && (parts.length === 3 || parts.length === 4)) {
+        if (!(c.cohort === "sample" || c.submission) || c.synthetic) return send(res, 403, renderMessage("Exercise unavailable", "Targeted exercises are limited to supplied samples and user submissions. The frozen holdout and control evaluations are excluded.", back));
+        const f = req.method === "POST" ? await body(req) : undefined;
+        const fresh = report(c.id);
+        if (!fresh) return send(res, 404, renderMessage("Report unavailable", "Reload the case after its report is available.", back));
+        const current = hashOf(c.id), nonce = randomBytes(16).toString("base64");
+        if (parts.length === 3) {
+          const requirement = readJson(join(caseDir(c.id), "requirement.json"));
+          if (!f) return send(res, 200, renderTargetedReview(fresh, requirement, current, nonce), nonce);
+          const errors = validateTargetedReview(fresh, current, f);
+          if (errors.length) return send(res, 400, renderTargetedReview(fresh, requirement, current, nonce, errors, f), nonce);
+          const id = randomUUID();
+          writeNew(join(TARGETED_DIR, `${id}.json`), targetedReviewRecord(fresh, current, f, id));
+          return redirect(res, `${back}/targeted/${id}`);
+        }
+        const id = parts[3];
+        if (!recordId.test(id) || !existsSync(join(TARGETED_DIR, `${id}.json`))) return send(res, 404, renderMessage("Observation not found", "Start a targeted review for this report first.", `${back}/targeted`));
+        const review: TargetedReview = readJson(join(TARGETED_DIR, `${id}.json`));
+        if (review.caseId !== c.id) return send(res, 404, renderMessage("Observation not found", "This observation belongs to another case.", back));
+        if (review.reportHash !== current) return send(res, 409, renderMessage("Report changed", "The initial observation belongs to a previous report version. It remains saved; start a new exercise against the current report.", `${back}/targeted`));
+        const comparisonPath = join(TARGETED_DIR, `${id}.comparison.json`);
+        if (existsSync(comparisonPath)) return req.method === "POST"
+          ? send(res, 409, renderMessage("Comparison already recorded", "This append-only comparison cannot be overwritten.", "/evaluation/targeted"))
+          : redirect(res, "/evaluation/targeted");
+        if (!f) return send(res, 200, renderTargetedComparison(fresh, review, nonce), nonce);
+        const errors = validateTargetedComparison(review, current, f);
+        if (errors.length) return send(res, 400, renderTargetedComparison(fresh, review, nonce, errors, f), nonce);
+        writeNew(comparisonPath, targetedComparisonRecord(review, current, f));
+        return redirect(res, "/evaluation/targeted");
+      }
+
       if (action === "experiment" && parts.length === 3 && ["GET", "POST"].includes(req.method ?? "")) {
         const nonce = randomBytes(16).toString("base64");
         const current = hashOf(c.id);
@@ -272,7 +352,6 @@ export function startServer(port: number) {
           decisions: Object.fromEntries(r.decisions.map((d) => [d.id, f.get(`decision.${d.id}`)])),
           findings: Object.fromEntries(r.findings.map((x) => [x.id, ["real", "not_real", "unsure"].includes(f.get(`finding.${x.id}`) ?? "") ? f.get(`finding.${x.id}`) : null])),
           route: { effective: r.route.effectiveRoute, evidence: r.route.evidenceRoute, trustFloor: r.route.trustFloor },
-          activeSeconds: seconds(f.get("activeSeconds")), activeSecondsSource: "measured by the page while visible and focused",
         });
         return redirect(res, `${back}?notice=${encodeURIComponent(`Signed by ${name}.`)}#s10`);
       }
@@ -290,7 +369,7 @@ export function startServer(port: number) {
         const sid = `${stamp()}-${randomBytes(3).toString("hex")}`;
         writeNew(join(caseDir(c.id), "spotchecks", `${sid}.json`), {
           caseId: c.id, reportHash: hashOf(c.id), startedAt: new Date().toISOString(), reader: name, identity: "self-declared",
-          blind: f.get("blind") === "yes", notes, activeSeconds: seconds(f.get("activeSeconds")),
+          blind: f.get("blind") === "yes", notes,
         });
         return redirect(res, `${back}/spotcheck/${sid}`);
       }
