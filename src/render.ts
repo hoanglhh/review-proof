@@ -169,8 +169,9 @@ ${ui && q.kind === "interpretation" && !q.confirmedBy ? `<form class="inline" me
 ${section(2, "What it touches", `<div class="scroll"><table><thead><tr><th>Kind of file</th><th>Files</th><th>Changed lines</th></tr></thead><tbody>
 ${Object.entries(r.inventory.totals.byClass).map(([k, v]) => `<tr><td>${esc(k)}</td><td>${v.files}</td><td>${v.lines}</td></tr>`).join("")}
 <tr class="total"><td>Total</td><td>${r.inventory.totals.files}</td><td>+${r.inventory.totals.added} / −${r.inventory.totals.removed}</td></tr></tbody></table></div>
-<div class="scroll"><table><thead><tr><th>File</th><th>Kind</th><th>Lines</th><th>Hunks</th></tr></thead><tbody>
-${r.inventory.files.map((f) => `<tr><td><code>${esc(f.path)}</code>${f.status !== "modified" ? ` <span class="muted">(${f.status})</span>` : ""}</td><td>${esc(f.class)}</td><td>+${f.added}/−${f.removed}</td><td>${hunks(f.hunkIds)}</td></tr>`).join("")}</tbody></table></div>
+<details class="file-inventory"><summary>View all ${r.inventory.totals.files} changed ${r.inventory.totals.files === 1 ? "file" : "files"}</summary>
+<div class="scroll" style="max-height:28rem;overflow:auto" tabindex="0" role="region" aria-label="Changed file inventory"><table><thead><tr><th>File</th><th>Kind</th><th>Lines</th><th>Hunks</th></tr></thead><tbody>
+${r.inventory.files.map((f) => `<tr><td><code>${esc(f.path)}</code>${f.status !== "modified" ? ` <span class="muted">(${f.status})</span>` : ""}</td><td>${esc(f.class)}</td><td>+${f.added}/−${f.removed}</td><td>${hunks(f.hunkIds)}</td></tr>`).join("")}</tbody></table></div></details>
 <p><b>Unexplained:</b> ${hunks(r.unexplained)}. These are changed hunks that no claim or decision accounts for.</p>`)}
 
 ${section(3, "What the evidence establishes", `<p class="muted">Code computes each state; the model never sets one. Observed in a discriminating test: a named test passes with the change and fails without it. This does not establish the full wording of the linked claim; check the test assertion and its scope. Argued: resolved citations, or passing tests without a discriminating failure. Not checked: no linked support. Broken: a linked check contradicts it. The stored state name remains <code>proven</code> for compatibility with the frozen report.</p>
